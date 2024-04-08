@@ -251,6 +251,12 @@ class NewSelectSilvoScreen extends StatelessWidget {
           ),
           //todo Concepto
           const ExpansionTile(
+            //collapsedIconColor: Colors.green,
+
+            //tilePadding: EdgeInsets.zero,
+
+            // collapsedBackgroundColor: Color.fromARGB(255, 188, 247, 122),
+            backgroundColor: Color.fromARGB(255, 238, 248, 238),
             leading: Icon(Icons.forest_outlined),
             title: Text('¿Qué es un sistema silvopastoril?'),
             //subtitle: Text('Un sistema silvopastoril es...'),
@@ -268,7 +274,10 @@ class NewSelectSilvoScreen extends StatelessWidget {
 
           //todo objetivo
           const ExpansionTile(
+            //collapsedIconColor: Colors.green,
             leading: Icon(Icons.flag_outlined),
+            //collapsedBackgroundColor: Color.fromARGB(255, 188, 247, 122),
+            backgroundColor: Color.fromARGB(255, 238, 248, 238),
             title: Text('Objetivo'),
             //subtitle: Text('Un sistema silvopastoril es...'),
             children: <Widget>[
@@ -285,7 +294,10 @@ class NewSelectSilvoScreen extends StatelessWidget {
 
           //Todo Ventajas
           const ExpansionTile(
+            //collapsedIconColor: Colors.green,
             leading: Icon(Icons.check_box_outlined),
+            //collapsedBackgroundColor: Color.fromARGB(255, 188, 247, 122),
+            backgroundColor: Color.fromARGB(255, 238, 248, 238),
             title: Text('Ventajas'),
             //subtitle: Text('Un sistema silvopastoril es...'),
             children: <Widget>[
@@ -306,6 +318,9 @@ class NewSelectSilvoScreen extends StatelessWidget {
 
           //todo Importancia
           const ExpansionTile(
+            // collapsedIconColor: Colors.green,
+            // collapsedBackgroundColor: Color.fromARGB(255, 188, 247, 122),
+            backgroundColor: Color.fromARGB(255, 238, 248, 238),
             leading: Icon(Icons.auto_graph_sharp),
             title: Text('Importancia'),
             //subtitle: Text('Un sistema silvopastoril es...'),
