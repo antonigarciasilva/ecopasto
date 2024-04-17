@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:version/presentation/screens/aliso/aliso_screen.dart';
+import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
 
-class DryMatterScreen extends StatefulWidget {
-  const DryMatterScreen({super.key});
-  @override
-  MyGreenMatterScreen createState() => MyGreenMatterScreen();
-}
-
-class MyGreenMatterScreen extends State<DryMatterScreen> {
-  //String? selectedValue;
+class DryBiomassScreen extends StatelessWidget {
+  const DryBiomassScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +10,14 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
-                    'assets/img/dry_alder.jpg',
+                    'assets/img/biomas_alder.jpg',
                     fit: BoxFit.fitWidth,
                     height: 259,
                   ),
@@ -31,7 +26,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                 //Título
                 const SizedBox(height: 25.0),
                 const Text(
-                  'Calculando la materia seca con Aliso',
+                  'Calculando la biomasa seca con Aliso',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -43,7 +38,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 240,
+                    width: 250,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
@@ -51,7 +46,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                       ),
                       onPressed: () {},
                       child: const Text(
-                        'MS/M2 = PMS/PMH x 100',
+                        'C = -22.695 + 1.5085 * DAP',
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ),
@@ -59,23 +54,23 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                 ),
 
                 //NOTA
-
+                const SizedBox(
+                  height: 20,
+                ),
                 const SizedBox(
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*MS: materia seca \n'
-                        '*M2: metro cuadrado',
+                        '*DAP: Diámetro a la altura del pecho',
                         style: TextStyle(fontSize: 10),
                       ),
                     ),
                   ),
                 ),
-
                 //Día de evaluación
-                const SizedBox(height: 15.0),
+                const SizedBox(height: 20.0),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -87,13 +82,13 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                   ],
                 ),
 
-                //Peso de la materia verde
+                //DAP
                 const SizedBox(height: 25),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'Peso de la materia seca (PMS): ',
+                      'DAP: ',
                       style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(
@@ -106,7 +101,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Peso g',
+                          labelText: 'CM',
                           labelStyle: TextStyle(fontSize: 15),
                         ),
                         textAlign: TextAlign.center,
@@ -115,36 +110,8 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                   ],
                 ),
 
-                //Peso de la materia húmeda
-                const SizedBox(height: 25),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Peso de la materia húmeda(PMH): ',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    SizedBox(
-                      width: 79,
-                      height: 25,
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Peso g',
-                          labelStyle: TextStyle(fontSize: 15),
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-                ),
-
                 //Guardar
-                const SizedBox(height: 35.0),
+                const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
@@ -158,11 +125,11 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const AlisoScreen()),
+                              builder: (context) => const BiomassAlderScreen()),
                         );
                       },
                       child: const Text(
-                        'Calcular',
+                        'Guardar',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),

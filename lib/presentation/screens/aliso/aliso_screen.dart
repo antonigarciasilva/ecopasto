@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:version/presentation/screens/aliso/biomass.dart';
-import 'package:version/presentation/screens/aliso/cabon_biomass.dart';
+import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
+import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
 import 'package:version/presentation/screens/aliso/dry_matter.dart';
 import 'package:version/presentation/screens/aliso/green_matter.dart';
 
@@ -102,7 +102,7 @@ class AlisoScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const BiomassScreen()),
+                            builder: (context) => const BiomassAlderScreen()),
                       );
                     },
                     child: const Text(
@@ -128,7 +128,7 @@ class AlisoScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const CarbonBiomassScreen()),
+                            builder: (context) => const CarbonScreen()),
                       );
                     },
                     child: const Text(

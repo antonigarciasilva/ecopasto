@@ -11,134 +11,168 @@ class GreenMatterScreen extends StatefulWidget {
 
 class MyGreenMatterScreen extends State<GreenMatterScreen> {
   String? selectedValue;
+  //Tengo que tener necesariamente estas dos cosas para hacer mi validadciones
+  //GlobalKey<FormaState> variable = inicializo con GlobalKey<FromState(); la variable se va a usar en el form y evaluamos el estado de nuestro formulario
+  //Como key: varibale
+
+  //Con los controladores vamos a poder acceder a la información de cada texto
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _controllerWeight = TextEditingController();
+
+  //Validar el peso de la materia verde
+  String? _validateWeight(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Por favor, ingresa el peso';
+    }
+    //Validación con regex
+    final weightRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    if (!weightRegExp.hasMatch(value)) {
+      return 'Solo acepta valores numéricos';
+    }
+    return null;
+
+/*
+    //Podemos agregar más if, por ejemplo
+    if (value.length >= 5) {
+      return "Peso muy exagerado";
+    }
+
+    return null;*/
+  }
+
+  //Validamos el botton guardar
+  void _submitForm() {
+    //usamos la llave creada del Globalkey, luego con el currentState, vemos su estado actual
+    // El cual acepta valores nulos, por eso lo agregamos un "!", para decir que si o sí no será nula
+    //Luego ponemos un "." y accdemos al metodo validate que da valores booleanos
+    if (_formKey.currentState!.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const AlisoScreen()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset(
-                    'assets/img/green_alder.jpg',
-                    fit: BoxFit.fitWidth,
-                    height: 259,
+      body: Form(
+        key: _formKey,
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Image.asset(
+                      'assets/img/green_alder.jpg',
+                      fit: BoxFit.fitWidth,
+                      height: 259,
+                    ),
                   ),
-                ),
 
-                //Título
-                const SizedBox(height: 25.0),
-                const Text(
-                  'Calculando la materia verde con Aliso',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                  //Título
+                  const SizedBox(height: 25.0),
+                  const Text(
+                    'Calculando la materia verde con Aliso',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
 
-                //Día de evaluación
-                const SizedBox(height: 25.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Text('Día de evaluación:',
-                        style: TextStyle(
-                          fontSize: 15,
-                        )),
-                    const SizedBox(width: 20),
-                    DropdownButton<String>(
-                      value: selectedValue,
-                      onChanged: (String? value) {
-                        setState(() {
-                          selectedValue = value;
-                        });
-                      },
-                      items: <String>['Día 30', 'Día 45', 'Día 60', 'Día 75']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(
-                              fontSize: 15,
+                  //Día de evaluación
+                  const SizedBox(height: 25.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text('Día de evaluación:',
+                          style: TextStyle(
+                            fontSize: 15,
+                          )),
+                      const SizedBox(width: 20),
+                      DropdownButton<String>(
+                        value: selectedValue,
+                        hint: const Text('Elije un valor'),
+                        onChanged: (String? value) {
+                          setState(() {
+                            selectedValue = value;
+                          });
+                        },
+                        items: <String>['Día 30', 'Día 45', 'Día 60', 'Día 75']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(
+                                fontSize: 15,
+                              ),
                             ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ],
-                ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
 
-                //Fecha actual
-                const SizedBox(height: 25.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Día de evaluación:   ${getFormattedDate()}',
-                        style: const TextStyle(
-                          fontSize: 15,
-                        )),
-                  ],
-                ),
+                  //Fecha actual
+                  const SizedBox(height: 25.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('Día de evaluación:   ${getFormattedDate()}',
+                          style: const TextStyle(
+                            fontSize: 15,
+                          )),
+                    ],
+                  ),
 
-                //Peso de la materia verde
-                const SizedBox(height: 25),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Peso de la materia verde: ',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    SizedBox(
-                      width: 89,
-                      height: 25,
-                      child: TextField(
-                        keyboardType: TextInputType.number,
+                  //Peso de la materia verde
+                  const SizedBox(height: 25),
+
+                  //Ingresa el peso de materia verde
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Padding(
+                      padding: const EdgeInsets.all(25),
+                      child: TextFormField(
+                        controller: _controllerWeight,
+                        validator: _validateWeight,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Peso KG',
-                          labelStyle: TextStyle(fontSize: 15),
+                          //prefixIcon: const Icon(Icons.person_4),
+                          labelText: 'Ingresa el peso de materia verde',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              borderSide: BorderSide.none),
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    )
-                  ],
-                ),
-
-                //Guardar
-                const SizedBox(height: 35.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AlisoScreen()),
-                        );
-                      },
-                      child: const Text(
-                        'Guardar',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   ),
-                ),
-              ],
+
+                  //Guardar
+                  const SizedBox(height: 35.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: _submitForm,
+                        child: const Text(
+                          'Guardar',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -151,66 +185,3 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
     return DateFormat('dd-MM-yyyy').format(now);
   }
 }
-
-/*
-class GreenMatterScreen extends StatelessWidget {
-  const GreenMatterScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(
-                'assets/img/green_alder.jpg',
-                fit: BoxFit.fitWidth,
-                height: 299,
-              ),
-            ),
-
-            //Título
-            const SizedBox(height: 20.0),
-            const Text(
-              'Calculando la materia verde con Aliso',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            //Materia verde
-            const SizedBox(height: 20.0),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: SizedBox(
-                width: 240,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromARGB(255, 51, 79, 31)),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const GreenMatterScreen()),
-                    );
-                  },
-                  child: const Text(
-                    'Guardar',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-*/

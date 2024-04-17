@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:version/presentation/screens/login_screen.dart';
+import 'package:version/presentation/screens/login/login_screen.dart';
 import 'dart:async';
 
 class HomeScreen extends StatelessWidget {
