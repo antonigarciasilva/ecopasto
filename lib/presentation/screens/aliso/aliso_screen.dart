@@ -40,7 +40,7 @@ class AlisoScreen extends StatelessWidget {
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: SizedBox(
-                  width: 240,
+                  width: 260,
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
@@ -54,7 +54,7 @@ class AlisoScreen extends StatelessWidget {
                       );
                     },
                     child: const Text(
-                      'Materia verde',
+                      '1. Materia verde',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
@@ -66,7 +66,7 @@ class AlisoScreen extends StatelessWidget {
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: SizedBox(
-                  width: 240,
+                  width: 260,
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
@@ -80,7 +80,7 @@ class AlisoScreen extends StatelessWidget {
                       );
                     },
                     child: const Text(
-                      'Materia seca',
+                      '2. Materia seca',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
@@ -92,7 +92,7 @@ class AlisoScreen extends StatelessWidget {
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: SizedBox(
-                  width: 240,
+                  width: 260,
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
@@ -106,7 +106,7 @@ class AlisoScreen extends StatelessWidget {
                       );
                     },
                     child: const Text(
-                      'Biomasa',
+                      ' 3. Biomasa',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
@@ -118,7 +118,7 @@ class AlisoScreen extends StatelessWidget {
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: SizedBox(
-                  width: 240,
+                  width: 260,
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
@@ -132,7 +132,7 @@ class AlisoScreen extends StatelessWidget {
                       );
                     },
                     child: const Text(
-                      'Carbono en la biomasa',
+                      '4. Carbono en la biomasa',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),

@@ -31,7 +31,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               children: <Widget>[
                 const SizedBox(
-                  height: 40,
+                  height: 80,
                 ),
                 SizedBox(
                   height: 160.0,
@@ -252,7 +252,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                 ),
 
                 const SizedBox(
-                  height: 40,
+                  height: 80,
                 ),
                 //todo Concepto
                 const ExpansionTile(

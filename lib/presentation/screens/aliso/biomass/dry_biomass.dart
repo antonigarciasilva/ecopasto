@@ -1,8 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
 
-class DryBiomassScreen extends StatelessWidget {
+class DryBiomassScreen extends StatefulWidget {
   const DryBiomassScreen({super.key});
+
+  @override
+  State<DryBiomassScreen> createState() => _DryBiomassScreenState();
+}
+
+class _DryBiomassScreenState extends State<DryBiomassScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _controllerDap = TextEditingController();
+
+  //Validación del DAP
+  String? _validateDap(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Por favor, ingresa el DAP';
+    }
+    //Validación de regex only numbers
+    final dapRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    if (!dapRegExp.hasMatch(value)) {
+      return 'Solo se aceptan valores numéricos';
+    }
+    return null;
+  }
+
+  //Validamos el bottomn guardar
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const BiomassAlderScreen()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,30 +114,31 @@ class DryBiomassScreen extends StatelessWidget {
 
                 //DAP
                 const SizedBox(height: 25),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'DAP: ',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    SizedBox(
-                      width: 79,
-                      height: 25,
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'CM',
-                          labelStyle: TextStyle(fontSize: 15),
-                        ),
-                        textAlign: TextAlign.center,
+
+                const Text(
+                  'DAP: ',
+                  style: TextStyle(fontSize: 15),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Form(
+                  key: _formKey,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: TextFormField(
+                      controller: _controllerDap,
+                      validator: _validateDap,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        labelText: 'CM',
+                        labelStyle: const TextStyle(fontSize: 15),
                       ),
-                    )
-                  ],
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
 
                 //Guardar
@@ -121,13 +152,7 @@ class DryBiomassScreen extends StatelessWidget {
                         backgroundColor: MaterialStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BiomassAlderScreen()),
-                        );
-                      },
+                      onPressed: _submitForm,
                       child: const Text(
                         'Guardar',
                         style: TextStyle(fontSize: 18, color: Colors.white),

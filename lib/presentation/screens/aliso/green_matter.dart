@@ -20,6 +20,14 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeight = TextEditingController();
 
+  //Validación de día de evaluación
+  String? _validateEvaluation(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Por favor, ingresa el día de evaluación';
+    }
+    return null;
+  }
+
   //Validar el peso de la materia verde
   String? _validateWeight(String? value) {
     if (value == null || value.isEmpty) {
@@ -35,7 +43,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
 /*
     //Podemos agregar más if, por ejemplo
     if (value.length >= 5) {
-      return "Peso muy exagerado";
+      return "Peso muy exagerado"; 
     }
 
     return null;*/
@@ -45,7 +53,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
   void _submitForm() {
     //usamos la llave creada del Globalkey, luego con el currentState, vemos su estado actual
     // El cual acepta valores nulos, por eso lo agregamos un "!", para decir que si o sí no será nula
-    //Luego ponemos un "." y accdemos al metodo validate que da valores booleanos
+    //Luego ponemos un "." y accedemos al metodo validate que da valores booleanos
     if (_formKey.currentState!.validate()) {
       Navigator.push(
         context,
@@ -86,36 +94,36 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
 
                   //Día de evaluación
                   const SizedBox(height: 25.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const Text('Día de evaluación:',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      const SizedBox(width: 20),
-                      DropdownButton<String>(
-                        value: selectedValue,
-                        hint: const Text('Elije un valor'),
-                        onChanged: (String? value) {
-                          setState(() {
-                            selectedValue = value;
-                          });
-                        },
-                        items: <String>['Día 30', 'Día 45', 'Día 60', 'Día 75']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: const TextStyle(
-                                fontSize: 15,
-                              ),
+
+                  const Text('Día de evaluación:',
+                      style: TextStyle(
+                        fontSize: 15,
+                      )),
+                  const SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 80),
+                    child: DropdownButtonFormField<String>(
+                      validator: _validateEvaluation,
+                      value: selectedValue,
+                      hint: const Text('Elije un valor'),
+                      onChanged: (String? value) {
+                        setState(() {
+                          selectedValue = value;
+                        });
+                      },
+                      items: <String>['Día 30', 'Día 45', 'Día 60', 'Día 75']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                              fontSize: 15,
                             ),
-                          );
-                        }).toList(),
-                      ),
-                    ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
 
                   //Fecha actual
@@ -123,7 +131,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Día de evaluación:   ${getFormattedDate()}',
+                      Text('Fecha de evaluación:   ${getFormattedDate()}',
                           style: const TextStyle(
                             fontSize: 15,
                           )),
@@ -131,29 +139,29 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                   ),
 
                   //Peso de la materia verde
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 15),
 
                   //Ingresa el peso de materia verde
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: Padding(
-                      padding: const EdgeInsets.all(25),
-                      child: TextFormField(
-                        controller: _controllerWeight,
-                        validator: _validateWeight,
-                        decoration: InputDecoration(
-                          //prefixIcon: const Icon(Icons.person_4),
-                          labelText: 'Ingresa el peso de materia verde',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25),
-                              borderSide: BorderSide.none),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: _controllerWeight,
+                      validator: _validateWeight,
+                      decoration: InputDecoration(
+                        //prefixIcon: const Icon(Icons.person_4),
+
+                        labelText: 'Ingresa el peso de materia verde',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
                         ),
                       ),
                     ),
                   ),
 
                   //Guardar
-                  const SizedBox(height: 35.0),
+                  const SizedBox(height: 15.0),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(

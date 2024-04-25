@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
+import 'package:version/presentation/screens/tutorial/tutorial_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
@@ -42,7 +42,7 @@ class LoginPageState extends State<LoginScreen> {
     if (_formKey.currentState!.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const NewSelectSilvoScreen()),
+        MaterialPageRoute(builder: (context) => const TutorialScreen()),
       );
     }
   }
@@ -69,6 +69,7 @@ class LoginPageState extends State<LoginScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
                     controller: _emailController,
                     validator: _validateEmail,
                     decoration: InputDecoration(
