@@ -108,7 +108,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                     padding: const EdgeInsets.all(6),
                                     color: Colors.white.withOpacity(0.5),
                                     child: const Text(
-                                      'Cipres',
+                                      'Ciprés',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.black,
@@ -265,7 +265,11 @@ class NewSelectSilvoScreen extends StatelessWidget {
                   // collapsedBackgroundColor: Color.fromARGB(255, 188, 247, 122),
                   //backgroundColor: Color.fromARGB(255, 238, 248, 238),
                   leading: Icon(Icons.forest_outlined),
-                  title: Text('¿Qué es un sistema silvopastoril?'),
+                  title: Text(
+                    '¿Qué es un sistema silvopastoril?',
+                    style: TextStyle(
+                        fontFamily: 'Poppins', fontWeight: FontWeight.w400),
+                  ),
                   //subtitle: Text('Un sistema silvopastoril es...'),
                   children: <Widget>[
                     Padding(

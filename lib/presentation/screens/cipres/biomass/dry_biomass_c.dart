@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:version/presentation/screens/pino/biomass/biomass.dart';
+import 'package:version/presentation/screens/cipres/biomass/biomass_c.dart';
 
-class DryBiomassP extends StatefulWidget {
-  const DryBiomassP({super.key});
+class DryBiomassC extends StatefulWidget {
+  const DryBiomassC({super.key});
 
   @override
-  State<DryBiomassP> createState() => _DryBiomassPState();
+  State<DryBiomassC> createState() => _DryBiomassCState();
 }
 
-class _DryBiomassPState extends State<DryBiomassP> {
+class _DryBiomassCState extends State<DryBiomassC> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDapP = TextEditingController();
 
@@ -30,7 +30,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const BiomassPinoScreen()));
+          MaterialPageRoute(builder: (context) => const BiomassScreenC()));
     }
   }
 
@@ -47,7 +47,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
-                    'assets/img/pino/biomass/biomass.jpg',
+                    'assets/img/cipres/biomass/biomass_c.jpg',
                     fit: BoxFit.fitWidth,
                     height: 259,
                   ),
@@ -76,7 +76,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
                       ),
                       onPressed: () {},
                       child: const Text(
-                        'C = 0,6575 * DAP',
+                        'C = 0,2639 * DAP',
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ),
