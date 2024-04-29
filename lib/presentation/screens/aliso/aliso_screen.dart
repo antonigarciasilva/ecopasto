@@ -19,7 +19,7 @@ class AlisoScreen extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Image.asset(
-                  'assets/img/aliso.jpg',
+                  'assets/img/aliso/aliso.jpg',
                   fit: BoxFit.fitWidth,
                   height: 299,
                 ),
@@ -145,20 +145,3 @@ class AlisoScreen extends StatelessWidget {
     );
   }
 }
-
-/*
-title: Row(
-          children: <Widget>[
-            Image.asset(
-              'assets/img/cypress.jpg',
-              height: 30,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            const Text(
-              'Silvipastoreo con aliso',
-              style: TextStyle(fontSize: 12),
-            )
-          ],
-        ), */

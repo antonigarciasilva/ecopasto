@@ -10,7 +10,7 @@ class CipresScreen extends StatelessWidget {
         title: Row(
           children: <Widget>[
             Image.asset(
-              'assets/img/cypress.jpg',
+              'assets/img/cipres/cypress.jpg',
               height: 30,
             ),
             const SizedBox(

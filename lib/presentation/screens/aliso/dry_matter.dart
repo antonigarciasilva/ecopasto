@@ -55,7 +55,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Image.asset(
-                      'assets/img/dry_alder.jpg',
+                      'assets/img/aliso/drymatter/dry_alder.jpg',
                       fit: BoxFit.fitWidth,
                       height: 259,
                     ),

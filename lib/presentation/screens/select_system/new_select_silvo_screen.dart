@@ -53,7 +53,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
                               Image.asset(
-                                'assets/img/pino.jpg',
+                                'assets/img/pino/pino.jpg',
                                 height: 150,
                                 width: 150,
                                 fit: BoxFit.cover,
@@ -95,7 +95,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
                               Image.asset(
-                                'assets/img/cipres.jpg',
+                                'assets/img/cipres/cipres.jpg',
                                 height: 150,
                                 width: 150,
                                 fit: BoxFit.cover,
@@ -136,7 +136,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
                               Image.asset(
-                                'assets/img/aliso.jpg',
+                                'assets/img/aliso/aliso.jpg',
                                 height: 150,
                                 width: 150,
                                 fit: BoxFit.cover,
@@ -177,7 +177,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
                               Image.asset(
-                                'assets/img/pona.jpg',
+                                'assets/img/pona/pona.jpg',
                                 height: 150,
                                 width: 150,
                                 fit: BoxFit.cover,
@@ -220,7 +220,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(
                               children: [
                                 Image.asset(
-                                  'assets/img/sin_pasto.jpg',
+                                  'assets/img/sinarbol/sin_pasto.jpg',
                                   height: 150,
                                   width: 150,
                                   fit: BoxFit.cover,

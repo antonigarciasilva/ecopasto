@@ -1,165 +1,98 @@
 import 'package:flutter/material.dart';
+import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
 
-class SoilCarbonScreen extends StatelessWidget {
+class SoilCarbonScreen extends StatefulWidget {
   const SoilCarbonScreen({super.key});
+
+  @override
+  State<SoilCarbonScreen> createState() => _SoilCarbonScreenState();
+}
+
+class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _controllerWeightA = TextEditingController();
+  final TextEditingController _controllerWeightP = TextEditingController();
+  final TextEditingController _controllerWeightDA = TextEditingController();
+
+  //Validación de los pesos
+  String? _validateWeight(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Por favor, ingresa el peso';
+    }
+    //Validación con regex
+    final soilRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    if (!soilRegExp.hasMatch(value)) {
+      return 'Solo acepta valores numéricos';
+    }
+    return null;
+  }
+
+  //Validamos el boton
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const CarbonScreen()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset(
-                    'assets/img/biomas_alder.jpg',
-                    fit: BoxFit.fitWidth,
-                    height: 259,
-                  ),
-                ),
-
-                //Título
-                const SizedBox(height: 25.0),
-                const Text(
-                  'Calculando carbono en el suelo',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-                //Formula
-                const SizedBox(height: 25.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'Ws (t/ha) = a * p * da',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      ),
+        child: Form(
+          key: _formKey,
+          child: Center(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Image.asset(
+                      'assets/img/aliso/biomass/biomas_alder.jpg',
+                      fit: BoxFit.fitWidth,
+                      height: 259,
                     ),
                   ),
-                ),
 
-                //Día de evaluación
-                const SizedBox(height: 20.0),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Día de evaluación: ',
-                        style: TextStyle(
-                          fontSize: 15,
-                        )),
-                    SizedBox(width: 20),
-                  ],
-                ),
+                  //Título
+                  const SizedBox(height: 25.0),
+                  const Text(
+                    'Calculando carbono en el suelo',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
 
-                //Área
-                const SizedBox(height: 25),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'a: ',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    SizedBox(
-                      width: 79,
-                      height: 25,
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'cm',
-                          labelStyle: TextStyle(fontSize: 15),
+                  //Formula
+                  const SizedBox(height: 25.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    )
-                  ],
-                ),
-
-                //Profundidad
-                const SizedBox(height: 25),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'p: ',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    SizedBox(
-                      width: 79,
-                      height: 25,
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'm',
-                          labelStyle: TextStyle(fontSize: 15),
+                        onPressed: () {},
+                        child: const Text(
+                          'Ws (t/ha) = a * p * da',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    )
-                  ],
-                ),
-
-                //PST
-                const SizedBox(height: 25),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'da: ',
-                      style: TextStyle(fontSize: 15),
                     ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    SizedBox(
-                      width: 79,
-                      height: 25,
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'kg/m3',
-                          labelStyle: TextStyle(fontSize: 15),
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    )
-                  ],
-                ),
+                  ),
 
-                //NOTA
-                const SizedBox(
-                  height: 20,
-                ),
-                const SizedBox(
-                  child: Padding(
+                  //NOTA
+
+                  const Padding(
                     padding: EdgeInsets.all(20),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Nota: \n'
                         '*Ws: Peso del suelo (t/ha) \n'
                         '*a: Área (ha) \n'
                         '*p: Profundidad (m) \n'
@@ -168,34 +101,122 @@ class SoilCarbonScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
 
-                //Guardar
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                  //Día de evaluación
+                  const SizedBox(height: 20.0),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('Día de evaluación: ',
+                          style: TextStyle(
+                            fontSize: 15,
+                          )),
+                      SizedBox(width: 20),
+                    ],
+                  ),
+
+                  //Área
+                  const SizedBox(height: 25),
+
+                  const Text(
+                    'a: ',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: TextFormField(
+                      validator: _validateWeight,
+                      controller: _controllerWeightA,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        labelText: 'cm',
+                        labelStyle: const TextStyle(fontSize: 15),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SoilCarbonScreen()),
-                        );
-                      },
-                      child: const Text(
-                        'Calcular',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+
+                  //Profundidad
+                  const SizedBox(height: 25),
+
+                  const Text(
+                    'p: ',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: TextFormField(
+                      validator: _validateWeight,
+                      controller: _controllerWeightP,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        labelText: 'cm',
+                        labelStyle: const TextStyle(fontSize: 15),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+
+                  //PST
+                  const SizedBox(height: 25),
+
+                  const Text(
+                    'da: ',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: TextFormField(
+                      validator: _validateWeight,
+                      controller: _controllerWeightDA,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        labelText: 'cm',
+                        labelStyle: const TextStyle(fontSize: 15),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+
+                  //Guardar
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: _submitForm,
+                        child: const Text(
+                          'Calcular',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

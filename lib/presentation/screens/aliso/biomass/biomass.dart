@@ -20,7 +20,7 @@ class BiomassAlderScreen extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
-                    'assets/img/biomas_alder.jpg',
+                    'assets/img/aliso/biomass/biomas_alder.jpg',
                     fit: BoxFit.fitWidth,
                     height: 259,
                   ),
@@ -74,20 +74,6 @@ class BiomassAlderScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                /*
-                //Día de evaluación
-                const SizedBox(height: 20.0),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Día de evaluación: ',
-                        style: TextStyle(
-                          fontSize: 15,
-                        )),
-                    SizedBox(width: 20),
-                  ],
-                ),  */
 
                 //Biomasa seca
                 const SizedBox(height: 20.0),

@@ -55,7 +55,45 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/img/
+
+    #Pona
+    - assets/img/pona/
+    - assets/img/pona/greenmatter/
+    - assets/img/pona/drymatter/
+    - assets/img/pona/biomass/
+    - assets/img/pona/carbon/
+
+    #cipres
+    - assets/img/cipres/
+    - assets/img/cipres/greenmatter/
+    - assets/img/cipres/drymatter/
+    - assets/img/cipres/biomass/
+    - assets/img/cipres/carbon/
+
+    #Aliso
+    - assets/img/aliso/
+    - assets/img/aliso/greenmatter/
+    - assets/img/aliso/drymatter/
+    - assets/img/aliso/biomass/
+    - assets/img/aliso/carbon/
+
+    #Pino
+    - assets/img/pino/
+    - assets/img/pino/greenmatter/
+    - assets/img/pino/drymatter/
+    - assets/img/pino/biomass/
+    - assets/img/pino/carbon/
+
+    #SinArbol
+    - assets/img/sinarbol/
+    - assets/img/sinarbol/greenmatter/
+    - assets/img/sinarbol/drymatter/
+    - assets/img/sinarbol/biomass/
+    - assets/img/sinarbol/carbon/
+
+    #Slides
     - assets/slides/
+    
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

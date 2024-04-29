@@ -117,20 +117,15 @@ class CarbonScreen extends StatelessWidget {
                 ),
 
                 //NOTA
-                const SizedBox(
-                  height: 20,
-                ),
-                const SizedBox(
-                  child: Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Nota: \n'
-                        '*C: Carbono \n'
-                        '*CO2: Dióxido de carbono \n',
-                        style: TextStyle(fontSize: 10),
-                      ),
+
+                const Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '*C: Carbono \n'
+                      '*CO2: Dióxido de carbono \n',
+                      style: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),

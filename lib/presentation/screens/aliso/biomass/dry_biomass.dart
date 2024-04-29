@@ -47,7 +47,7 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
-                    'assets/img/biomas_alder.jpg',
+                    'assets/img/aliso/biomass/biomas_alder.jpg',
                     fit: BoxFit.fitWidth,
                     height: 259,
                   ),
