@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:version/presentation/screens/pino/pino_screen.dart';
+import 'package:version/presentation/screens/pona/pona_screen.dart';
 
-class DryMatterP extends StatefulWidget {
-  const DryMatterP({super.key});
+class DryPonaScreen extends StatefulWidget {
+  const DryPonaScreen({super.key});
 
   @override
-  State<DryMatterP> createState() => _DryMatterPState();
+  State<DryPonaScreen> createState() => _DryPonaScreenState();
 }
 
-class _DryMatterPState extends State<DryMatterP> {
+class _DryPonaScreenState extends State<DryPonaScreen> {
   //Vamos a validar nuestro formulario
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightDry = TextEditingController();
@@ -32,7 +32,7 @@ class _DryMatterPState extends State<DryMatterP> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const PinoScreen()));
+          context, MaterialPageRoute(builder: (context) => const PonaScreen()));
     }
   }
 
@@ -50,7 +50,7 @@ class _DryMatterPState extends State<DryMatterP> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Image.asset(
-                      'assets/img/pino/drymatter/dry_matter.jpg',
+                      'assets/img/pona/drymatter/dry_o.png',
                       fit: BoxFit.fitWidth,
                       height: 259,
                     ),
@@ -59,7 +59,7 @@ class _DryMatterPState extends State<DryMatterP> {
                   //Título
                   const SizedBox(height: 25.0),
                   const Text(
-                    'Calculando la materia seca con Pino',
+                    'Calculando la materia seca con Pona',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

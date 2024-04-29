@@ -1,56 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:version/presentation/screens/pino/pino_screen.dart';
+import 'package:version/presentation/screens/pona/biomass/biomass_pona.dart';
 
-class DryMatterP extends StatefulWidget {
-  const DryMatterP({super.key});
+class DryBiomassPona extends StatefulWidget {
+  const DryBiomassPona({super.key});
 
   @override
-  State<DryMatterP> createState() => _DryMatterPState();
+  State<DryBiomassPona> createState() => _DryBiomassPonaState();
 }
 
-class _DryMatterPState extends State<DryMatterP> {
-  //Vamos a validar nuestro formulario
+class _DryBiomassPonaState extends State<DryBiomassPona> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightDry = TextEditingController();
-  final TextEditingController _controllerWeightWet = TextEditingController();
+  final TextEditingController _controllerDapP = TextEditingController();
+  final TextEditingController _controllerDapF = TextEditingController();
 
-  //Validar form de peso
-  String? _validateWeightP(String? value) {
+  //Validación del DAP
+  String? _validateDap(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Por favor, ingrese el peso';
+      return 'Por favor, ingresa el DAP';
     }
-
-    final wieghtRegExpP = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!wieghtRegExpP.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
+    //Validación de regex only numbers
+    final dapRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    if (!dapRegExp.hasMatch(value)) {
+      return 'Solo se aceptan valores numéricos';
     }
     return null;
   }
 
-//Validación del boton
+  //Validamos el bottomn guardar
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const PinoScreen()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const BiomassPona()));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: SafeArea(
+      body: SafeArea(
+        child: Form(
+          key: _formKey,
           child: Center(
             child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Image.asset(
-                      'assets/img/pino/drymatter/dry_matter.jpg',
+                      'assets/img/pona/biomass/biomass_o.png',
                       fit: BoxFit.fitWidth,
                       height: 259,
                     ),
@@ -59,7 +59,7 @@ class _DryMatterPState extends State<DryMatterP> {
                   //Título
                   const SizedBox(height: 25.0),
                   const Text(
-                    'Calculando la materia seca con Pino',
+                    'Calculando la biomasa seca con Pona',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class _DryMatterPState extends State<DryMatterP> {
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: 250,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
@@ -79,7 +79,7 @@ class _DryMatterPState extends State<DryMatterP> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'MS/M2 = PMS/PMH x 100',
+                          'C = 0,0080 * DAP * AF',
                           style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ),
@@ -87,23 +87,24 @@ class _DryMatterPState extends State<DryMatterP> {
                   ),
 
                   //NOTA
-
+                  const SizedBox(
+                    height: 20,
+                  ),
                   const SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*MS: materia seca \n'
-                          '*M2: metro cuadrado',
+                          '*DAP: Diámetro a la altura del pecho\n'
+                          'AF: Altura del fuste',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),
                     ),
                   ),
-
                   //Día de evaluación
-                  const SizedBox(height: 15.0),
+                  const SizedBox(height: 20.0),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -115,11 +116,11 @@ class _DryMatterPState extends State<DryMatterP> {
                     ],
                   ),
 
-                  //Peso de la materia verde
+                  //DAP
                   const SizedBox(height: 25),
 
                   const Text(
-                    'Peso de la materia seca (PMS): ',
+                    'DAP: ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -129,24 +130,24 @@ class _DryMatterPState extends State<DryMatterP> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
+                      controller: _controllerDapP,
+                      validator: _validateDap,
                       keyboardType: TextInputType.number,
-                      controller: _controllerWeightDry,
-                      validator: _validateWeightP,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingresa el peso en g',
+                        labelText: 'CM',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
                       textAlign: TextAlign.center,
                     ),
                   ),
 
-                  //Peso de la materia húmeda
+                  //Altura del fuste
                   const SizedBox(height: 25),
 
                   const Text(
-                    'Peso de la materia húmeda(PMH): ',
+                    'AF: ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -156,14 +157,13 @@ class _DryMatterPState extends State<DryMatterP> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
+                      controller: _controllerDapF,
+                      validator: _validateDap,
                       keyboardType: TextInputType.number,
-                      controller: _controllerWeightWet,
-                      validator: _validateWeightP,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        labelText: 'Ingresa el peso en g',
+                            borderRadius: BorderRadius.circular(25)),
+                        labelText: 'CM',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
                       textAlign: TextAlign.center,
@@ -171,7 +171,7 @@ class _DryMatterPState extends State<DryMatterP> {
                   ),
 
                   //Guardar
-                  const SizedBox(height: 35.0),
+                  const SizedBox(height: 20.0),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
@@ -183,7 +183,7 @@ class _DryMatterPState extends State<DryMatterP> {
                         ),
                         onPressed: _submitForm,
                         child: const Text(
-                          'Calcular',
+                          'Guardar',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),

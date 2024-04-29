@@ -1,56 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:version/presentation/screens/pino/pino_screen.dart';
+import 'package:version/presentation/screens/pona/carbon/carbon_pona.dart';
 
-class DryMatterP extends StatefulWidget {
-  const DryMatterP({super.key});
+class ConversionCarbonPona extends StatefulWidget {
+  const ConversionCarbonPona({super.key});
 
   @override
-  State<DryMatterP> createState() => _DryMatterPState();
+  State<ConversionCarbonPona> createState() => _ConversionCarbonPonaState();
 }
 
-class _DryMatterPState extends State<DryMatterP> {
-  //Vamos a validar nuestro formulario
+class _ConversionCarbonPonaState extends State<ConversionCarbonPona> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightDry = TextEditingController();
-  final TextEditingController _controllerWeightWet = TextEditingController();
+  final TextEditingController _controllerCO = TextEditingController();
 
-  //Validar form de peso
-  String? _validateWeightP(String? value) {
+  //Validar el peso
+  String? _validateWeightCO(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Por favor, ingrese el peso';
+      return 'Por favor, ingresa el peso';
     }
-
-    final wieghtRegExpP = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!wieghtRegExpP.hasMatch(value)) {
+    //validar con ReGEXP
+    final coRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    if (!coRegExp.hasMatch(value)) {
       return 'Solo acepta valores numéricos';
     }
     return null;
   }
 
-//Validación del boton
-
+  //Validar el buttum
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const PinoScreen()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const CarbonPonaScreen()));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: SafeArea(
+      body: SafeArea(
+        child: Form(
+          key: _formKey,
           child: Center(
             child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Image.asset(
-                      'assets/img/pino/drymatter/dry_matter.jpg',
+                      'assets/img/pona/carbon/carbon_o.png',
                       fit: BoxFit.fitWidth,
                       height: 259,
                     ),
@@ -59,11 +57,12 @@ class _DryMatterPState extends State<DryMatterP> {
                   //Título
                   const SizedBox(height: 25.0),
                   const Text(
-                    'Calculando la materia seca con Pino',
+                    'Conversión de carbono orgánico a dióxido de carbono',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
+                    textAlign: TextAlign.center,
                   ),
 
                   //Formula
@@ -75,12 +74,12 @@ class _DryMatterPState extends State<DryMatterP> {
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              const Color.fromARGB(255, 191, 192, 191)),
+                              const Color.fromARGB(255, 51, 79, 31)),
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'MS/M2 = PMS/PMH x 100',
-                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          'CO2 = CO * 3.666',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
                     ),
@@ -88,22 +87,21 @@ class _DryMatterPState extends State<DryMatterP> {
 
                   //NOTA
 
-                  const SizedBox(
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '*MS: materia seca \n'
-                          '*M2: metro cuadrado',
-                          style: TextStyle(fontSize: 10),
-                        ),
+                  const Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '*C: Carbono orgánico \n'
+                        '*CO: Dióxido de carbono\n'
+                        '*3.666: Factor de corrección \n',
+                        style: TextStyle(fontSize: 10),
                       ),
                     ),
                   ),
 
                   //Día de evaluación
-                  const SizedBox(height: 15.0),
+                  //const SizedBox(height: 10.0),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -115,11 +113,11 @@ class _DryMatterPState extends State<DryMatterP> {
                     ],
                   ),
 
-                  //Peso de la materia verde
+                  //BVT
                   const SizedBox(height: 25),
 
                   const Text(
-                    'Peso de la materia seca (PMS): ',
+                    'CO: ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -129,49 +127,21 @@ class _DryMatterPState extends State<DryMatterP> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
+                      controller: _controllerCO,
+                      validator: _validateWeightCO,
                       keyboardType: TextInputType.number,
-                      controller: _controllerWeightDry,
-                      validator: _validateWeightP,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingresa el peso en g',
+                        labelText: 'g',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
                       textAlign: TextAlign.center,
                     ),
                   ),
 
-                  //Peso de la materia húmeda
-                  const SizedBox(height: 25),
-
-                  const Text(
-                    'Peso de la materia húmeda(PMH): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      controller: _controllerWeightWet,
-                      validator: _validateWeightP,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        labelText: 'Ingresa el peso en g',
-                        labelStyle: const TextStyle(fontSize: 15),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-
-                  //Guardar
-                  const SizedBox(height: 35.0),
+                  //Calcular
+                  const SizedBox(height: 20.0),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
