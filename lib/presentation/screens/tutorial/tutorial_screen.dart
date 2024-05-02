@@ -21,7 +21,7 @@ final slides = <SlideInfo>[
       'assets/slides/silvipastoril.jpg'),
   SlideInfo(
       'Fácil de usar',
-      'Con una interfaz intuitiva, nuestra app te guiará paso a paso en el proceso de cuantificación del carbono.',
+      'Con una interfaz intuitiva, nuestra aplicación móvil te guiará paso a paso en el proceso de cuantificación del carbono.',
       'assets/slides/agriapp.png'),
   SlideInfo(
       'Ingreso de datos',
@@ -50,6 +50,9 @@ class _TutorialScreenState extends State<TutorialScreen> {
   //Creamos está variable para determinar que el usuario llega al final de los slides
   bool endReached = false;
 
+  //Variable para el indice actual
+  int currentIndex = 0;
+
   //Voy a inicializar con InitState que es parte de vida de los statefullwidget
   @override
   void initState() {
@@ -64,6 +67,10 @@ class _TutorialScreenState extends State<TutorialScreen> {
           endReached = true;
         });
       }
+      setState(() {
+        //actualizar el indice actual
+        currentIndex = page.round();
+      });
     });
   }
 
@@ -134,7 +141,29 @@ class _TutorialScreenState extends State<TutorialScreen> {
                         child: const Text('Comenzar')),
                   ),
                 )
-              : const SizedBox()
+              : const SizedBox(),
+
+          //Barra de progreso
+          Positioned(
+              left: 0,
+              right: 0,
+              bottom: 20,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                    slides.length,
+                    (index) => Container(
+                          width: 10,
+                          height: 10,
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: index == currentIndex
+                                ? Colors.blue
+                                : Colors.grey.withOpacity(0.5),
+                          ),
+                        )),
+              ))
         ],
       ),
     );
@@ -153,7 +182,7 @@ class _Slide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final titleStyle = Theme.of(context).textTheme.titleLarge;
-    final captionStyle = Theme.of(context).textTheme.bodySmall;
+    final captionStyle = Theme.of(context).textTheme.bodyMedium;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Center(

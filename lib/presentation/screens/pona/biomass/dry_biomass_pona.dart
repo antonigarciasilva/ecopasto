@@ -79,7 +79,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'C = 0,0080 * DAP * AF',
+                          'BS = 0,0080 * (DAP) * (AF)',
                           style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ),
@@ -88,16 +88,15 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
 
                   //NOTA
                   const SizedBox(
-                    height: 20,
+                    height: 5,
                   ),
                   const SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*DAP: Diámetro a la altura del pecho\n'
-                          'AF: Altura del fuste',
+                          '*BS: Biomasa seca',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),
@@ -120,7 +119,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                   const SizedBox(height: 25),
 
                   const Text(
-                    'DAP: ',
+                    'Diámetro a la altura del pecho (DAP): ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -136,8 +135,8 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'CM',
-                        labelStyle: const TextStyle(fontSize: 15),
+                        labelText: 'Ingrese el (DAP) en CM',
+                        labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -147,7 +146,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                   const SizedBox(height: 25),
 
                   const Text(
-                    'AF: ',
+                    'Altura del fuste (AF): ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -163,8 +162,8 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'CM',
-                        labelStyle: const TextStyle(fontSize: 15),
+                        labelText: 'Ingrese la (AF) en CM',
+                        labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
                     ),

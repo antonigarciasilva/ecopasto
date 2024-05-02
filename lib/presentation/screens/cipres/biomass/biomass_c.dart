@@ -49,7 +49,7 @@ class BiomassScreenC extends StatelessWidget {
                       ),
                       onPressed: () {},
                       child: const Text(
-                        'BM = BM ARBÓREA + BN HERBÁCEA \n + BM HOJARASCA',
+                        'BVT(Tm/ha) = BM ARBÓREA + BN HERBÁCEA \n + BM HOJARASCA',
                         style: TextStyle(fontSize: 16, color: Colors.black),
                         textAlign: TextAlign.center,
                       ),
@@ -60,7 +60,7 @@ class BiomassScreenC extends StatelessWidget {
 
                 //NOTA
                 const SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 const SizedBox(
                   child: Padding(
@@ -68,7 +68,7 @@ class BiomassScreenC extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*BM: Biomasa ',
+                        '*BVT: Biomasa vegetal total (Tm/ha)',
                         style: TextStyle(fontSize: 10),
                       ),
                     ),

@@ -57,7 +57,7 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                   //Título
                   const SizedBox(height: 10.0),
                   const Text(
-                    'Calculando carbono en la biomasa con pino',
+                    'Calculando carbono en la biomasa con Pino',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -86,23 +86,22 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                   ),
 
                   //NOTA
-                  //const SizedBox height: 10,),
+                  const SizedBox(height: 5),
                   const SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*CBV: Carbono en biomasa vegetal(t/ha) \n'
-                          '*BVT: Biomasa vegetal total\n'
-                          '*0.4270: Fracción de carbono de Aliso \n',
+                          '*CBV: Carbono en biomasa vegetal(Tm/ha) \n'
+                          '*0.4270: Fracción de carbono de Pino \n',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),
                     ),
                   ),
                   //Día de evaluación
-                  //const SizedBox(height: 1.0),
+                  const SizedBox(height: 10),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -118,11 +117,8 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                   const SizedBox(height: 25),
 
                   const Text(
-                    'BVT: ',
+                    'Biomasa vegetal total (BVT): ',
                     style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    width: 8,
                   ),
 
                   Padding(
@@ -134,8 +130,8 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'gramos',
-                        labelStyle: const TextStyle(fontSize: 15),
+                        labelText: 'Ingrese el peso en (Tm/ha)',
+                        labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
                     ),

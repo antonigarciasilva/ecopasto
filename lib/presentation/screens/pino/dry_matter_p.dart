@@ -79,7 +79,7 @@ class _DryMatterPState extends State<DryMatterP> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'MS/M2 = PMS/PMH x 100',
+                          'MS/m2 (Kg) = PMS/PMH x 100',
                           style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ),
@@ -90,12 +90,12 @@ class _DryMatterPState extends State<DryMatterP> {
 
                   const SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*MS: materia seca \n'
-                          '*M2: metro cuadrado',
+                          '*m2: metro cuadrado',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),
@@ -135,7 +135,7 @@ class _DryMatterPState extends State<DryMatterP> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingresa el peso en g',
+                        labelText: 'Ingresa el peso en Kg',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
                       textAlign: TextAlign.center,
@@ -163,7 +163,7 @@ class _DryMatterPState extends State<DryMatterP> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        labelText: 'Ingresa el peso en g',
+                        labelText: 'Ingresa el peso en Kg',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
                       textAlign: TextAlign.center,

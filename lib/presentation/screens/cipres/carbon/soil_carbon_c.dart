@@ -87,16 +87,13 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   ),
 
                   //NOTA
-
+                  const SizedBox(height: 5),
                   const Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.symmetric(horizontal: 50),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*Ws: Peso del suelo (t/ha) \n'
-                        '*a: Área (ha) \n'
-                        '*p: Profundidad (m) \n'
-                        '*da: Densidad aparente del suelo \n',
+                        '*Ws: Peso del suelo (t/ha) ',
                         style: TextStyle(fontSize: 10),
                       ),
                     ),
@@ -119,7 +116,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   const SizedBox(height: 25),
 
                   const Text(
-                    'a: ',
+                    'Área (a): ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -135,8 +132,8 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'cm',
-                        labelStyle: const TextStyle(fontSize: 15),
+                        labelText: 'Ingrese el (a) en hectáreas',
+                        labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -146,7 +143,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   const SizedBox(height: 25),
 
                   const Text(
-                    'p: ',
+                    'Profundidad (p): ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -162,18 +159,18 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'cm',
-                        labelStyle: const TextStyle(fontSize: 15),
+                        labelText: 'Ingresa la (p) en metros',
+                        labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
                     ),
                   ),
 
-                  //PST
+                  //Densidad aparente del suelo
                   const SizedBox(height: 25),
 
                   const Text(
-                    'da: ',
+                    'Densidad aparente del suelo (da): ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -189,7 +186,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'cm',
+                        labelText: 'Ingrese la (da) en Kg/m3',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
                       textAlign: TextAlign.center,

@@ -108,7 +108,7 @@ class CarbonPinoScreen extends StatelessWidget {
                         );
                       },
                       child: const Text(
-                        'Conversión de C a CO2',
+                        'Conversión de C a CO₂',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
@@ -118,12 +118,12 @@ class CarbonPinoScreen extends StatelessWidget {
                 //NOTA
 
                 const Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.symmetric(horizontal: 60),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       '*C: Carbono \n'
-                      '*CO2: Dióxido de carbono \n',
+                      '*CO₂: Dióxido de carbono \n',
                       style: TextStyle(fontSize: 10),
                     ),
                   ),

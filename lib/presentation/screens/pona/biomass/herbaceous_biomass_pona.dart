@@ -79,7 +79,7 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'BH(t/ha) = ((PSM/PFM) * PFT) * 0.01',
+                          'BH(Tm/ha) = ((PSM/PFM) * PFT) * 0.01',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -91,14 +91,11 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                   ),
                   const SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*BH: Biomasa herbácea(t/ha) \n'
-                          '*PSM: Peso seco de la materia recolectada (g)\n'
-                          '*PFM: Peso fresco de la muestra colectada (g) \n'
-                          '*PFT: Peso fresco total por metro cuadrado (g/m2) \n'
+                          '*BH: Biomasa herbácea(Tm/ha) \n'
                           '*0.01: Factor de conversión para biomasa herbácea \n',
                           style: TextStyle(fontSize: 10),
                         ),
@@ -122,7 +119,7 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                   const SizedBox(height: 25),
 
                   const Text(
-                    'PSM: ',
+                    'Peso seco de la materia (PSM): ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -139,8 +136,8 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        labelText: 'g',
-                        labelStyle: const TextStyle(fontSize: 15),
+                        labelText: 'Ingresa el peso en gr',
+                        labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -150,7 +147,7 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                   const SizedBox(height: 25),
 
                   const Text(
-                    'PFM: ',
+                    'Peso fresco de la muestra (PFM): ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -167,8 +164,8 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        labelText: 'g',
-                        labelStyle: const TextStyle(fontSize: 15),
+                        labelText: 'Ingresa el peso en gr',
+                        labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -178,7 +175,7 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                   const SizedBox(height: 25),
 
                   const Text(
-                    'PST: ',
+                    'Peso fresco total por m² (PFT): ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -195,8 +192,8 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        labelText: 'g',
-                        labelStyle: const TextStyle(fontSize: 15),
+                        labelText: 'Ingresa el peso en gr/m²',
+                        labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
                     ),

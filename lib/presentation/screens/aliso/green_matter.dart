@@ -95,7 +95,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                   //Día de evaluación
                   const SizedBox(height: 25.0),
 
-                  const Text('Día de evaluación:',
+                  const Text('Seleccione el día de evaluación:',
                       style: TextStyle(
                         fontSize: 15,
                       )),
@@ -105,7 +105,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                     child: DropdownButtonFormField<String>(
                       validator: _validateEvaluation,
                       value: selectedValue,
-                      hint: const Text('Elije un valor'),
+                      hint: const Text('Elija el día'),
                       onChanged: (String? value) {
                         setState(() {
                           selectedValue = value;
@@ -126,20 +126,14 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                     ),
                   ),
 
-                  //Fecha actual
-                  const SizedBox(height: 25.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Fecha de evaluación:   ${getFormattedDate()}',
-                          style: const TextStyle(
-                            fontSize: 15,
-                          )),
-                    ],
-                  ),
-
                   //Peso de la materia verde
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 25.0),
+
+                  const Text('Peso de materia verde por m2:',
+                      style: TextStyle(
+                        fontSize: 15,
+                      )),
+                  const SizedBox(height: 20),
 
                   //Ingresa el peso de materia verde
 
@@ -152,12 +146,25 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                       decoration: InputDecoration(
                         //prefixIcon: const Icon(Icons.person_4),
 
-                        labelText: 'Ingresa el peso de materia verde',
+                        labelText: 'Ingresa el peso en KG/m2',
+                        labelStyle: const TextStyle(fontSize: 14),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
                       ),
                     ),
+                  ),
+
+                  //Fecha actual
+                  const SizedBox(height: 25.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('Fecha de evaluación:   ${getFormattedDate()}',
+                          style: const TextStyle(
+                            fontSize: 15,
+                          )),
+                    ],
                   ),
 
                   //Guardar

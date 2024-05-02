@@ -78,7 +78,7 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'CO2 = CO * 3.666',
+                          'CO₂ (Tm/ha) = CO * 3.666',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -86,22 +86,21 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                   ),
 
                   //NOTA
-
+                  const SizedBox(height: 5),
                   const Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.symmetric(horizontal: 50),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*C: Carbono orgánico \n'
-                        '*CO: Dióxido de carbono\n'
-                        '*3.666: Factor de corrección \n',
+                        '*CO₂: Dioxido carbono \n'
+                        '*3.666: Factor de conversión \n',
                         style: TextStyle(fontSize: 10),
                       ),
                     ),
                   ),
 
                   //Día de evaluación
-                  //const SizedBox(height: 10.0),
+                  const SizedBox(height: 10),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -117,7 +116,7 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                   const SizedBox(height: 25),
 
                   const Text(
-                    'CO: ',
+                    'Carbono orgánico (CO): ',
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(
@@ -133,8 +132,8 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'g',
-                        labelStyle: const TextStyle(fontSize: 15),
+                        labelText: 'Ingrese el valor de (CO)',
+                        labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
                     ),
