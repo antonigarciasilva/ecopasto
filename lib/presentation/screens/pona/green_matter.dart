@@ -45,6 +45,36 @@ class _GreenMatterPonaState extends State<GreenMatterPona> {
     }
   }
 
+  //Funcion de boton informativo
+  void openDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        //solo para salir con los botones y no cuadno le das click en cualquier lado
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                '¿Cómo sacar la materia verde?',
+                textAlign: TextAlign.justify,
+              ),
+              content: const Text(
+                'Se procede al corte y pesado del material vegetativo del SSP, en un área de 1 m2, con 3 repeticiones, con el apoyo de un cuadrante de madera o fierro y una hoz se va a realizar el corte a una altura de 05 cm del suelo, para luego pesar las muestras en una balanza de 5kg, expresando el resultado en kg de materia verde/m2 (kg mv.m2). ',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                //con el goRouter podemos acceder al context.pop
+
+                FilledButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const GreenMatterPona()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,14 +86,32 @@ class _GreenMatterPonaState extends State<GreenMatterPona> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/pona/greenmatter/green_o.png',
-                      fit: BoxFit.fitWidth,
-                      height: 259,
+                  Stack(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset(
+                        'assets/img/pona/greenmatter/green_o.png',
+                        fit: BoxFit.fitWidth,
+                        height: 259,
+                      ),
                     ),
-                  ),
+
+                    //Position of the buttom
+                    Positioned(
+                      right: 5,
+                      top: 50,
+                      child: FilledButton.tonal(
+                        onPressed: () => openDialog(context),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                        ),
+                        child: const Icon(
+                          Icons.info_outline,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ]),
 
                   //Título
                   const SizedBox(height: 25.0),

@@ -35,6 +35,37 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC> {
     }
   }
 
+  //Dialogo informativo sobre el Aliso
+  void openDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        //solo para salir con los botones y no cuadno le das click en cualquier lado
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                '¿Qué es la biomasa hojarasca?',
+                textAlign: TextAlign.justify,
+              ),
+              content: const Text(
+                'La biomasa de hojarasca incluye las hojas caídas, ramas pequeñas, flores, frutos y otros restos vegetales que se acumulan en el suelo del bosque o de cualquier área con vegetación arbórea. Esta hojarasca es una fuente crucial de nutrientes para el suelo, ya que se descompone y enriquece el suelo con materia orgánica, mejorando su estructura y fertilidad.',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                //con el goRouter podemos acceder al context.pop
+
+                FilledButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const LeafLitterBiomassC()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +78,30 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/cipres/biomass/biomass_c.jpg',
-                      fit: BoxFit.fitWidth,
-                      height: 259,
+                  Stack(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset(
+                        'assets/img/cipres/biomass/biomass_c.jpg',
+                        fit: BoxFit.fitWidth,
+                        height: 259,
+                      ),
                     ),
-                  ),
+
+                    //Possition of the botton
+                    Positioned(
+                      right: 5,
+                      top: 50,
+                      child: FilledButton.tonal(
+                          onPressed: () => openDialog(context),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent),
+                          child: const Icon(
+                            Icons.info_outline,
+                            color: Colors.white,
+                          )),
+                    )
+                  ]),
 
                   //Título
                   const SizedBox(height: 25.0),

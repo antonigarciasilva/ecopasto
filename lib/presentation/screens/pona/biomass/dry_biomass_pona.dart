@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:version/presentation/screens/pona/biomass/biomass_pona.dart';
 
 class DryBiomassPona extends StatefulWidget {
@@ -16,8 +17,11 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
   //Validación del DAP
   String? _validateDap(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Por favor, ingresa el DAP';
+      return 'Por favor, ingresa un valor';
     }
+
+    //Validación del AF
+
     //Validación de regex only numbers
     final dapRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
     if (!dapRegExp.hasMatch(value)) {
@@ -35,6 +39,36 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
     }
   }
 
+//Dialogo informativo sobre el Aliso
+  void openDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        //solo para salir con los botones y no cuadno le das click en cualquier lado
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                '¿Qué es la biomasa seca?',
+                textAlign: TextAlign.justify,
+              ),
+              content: const Text(
+                'La biomasa seca se refiere a la cantidad de materia orgánica que queda después de eliminar toda el agua contenida en ella. Este proceso se realiza generalmente mediante secado en un horno hasta alcanzar un peso constante. La biomasa seca es una medida importante porque proporciona una estimación precisa de la materia orgánica real, excluyendo el contenido de agua que puede variar significativamente.',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                //con el goRouter podemos acceder al context.pop
+
+                FilledButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DryBiomassPona()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +81,30 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/pona/biomass/biomass_o.png',
-                      fit: BoxFit.fitWidth,
-                      height: 259,
+                  Stack(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset(
+                        'assets/img/pona/biomass/biomass_o.png',
+                        fit: BoxFit.fitWidth,
+                        height: 259,
+                      ),
                     ),
-                  ),
+
+                    //Possition of the botton
+                    Positioned(
+                      right: 5,
+                      top: 50,
+                      child: FilledButton.tonal(
+                          onPressed: () => openDialog(context),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent),
+                          child: const Icon(
+                            Icons.info_outline,
+                            color: Colors.white,
+                          )),
+                    )
+                  ]),
 
                   //Título
                   const SizedBox(height: 25.0),

@@ -41,6 +41,35 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
     }
   }
 
+  //Función de botón informativo
+
+  void openDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        //Solo para salir con los botones y no cuando le das click a cualquier lado
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                '¿Cómo sacar el peso de la muestra seca (PSM)',
+                textAlign: TextAlign.justify,
+              ),
+              content: const Text(
+                'Se emplea una sub muestra de la materia verde de 500g dependiendo de la cantidad de pastura, luego, se coloca en una estufa a 60 °C, hasta obtener un peso constante y con la ayuda de una balanza de 1 Kg se optine el PSM',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                FilledButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DryMatterScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +81,28 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/aliso/drymatter/dry_alder.jpg',
-                      fit: BoxFit.fitWidth,
-                      height: 259,
+                  Stack(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset(
+                        'assets/img/aliso/drymatter/dry_alder.jpg',
+                        fit: BoxFit.fitWidth,
+                        height: 259,
+                      ),
                     ),
-                  ),
+
+                    //Possition of the botton
+                    Positioned(
+                      child: FilledButton.tonal(
+                          onPressed: () => openDialog(context),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent),
+                          child: const Icon(
+                            Icons.info_outline,
+                            color: Colors.white,
+                          )),
+                    )
+                  ]),
 
                   //Título
                   const SizedBox(height: 25.0),

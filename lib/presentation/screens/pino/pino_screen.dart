@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:version/presentation/screens/pino/biomass/biomass.dart';
 import 'package:version/presentation/screens/pino/carbon/carbon.dart';
 import 'package:version/presentation/screens/pino/dry_matter_p.dart';
@@ -6,6 +7,36 @@ import 'package:version/presentation/screens/pino/green_matter_p.dart';
 
 class PinoScreen extends StatelessWidget {
   const PinoScreen({super.key});
+
+  //Funcion de boton informativo
+  void openDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        //solo para salir con los botones y no cuadno le das click en cualquier lado
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                '¿Qué es el Pino?',
+                textAlign: TextAlign.justify,
+              ),
+              content: const Text(
+                'El árbol de pino (Pinus spp.) en sistemas silvopastoriles es una especie de árbol conífero ampliamente utilizada por su madera, resina y otros productos forestales. En sistemas silvopastoriles, el pino proporciona sombra, protección contra el viento y mejora la calidad del suelo. Además, puede ser utilizado como fuente de alimento y forraje para animales en sistemas agroforestales.',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                //con el goRouter podemos acceder al context.pop
+
+                FilledButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PinoScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +46,32 @@ class PinoScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Image.asset(
-                  'assets/img/pino/pino.jpg',
-                  fit: BoxFit.fitWidth,
-                  height: 299,
+              Stack(children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset(
+                    'assets/img/pino/pino.jpg',
+                    fit: BoxFit.fitWidth,
+                    height: 299,
+                  ),
                 ),
-              ),
+
+                //Posición del botton
+                Positioned(
+                  right: 5,
+                  top: 50,
+                  child: FilledButton.tonal(
+                    onPressed: () => openDialog(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                    ),
+                    child: const Icon(
+                      Icons.info_outline,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ]),
 
               //Título
               //const SizedBox(height: 5.0),

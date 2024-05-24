@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:version/presentation/screens/cipres/biomass/biomass_c.dart';
 import 'package:version/presentation/screens/cipres/carbon/carbon_c.dart';
 import 'package:version/presentation/screens/cipres/dry_matter_c.dart';
@@ -6,6 +7,35 @@ import 'package:version/presentation/screens/cipres/green_matter_c.dart';
 
 class CipresScreen extends StatelessWidget {
   const CipresScreen({super.key});
+
+  void openDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        //solo para salir con los botones y no cuadno le das click en cualquier lado
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                '¿Qué es el Ciprés?',
+                textAlign: TextAlign.justify,
+              ),
+              content: const Text(
+                'El árbol de ciprés (Cupressus spp.) en sistemas silvopastoriles es una especie de árbol conífero que se utiliza por su rápido crecimiento y su capacidad para proporcionar sombra y protección contra el viento. También puede ayudar a reducir la erosión del suelo y mejorar la biodiversidad en la zona.',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                //con el goRouter podemos acceder al context.pop
+
+                FilledButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CipresScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +45,30 @@ class CipresScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Image.asset(
-                  'assets/img/cipres/cypress.jpg',
-                  fit: BoxFit.fitWidth,
-                  height: 299,
+              Stack(children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset(
+                    'assets/img/cipres/cypress.jpg',
+                    fit: BoxFit.fitWidth,
+                    height: 299,
+                  ),
                 ),
-              ),
+                Positioned(
+                  right: 5,
+                  top: 10,
+                  child: FilledButton.tonal(
+                    onPressed: () => openDialog(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                    ),
+                    child: const Icon(
+                      Icons.info_outline,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ]),
 
               //Título
               //const SizedBox(height: 5.0),

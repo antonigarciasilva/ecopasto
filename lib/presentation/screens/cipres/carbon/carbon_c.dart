@@ -6,6 +6,35 @@ import 'package:version/presentation/screens/cipres/carbon/soil_carbon_c.dart';
 class CarbonScreenC extends StatelessWidget {
   const CarbonScreenC({super.key});
 
+  //Dialogo informativo para carbono
+
+  void openDialog(BuildContext context) {
+    showDialog(
+        context: context,
+
+        //para no poder salir del dialogo al hacer caulquier click
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+                title: const Text(
+                  '¿Qué es el carbono?',
+                  textAlign: TextAlign.justify,
+                ),
+                content: const Text(
+                  'El carbono en los sistemas silvopastoriles se almacena en la biomasa de árboles y pastos, en el suelo y en los residuos animales, desempeñando un papel crucial en la captura de CO₂ y la mitigación del cambio climático. Estos sistemas integrados mejoran la fertilidad del suelo, aumentan su capacidad de retención de agua y nutrientes, y promueven la resiliencia ecológica. ',
+                  textAlign: TextAlign.justify,
+                ),
+                actions: [
+                  FilledButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CarbonScreenC()));
+                      },
+                      child: const Text('Aceptar'))
+                ]));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,14 +45,31 @@ class CarbonScreenC extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset(
-                    'assets/img/cipres/carbon/carbon_c.png',
-                    fit: BoxFit.fitWidth,
-                    height: 259,
+                Stack(children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Image.asset(
+                      'assets/img/cipres/carbon/carbon_c.png',
+                      fit: BoxFit.fitWidth,
+                      height: 259,
+                    ),
                   ),
-                ),
+
+                  //Posición del boton informátivo
+                  Positioned(
+                    right: 5,
+                    top: 50,
+                    child: FilledButton.tonal(
+                      onPressed: () => openDialog(context),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent),
+                      child: const Icon(
+                        Icons.info_outline,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                ]),
 
                 //Título
                 const SizedBox(height: 25.0),
