@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
 
 class BiomassCarbonScreen extends StatefulWidget {
@@ -33,6 +34,37 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
     }
   }
 
+  //Dialogo informativo sobre el carbono
+  void openDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        //solo para salir con los botones y no cuadno le das click en cualquier lado
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                '¿Qué es el carbono en la biomasa?',
+                textAlign: TextAlign.justify,
+              ),
+              content: const Text(
+                'es la cantidad de carbono en componentes vivos de un ecosistema. Incluye árboles, arbustos, pastos y raíces. Las plantas capturan CO2 de la atmósfera y lo almacenan en sus tejidos. Actúa como un sumidero de carbono, ayudando a mitigar el cambio climático.',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                //con el goRouter podemos acceder al context.pop
+
+                FilledButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const BiomassCarbonScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,14 +77,30 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/aliso/biomass/biomas_alder.jpg',
-                      fit: BoxFit.fitWidth,
-                      height: 259,
+                  Stack(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset(
+                        'assets/img/aliso/biomass/biomas_alder.jpg',
+                        fit: BoxFit.fitWidth,
+                        height: 259,
+                      ),
                     ),
-                  ),
+
+                    //Possition of the botton
+                    Positioned(
+                      right: 5,
+                      top: 50,
+                      child: FilledButton.tonal(
+                          onPressed: () => openDialog(context),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent),
+                          child: const Icon(
+                            Icons.info_outline,
+                            color: Colors.white,
+                          )),
+                    )
+                  ]),
 
                   //Título
                   const SizedBox(height: 10.0),
