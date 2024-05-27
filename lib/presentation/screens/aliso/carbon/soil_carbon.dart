@@ -35,6 +35,36 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
     }
   }
 
+  //Dialogo informativo sobre el carbono
+  void openDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        //solo para salir con los botones y no cuadno le das click en cualquier lado
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                '¿Qué es el carbono en el suelo?',
+                textAlign: TextAlign.justify,
+              ),
+              content: const Text(
+                'El carbono en el suelo es la cantidad de carbono en la materia orgánica del suelo. Incluye restos de plantas y animales, y microorganismos. Este carbono entra al suelo por la descomposición de materiales orgánicos. El suelo actúa como un sumidero de carbono a largo plazo, mejorando la fertilidad y estructura del suelo.',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                //con el goRouter podemos acceder al context.pop
+
+                FilledButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SoilCarbonScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +77,29 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/aliso/biomass/biomas_alder.jpg',
-                      fit: BoxFit.fitWidth,
-                      height: 259,
+                  Stack(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset(
+                        'assets/img/aliso/biomass/biomas_alder.jpg',
+                        fit: BoxFit.fitWidth,
+                        height: 259,
+                      ),
                     ),
-                  ),
+                    //Possition of the botton
+                    Positioned(
+                      right: 5,
+                      top: 50,
+                      child: FilledButton.tonal(
+                          onPressed: () => openDialog(context),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent),
+                          child: const Icon(
+                            Icons.info_outline,
+                            color: Colors.white,
+                          )),
+                    )
+                  ]),
 
                   //Título
                   const SizedBox(height: 25.0),
