@@ -1,0 +1,281 @@
+import 'package:flutter/material.dart';
+import 'package:version/presentation/screens/pona/carbon/carbon_pona.dart';
+
+class SoilCarbonPonaNew extends StatefulWidget {
+  const SoilCarbonPonaNew({super.key});
+
+  @override
+  State<SoilCarbonPonaNew> createState() => _SoilCarbonPonaNewState();
+}
+
+class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _controllerWeightA = TextEditingController();
+  final TextEditingController _controllerWeightP = TextEditingController();
+  final TextEditingController _controllerWeightDA = TextEditingController();
+
+  // Validación de los pesos
+  String? _validateWeight(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Por favor, ingresa un valor';
+    }
+    // Validación con regex
+    final soilRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    if (!soilRegExp.hasMatch(value)) {
+      return 'Solo acepta valores numéricos';
+    }
+    return null;
+  }
+
+  // Calcular el carbono en el suelo
+  void _calculateAndShowResult() {
+    if (_formKey.currentState!.validate()) {
+      final double area = double.parse(_controllerWeightA.text);
+      final double depth = double.parse(_controllerWeightP.text);
+      final double density = double.parse(_controllerWeightDA.text);
+
+      final double result = area * depth * density;
+
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          title: const Text('Resultado del cálculo'),
+          content: Text(
+            'El peso del suelo (Ws) es: $result t/ha',
+            textAlign: TextAlign.justify,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CarbonPonaScreen()),
+                );
+              },
+              child: const Text('Aceptar'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+  // Diálogo informativo sobre el carbono
+  void openDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text(
+          '¿Qué es el carbono en el suelo?',
+          textAlign: TextAlign.justify,
+        ),
+        content: const Text(
+          'El carbono en el suelo es la cantidad de carbono en la materia orgánica del suelo. Incluye restos de plantas y animales, y microorganismos. Este carbono entra al suelo por la descomposición de materiales orgánicos. El suelo actúa como un sumidero de carbono a largo plazo, mejorando la fertilidad y estructura del suelo.',
+          textAlign: TextAlign.justify,
+        ),
+        actions: [
+          FilledButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Aceptar'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Form(
+          key: _formKey,
+          child: Center(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Stack(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset(
+                        'assets/img/pino/carbon/carbon_p.png',
+                        fit: BoxFit.fitWidth,
+                        height: 259,
+                      ),
+                    ),
+                    // Posición del botón
+                    Positioned(
+                      right: 5,
+                      top: 50,
+                      child: FilledButton.tonal(
+                        onPressed: () => openDialog(context),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                        ),
+                        child: const Icon(
+                          Icons.info_outline,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ]),
+                  // Título
+                  const SizedBox(height: 25.0),
+                  const Text(
+                    'Calculando carbono en el suelo',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  // Fórmula
+                  const SizedBox(height: 25.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color.fromARGB(255, 51, 79, 31),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          'Ws (t/ha) = a * p * da',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                  // NOTA
+                  const SizedBox(height: 5),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '*Ws: Peso del suelo (t/ha) ',
+                        style: TextStyle(fontSize: 10),
+                      ),
+                    ),
+                  ),
+                  // Día de evaluación
+                  const SizedBox(height: 20.0),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Día de evaluación: ',
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                    ],
+                  ),
+                  // Área
+                  const SizedBox(height: 25),
+                  const Text(
+                    'Área (a): ',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(width: 8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: TextFormField(
+                      validator: _validateWeight,
+                      controller: _controllerWeightA,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        labelText: 'Ingrese el (a) en hectáreas',
+                        labelStyle: const TextStyle(fontSize: 14),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  // Profundidad
+                  const SizedBox(height: 25),
+                  const Text(
+                    'Profundidad (p): ',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(width: 8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: TextFormField(
+                      validator: _validateWeight,
+                      controller: _controllerWeightP,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        labelText: 'Ingresa la (p) en metros',
+                        labelStyle: const TextStyle(fontSize: 14),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  // Densidad aparente del suelo
+                  const SizedBox(height: 25),
+                  const Text(
+                    'Densidad aparente del suelo (da): ',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(width: 8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: TextFormField(
+                      validator: _validateWeight,
+                      controller: _controllerWeightDA,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        labelText: 'Ingrese la (da) en Kg/m3',
+                        labelStyle: const TextStyle(fontSize: 15),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  // Guardar
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color.fromARGB(255, 51, 79, 31),
+                          ),
+                        ),
+                        onPressed: _calculateAndShowResult,
+                        child: const Text(
+                          'Calcular',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:version/presentation/screens/pona/carbon/biomass_carbon_pona.dart';
 import 'package:version/presentation/screens/pona/carbon/conversion_carbon_pona.dart';
 import 'package:version/presentation/screens/pona/carbon/soil_carbon_pona.dart';
+import 'package:version/presentation/screens/pona/carbon/soil_carbon_pona_n.dart';
 
 class CarbonPonaScreen extends StatelessWidget {
   const CarbonPonaScreen({super.key});
@@ -123,7 +124,7 @@ class CarbonPonaScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const SoilCarbonPona()),
+                              builder: (context) => const SoilCarbonPonaNew()),
                         );
                       },
                       child: const Text(
