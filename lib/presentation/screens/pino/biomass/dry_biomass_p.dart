@@ -25,12 +25,36 @@ class _DryBiomassPState extends State<DryBiomassP> {
     return null;
   }
 
-  //Validamos el bottomn guardar
+  // Cálculo de la biomasa seca
 
-  void _submitForm() {
+  void _calculateDryBiomassResult() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const BiomassPinoScreen()));
+      final double dap = double.parse(_controllerDapP.text);
+
+      final double result = 0.2639 * dap;
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                  title: const Text('Resultado del cáculo'),
+                  content: Text(
+                    'La biomasa seca es: $result ',
+                    textAlign: TextAlign.justify,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const BiomassPinoScreen()));
+                      },
+                      child: const Text('Aceptar'),
+                    )
+                  ]));
     }
   }
 
@@ -182,7 +206,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
                         backgroundColor: MaterialStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: _submitForm,
+                      onPressed: _calculateDryBiomassResult,
                       child: const Text(
                         'Guardar',
                         style: TextStyle(fontSize: 18, color: Colors.white),

@@ -27,9 +27,41 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
   }
 
   // Cálculo de la biomasa seca
+
+  void _calculateDryBiomassResult() {
+    if (_formKey.currentState!.validate()) {
+      final double dap = double.parse(_controllerDapP.text);
+
+      final double result = 0.2639 * dap;
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                  title: const Text('Resultado del cáculo'),
+                  content: Text(
+                    'La biomasa seca es: $result ',
+                    textAlign: TextAlign.justify,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const BiomassScreenC()));
+                      },
+                      child: const Text('Aceptar'),
+                    )
+                  ]));
+    }
+  }
+
+  /*
   double _calculateBiomass(double dap) {
     return 0.2639 * dap;
-  }
+  } 
 
   // Validamos el botón guardar
   void _submitForm() {
@@ -48,6 +80,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
           MaterialPageRoute(builder: (context) => const DryBiomassCNew()));
     }
   }
+*/
 
   // Diálogo informativo sobre el Aliso
   void openDialog(BuildContext context) {
@@ -188,7 +221,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                           const Color.fromARGB(255, 51, 79, 31),
                         ),
                       ),
-                      onPressed: _submitForm,
+                      onPressed: _calculateDryBiomassResult,
                       child: const Text(
                         'Guardar',
                         style: TextStyle(fontSize: 18, color: Colors.white),

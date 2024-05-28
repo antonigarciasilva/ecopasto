@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:version/presentation/screens/cipres/biomass/dry_biomass_c.dart';
+import 'package:version/presentation/screens/cipres/biomass/dry_biomass_new.dart';
 import 'package:version/presentation/screens/cipres/biomass/herbaceous_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/biomass/leaf_litter_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/cipres_screen.dart';
@@ -137,7 +138,7 @@ class BiomassScreenC extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const DryBiomassC()),
+                              builder: (context) => const DryBiomassCNew()),
                         );
                       },
                       child: const Text(

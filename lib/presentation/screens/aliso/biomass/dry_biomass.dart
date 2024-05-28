@@ -26,7 +26,39 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
     return null;
   }
 
-  //Validamos el bottomn guardar
+  // Cálculo de la biomasa seca
+
+  void _calculateDryBiomassResult() {
+    if (_formKey.currentState!.validate()) {
+      final double dap = double.parse(_controllerDap.text);
+
+      final double result = 0.2639 * dap;
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                  title: const Text('Resultado del cáculo'),
+                  content: Text(
+                    'La biomasa seca es: $result ',
+                    textAlign: TextAlign.justify,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const BiomassAlderScreen()));
+                      },
+                      child: const Text('Aceptar'),
+                    )
+                  ]));
+    }
+  }
+  /* //Validamos el bottomn guardar
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
@@ -34,6 +66,7 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
           MaterialPageRoute(builder: (context) => const BiomassAlderScreen()));
     }
   }
+*/
 
   //Dialogo informativo sobre el Aliso
   void openDialog(BuildContext context) {
@@ -183,7 +216,7 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
                         backgroundColor: MaterialStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: _submitForm,
+                      onPressed: _calculateDryBiomassResult,
                       child: const Text(
                         'Guardar',
                         style: TextStyle(fontSize: 18, color: Colors.white),
