@@ -27,11 +27,39 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
     return null;
   }
 
-  //Validamos el boton
-  void _submitForm() {
+  // Calcular el carbono en el suelo
+  void _calculateAndShowResult() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const CarbonPinoScreen()));
+      final double area = double.parse(_controllerWeightA.text);
+      final double depth = double.parse(_controllerWeightP.text);
+      final double density = double.parse(_controllerWeightDA.text);
+
+      final double result = area * depth * density;
+
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          title: const Text('Resultado del cálculo'),
+          content: Text(
+            'El peso del suelo (Ws) es: $result t/ha',
+            textAlign: TextAlign.justify,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CarbonPinoScreen()),
+                );
+              },
+              child: const Text('Aceptar'),
+            ),
+          ],
+        ),
+      );
     }
   }
 
@@ -250,7 +278,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _submitForm,
+                        onPressed: _calculateAndShowResult,
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),

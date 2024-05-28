@@ -17,7 +17,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
   //Validación de los pesos
   String? _validateWeight(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Por favor, ingresa el peso';
+      return 'Por favor, ingrese un valor';
     }
     //Validación con regex
     final soilRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
@@ -27,6 +27,40 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
     return null;
   }
 
+  //Calculamos el carbono en el suelo
+
+  void _calculateAndShowResult() {
+    if (_formKey.currentState!.validate()) {
+      final double area = double.parse(_controllerWeightA.text);
+      final double depth = double.parse(_controllerWeightP.text);
+      final double density = double.parse(_controllerWeightDA.text);
+
+      final double result = area * depth * density;
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                  title: const Text('Resultado del cálculo'),
+                  content: Text(
+                    'El peso del suelo (Ws) es: $result t/ha',
+                    textAlign: TextAlign.justify,
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const CarbonScreenC()));
+                        },
+                        child: const Text('Aceptar'))
+                  ]));
+    }
+  }
+
+/*
   //Validamos el boton
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
@@ -34,6 +68,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
           MaterialPageRoute(builder: (context) => const CarbonScreenC()));
     }
   }
+*/
 
   //Dialogo informativo sobre el carbono
   void openDialog(BuildContext context) {
@@ -250,7 +285,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _submitForm,
+                        onPressed: _calculateAndShowResult,
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
