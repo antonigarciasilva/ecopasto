@@ -31,7 +31,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
     if (_formKey.currentState!.validate()) {
       final double dap = double.parse(_controllerDapP.text);
 
-      final double resultdbp = 0.2639 * dap;
+      final double resultdbp = 0.6575 * dap;
       final String formattedResult = resultdbp.toStringAsFixed(2);
 
       showDialog(

@@ -32,7 +32,7 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
     if (_formKey.currentState!.validate()) {
       final double dap = double.parse(_controllerDap.text);
 
-      final double resultdba = 0.2639 * dap;
+      final double resultdba = -22.695 + (1.5085 * dap);
       final String formattedResult = resultdba.toStringAsFixed(2);
 
       showDialog(

@@ -45,7 +45,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
           builder: (context) => AlertDialog(
                 title: const Text('Resultado del cálculo'),
                 content: Text(
-                  'La biomasa hebácea es: $formattedResult Tm/ha',
+                  'La biomasa herbácea es: $formattedResult Tm/ha',
                   textAlign: TextAlign.justify,
                 ),
                 actions: [

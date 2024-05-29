@@ -124,7 +124,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                 ),
                 const SizedBox(height: 25.0),
                 const Text(
-                  'Calculando la biomasa seca con Cip',
+                  'Calculando la biomasa seca con Cipres',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

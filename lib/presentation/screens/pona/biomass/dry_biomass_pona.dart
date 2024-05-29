@@ -35,8 +35,9 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
   void _calculateDryBiomassResult() {
     if (_formKey.currentState!.validate()) {
       final double dap = double.parse(_controllerDapP.text);
+      final double af = double.parse(_controllerDapF.text);
 
-      final double resultdbo = 0.2639 * dap;
+      final double resultdbo = 0.0080 * dap * af;
       final String formattedResult = resultdbo.toStringAsFixed(2);
 
       showDialog(

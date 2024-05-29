@@ -27,11 +27,39 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
     return null;
   }
 
-  //Validamos el boton de guardar
-  void _submitForm() {
+  // Calculo de la biomasa hojarasca
+
+  void _calculateLeafLitterBiomassResult() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const BiomassPinoScreen()));
+      final double psm = double.parse(_controllerWeightPSM.text);
+      final double pfm = double.parse(_controllerWeightPFM.text);
+      final double pst = double.parse(_controllerWeightPST.text);
+
+      final double resulthba = (psm / pfm * pst) * 0.04;
+      final String formattedResult = resulthba.toStringAsFixed(2);
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                title: const Text('Resultado del cálculo'),
+                content: Text(
+                  'La biomasa herbácea es: $formattedResult Tm/ha',
+                  textAlign: TextAlign.justify,
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const BiomassPinoScreen()));
+                      },
+                      child: const Text('Aceptar'))
+                ],
+              ));
     }
   }
 
@@ -258,7 +286,7 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _submitForm,
+                        onPressed: _calculateLeafLitterBiomassResult,
                         child: const Text(
                           'Guardar',
                           style: TextStyle(fontSize: 18, color: Colors.white),
