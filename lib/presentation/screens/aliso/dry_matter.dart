@@ -47,7 +47,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
           builder: (context) => AlertDialog(
                   title: const Text('Resultado del cáculo'),
                   content: Text(
-                    'El peso de la materría seca es: $formattedResult kg.m²',
+                    'El peso de la materia seca es: $formattedResult kg.m²',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [

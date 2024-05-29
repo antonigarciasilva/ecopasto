@@ -25,11 +25,35 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona> {
     return null;
   }
 
-  //Validamos el boton
-  void _submitForm() {
+  //Calculamos el carbon con la biomasa
+  void _calculateBiomassCarbonResult() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const CarbonPonaScreen()));
+      final double bvt = double.parse(_controllerWeightBVT.text);
+
+      final resultbco = bvt * 0.4270;
+      final String formattedResult = resultbco.toStringAsFixed(2);
+
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: const Text('Resultado de cálculo'),
+                content: Text(
+                  'El peso de la materia seca es: $formattedResult Tn/ha ',
+                  textAlign: TextAlign.justify,
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const CarbonPonaScreen()));
+                      },
+                      child: const Text('Aceptar'))
+                ],
+              ));
     }
   }
 
@@ -194,7 +218,7 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _submitForm,
+                        onPressed: _calculateBiomassCarbonResult,
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),

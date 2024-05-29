@@ -26,11 +26,34 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
     return null;
   }
 
-  //Validamos el boton
-  void _submitForm() {
+  //Calculamos el carbon con la biomasa
+  void _calculateBiomassCarbonResult() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const CarbonScreen()));
+      final double bvt = double.parse(_controllerWeightBVT.text);
+
+      final resultbca = bvt * 0.4270;
+      final String formattedResult = resultbca.toStringAsFixed(2);
+
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: const Text('Resultado de cálculo'),
+                content: Text(
+                  'El peso de la materia seca es: $formattedResult Tn/ha ',
+                  textAlign: TextAlign.justify,
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CarbonScreen()));
+                      },
+                      child: const Text('Aceptar'))
+                ],
+              ));
     }
   }
 
@@ -126,7 +149,7 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'CBV(t/ha): BVT * fracción de carbono',
+                          'CBV(Tn/ha): BVT * 0.4270',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -141,7 +164,7 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*CBV: Carbono en biomasa vegetal(Tm/ha) \n'
+                          '*CBV: Carbono en biomasa vegetal(Tn/ha) \n'
                           '*0.4270: Fracción de carbono de Aliso \n',
                           style: TextStyle(fontSize: 10),
                         ),
@@ -178,7 +201,7 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el peso en (Tm/ha)',
+                        labelText: 'Ingrese el peso en (Tn/ha)',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
@@ -196,7 +219,7 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _submitForm,
+                        onPressed: _calculateBiomassCarbonResult,
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
