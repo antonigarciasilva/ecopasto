@@ -35,6 +35,7 @@ class _DryMatterPState extends State<DryMatterP> {
       final double pmh = double.parse(_controllerWeightWet.text);
 
       final double resultmsp = pms / pmh * 100;
+      final String formattedResult = resultmsp.toStringAsFixed(2);
 
       showDialog(
           context: context,
@@ -42,7 +43,7 @@ class _DryMatterPState extends State<DryMatterP> {
           builder: (context) => AlertDialog(
                   title: const Text('Resultado del cáculo'),
                   content: Text(
-                    'El peso de la materría seca es: $resultmsp ',
+                    'El peso de la materría seca es: $formattedResult kg.m²',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [
@@ -146,7 +147,7 @@ class _DryMatterPState extends State<DryMatterP> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'MS/m2 (Kg) = PMS/PMH x 100',
+                          'MS/m² (Kg) = PMS/PMH x 100',
                           style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ),
@@ -162,7 +163,7 @@ class _DryMatterPState extends State<DryMatterP> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*MS: materia seca \n'
-                          '*m2: metro cuadrado',
+                          '*m²: metro cuadrado',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),

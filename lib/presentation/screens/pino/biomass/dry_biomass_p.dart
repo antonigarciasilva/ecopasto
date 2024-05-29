@@ -31,7 +31,8 @@ class _DryBiomassPState extends State<DryBiomassP> {
     if (_formKey.currentState!.validate()) {
       final double dap = double.parse(_controllerDapP.text);
 
-      final double result = 0.2639 * dap;
+      final double resultdbp = 0.2639 * dap;
+      final String formattedResult = resultdbp.toStringAsFixed(2);
 
       showDialog(
           context: context,
@@ -39,7 +40,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
           builder: (context) => AlertDialog(
                   title: const Text('Resultado del cáculo'),
                   content: Text(
-                    'La biomasa seca es: $result ',
+                    'La biomasa seca es: $formattedResult ',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [

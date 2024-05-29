@@ -27,11 +27,38 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
     return null;
   }
 
-  //Validación el bottom guardar
-  void _submitForm() {
+  // Calculo de la biomasa herbacea
+
+  void _calculateHerbaceousBiomassResult() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const BiomassPona()));
+      final double psm = double.parse(_controllerWeightPSM.text);
+      final double pfm = double.parse(_controllerWeightPFM.text);
+      final double pst = double.parse(_controllerWeightPST.text);
+
+      final double resulthbo = (psm / pfm * pst) * 0.01;
+      final String formattedResult = resulthbo.toStringAsFixed(2);
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                title: const Text('Resultado del cálculo'),
+                content: Text(
+                  'La biomasa herbácea es: $formattedResult Tm/ha',
+                  textAlign: TextAlign.justify,
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const BiomassPona()));
+                      },
+                      child: const Text('Aceptar'))
+                ],
+              ));
     }
   }
 
@@ -257,7 +284,7 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _submitForm,
+                        onPressed: _calculateHerbaceousBiomassResult,
                         child: const Text(
                           'Guardar',
                           style: TextStyle(fontSize: 18, color: Colors.white),

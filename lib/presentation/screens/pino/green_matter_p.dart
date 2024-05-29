@@ -162,7 +162,7 @@ class _GreenMatterPState extends State<GreenMatterP> {
 
                   const SizedBox(height: 25.0),
 
-                  const Text('Peso de materia verde por m2:',
+                  const Text('Peso de materia verde por m²:',
                       style: TextStyle(
                         fontSize: 15,
                       )),
@@ -179,7 +179,7 @@ class _GreenMatterPState extends State<GreenMatterP> {
                       decoration: InputDecoration(
                         //prefixIcon: const Icon(Icons.person_4),
 
-                        labelText: 'Ingresa el peso en KG/m2',
+                        labelText: 'Ingresa el peso en KG/m²',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),

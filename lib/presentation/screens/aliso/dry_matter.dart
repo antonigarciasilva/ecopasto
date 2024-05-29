@@ -39,6 +39,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
       final double pmh = double.parse(_controllerWetWeight.text);
 
       final double resultmsa = pms / pmh * 100;
+      final String formattedResult = resultmsa.toStringAsFixed(2);
 
       showDialog(
           context: context,
@@ -46,7 +47,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
           builder: (context) => AlertDialog(
                   title: const Text('Resultado del cáculo'),
                   content: Text(
-                    'El peso de la materría seca es: $resultmsa ',
+                    'El peso de la materría seca es: $formattedResult kg.m²',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [
@@ -150,7 +151,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'MS/m2 (Kg) = PMS/PMH x 100',
+                          'MS/m² (Kg) = PMS/PMH x 100',
                           style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ),
@@ -166,7 +167,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*MS: materia seca \n'
-                          '*m2: metro cuadrado',
+                          '*m²: metro cuadrado',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),

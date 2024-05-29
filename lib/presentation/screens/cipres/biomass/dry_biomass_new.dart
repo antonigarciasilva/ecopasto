@@ -32,7 +32,8 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
     if (_formKey.currentState!.validate()) {
       final double dap = double.parse(_controllerDapP.text);
 
-      final double result = 0.2639 * dap;
+      final double resultdbc = 0.2639 * dap;
+      final String formattedResult = resultdbc.toStringAsFixed(2);
 
       showDialog(
           context: context,
@@ -40,7 +41,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
           builder: (context) => AlertDialog(
                   title: const Text('Resultado del cáculo'),
                   content: Text(
-                    'La biomasa seca es: $result ',
+                    'La biomasa seca es: $formattedResult ',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [
@@ -57,30 +58,6 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                   ]));
     }
   }
-
-  /*
-  double _calculateBiomass(double dap) {
-    return 0.2639 * dap;
-  } 
-
-  // Validamos el botón guardar
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      final dap = double.parse(_controllerDapP.text);
-      final biomass = _calculateBiomass(dap);
-
-      setState(() {
-        _biomassResult = biomass;
-      });
-
-      // Aquí puedes guardar el resultado en una base de datos o donde necesites
-      // Por ejemplo, podrías llamar a una función que guarde el resultado en Firestore
-
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const DryBiomassCNew()));
-    }
-  }
-*/
 
   // Diálogo informativo sobre el Aliso
   void openDialog(BuildContext context) {

@@ -36,6 +36,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
       final double pmh = double.parse(_controllerWeightWet.text);
 
       final double resultmso = pms / pmh * 100;
+      final String formattedResult = resultmso.toStringAsFixed(2);
 
       showDialog(
           context: context,
@@ -43,7 +44,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
           builder: (context) => AlertDialog(
                   title: const Text('Resultado del cáculo'),
                   content: Text(
-                    'El peso de la materría seca es: $resultmso ',
+                    'El peso de la materría seca es: $formattedResult kg.m² ',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [
@@ -152,7 +153,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'MS/2 (Kg) = PMS/PMH x 100',
+                          'MS/m² (Kg) = PMS/PMH x 100',
                           style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ),
@@ -168,7 +169,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*MS: materia seca \n'
-                          '*m2: metro cuadrado',
+                          '*m²: metro cuadrado',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),
