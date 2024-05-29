@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:version/presentation/screens/pona/biomass/biomass_pona.dart';
 import 'package:version/presentation/screens/pona/carbon/carbon_pona.dart';
 import 'package:version/presentation/screens/pona/dry_pona.dart';
+import 'package:version/presentation/screens/pona/green_matter.dart';
 
 class PonaScreen extends StatelessWidget {
   const PonaScreen({super.key});
@@ -95,11 +96,11 @@ class PonaScreen extends StatelessWidget {
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      /* Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const GreenMatterPona()),
-                      );  */
+                      );
                     },
                     child: const Text(
                       '1. Materia verde',

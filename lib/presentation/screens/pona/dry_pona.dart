@@ -28,12 +28,36 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
     return null;
   }
 
-//Validación del boton
+// Cálculo de la materia seca
 
-  void _submitForm() {
+  void _calculateDryMatterResult() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const PonaScreen()));
+      final double pms = double.parse(_controllerWeightDry.text);
+      final double pmh = double.parse(_controllerWeightWet.text);
+
+      final double resultmso = pms / pmh * 100;
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                  title: const Text('Resultado del cáculo'),
+                  content: Text(
+                    'El peso de la materría seca es: $resultmso ',
+                    textAlign: TextAlign.justify,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const PonaScreen()));
+                      },
+                      child: const Text('Aceptar'),
+                    )
+                  ]));
     }
   }
 
@@ -230,7 +254,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _submitForm,
+                        onPressed: _calculateDryMatterResult,
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),

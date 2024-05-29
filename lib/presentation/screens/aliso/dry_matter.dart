@@ -31,13 +31,36 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
     return null;
   }
 
-  //validamos el boton calcular
-  void _submitFormD() {
+  // Cálculo de la materia seca
+
+  void _calculateDryMatterResult() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const AlisoScreen()),
-      );
+      final double pms = double.parse(_controllerDryWeight.text);
+      final double pmh = double.parse(_controllerWetWeight.text);
+
+      final double resultmsa = pms / pmh * 100;
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                  title: const Text('Resultado del cáculo'),
+                  content: Text(
+                    'El peso de la materría seca es: $resultmsa ',
+                    textAlign: TextAlign.justify,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AlisoScreen()));
+                      },
+                      child: const Text('Aceptar'),
+                    )
+                  ]));
     }
   }
 
@@ -229,7 +252,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _submitFormD,
+                        onPressed: _calculateDryMatterResult,
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),

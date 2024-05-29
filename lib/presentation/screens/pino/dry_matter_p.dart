@@ -27,13 +27,36 @@ class _DryMatterPState extends State<DryMatterP> {
     }
     return null;
   }
+// Cálculo de la materia seca
 
-//Validación del boton
-
-  void _submitForm() {
+  void _calculateDryMatterResult() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const PinoScreen()));
+      final double pms = double.parse(_controllerWeightDry.text);
+      final double pmh = double.parse(_controllerWeightWet.text);
+
+      final double resultmsp = pms / pmh * 100;
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                  title: const Text('Resultado del cáculo'),
+                  content: Text(
+                    'El peso de la materría seca es: $resultmsp ',
+                    textAlign: TextAlign.justify,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const PinoScreen()));
+                      },
+                      child: const Text('Aceptar'),
+                    )
+                  ]));
     }
   }
 
@@ -225,7 +248,7 @@ class _DryMatterPState extends State<DryMatterP> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _submitForm,
+                        onPressed: _calculateDryMatterResult,
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
