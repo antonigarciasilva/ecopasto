@@ -25,11 +25,37 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
     return null;
   }
 
-  //Validar el buttum
-  void _submitForm() {
+  //Calculo de la conversión de carbono a C02
+
+  void _calculateCarbonToCO2Result() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const CarbonScreenC()));
+      final double co = double.parse(_controllerCO.text);
+
+      final double resultCtoCO2c = co * 3.666;
+      final String formattedResult = resultCtoCO2c.toStringAsFixed(2);
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                  title: const Text(
+                    'Resultado del cálculo',
+                  ),
+                  content: Text(
+                    'la cantidad de CO₂ es: $formattedResult Tn/ha',
+                    textAlign: TextAlign.justify,
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const CarbonScreenC()));
+                        },
+                        child: const Text('Aceptar'))
+                  ]));
     }
   }
 
@@ -195,7 +221,7 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _submitForm,
+                        onPressed: _calculateCarbonToCO2Result,
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
