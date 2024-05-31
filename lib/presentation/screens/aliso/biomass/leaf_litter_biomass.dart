@@ -15,6 +15,8 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
   final TextEditingController _controllerWeightPFM = TextEditingController();
   final TextEditingController _controllerWeightPST = TextEditingController();
 
+  double? resultbha;
+
   //Validación de peso
   String? _validateWeight(String? value) {
     if (value == null || value.isEmpty) {
@@ -36,8 +38,8 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
       final double pfm = double.parse(_controllerWeightPFM.text);
       final double pst = double.parse(_controllerWeightPST.text);
 
-      final double resulthba = (psm / pfm * pst) * 0.04;
-      final String formattedResult = resulthba.toStringAsFixed(2);
+      final double resultbha = (psm / pfm * pst) * 0.04;
+      final String formattedResult = resultbha.toStringAsFixed(2);
 
       showDialog(
           context: context,

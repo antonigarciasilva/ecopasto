@@ -12,6 +12,7 @@ class DryBiomassScreen extends StatefulWidget {
 class _DryBiomassScreenState extends State<DryBiomassScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDap = TextEditingController();
+  double? resultdba;
 
   //Validación del DAP
   String? _validateDap(String? value) {
@@ -28,7 +29,7 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
 
   // Cálculo de la biomasa seca
 
-  void _calculateDryBiomassResult() {
+  void calculateDryBiomassResultA() {
     if (_formKey.currentState!.validate()) {
       final double dap = double.parse(_controllerDap.text);
 
@@ -217,7 +218,7 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
                         backgroundColor: MaterialStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: _calculateDryBiomassResult,
+                      onPressed: calculateDryBiomassResultA,
                       child: const Text(
                         'Guardar',
                         style: TextStyle(fontSize: 18, color: Colors.white),

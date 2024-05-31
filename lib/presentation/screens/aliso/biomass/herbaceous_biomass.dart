@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
 
@@ -14,6 +16,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
   final TextEditingController _controllerWeightPSM = TextEditingController();
   final TextEditingController _controllerWeightPFM = TextEditingController();
   final TextEditingController _controllerWeightPST = TextEditingController();
+  double? resulthba;
 
   //Validación del peso
   String? _validateWeight(String? value) {

@@ -5,8 +5,27 @@ import 'package:version/presentation/screens/aliso/biomass/dry_biomass.dart';
 import 'package:version/presentation/screens/aliso/biomass/herbaceous_biomass.dart';
 import 'package:version/presentation/screens/aliso/biomass/leaf_litter_biomass.dart';
 
-class BiomassAlderScreen extends StatelessWidget {
-  const BiomassAlderScreen({super.key});
+class BiomassAlderScreen extends StatefulWidget {
+  final double? resultdba;
+  final double? resulthba;
+  final double? resultbha;
+  const BiomassAlderScreen(
+      {super.key, this.resultdba, this.resultbha, this.resulthba});
+
+  @override
+  State<BiomassAlderScreen> createState() => _BiomassAlderScreenState();
+}
+
+class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
+  double? resultdba;
+  double? resulthba;
+  double? resultbha;
+
+  @override
+  void initState() {
+    super.initState();
+    resultdba = widget.resultdba;
+  }
 
   //Dialogo informativo sobre el Aliso
   void openDialog(BuildContext context) {
@@ -33,6 +52,36 @@ class BiomassAlderScreen extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) =>
                                   const BiomassAlderScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
+  //Calculando la biomasa
+  void _calculateBiomassResult() {
+    final double biomassA =
+        (resultdba ?? 0) + (resulthba ?? 0) + (resultbha ?? 0);
+
+    final String formattedBiomassA = biomassA.toStringAsFixed(2);
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text('Resultado de cálculo'),
+              content: Text(
+                'La biomasa total es: $formattedBiomassA',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AlisoScreen()));
                     },
                     child: const Text('Aceptar'))
               ],
@@ -214,13 +263,7 @@ class BiomassAlderScreen extends StatelessWidget {
                         backgroundColor: MaterialStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AlisoScreen()),
-                        );
-                      },
+                      onPressed: _calculateBiomassResult,
                       child: const Text(
                         'Calcular',
                         style: TextStyle(fontSize: 18, color: Colors.white),

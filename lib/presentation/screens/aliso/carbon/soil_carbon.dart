@@ -42,7 +42,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
         builder: (context) => AlertDialog(
           title: const Text('Resultado del cálculo'),
           content: Text(
-            'El peso del suelo (Ws) es: $result t/ha',
+            'El peso del suelo (Ws) es: $result Tn/ha',
             textAlign: TextAlign.justify,
           ),
           actions: [
