@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:version/presentation/screens/aliso/aliso_screen.dart';
-import 'package:version/presentation/screens/aliso/biomass/dry_biomass.dart';
+
 import 'package:version/presentation/screens/aliso/biomass/herbaceous_biomass.dart';
 import 'package:version/presentation/screens/aliso/biomass/leaf_litter_biomass.dart';
+import 'package:version/presentation/screens/aliso/biomass/newdry_biomass.dart';
 
 class BiomassAlderScreen extends StatefulWidget {
   final double? resultdba;
@@ -25,6 +26,8 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
   void initState() {
     super.initState();
     resultdba = widget.resultdba;
+    resultbha = widget.resultbha;
+    resulthba = widget.resulthba;
   }
 
   //Dialogo informativo sobre el Aliso
@@ -141,7 +144,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     width: 320,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 191, 192, 191)),
                       ),
                       onPressed: () {},
@@ -180,14 +183,15 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     width: 220,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const DryBiomassScreen()),
+                              builder: (context) =>
+                                  const NewDryBiomassScreen()),
                         );
                       },
                       child: const Text(
@@ -206,7 +210,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     width: 220,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
@@ -233,7 +237,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     width: 220,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
@@ -260,7 +264,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     width: 220,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: _calculateBiomassResult,

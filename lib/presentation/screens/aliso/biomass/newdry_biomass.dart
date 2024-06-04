@@ -1,39 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:version/presentation/screens/pino/biomass/biomass.dart';
 
-class DryBiomassP extends StatefulWidget {
-  const DryBiomassP({super.key});
+import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
+
+class NewDryBiomassScreen extends StatefulWidget {
+  const NewDryBiomassScreen({super.key});
 
   @override
-  State<DryBiomassP> createState() => _DryBiomassPState();
+  State<NewDryBiomassScreen> createState() => _NewDryBiomassScreenState();
 }
 
-class _DryBiomassPState extends State<DryBiomassP> {
+class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerDapP = TextEditingController();
+  final TextEditingController _controllerDap = TextEditingController();
+  double? resultdba;
 
   //Validación del DAP
   String? _validateDap(String? value) {
     if (value == null || value.isEmpty) {
       return 'Por favor, ingresa el DAP';
     }
-    //Validación de regex only numbers
-    final dapRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!dapRegExp.hasMatch(value)) {
-      return 'Solo se aceptan valores numéricos';
+    //Validación con expresión regular
+    final regex = RegExp(r'^[0-9]+$');
+    if (!regex.hasMatch(value)) {
+      return 'Por favor, ingresa solo números enteros';
     }
     return null;
   }
 
-  // Cálculo de la biomasa seca
-
-  void _calculateDryBiomassResult() {
+  //Función para calcular la biomasa seca
+  void _calculateDryBiomass() {
     if (_formKey.currentState!.validate()) {
-      final double dap = double.parse(_controllerDapP.text);
+      double dap = double.parse(_controllerDap.text);
+      // Fórmula Biomasa seca = 1.8 + 2.9 * ln(DAP)
+      resultdba = -22.695 + 1.5085 * (dap);
+      final String formattedResult = resultdba!.toStringAsFixed(2);
+      // Se cambia log por ln para base natural (e)
+      setState(() {});
 
-      final double resultdbp = 0.6575 * dap;
-      final String formattedResult = resultdbp.toStringAsFixed(2);
-
+      //agreado 1
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -46,12 +50,13 @@ class _DryBiomassPState extends State<DryBiomassP> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const BiomassPinoScreen()));
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                BiomassAlderScreen(resultdba: resultdba),
+                          ),
+                        );
                       },
                       child: const Text('Aceptar'),
                     )
@@ -59,11 +64,11 @@ class _DryBiomassPState extends State<DryBiomassP> {
     }
   }
 
-  //Dialogo informativo sobre el Aliso
+  //Dialogo de información sobre la biomasa seca
   void openDialog(BuildContext context) {
     showDialog(
         context: context,
-        //solo para salir con los botones y no cuadno le das click en cualquier lado
+        //solo para salir con los botones y no cuando le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: const Text(
@@ -71,18 +76,13 @@ class _DryBiomassPState extends State<DryBiomassP> {
                 textAlign: TextAlign.justify,
               ),
               content: const Text(
-                'La biomasa seca se refiere a la cantidad de materia orgánica que queda después de eliminar toda el agua contenida en ella. Este proceso se realiza generalmente mediante secado en un horno hasta alcanzar un peso constante. La biomasa seca es una medida importante porque proporciona una estimación precisa de la materia orgánica real, excluyendo el contenido de agua que puede variar significativamente.',
+                'La biomasa seca es la materia orgánica total de un árbol, medida en peso seco. Se calcula usando el diámetro a la altura del pecho (DAP) y fórmulas alométricas específicas para cada especie.',
                 textAlign: TextAlign.justify,
               ),
               actions: [
-                //con el goRouter podemos acceder al context.pop
-
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryBiomassP()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],
@@ -103,13 +103,12 @@ class _DryBiomassPState extends State<DryBiomassP> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Image.asset(
-                      'assets/img/pino/biomass/biomass.jpg',
+                      'assets/img/aliso/biomass/biomas_alder.jpg',
                       fit: BoxFit.fitWidth,
                       height: 259,
                     ),
                   ),
-
-                  //Possition of the botton
+                  //Posición del botón
                   Positioned(
                     right: 5,
                     top: 50,
@@ -127,10 +126,10 @@ class _DryBiomassPState extends State<DryBiomassP> {
                 //Título
                 const SizedBox(height: 25.0),
                 const Text(
-                  'Calculando la biomasa seca con Pino',
+                  'Calculando la biomasa seca',
                   style: TextStyle(
                     fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
 
@@ -147,7 +146,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
                       ),
                       onPressed: () {},
                       child: const Text(
-                        'C = 0,6575 * (DAP)',
+                        'C = -22.695 + 1.5085 * DAP',
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ),
@@ -167,9 +166,9 @@ class _DryBiomassPState extends State<DryBiomassP> {
                   ],
                 ),
 
-                //DAP
-                const SizedBox(height: 25),
+                //Formulario del DAP
 
+                const SizedBox(height: 25.0),
                 const Text(
                   'Diámetro a la altura del pecho (DAP): ',
                   style: TextStyle(fontSize: 15),
@@ -177,44 +176,77 @@ class _DryBiomassPState extends State<DryBiomassP> {
                 const SizedBox(
                   width: 8,
                 ),
-                Form(
-                  key: _formKey,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      controller: _controllerDapP,
-                      validator: _validateDap,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el (DAP) en CM',
-                        labelStyle: const TextStyle(fontSize: 14),
-                      ),
-                      textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: _controllerDap,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            labelText: 'Ingrese el DAP (cm)',
+                            labelStyle: const TextStyle(fontSize: 14),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25)),
+                          ),
+                          validator: _validateDap,
+                        ),
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                const Color.fromARGB(255, 51, 79, 31)),
+                          ),
+                          onPressed: _calculateDryBiomass,
+                          child: const Text(
+                            'Calcular',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        if (resultdba != null)
+                          Visibility(
+                            visible: false,
+                            child: Text(
+                              ' ${resultdba?.toStringAsFixed(2)}',
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                          )
+                      ],
                     ),
                   ),
                 ),
 
-                //Guardar
-                const SizedBox(height: 20.0),
+                /*Botón para volver a la pantalla de biomasa
+                const SizedBox(height: 25.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 240,
+                    width: 220,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: _calculateDryBiomassResult,
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                BiomassAlderScreen(resultdba: resultdba),
+                          ),
+                        );
+                      },
                       child: const Text(
-                        'Guardar',
+                        'Volver a biomasa',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   ),
                 ),
+                */
               ],
             ),
           ),

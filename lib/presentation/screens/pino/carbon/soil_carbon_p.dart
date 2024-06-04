@@ -148,7 +148,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                       width: 240,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
+                          backgroundColor: WidgetStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
                         onPressed: () {},
@@ -275,7 +275,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                       width: 240,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
+                          backgroundColor: WidgetStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
                         onPressed: _calculateAndShowResult,

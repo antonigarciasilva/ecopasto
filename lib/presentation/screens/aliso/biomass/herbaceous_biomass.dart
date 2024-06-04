@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
 
@@ -152,7 +150,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                       width: 320,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
+                          backgroundColor: WidgetStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
                         onPressed: () {},
@@ -285,7 +283,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                       width: 240,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
+                          backgroundColor: WidgetStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
                         onPressed: _calculateHerbaceousBiomassResult,

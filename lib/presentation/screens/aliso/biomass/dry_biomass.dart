@@ -29,12 +29,14 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
 
   // Cálculo de la biomasa seca
 
-  void calculateDryBiomassResultA() {
+  void _calculateDryBiomassResultA() {
     if (_formKey.currentState!.validate()) {
       final double dap = double.parse(_controllerDap.text);
 
       final double resultdba = -22.695 + (1.5085 * dap);
       final String formattedResult = resultdba.toStringAsFixed(2);
+
+      setState(() {});
 
       showDialog(
           context: context,
@@ -49,7 +51,7 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
@@ -60,15 +62,6 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
                   ]));
     }
   }
-  /* //Validamos el bottomn guardar
-
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const BiomassAlderScreen()));
-    }
-  }
-*/
 
   //Dialogo informativo sobre el Aliso
   void openDialog(BuildContext context) {
@@ -153,7 +146,7 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
                     width: 250,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 191, 192, 191)),
                       ),
                       onPressed: () {},
@@ -188,26 +181,38 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
                 const SizedBox(
                   width: 8,
                 ),
-                Form(
-                  key: _formKey,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      controller: _controllerDap,
-                      validator: _validateDap,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el (DAP) en CM',
-                        labelStyle: const TextStyle(fontSize: 14),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Form(
+                    key: _formKey,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      child: TextFormField(
+                        controller: _controllerDap,
+                        validator: _validateDap,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25)),
+                          labelText: 'Ingrese el DAP (cm)',
+                          labelStyle: const TextStyle(fontSize: 14),
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
 
-                //Guardar
+                /* //New Bottom para calcular la biomasa
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                    onPressed: _calculateDryBiomassResultA,
+                    child: const Text('Calcular Biomasa seca')),
+                    */
+
+                //Boton para ir a la pantalla de biomasa
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
@@ -215,12 +220,12 @@ class _DryBiomassScreenState extends State<DryBiomassScreen> {
                     width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: calculateDryBiomassResultA,
+                      onPressed: _calculateDryBiomassResultA,
                       child: const Text(
-                        'Guardar',
+                        'Volver a biomasa',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),

@@ -137,7 +137,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                     width: 250,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                           const Color.fromARGB(255, 191, 192, 191),
                         ),
                       ),
@@ -194,7 +194,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                     width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                           const Color.fromARGB(255, 51, 79, 31),
                         ),
                       ),

@@ -146,7 +146,7 @@ class _ConversionCarbonPonaState extends State<ConversionCarbonPona> {
                       width: 240,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
+                          backgroundColor: WidgetStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
                         onPressed: () {},
@@ -220,7 +220,7 @@ class _ConversionCarbonPonaState extends State<ConversionCarbonPona> {
                       width: 240,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
+                          backgroundColor: WidgetStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
                         onPressed: _calculateCarbonToCO2Result,

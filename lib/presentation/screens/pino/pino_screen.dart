@@ -91,7 +91,7 @@ class PinoScreen extends StatelessWidget {
                   width: 260,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                           const Color.fromARGB(255, 51, 79, 31)),
                     ),
                     onPressed: () {
@@ -117,7 +117,7 @@ class PinoScreen extends StatelessWidget {
                   width: 260,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                           const Color.fromARGB(255, 51, 79, 31)),
                     ),
                     onPressed: () {
@@ -143,7 +143,7 @@ class PinoScreen extends StatelessWidget {
                   width: 260,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                           const Color.fromARGB(255, 51, 79, 31)),
                     ),
                     onPressed: () {
@@ -169,7 +169,7 @@ class PinoScreen extends StatelessWidget {
                   width: 260,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                           const Color.fromARGB(255, 51, 79, 31)),
                     ),
                     onPressed: () {

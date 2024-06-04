@@ -118,7 +118,7 @@ class LoginPageState extends State<LoginScreen> {
                   cursor: SystemMouseCursors.click,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                           const Color.fromARGB(255, 82, 12, 7)),
                     ),
                     onPressed: _submitForm,
