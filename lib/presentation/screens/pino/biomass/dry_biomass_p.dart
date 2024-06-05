@@ -11,6 +11,8 @@ class DryBiomassP extends StatefulWidget {
 class _DryBiomassPState extends State<DryBiomassP> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDapP = TextEditingController();
+//'?' así como esta acepta valores nulos
+  double? resultdbp;
 
   //Validación del DAP
   String? _validateDap(String? value) {
@@ -18,6 +20,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
       return 'Por favor, ingresa el DAP';
     }
     //Validación de regex only numbers
+    //'!' así como está es como un negador booleano
     final dapRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
     if (!dapRegExp.hasMatch(value)) {
       return 'Solo se aceptan valores numéricos';
@@ -26,13 +29,15 @@ class _DryBiomassPState extends State<DryBiomassP> {
   }
 
   // Cálculo de la biomasa seca
-
+// '!' aquí es como que sí currentState es null, ese operador hace que no lo sea
   void _calculateDryBiomassResult() {
     if (_formKey.currentState!.validate()) {
       final double dap = double.parse(_controllerDapP.text);
 
       final double resultdbp = 0.6575 * dap;
       final String formattedResult = resultdbp.toStringAsFixed(2);
+
+      setState(() {});
 
       showDialog(
           context: context,
@@ -51,7 +56,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const BiomassPinoScreen()));
+                                    BiomassPinoScreen(resultdbp: resultdbp)));
                       },
                       child: const Text('Aceptar'),
                     )

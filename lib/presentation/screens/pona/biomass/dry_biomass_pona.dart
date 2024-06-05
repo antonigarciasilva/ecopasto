@@ -14,6 +14,8 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
   final TextEditingController _controllerDapP = TextEditingController();
   final TextEditingController _controllerDapF = TextEditingController();
 
+  double? resultdbo;
+
   //Validación del DAP
   String? _validateDap(String? value) {
     if (value == null || value.isEmpty) {
@@ -40,6 +42,8 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
       final double resultdbo = 0.0080 * dap * af;
       final String formattedResult = resultdbo.toStringAsFixed(2);
 
+      setState(() {});
+
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -56,7 +60,8 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BiomassPona()));
+                                builder: (context) =>
+                                    BiomassPona(resultdbo: resultdbo)));
                       },
                       child: const Text('Aceptar'),
                     )

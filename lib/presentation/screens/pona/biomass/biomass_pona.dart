@@ -5,8 +5,59 @@ import 'package:version/presentation/screens/pona/biomass/leaf_litter_biomass_po
 
 import 'package:version/presentation/screens/pona/pona_screen.dart';
 
-class BiomassPona extends StatelessWidget {
-  const BiomassPona({super.key});
+class BiomassPona extends StatefulWidget {
+  //'?' significa que la variable puede ser nula o tomar el valo dado
+  final double? resultdbo;
+  final double? resulthbo;
+  final double? resultbho;
+  const BiomassPona(
+      {super.key, this.resultbho, this.resultdbo, this.resulthbo});
+
+  @override
+  State<BiomassPona> createState() => _BiomassPonaState();
+}
+
+class _BiomassPonaState extends State<BiomassPona> {
+  double? resultdbo;
+  double? resulthbo;
+  double? resultbho;
+
+  @override
+  void initState() {
+    super.initState();
+
+    resultbho = widget.resultbho;
+    resultdbo = widget.resultdbo;
+    resulthbo = widget.resulthbo;
+  }
+
+  //calculando la biomasa
+
+  void _calculateBiomassResultO() {
+    final biomassO = (resultbho ?? 0) + (resultdbo ?? 0) + (resulthbo ?? 0);
+
+    final String formattedBiomassO = biomassO.toStringAsFixed(2);
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: Text(
+                'La biomasa total es: $formattedBiomassO',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PonaScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
 
   //Dialogo informativo sobre el Aliso
   void openDialog(BuildContext context) {
@@ -213,13 +264,7 @@ class BiomassPona extends StatelessWidget {
                         backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const PonaScreen()),
-                        );
-                      },
+                      onPressed: _calculateBiomassResultO,
                       child: const Text(
                         'Calcular',
                         style: TextStyle(fontSize: 18, color: Colors.white),

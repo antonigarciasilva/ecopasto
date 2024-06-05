@@ -5,8 +5,60 @@ import 'package:version/presentation/screens/pino/biomass/herbaceous_biomass.dar
 import 'package:version/presentation/screens/pino/biomass/leaf_litter_biomass.dart';
 import 'package:version/presentation/screens/pino/pino_screen.dart';
 
-class BiomassPinoScreen extends StatelessWidget {
-  const BiomassPinoScreen({super.key});
+class BiomassPinoScreen extends StatefulWidget {
+  final double? resultdbp;
+  final double? resulthbp;
+  final double? resultbhp;
+  const BiomassPinoScreen(
+      {super.key, this.resultbhp, this.resultdbp, this.resulthbp});
+
+  @override
+  State<BiomassPinoScreen> createState() => _BiomassPinoScreenState();
+}
+
+class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
+  double? resultdbp;
+  double? resulthbp;
+  double? resultbhp;
+
+  @override
+  void initState() {
+    super.initState();
+
+    resultdbp = widget.resultdbp;
+    resulthbp = widget.resulthbp;
+    resultbhp = widget.resultbhp;
+  }
+
+  //Calculo de la biomass
+
+  void _calculateBiomassResultP() {
+    //Si la variable es null, toma el valor de 0 y si no es null toma el valor resultdbp
+    final double biomassP =
+        (resultbhp ?? 0) + (resultdbp ?? 0) + (resulthbp ?? 0);
+
+    final String formattedBiomassP = biomassP.toStringAsFixed(2);
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: Text(
+                'La biomasa total es: $formattedBiomassP',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PinoScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
 
   //Dialogo informativo sobre el Aliso
   void openDialog(BuildContext context) {
@@ -211,13 +263,7 @@ class BiomassPinoScreen extends StatelessWidget {
                         backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const PinoScreen()),
-                        );
-                      },
+                      onPressed: _calculateBiomassResultP,
                       child: const Text(
                         'Calcular',
                         style: TextStyle(fontSize: 18, color: Colors.white),
