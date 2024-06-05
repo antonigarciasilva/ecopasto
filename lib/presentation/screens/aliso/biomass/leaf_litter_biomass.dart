@@ -14,7 +14,6 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
   final TextEditingController _controllerWeightPSM = TextEditingController();
   final TextEditingController _controllerWeightPFM = TextEditingController();
   final TextEditingController _controllerWeightPST = TextEditingController();
-
   double? resultbha;
 
   //Validación de peso
@@ -41,6 +40,8 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
       final double resultbha = (psm / pfm * pst) * 0.04;
       final String formattedResult = resultbha.toStringAsFixed(2);
 
+      setState(() {});
+
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -53,8 +54,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                 actions: [
                   TextButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
@@ -294,6 +294,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),
+                      //Validación de botton
                     ),
                   ),
                 ],

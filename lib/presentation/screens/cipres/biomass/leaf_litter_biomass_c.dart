@@ -35,8 +35,8 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC> {
       final double pfm = double.parse(_controllerWeightPFM.text);
       final double pst = double.parse(_controllerWeightPST.text);
 
-      final double resulthba = (psm / pfm * pst) * 0.04;
-      final String formattedResult = resulthba.toStringAsFixed(2);
+      final double resultbhc = (psm / pfm * pst) * 0.04;
+      final String formattedResult = resultbhc.toStringAsFixed(2);
 
       showDialog(
           context: context,

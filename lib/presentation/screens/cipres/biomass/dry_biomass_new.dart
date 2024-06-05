@@ -11,7 +11,7 @@ class DryBiomassCNew extends StatefulWidget {
 class _DryBiomassCNewState extends State<DryBiomassCNew> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDapP = TextEditingController();
-  double? _biomassResult;
+  double? resultdbc;
 
   // Validación del DAP
   String? _validateDap(String? value) {
@@ -27,13 +27,14 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
   }
 
   // Cálculo de la biomasa seca
-
   void _calculateDryBiomassResult() {
     if (_formKey.currentState!.validate()) {
       final double dap = double.parse(_controllerDapP.text);
 
-      final double resultdbc = 0.2639 * dap;
-      final String formattedResult = resultdbc.toStringAsFixed(2);
+      resultdbc = 0.2639 * dap;
+      final String formattedResult = resultdbc!.toStringAsFixed(2);
+
+      setState(() {});
 
       showDialog(
           context: context,
@@ -48,10 +49,11 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BiomassScreenC()));
+                                builder: (context) =>
+                                    BiomassScreenC(resultdbc: resultdbc)));
                       },
                       child: const Text('Aceptar'),
                     )
@@ -92,6 +94,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
+            //es para el rebote al final de la pantalla
             physics: const BouncingScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -122,16 +125,21 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                     ),
                   ],
                 ),
+
+                //Título
                 const SizedBox(height: 25.0),
                 const Text(
-                  'Calculando la biomasa seca con Cipres',
+                  'Calculando la biomasa seca',
                   style: TextStyle(
                     fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
+
+                //Formula
                 const SizedBox(height: 25.0),
                 MouseRegion(
+                  //Para convertir en una manito cuando pase por ahí el mouse
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
                     width: 250,
@@ -160,6 +168,8 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                     SizedBox(width: 20),
                   ],
                 ),
+
+                //Formulario DAP
                 const SizedBox(height: 25),
                 const Text(
                   'Diámetro a la altura del pecho (DAP): ',
@@ -174,7 +184,6 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
                       controller: _controllerDapP,
-                      validator: _validateDap,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -183,10 +192,13 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                         labelText: 'Ingrese el (DAP) en CM',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
+                      validator: _validateDap,
                       textAlign: TextAlign.center,
                     ),
                   ),
                 ),
+
+                //Calcular
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
@@ -200,20 +212,19 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                       ),
                       onPressed: _calculateDryBiomassResult,
                       child: const Text(
-                        'Guardar',
+                        'Calcular',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   ),
                 ),
-                if (_biomassResult != null)
+                if (resultdbc != null)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: Text(
-                      'Biomasa seca calculada: ${_biomassResult!.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                    child: Visibility(
+                      visible: false,
+                      child: Text(
+                        'Biomasa seca calculada: ${resultdbc!.toStringAsFixed(2)}',
                       ),
                     ),
                   ),

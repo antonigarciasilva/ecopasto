@@ -20,6 +20,8 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeight = TextEditingController();
 
+  String? value;
+
   //Validación de día de evaluación
   String? _validateEvaluation(String? value) {
     if (value == null || value.isEmpty) {

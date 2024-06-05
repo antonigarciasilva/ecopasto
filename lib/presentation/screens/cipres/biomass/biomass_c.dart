@@ -5,8 +5,58 @@ import 'package:version/presentation/screens/cipres/biomass/herbaceous_biomass_c
 import 'package:version/presentation/screens/cipres/biomass/leaf_litter_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/cipres_screen.dart';
 
-class BiomassScreenC extends StatelessWidget {
-  const BiomassScreenC({super.key});
+class BiomassScreenC extends StatefulWidget {
+  final double? resultdbc;
+  final double? resulthbc;
+  final double? resultbhc;
+  const BiomassScreenC(
+      {super.key, this.resultdbc, this.resultbhc, this.resulthbc});
+
+  @override
+  State<BiomassScreenC> createState() => _BiomassScreenCState();
+}
+
+class _BiomassScreenCState extends State<BiomassScreenC> {
+  double? resultdbc;
+  double? resulthbc;
+  double? resultbhc;
+
+  @override
+  void initState() {
+    super.initState();
+
+    resultdbc = widget.resultdbc;
+    resulthbc = widget.resulthbc;
+    resultbhc = widget.resultbhc;
+  }
+
+//Calculando la biomasa
+  void _calculateBiomassResultC() {
+    final double biomassC =
+        (resultdbc ?? 0) + (resulthbc ?? 0) + (resultbhc ?? 0);
+
+    final String formattedBiomassC = biomassC.toStringAsFixed(2);
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: Text(
+                'La biomasa total es: $formattedBiomassC',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CipresScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
 
   //Dialogo informativo sobre el Aliso
   void openDialog(BuildContext context) {
@@ -211,13 +261,7 @@ class BiomassScreenC extends StatelessWidget {
                         backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CipresScreen()),
-                        );
-                      },
+                      onPressed: _calculateBiomassResultC,
                       child: const Text(
                         'Calcular',
                         style: TextStyle(fontSize: 18, color: Colors.white),

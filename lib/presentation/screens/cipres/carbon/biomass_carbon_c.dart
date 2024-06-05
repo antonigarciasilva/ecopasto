@@ -38,7 +38,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
           builder: (context) => AlertDialog(
                 title: const Text('Resultado de cálculo'),
                 content: Text(
-                  'El peso de la materia seca es: $formattedResult Tn/ha ',
+                  'El peso del carbono en la biomsa es: $formattedResult Tn/ha ',
                   textAlign: TextAlign.justify,
                 ),
                 actions: [

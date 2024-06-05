@@ -19,10 +19,10 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
     if (value == null || value.isEmpty) {
       return 'Por favor, ingresa el DAP';
     }
-    //Validación con expresión regular
-    final regex = RegExp(r'^[0-9]+$');
-    if (!regex.hasMatch(value)) {
-      return 'Por favor, ingresa solo números enteros';
+    // Validación de regex solo números
+    final dapRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    if (!dapRegExp.hasMatch(value)) {
+      return 'Solo se aceptan valores numéricos';
     }
     return null;
   }
@@ -31,13 +31,12 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
   void _calculateDryBiomass() {
     if (_formKey.currentState!.validate()) {
       double dap = double.parse(_controllerDap.text);
-      // Fórmula Biomasa seca = 1.8 + 2.9 * ln(DAP)
+
       resultdba = -22.695 + 1.5085 * (dap);
       final String formattedResult = resultdba!.toStringAsFixed(2);
-      // Se cambia log por ln para base natural (e)
+
       setState(() {});
 
-      //agreado 1
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -167,7 +166,6 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                 ),
 
                 //Formulario del DAP
-
                 const SizedBox(height: 25.0),
                 const Text(
                   'Diámetro a la altura del pecho (DAP): ',
@@ -193,6 +191,8 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                           ),
                           validator: _validateDap,
                         ),
+
+                        //Calcular
                         const SizedBox(height: 20),
                         ElevatedButton(
                           style: ButtonStyle(
@@ -218,35 +218,6 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                     ),
                   ),
                 ),
-
-                /*Botón para volver a la pantalla de biomasa
-                const SizedBox(height: 25.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 220,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                BiomassAlderScreen(resultdba: resultdba),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        'Volver a biomasa',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-                */
               ],
             ),
           ),
