@@ -40,6 +40,8 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
       final double resulthba = (psm / pfm * pst) * 0.01;
       final String formattedResult = resulthba.toStringAsFixed(2);
 
+      //setState(() {});
+
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -53,11 +55,11 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const BiomassAlderScreen()));
+                                    BiomassAlderScreen(resulthba: resulthba)));
                       },
                       child: const Text('Aceptar'))
                 ],
@@ -85,11 +87,9 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const HerbaceousBiomassScreen()));
+                      Navigator.pop(
+                        context,
+                      );
                     },
                     child: const Text('Aceptar'))
               ],
@@ -206,7 +206,6 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
                       controller: _controllerWeightPSM,
-                      validator: _validateWeight,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -215,6 +214,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                         labelText: 'Ingresa el peso en gr',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
+                      validator: _validateWeight,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -234,7 +234,6 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
                       controller: _controllerWeightPFM,
-                      validator: _validateWeight,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -243,6 +242,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                         labelText: 'Ingresa el peso en gr',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
+                      validator: _validateWeight,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -262,7 +262,6 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
                       controller: _controllerWeightPST,
-                      validator: _validateWeight,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -271,6 +270,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                         labelText: 'Ingresa el peso en gr/m²',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
+                      validator: _validateWeight,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -294,6 +294,13 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                       ),
                     ),
                   ),
+                  if (resulthba != null)
+                    Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20.0),
+                        child: Visibility(
+                            visible: false,
+                            child: Text(
+                                'Biomosa herbácea es: ${resulthba!.toStringAsFixed(2)}')))
                 ],
               ),
             ),

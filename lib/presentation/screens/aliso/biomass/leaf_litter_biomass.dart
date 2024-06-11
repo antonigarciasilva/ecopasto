@@ -58,7 +58,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const BiomassAlderScreen()));
+                                    BiomassAlderScreen(resultbha: resultbha)));
                       },
                       child: const Text('Aceptar'))
                 ],
