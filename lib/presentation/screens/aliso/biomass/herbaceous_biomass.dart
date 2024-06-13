@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 class HerbaceousBiomassScreen extends StatefulWidget {
   const HerbaceousBiomassScreen({super.key});
@@ -40,7 +42,8 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
       final double resulthba = (psm / pfm * pst) * 0.01;
       final String formattedResult = resulthba.toStringAsFixed(2);
 
-      //setState(() {});
+      Provider.of<StateBiomass>(context, listen: false)
+          .setHerbaceousBiomass(resulthba);
 
       showDialog(
           context: context,
@@ -55,11 +58,11 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.pushReplacement(
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    BiomassAlderScreen(resulthba: resulthba)));
+                                    const BiomassAlderScreen()));
                       },
                       child: const Text('Aceptar'))
                 ],

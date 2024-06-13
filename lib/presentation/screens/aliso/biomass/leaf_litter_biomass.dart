@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 class LeafLitterBiomassScreen extends StatefulWidget {
   const LeafLitterBiomassScreen({super.key});
@@ -40,7 +42,8 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
       final double resultbha = (psm / pfm * pst) * 0.04;
       final String formattedResult = resultbha.toStringAsFixed(2);
 
-      setState(() {});
+      Provider.of<StateBiomass>(context, listen: false)
+          .setLeafLitterBiomass(resultbha);
 
       showDialog(
           context: context,
@@ -54,11 +57,11 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                 actions: [
                   TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    BiomassAlderScreen(resultbha: resultbha)));
+                                    const BiomassAlderScreen()));
                       },
                       child: const Text('Aceptar'))
                 ],

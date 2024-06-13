@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 class NewDryBiomassScreen extends StatefulWidget {
   const NewDryBiomassScreen({super.key});
@@ -35,7 +37,8 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
       resultdba = -22.695 + 1.5085 * (dap);
       final String formattedResult = resultdba!.toStringAsFixed(2);
 
-      setState(() {});
+      Provider.of<StateBiomass>(context, listen: false)
+          .setDryBiomass(resultdba!);
 
       showDialog(
           context: context,
@@ -49,11 +52,10 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                BiomassAlderScreen(resultdba: resultdba),
+                            builder: (context) => const BiomassAlderScreen(),
                           ),
                         );
                       },

@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/aliso_screen.dart';
 
 import 'package:version/presentation/screens/aliso/biomass/herbaceous_biomass.dart';
 import 'package:version/presentation/screens/aliso/biomass/leaf_litter_biomass.dart';
 import 'package:version/presentation/screens/aliso/biomass/newdry_biomass.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 class BiomassAlderScreen extends StatefulWidget {
-  final double? resultdba;
+  /*final double? resultdba;
   final double? resulthba;
   final double? resultbha;
-  const BiomassAlderScreen(
-      {super.key, this.resultdba, this.resultbha, this.resulthba});
+  this.resultdba, this.resultbha, this.resulthba*/
+  const BiomassAlderScreen({
+    super.key,
+  });
 
   @override
   State<BiomassAlderScreen> createState() => _BiomassAlderScreenState();
 }
 
 class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
-  double? resultdba;
+  StateBiomass? stateBiomass;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomass = Provider.of<StateBiomass>(context);
+  }
+  /* double? resultdba;
   double? resulthba;
   double? resultbha;
 
@@ -28,7 +38,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
     resultdba = widget.resultdba;
     resultbha = widget.resultbha;
     resulthba = widget.resulthba;
-  }
+  } */
 
   //Dialogo informativo sobre el Aliso
   void openDialog(BuildContext context) {
@@ -63,10 +73,10 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
 
   //Calculando la biomasa
   void _calculateBiomassResult() {
-    final double biomassA =
+    /*final double biomassA =
         (resultdba ?? 0) + (resulthba ?? 0) + (resultbha ?? 0);
 
-    final String formattedBiomassA = biomassA.toStringAsFixed(2);
+    final String formattedBiomassA = biomassA.toStringAsFixed(2);*/
 
     showDialog(
         context: context,
@@ -74,7 +84,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
         builder: (context) => AlertDialog(
               title: const Text('Resultado de cálculo'),
               content: Text(
-                'La biomasa total es: $formattedBiomassA',
+                'La biomasa total es: ${stateBiomass?.totalBiomass.toStringAsFixed(2)}',
                 textAlign: TextAlign.justify,
               ),
               actions: [
