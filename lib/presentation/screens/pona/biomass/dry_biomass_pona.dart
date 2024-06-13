@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/pona/biomass/biomass_pona.dart';
+import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 
 class DryBiomassPona extends StatefulWidget {
   const DryBiomassPona({super.key});
@@ -42,7 +44,8 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
       final double resultdbo = 0.0080 * dap * af;
       final String formattedResult = resultdbo.toStringAsFixed(2);
 
-      setState(() {});
+      Provider.of<StateBiomassO>(context, listen: false)
+          .setDryBiomassO(resultdbo);
 
       showDialog(
           context: context,
@@ -60,8 +63,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    BiomassPona(resultdbo: resultdbo)));
+                                builder: (context) => const BiomassPona()));
                       },
                       child: const Text('Aceptar'),
                     )

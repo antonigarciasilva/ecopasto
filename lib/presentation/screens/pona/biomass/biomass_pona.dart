@@ -1,49 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/pona/biomass/dry_biomass_pona.dart';
 import 'package:version/presentation/screens/pona/biomass/herbaceous_biomass_pona.dart';
 import 'package:version/presentation/screens/pona/biomass/leaf_litter_biomass_pona.dart';
+import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 
 import 'package:version/presentation/screens/pona/pona_screen.dart';
 
 class BiomassPona extends StatefulWidget {
   //'?' significa que la variable puede ser nula o tomar el valo dado
-  final double? resultdbo;
-  final double? resulthbo;
-  final double? resultbho;
-  const BiomassPona(
-      {super.key, this.resultbho, this.resultdbo, this.resulthbo});
+  //final double? resultdbo;
+
+  const BiomassPona({
+    super.key,
+  });
 
   @override
   State<BiomassPona> createState() => _BiomassPonaState();
 }
 
 class _BiomassPonaState extends State<BiomassPona> {
-  double? resultdbo;
-  double? resulthbo;
-  double? resultbho;
+  StateBiomassO? stateBiomassO;
 
   @override
-  void initState() {
-    super.initState();
-
-    resultbho = widget.resultbho;
-    resultdbo = widget.resultdbo;
-    resulthbo = widget.resulthbo;
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomassO = Provider.of<StateBiomassO>(context);
   }
 
   //calculando la biomasa
-
   void _calculateBiomassResultO() {
-    final biomassO = (resultbho ?? 0) + (resultdbo ?? 0) + (resulthbo ?? 0);
-
-    final String formattedBiomassO = biomassO.toStringAsFixed(2);
-
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text(
-                'La biomasa total es: $formattedBiomassO',
+                'La biomasa total es: ${stateBiomassO?.totalBiomassO.toStringAsFixed(2)}',
                 textAlign: TextAlign.justify,
               ),
               actions: [

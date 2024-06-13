@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/cipres/biomass/biomass_c.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 
 class HerbaceousBiomassC extends StatefulWidget {
   const HerbaceousBiomassC({super.key});
@@ -38,6 +40,9 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
       final double resulthbc = (psm / pfm * pst) * 0.01;
       final String formattedResult = resulthbc.toStringAsFixed(2);
 
+      Provider.of<StateBiomassC>(context, listen: false)
+          .setHerbaceousBiomassC(resulthbc);
+
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -51,7 +56,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const BiomassScreenC()));

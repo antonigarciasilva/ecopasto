@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/cipres/biomass/biomass_c.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 
 class LeafLitterBiomassC extends StatefulWidget {
   const LeafLitterBiomassC({super.key});
@@ -37,6 +39,9 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC> {
 
       final double resultbhc = (psm / pfm * pst) * 0.04;
       final String formattedResult = resultbhc.toStringAsFixed(2);
+
+      Provider.of<StateBiomassC>(context, listen: false)
+          .setLeafLitterBiomassC(resultbhc);
 
       showDialog(
           context: context,

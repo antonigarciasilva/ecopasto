@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/cipres/biomass/biomass_c.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 
 class DryBiomassCNew extends StatefulWidget {
   const DryBiomassCNew({super.key});
@@ -34,7 +36,8 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
       resultdbc = 0.2639 * dap;
       final String formattedResult = resultdbc!.toStringAsFixed(2);
 
-      setState(() {});
+      Provider.of<StateBiomassC>(context, listen: false)
+          .setDryBiomassC(resultdbc!);
 
       showDialog(
           context: context,
@@ -52,8 +55,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    BiomassScreenC(resultdbc: resultdbc)));
+                                builder: (context) => const BiomassScreenC()));
                       },
                       child: const Text('Aceptar'),
                     )

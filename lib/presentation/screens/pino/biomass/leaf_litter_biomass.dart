@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/pino/biomass/biomass.dart';
+import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 
 class LeafLitterBiomassP extends StatefulWidget {
   const LeafLitterBiomassP({super.key});
@@ -38,6 +40,9 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
       final double resulthba = (psm / pfm * pst) * 0.04;
       final String formattedResult = resulthba.toStringAsFixed(2);
 
+      Provider.of<StateBiomassP>(context, listen: false)
+          .setLeafLitterBiomassP(resulthba);
+
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -51,7 +56,7 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>

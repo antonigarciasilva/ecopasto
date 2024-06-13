@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/pino/biomass/biomass.dart';
+import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 
 class HerbaceousBiomassP extends StatefulWidget {
   const HerbaceousBiomassP({super.key});
@@ -38,6 +40,9 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
       final double resulthbp = (psm / pfm * pst) * 0.01;
       final String formattedResult = resulthbp.toStringAsFixed(2);
 
+      Provider.of<StateBiomassP>(context, listen: false)
+          .setHerbaceousBiomassP(resulthbp);
+
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -51,7 +56,7 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>

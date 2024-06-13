@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/pona/biomass/biomass_pona.dart';
+import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 
 class HerbaceousBiomassPona extends StatefulWidget {
   const HerbaceousBiomassPona({super.key});
@@ -37,6 +39,9 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
 
       final double resulthbo = (psm / pfm * pst) * 0.01;
       final String formattedResult = resulthbo.toStringAsFixed(2);
+
+      Provider.of<StateBiomassO>(context, listen: false)
+          .setHerbaceousBiomassO(resulthbo);
 
       showDialog(
           context: context,

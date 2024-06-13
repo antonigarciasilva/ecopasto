@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/pona/biomass/biomass_pona.dart';
+import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 
 class LeafLitterBiomassPona extends StatefulWidget {
   const LeafLitterBiomassPona({super.key});
@@ -38,6 +40,9 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
 
       final double resulthba = (psm / pfm * pst) * 0.04;
       final String formattedResult = resulthba.toStringAsFixed(2);
+
+      Provider.of<StateBiomassO>(context, listen: false)
+          .setLeafLitterBiomassO(resulthba);
 
       showDialog(
           context: context,

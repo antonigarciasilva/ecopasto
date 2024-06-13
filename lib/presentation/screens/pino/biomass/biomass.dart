@@ -1,50 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/pino/biomass/dry_biomass_p.dart';
 import 'package:version/presentation/screens/pino/biomass/herbaceous_biomass.dart';
 import 'package:version/presentation/screens/pino/biomass/leaf_litter_biomass.dart';
+import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 import 'package:version/presentation/screens/pino/pino_screen.dart';
 
 class BiomassPinoScreen extends StatefulWidget {
-  final double? resultdbp;
-  final double? resulthbp;
-  final double? resultbhp;
-  const BiomassPinoScreen(
-      {super.key, this.resultbhp, this.resultdbp, this.resulthbp});
+  const BiomassPinoScreen({
+    super.key,
+  });
 
   @override
   State<BiomassPinoScreen> createState() => _BiomassPinoScreenState();
 }
 
 class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
-  double? resultdbp;
-  double? resulthbp;
-  double? resultbhp;
+  StateBiomassP? stateBiomassP;
 
   @override
-  void initState() {
-    super.initState();
-
-    resultdbp = widget.resultdbp;
-    resulthbp = widget.resulthbp;
-    resultbhp = widget.resultbhp;
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomassP = Provider.of<StateBiomassP>(context);
   }
 
   //Calculo de la biomass
-
   void _calculateBiomassResultP() {
-    //Si la variable es null, toma el valor de 0 y si no es null toma el valor resultdbp
-    final double biomassP =
-        (resultbhp ?? 0) + (resultdbp ?? 0) + (resulthbp ?? 0);
-
-    final String formattedBiomassP = biomassP.toStringAsFixed(2);
-
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text(
-                'La biomasa total es: $formattedBiomassP',
+                'La biomasa total es: ${stateBiomassP?.totalBiomassP.toStringAsFixed(2)}',
                 textAlign: TextAlign.justify,
               ),
               actions: [

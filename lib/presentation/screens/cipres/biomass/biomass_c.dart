@@ -1,48 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 import 'package:version/presentation/screens/cipres/biomass/dry_biomass_new.dart';
 import 'package:version/presentation/screens/cipres/biomass/herbaceous_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/biomass/leaf_litter_biomass_c.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/cipres_screen.dart';
 
 class BiomassScreenC extends StatefulWidget {
-  final double? resultdbc;
-  final double? resulthbc;
-  final double? resultbhc;
-  const BiomassScreenC(
-      {super.key, this.resultdbc, this.resultbhc, this.resulthbc});
+  const BiomassScreenC({
+    super.key,
+  });
 
   @override
   State<BiomassScreenC> createState() => _BiomassScreenCState();
 }
 
 class _BiomassScreenCState extends State<BiomassScreenC> {
-  double? resultdbc;
-  double? resulthbc;
-  double? resultbhc;
+  StateBiomassC? stateBiomassC;
 
   @override
-  void initState() {
-    super.initState();
-
-    resultdbc = widget.resultdbc;
-    resulthbc = widget.resulthbc;
-    resultbhc = widget.resultbhc;
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomassC = Provider.of<StateBiomassC>(context);
   }
 
 //Calculando la biomasa
   void _calculateBiomassResultC() {
-    final double biomassC =
-        (resultdbc ?? 0) + (resulthbc ?? 0) + (resultbhc ?? 0);
-
-    final String formattedBiomassC = biomassC.toStringAsFixed(2);
-
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text(
-                'La biomasa total es: $formattedBiomassC',
+                'La biomasa total es: ${stateBiomassC?.totalBiomassC.toStringAsFixed(2)}',
                 textAlign: TextAlign.justify,
               ),
               actions: [

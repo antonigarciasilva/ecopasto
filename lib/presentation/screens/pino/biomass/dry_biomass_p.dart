@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/pino/biomass/biomass.dart';
+import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 
 class DryBiomassP extends StatefulWidget {
   const DryBiomassP({super.key});
@@ -37,7 +39,8 @@ class _DryBiomassPState extends State<DryBiomassP> {
       final double resultdbp = 0.6575 * dap;
       final String formattedResult = resultdbp.toStringAsFixed(2);
 
-      setState(() {});
+      Provider.of<StateBiomassP>(context, listen: false)
+          .setDryBiomassP(resultdbp);
 
       showDialog(
           context: context,
@@ -52,11 +55,11 @@ class _DryBiomassPState extends State<DryBiomassP> {
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    BiomassPinoScreen(resultdbp: resultdbp)));
+                                    const BiomassPinoScreen()));
                       },
                       child: const Text('Aceptar'),
                     )
