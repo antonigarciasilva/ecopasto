@@ -148,7 +148,7 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'CBV(t/ha): BVT * fracción de carbono',
+                          'CBV(t/ha): BVT * 0.5674',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),

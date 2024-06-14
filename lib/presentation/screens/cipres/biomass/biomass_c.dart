@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 import 'package:version/presentation/screens/cipres/biomass/dry_biomass_new.dart';
 import 'package:version/presentation/screens/cipres/biomass/herbaceous_biomass_c.dart';
@@ -33,7 +32,8 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text(
-                'La biomasa total es: ${stateBiomassC?.totalBiomassC.toStringAsFixed(2)}',
+                'La biomasa total es: ${stateBiomassC?.totalBiomassC.toStringAsFixed(2)} \n'
+                'El carbono en la bioma es: ${stateBiomassC?.resultCarbonBiomassC.toStringAsFixed(2)} \n',
                 textAlign: TextAlign.justify,
               ),
               actions: [

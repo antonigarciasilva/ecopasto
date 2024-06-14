@@ -148,7 +148,7 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'CBV(t/ha): BVT * fracción de carbono',
+                          'CBV(t/ha): BVT * 0.4270',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),

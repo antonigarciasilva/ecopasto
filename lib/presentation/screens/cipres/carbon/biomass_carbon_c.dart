@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/cipres/carbon/carbon_c.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 
 class BiomassCarbonC extends StatefulWidget {
   const BiomassCarbonC({super.key});
@@ -9,6 +11,13 @@ class BiomassCarbonC extends StatefulWidget {
 }
 
 class _BiomassCarbonCState extends State<BiomassCarbonC> {
+  StateBiomassC? stateBiomassC;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomassC = Provider.of<StateBiomassC>(context);
+  }
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightBVT = TextEditingController();
 
@@ -38,7 +47,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
           builder: (context) => AlertDialog(
                 title: const Text('Resultado de cálculo'),
                 content: Text(
-                  'El peso del carbono en la biomsa es: $formattedResult Tn/ha ',
+                  'El peso del carbono en la biomsa es: ${stateBiomassC?.resultCarbonBiomassC.toStringAsFixed(2)} Tn/ha ',
                   textAlign: TextAlign.justify,
                 ),
                 actions: [
@@ -147,7 +156,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'CBV(t/ha): BVT * fracción de carbono',
+                          'CBV(t/ha): BVT * 0.5000',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -199,7 +208,8 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el peso en (Tm/ha)',
+                        labelText:
+                            '${stateBiomassC?.totalBiomassC.toStringAsFixed(2)}',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
