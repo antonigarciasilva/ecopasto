@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
-import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
+import 'package:version/presentation/screens/aliso/carbon/result_biomass_carbon.dart';
 
 class BiomassCarbonScreen extends StatefulWidget {
   const BiomassCarbonScreen({super.key});
@@ -10,50 +12,38 @@ class BiomassCarbonScreen extends StatefulWidget {
 }
 
 class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightBVT = TextEditingController();
+  StateBiomass? stateBiomass;
+  String? errorMessage;
 
-  //Validar el peso
-  String? _validateWeight(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Por favor, ingresa el peso';
-    }
-    //Validación por Regex
-    final weightRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!weightRegExp.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
-    }
-    return null;
+  //Para usar el provider
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomass = Provider.of<StateBiomass>(context);
+  }
+
+  //Función para ver el resultado
+  void _seeResultCarbonBiomass() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ResultCarbonBiomass(
+                  resultCarbonBiomass: stateBiomass!.resultCarbonBiomass,
+                )));
   }
 
   //Calculamos el carbon con la biomasa
   void _calculateBiomassCarbonResult() {
-    if (_formKey.currentState!.validate()) {
-      final double bvt = double.parse(_controllerWeightBVT.text);
-
-      final resultbca = bvt * 0.4270;
-      final String formattedResult = resultbca.toStringAsFixed(2);
-
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-                title: const Text('Resultado de cálculo'),
-                content: Text(
-                  'El peso de la materia seca es: $formattedResult Tn/ha ',
-                  textAlign: TextAlign.justify,
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const CarbonScreen()));
-                      },
-                      child: const Text('Aceptar'))
-                ],
-              ));
+    if (stateBiomass?.totalBiomass == 0.00) {
+      setState(() {
+        errorMessage =
+            'Completa el módulo de biomasa para calcular el carbono en la biomasa';
+      });
+    } else {
+      setState(() {
+        errorMessage = null;
+      });
+      _seeResultCarbonBiomass();
     }
   }
 
@@ -93,7 +83,6 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
     return Scaffold(
       body: SafeArea(
         child: Form(
-          key: _formKey,
           child: Center(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -171,42 +160,38 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                       ),
                     ),
                   ),
-                  //Día de evaluación
+
+                  //Formula con variable completa
                   const SizedBox(height: 10),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
+                      Text(
+                        'Reemplazando valores:\n'
+                        'CBV(tn/ha): ${stateBiomass!.totalBiomass.toStringAsFixed(2)} * 0.4270 \n ',
+                        style: const TextStyle(
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(width: 20),
                     ],
                   ),
 
-                  //BVT
-                  const SizedBox(height: 25),
-
-                  const Text(
-                    'Biomasa vegetal total (BVT): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      validator: _validateWeight,
-                      controller: _controllerWeightBVT,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el peso en (Tn/ha)',
-                        labelStyle: const TextStyle(fontSize: 14),
-                      ),
-                      textAlign: TextAlign.center,
+                  //Presentamos el mensaje de error
+                  if (errorMessage != null) ...[
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      child: Text(
+                        errorMessage!,
+                        style: const TextStyle(fontSize: 15, color: Colors.red),
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                  ],
 
                   //Calcular
                   const SizedBox(height: 20.0),
