@@ -5,6 +5,7 @@ import 'package:version/presentation/screens/cipres/cipres_screen.dart';
 import 'package:version/presentation/screens/no_tree/no_tree_screen.dart';
 import 'package:version/presentation/screens/pino/pino_screen.dart';
 import 'package:version/presentation/screens/pona/pona_screen.dart';
+import 'package:version/presentation/screens/widgets/side_menu.dart';
 
 class NewSelectSilvoScreen extends StatelessWidget {
   const NewSelectSilvoScreen({super.key});
@@ -25,6 +26,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      drawer: const SideMenu(),
       body: SafeArea(
         child: Center(
           child: ListView(

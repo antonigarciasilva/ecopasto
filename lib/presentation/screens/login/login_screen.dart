@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:version/presentation/screens/register/register_screen.dart';
 import 'package:version/presentation/screens/tutorial/tutorial_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -134,7 +135,12 @@ class LoginPageState extends State<LoginScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RegisterScreen()));
+                      },
                       child: const Text('REGISTRATE',
                           style: TextStyle(
                               fontSize: 15,

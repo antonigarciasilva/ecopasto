@@ -63,7 +63,7 @@ class _GreenMatterCState extends State<GreenMatterC> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const GreenMatterC()));
@@ -174,7 +174,7 @@ class _GreenMatterCState extends State<GreenMatterC> {
                       decoration: InputDecoration(
                         //prefixIcon: const Icon(Icons.person_4),
 
-                        labelText: 'Ingresa el peso en KG/m²',
+                        labelText: 'Ingresa el peso en Kg/m²',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),

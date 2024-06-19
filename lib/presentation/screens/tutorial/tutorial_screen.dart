@@ -121,27 +121,28 @@ class _TutorialScreenState extends State<TutorialScreen> {
 
           //Aqui vamos a condicionar que el boton de comenzar aparezca al final de los Slides, en este caso,
           // no podemos hacerlo null, entonces, se pondrá un SizedBox que es un widget para no mostrar nada hasta que la condición se cumpla.
-          endReached
-              ? Positioned(
-                  right: 30,
-                  bottom: 30,
-                  //Con la librería animated_do, para mejora vista al buttum, va a salir por la deracha después de un segundo
-                  child: FadeInRight(
-                    //from:15 se moverá 15 unidades y de 1 seg en mostrarse
-                    from: 15,
-                    delay: const Duration(seconds: 1),
-                    child: FilledButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const NewSelectSilvoScreen()));
-                        },
-                        child: const Text('Comenzar')),
-                  ),
-                )
-              : const SizedBox(),
+          if (endReached)
+            Positioned(
+              right: 30,
+              bottom: 30,
+              //Con la librería animated_do, para mejora vista al buttum, va a salir por la deracha después de un segundo
+              child: FadeInRight(
+                //from:15 se moverá 15 unidades y de 1 seg en mostrarse
+                from: 15,
+                delay: const Duration(seconds: 1),
+                child: FilledButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const NewSelectSilvoScreen()));
+                    },
+                    child: const Text('Comenzar')),
+              ),
+            )
+          else
+            const SizedBox(),
 
           //Barra de progreso
           Positioned(

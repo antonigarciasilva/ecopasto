@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:version/presentation/screens/cipres/carbon/carbon_c.dart';
+
 import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
+import 'package:version/presentation/screens/cipres/carbon/result_carbon_biomass_c.dart';
 
 class BiomassCarbonC extends StatefulWidget {
   const BiomassCarbonC({super.key});
@@ -28,7 +29,13 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
   }
 */
 
-  void _seeResult() {
+  void _seeResultCabonBiomassC() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ResultCarbonBiomassC(
+                resultCarbonBiomassC: stateBiomassC!.resultCarbonBiomassC)));
+    /*
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -47,7 +54,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
                     },
                     child: const Text('Aceptar'))
               ],
-            ));
+            )); */
   }
 
   //Calculamos el carbon con la biomasa
@@ -61,7 +68,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
       setState(() {
         errorMessage = null;
       });
-      _seeResult();
+      _seeResultCabonBiomassC();
     }
   }
 

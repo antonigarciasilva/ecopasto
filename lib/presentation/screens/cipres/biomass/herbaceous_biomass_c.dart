@@ -143,6 +143,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
+                    textAlign: TextAlign.center,
                   ),
 
                   //Formula
@@ -154,12 +155,13 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 191, 192, 191)),
                         ),
                         onPressed: () {},
                         child: const Text(
                           'BH(Tm/ha) = ((PSM/PFM) * PFT) * 0.01',
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -287,11 +289,11 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 70, 150, 13)),
                         ),
                         onPressed: _calculateHerbaceousBiomassResult,
                         child: const Text(
-                          'Guardar',
+                          'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),

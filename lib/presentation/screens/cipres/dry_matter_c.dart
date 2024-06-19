@@ -144,8 +144,9 @@ class _DryMatterCState extends State<DryMatterC> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'MS/m² (Kg) = PMS/PMH x 100',
+                          'MS/m² (Kg) = PMS/PMH * 100',
                           style: TextStyle(fontSize: 16, color: Colors.black),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),

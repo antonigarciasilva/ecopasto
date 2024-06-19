@@ -5,7 +5,6 @@ import 'package:version/presentation/screens/cipres/biomass/dry_biomass_new.dart
 import 'package:version/presentation/screens/cipres/biomass/herbaceous_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/biomass/leaf_litter_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
-import 'package:version/presentation/screens/cipres/cipres_screen.dart';
 
 class BiomassScreenC extends StatefulWidget {
   const BiomassScreenC({
@@ -32,17 +31,17 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text(
-                'La biomasa total es: ${stateBiomassC?.totalBiomassC.toStringAsFixed(2)} \n'
-                'El carbono en la bioma es: ${stateBiomassC?.resultCarbonBiomassC.toStringAsFixed(2)} \n',
+                'La biomasa total es: ${stateBiomassC?.totalBiomassC.toStringAsFixed(2)} \n',
                 textAlign: TextAlign.justify,
               ),
               actions: [
                 TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CipresScreen()));
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const BiomassScreenC()),
+                      );
                     },
                     child: const Text('Aceptar'))
               ],
@@ -250,7 +249,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            const Color.fromARGB(255, 70, 150, 13)),
                       ),
                       onPressed: _calculateBiomassResultC,
                       child: const Text(
