@@ -27,4 +27,8 @@ class StateBiomassP with ChangeNotifier {
   double get totalBiomassP {
     return (_resultbhap) + (_resultdbap) + (_resulthbap);
   }
+
+  double get resultCarbonBiomassP {
+    return totalBiomassP * 0.4270;
+  }
 }

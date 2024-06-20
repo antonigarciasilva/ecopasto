@@ -29,7 +29,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
   }
 */
 
-  void _seeResultCabonBiomassC() {
+  void _seeResultCarbonBiomassC() {
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -62,13 +62,13 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
     if (stateBiomassC?.totalBiomassC == 0.00) {
       setState(() {
         errorMessage =
-            'Completa el módulo de biomasa para calcular el carbono en la biomasa';
+            'Por favor, completa el modulo de biomasa para calcular el carbono';
       });
     } else {
       setState(() {
         errorMessage = null;
       });
-      _seeResultCabonBiomassC();
+      _seeResultCarbonBiomassC();
     }
   }
 
@@ -186,8 +186,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
 
                 //Formula con variable completa
                 const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: <Widget>[
                     Text(
                       'Reemplazando valores:\n'
@@ -197,7 +196,6 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(width: 20),
                   ],
                 ),
 

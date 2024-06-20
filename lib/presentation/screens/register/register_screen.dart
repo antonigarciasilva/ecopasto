@@ -81,13 +81,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'REGISTRO',
-          style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 82, 12, 7)),
-          textAlign: TextAlign.center,
-        ),
-      ),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -97,6 +90,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
+                //Titulo
+                const Text(
+                  'REGISTRO',
+                  style: TextStyle(
+                      fontSize: 18, color: Color.fromARGB(255, 82, 12, 7)),
+                  textAlign: TextAlign.center,
+                ),
+
+                const SizedBox(
+                  height: 40,
+                ),
+
                 //Nombre
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
@@ -194,7 +199,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: _emailControllerR,
                     validator: _validateEmail,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.person_4),
+                      prefixIcon: const Icon(Icons.email),
                       labelText: 'Correo electrónico',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),

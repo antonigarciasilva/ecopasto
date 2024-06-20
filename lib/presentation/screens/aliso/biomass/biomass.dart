@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:version/presentation/screens/aliso/aliso_screen.dart';
 
 import 'package:version/presentation/screens/aliso/biomass/herbaceous_biomass.dart';
 import 'package:version/presentation/screens/aliso/biomass/leaf_litter_biomass.dart';
 import 'package:version/presentation/screens/aliso/biomass/newdry_biomass.dart';
 import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
+import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
 
 class BiomassAlderScreen extends StatefulWidget {
   /*final double? resultdba;
@@ -94,7 +94,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const AlisoScreen()));
+                              builder: (context) => const CarbonScreen()));
                     },
                     child: const Text('Aceptar'))
               ],
@@ -275,7 +275,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            const Color.fromARGB(255, 70, 150, 13)),
                       ),
                       onPressed: _calculateBiomassResult,
                       child: const Text(

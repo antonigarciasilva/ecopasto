@@ -5,7 +5,7 @@ import 'package:version/presentation/screens/pino/biomass/dry_biomass_p.dart';
 import 'package:version/presentation/screens/pino/biomass/herbaceous_biomass.dart';
 import 'package:version/presentation/screens/pino/biomass/leaf_litter_biomass.dart';
 import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
-import 'package:version/presentation/screens/pino/pino_screen.dart';
+import 'package:version/presentation/screens/pino/carbon/carbon.dart';
 
 class BiomassPinoScreen extends StatefulWidget {
   const BiomassPinoScreen({
@@ -41,7 +41,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const PinoScreen()));
+                              builder: (context) => const CarbonPinoScreen()));
                     },
                     child: const Text('Aceptar'))
               ],

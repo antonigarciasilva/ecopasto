@@ -37,7 +37,7 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
     if (stateBiomass?.totalBiomass == 0.00) {
       setState(() {
         errorMessage =
-            'Completa el módulo de biomasa para calcular el carbono en la biomasa';
+            'Por favor, completa el modulo de biomasa para calcular el carbono';
       });
     } else {
       setState(() {
