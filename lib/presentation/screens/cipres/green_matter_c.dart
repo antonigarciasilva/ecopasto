@@ -15,14 +15,6 @@ class _GreenMatterCState extends State<GreenMatterC> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightC = TextEditingController();
 
-  //Validar día de evaluación
-  String? _validateEvaluationC(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Por favor, ingrese el día de evaluation';
-    }
-    return null;
-  }
-
   //Validar el peso
   String? _validateWeightC(String? value) {
     if (value == null || value.isEmpty) {

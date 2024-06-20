@@ -22,14 +22,6 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
 
   String? value;
 
-  //Validación de día de evaluación
-  String? _validateEvaluation(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Por favor, ingresa el día de evaluación';
-    }
-    return null;
-  }
-
   //Validar el peso de la materia verde
   String? _validateWeight(String? value) {
     if (value == null || value.isEmpty) {

@@ -15,14 +15,6 @@ class _GreenMatterPonaState extends State<GreenMatterPona> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightP = TextEditingController();
 
-  //Creamos nuestras validaciones
-  String? _validateEvaluationP(String? value) {
-    if (value == null || value.isEmpty) {
-      return ' Por favor, ingrese el día de evaluación';
-    }
-    return null;
-  }
-
   //Validar form de peso
   String? _validateWeightP(String? value) {
     if (value == null || value.isEmpty) {
