@@ -168,19 +168,6 @@ class _DryMatterCState extends State<DryMatterC> {
                     ),
                   ),
 
-                  //Día de evaluación
-                  const SizedBox(height: 15.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
-                  ),
-
                   //Peso de la materia verde
                   const SizedBox(height: 25),
 

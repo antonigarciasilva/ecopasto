@@ -139,6 +139,7 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC> {
                   const SizedBox(height: 25.0),
                   const Text(
                     'Calculando la biomasa hojarasca con Ciprés',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -160,6 +161,7 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC> {
                         child: const Text(
                           'BH(Tm/ha) = ((PSM/PFM) * PFT) * 0.04',
                           style: TextStyle(fontSize: 16, color: Colors.black),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -181,19 +183,6 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC> {
                         ),
                       ),
                     ),
-                  ),
-
-                  //Día de evaluación
-                  const SizedBox(height: 20.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
                   ),
 
                   //PSM

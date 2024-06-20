@@ -161,7 +161,7 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
                   ),
 
                   //NOTA
-                  const SizedBox(height: 5),
+
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 50),
                     child: Align(
@@ -172,19 +172,6 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
                         style: TextStyle(fontSize: 10),
                       ),
                     ),
-                  ),
-
-                  //Día de evaluación
-                  const SizedBox(height: 10),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
                   ),
 
                   //BVT

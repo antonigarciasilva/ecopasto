@@ -140,6 +140,7 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                   const SizedBox(height: 25.0),
                   const Text(
                     'Calculando la biomasa herbácea con Pino',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -161,6 +162,7 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                         child: const Text(
                           'BH(Tm/ha) = ((PSM/PFM) * PFT) * 0.01',
                           style: TextStyle(fontSize: 16, color: Colors.white),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -180,18 +182,6 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                         ),
                       ),
                     ),
-                  ),
-                  //Día de evaluación
-                  const SizedBox(height: 20.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
                   ),
 
                   //PSM

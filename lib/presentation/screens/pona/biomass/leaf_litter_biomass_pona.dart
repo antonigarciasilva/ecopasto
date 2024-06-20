@@ -89,7 +89,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
@@ -145,6 +145,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
+                    textAlign: TextAlign.center,
                   ),
 
                   //Formula
@@ -162,6 +163,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                         child: const Text(
                           'BH(Tm/ha) = ((PSM/PFM) * PFT) * 0.04',
                           style: TextStyle(fontSize: 16, color: Colors.white),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -183,19 +185,6 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                         ),
                       ),
                     ),
-                  ),
-
-                  //Día de evaluación
-                  const SizedBox(height: 20.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
                   ),
 
                   //PSM

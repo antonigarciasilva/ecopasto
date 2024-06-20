@@ -171,21 +171,8 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                     ),
                   ),
 
-                  //Día de evaluación
-                  const SizedBox(height: 10),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
-                  ),
-
                   //BVT
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 20),
 
                   const Text(
                     'Carbono orgánico (CO): ',

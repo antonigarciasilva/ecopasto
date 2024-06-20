@@ -168,7 +168,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                   ),
                   //NOTA
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   const SizedBox(
                     child: Padding(
@@ -182,18 +182,6 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                         ),
                       ),
                     ),
-                  ),
-                  //Día de evaluación
-                  const SizedBox(height: 20.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
                   ),
 
                   //PSM

@@ -140,6 +140,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                   const SizedBox(height: 25.0),
                   const Text(
                     'Calculando la biomasa hojarasca con Aliso',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -159,6 +160,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                         onPressed: () {},
                         child: const Text(
                           'BH(Tm/ha) = ((PSM/PFM) * PFT) * 0.04',
+                          textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -183,21 +185,8 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                     ),
                   ),
 
-                  //Día de evaluación
-                  const SizedBox(height: 20.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
-                  ),
-
                   //PSM
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 20),
 
                   const Text(
                     'Peso seco de la materia (PSM): ',

@@ -144,7 +144,7 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                   ),
 
                   //NOTA
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 1),
                   const SizedBox(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -158,18 +158,7 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                       ),
                     ),
                   ),
-                  //Día de evaluación
-                  const SizedBox(height: 10),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
-                  ),
+
                   //Formula con variable completa
                   const SizedBox(
                     height: 10,

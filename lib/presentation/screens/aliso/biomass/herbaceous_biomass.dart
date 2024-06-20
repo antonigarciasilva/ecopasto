@@ -139,6 +139,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                   const SizedBox(height: 25.0),
                   const Text(
                     'Calculando la biomasa herbácea con Aliso',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -159,6 +160,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                         onPressed: () {},
                         child: const Text(
                           'BH(Tm/ha) = ((PSM/PFM) * PFT) * 0.01',
+                          textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -181,21 +183,9 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                       ),
                     ),
                   ),
-                  //Día de evaluación
-                  const SizedBox(height: 20.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
-                  ),
 
                   //PSM
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 20),
 
                   const Text(
                     'Peso seco de la muestra colectada (PSM): ',

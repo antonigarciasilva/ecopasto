@@ -60,7 +60,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const BiomassPona()));
@@ -183,18 +183,6 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                         ),
                       ),
                     ),
-                  ),
-                  //Día de evaluación
-                  const SizedBox(height: 20.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
                   ),
 
                   //DAP

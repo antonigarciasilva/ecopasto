@@ -124,40 +124,6 @@ class _GreenMatterPState extends State<GreenMatterP> {
                     ),
                   ),
 
-                  //Día de evaluación
-                  const SizedBox(height: 25.0),
-
-                  const Text('Seleccione el día de evaluación:',
-                      style: TextStyle(
-                        fontSize: 15,
-                      )),
-                  const SizedBox(width: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 80),
-                    child: DropdownButtonFormField<String>(
-                      validator: _validateEvaluationP,
-                      value: selectedValue,
-                      hint: const Text('Elija el día'),
-                      onChanged: (String? value) {
-                        setState(() {
-                          selectedValue = value;
-                        });
-                      },
-                      items: <String>['Día 30', 'Día 45', 'Día 60', 'Día 75']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(
-                              fontSize: 15,
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-
                   //Peso de la materia verde
 
                   const SizedBox(height: 25.0),
@@ -166,7 +132,7 @@ class _GreenMatterPState extends State<GreenMatterP> {
                       style: TextStyle(
                         fontSize: 15,
                       )),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 5),
 
                   //Ingresa el peso de materia verde
 
@@ -179,7 +145,7 @@ class _GreenMatterPState extends State<GreenMatterP> {
                       decoration: InputDecoration(
                         //prefixIcon: const Icon(Icons.person_4),
 
-                        labelText: 'Ingresa el peso en KG/m²',
+                        labelText: 'Ingresa el peso en Kg/m²',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
@@ -194,7 +160,7 @@ class _GreenMatterPState extends State<GreenMatterP> {
                     children: <Widget>[
                       Text('Fecha de evaluación:   ${getFormattedDate()}',
                           style: const TextStyle(
-                            fontSize: 15,
+                            fontSize: 12,
                           )),
                     ],
                   ),

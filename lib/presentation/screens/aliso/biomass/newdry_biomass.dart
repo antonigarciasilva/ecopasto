@@ -154,19 +154,6 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                   ),
                 ),
 
-                //Día de evaluación
-                const SizedBox(height: 20.0),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Día de evaluación: ',
-                        style: TextStyle(
-                          fontSize: 15,
-                        )),
-                    SizedBox(width: 20),
-                  ],
-                ),
-
                 //Formulario del DAP
                 const SizedBox(height: 25.0),
                 const Text(

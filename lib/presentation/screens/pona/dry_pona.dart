@@ -153,8 +153,9 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'MS/m² (Kg) = PMS/PMH x 100',
+                          'MS/m² (Kg) = PMS/PMH * 100',
                           style: TextStyle(fontSize: 16, color: Colors.black),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -168,51 +169,11 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*MS: materia seca \n'
-                          '*m²: metro cuadrado',
+                          '*MS: Materia seca \n'
+                          '*m²: Metro cuadrado',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),
-                    ),
-                  ),
-
-                  //Día de evaluación
-                  const SizedBox(height: 15.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
-                  ),
-
-                  //Peso de la materia verde
-                  const SizedBox(height: 25),
-
-                  const Text(
-                    'Peso de la materia seca (PMS): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      controller: _controllerWeightDry,
-                      validator: _validateWeightP,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingresa el peso en Kg',
-                        labelStyle: const TextStyle(fontSize: 15),
-                      ),
-                      textAlign: TextAlign.center,
                     ),
                   ),
 
@@ -222,6 +183,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                   const Text(
                     'Peso de la materia húmeda(PMH): ',
                     style: TextStyle(fontSize: 15),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(
                     width: 8,

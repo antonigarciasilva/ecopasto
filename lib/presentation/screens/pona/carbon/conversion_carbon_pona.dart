@@ -172,19 +172,6 @@ class _ConversionCarbonPonaState extends State<ConversionCarbonPona> {
                     ),
                   ),
 
-                  //Día de evaluación
-                  const SizedBox(height: 10),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
-                  ),
-
                   //BVT
                   const SizedBox(height: 25),
 

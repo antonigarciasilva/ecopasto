@@ -6,8 +6,6 @@ import 'package:version/presentation/screens/pona/biomass/leaf_litter_biomass_po
 import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 import 'package:version/presentation/screens/pona/carbon/carbon_pona.dart';
 
-import 'package:version/presentation/screens/pona/pona_screen.dart';
-
 class BiomassPona extends StatefulWidget {
   //'?' significa que la variable puede ser nula o tomar el valo dado
   //final double? resultdbo;

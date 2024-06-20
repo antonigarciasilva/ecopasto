@@ -180,19 +180,6 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                     ),
                   ),
 
-                  //Día de evaluación
-                  const SizedBox(height: 20.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
-                  ),
-
                   //Área
                   const SizedBox(height: 25),
 

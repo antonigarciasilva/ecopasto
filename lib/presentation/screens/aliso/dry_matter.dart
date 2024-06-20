@@ -151,7 +151,8 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'MS/m² (Kg) = PMS/PMH x 100',
+                          'MS/m² (Kg) = PMS/PMH * 100',
+                          textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ),
@@ -172,19 +173,6 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                         ),
                       ),
                     ),
-                  ),
-
-                  //Día de evaluación
-                  const SizedBox(height: 15.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
                   ),
 
                   //Peso de la materia verde

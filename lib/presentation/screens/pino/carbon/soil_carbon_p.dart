@@ -161,7 +161,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                   ),
 
                   //NOTA
-                  const SizedBox(height: 5),
+
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 50),
                     child: Align(
@@ -171,19 +171,6 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                         style: TextStyle(fontSize: 10),
                       ),
                     ),
-                  ),
-
-                  //Día de evaluación
-                  const SizedBox(height: 20.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
                   ),
 
                   //Área

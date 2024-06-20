@@ -56,7 +56,7 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const BiomassPona()));
@@ -143,6 +143,7 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
+                    textAlign: TextAlign.center,
                   ),
 
                   //Formula
@@ -160,6 +161,7 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                         child: const Text(
                           'BH(Tm/ha) = ((PSM/PFM) * PFT) * 0.01',
                           style: TextStyle(fontSize: 16, color: Colors.white),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -180,18 +182,6 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                         ),
                       ),
                     ),
-                  ),
-                  //Día de evaluación
-                  const SizedBox(height: 20.0),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Día de evaluación: ',
-                          style: TextStyle(
-                            fontSize: 15,
-                          )),
-                      SizedBox(width: 20),
-                    ],
                   ),
 
                   //PSM
