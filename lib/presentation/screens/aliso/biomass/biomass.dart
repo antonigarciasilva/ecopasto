@@ -6,6 +6,7 @@ import 'package:version/presentation/screens/aliso/biomass/leaf_litter_biomass.d
 import 'package:version/presentation/screens/aliso/biomass/newdry_biomass.dart';
 import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 
 class BiomassAlderScreen extends StatefulWidget {
   /*final double? resultdba;
@@ -91,7 +92,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                 TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const CarbonScreen()));
@@ -103,6 +104,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final stateBiomass = Provider.of<StateBiomass>(context);
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -194,16 +196,20 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateBiomass.isDryBiomassCalculated
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const NewDryBiomassScreen()),
-                        );
-                      },
+                      onPressed: stateBiomass.isDryBiomassCalculated
+                          ? null
+                          : () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const NewDryBiomassScreen()),
+                              );
+                            },
                       child: const Text(
                         'Biomasa seca',
                         style: TextStyle(fontSize: 18, color: Colors.white),

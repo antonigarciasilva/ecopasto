@@ -52,7 +52,7 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const BiomassAlderScreen(),

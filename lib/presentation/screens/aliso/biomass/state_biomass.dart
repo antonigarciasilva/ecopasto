@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart';
 
 class StateBiomass with ChangeNotifier {
+//Para hacer las validaciones de los botones
+  double? dryBiomass;
+  double? herbaceousBiomass;
+  double? leafLitterBiomass;
+
+  bool get isDryBiomassCalculated => dryBiomass != null;
+  bool get isHerbaceousBiomassCalculated => herbaceousBiomass != null;
+  bool get isLeafLitterBiomassCalculated => leafLitterBiomass != null;
+
+  bool get areAllCalculationsCompleted =>
+      isDryBiomassCalculated &&
+      isHerbaceousBiomassCalculated &&
+      isLeafLitterBiomassCalculated;
+
+  //Para la respuesta de biomasa total y carbono
   double _resultdba = 0.0;
   double _resulthba = 0.0;
   double _resultbha = 0.0;
@@ -11,16 +26,19 @@ class StateBiomass with ChangeNotifier {
 
   void setDryBiomass(double value) {
     _resultdba = value;
+    dryBiomass = value;
     notifyListeners();
   }
 
   void setHerbaceousBiomass(double value) {
     _resulthba = value;
+    herbaceousBiomass = value;
     notifyListeners();
   }
 
   void setLeafLitterBiomass(double value) {
     _resultbha = value;
+    leafLitterBiomass = value;
     notifyListeners();
   }
 
