@@ -295,7 +295,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                         ),
                         onPressed: _calculateLeafLitterBiomassResult,
                         child: const Text(
-                          'Guardar',
+                          'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),

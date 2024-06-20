@@ -4,6 +4,7 @@ import 'package:version/presentation/screens/pona/biomass/dry_biomass_pona.dart'
 import 'package:version/presentation/screens/pona/biomass/herbaceous_biomass_pona.dart';
 import 'package:version/presentation/screens/pona/biomass/leaf_litter_biomass_pona.dart';
 import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
+import 'package:version/presentation/screens/pona/carbon/carbon_pona.dart';
 
 import 'package:version/presentation/screens/pona/pona_screen.dart';
 
@@ -44,7 +45,7 @@ class _BiomassPonaState extends State<BiomassPona> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const PonaScreen()));
+                              builder: (context) => const CarbonPonaScreen()));
                     },
                     child: const Text('Aceptar'))
               ],

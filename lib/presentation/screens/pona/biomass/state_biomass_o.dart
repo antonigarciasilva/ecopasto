@@ -27,4 +27,8 @@ class StateBiomassO with ChangeNotifier {
   double get totalBiomassO {
     return (_resultbhao) + (_resultdbao) + (_resulthbao);
   }
+
+  double get resultCarbonBiomassO {
+    return totalBiomassO * 0.5674;
+  }
 }

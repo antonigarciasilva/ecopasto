@@ -291,7 +291,7 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                         ),
                         onPressed: _calculateHerbaceousBiomassResult,
                         child: const Text(
-                          'Guardar',
+                          'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),

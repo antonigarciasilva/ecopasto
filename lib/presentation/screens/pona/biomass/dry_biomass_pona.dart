@@ -264,7 +264,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                         ),
                         onPressed: _calculateDryBiomassResult,
                         child: const Text(
-                          'Guardar',
+                          'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),

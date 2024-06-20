@@ -291,7 +291,7 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                         ),
                         onPressed: _calculateHerbaceousBiomassResult,
                         child: const Text(
-                          'Guardar',
+                          'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),

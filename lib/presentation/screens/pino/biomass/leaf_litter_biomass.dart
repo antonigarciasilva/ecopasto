@@ -293,7 +293,7 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                         ),
                         onPressed: _calculateLeafLitterBiomassResult,
                         child: const Text(
-                          'Guardar',
+                          'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),
