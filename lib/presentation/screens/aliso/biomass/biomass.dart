@@ -6,7 +6,6 @@ import 'package:version/presentation/screens/aliso/biomass/leaf_litter_biomass.d
 import 'package:version/presentation/screens/aliso/biomass/newdry_biomass.dart';
 import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
-import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 
 class BiomassAlderScreen extends StatefulWidget {
   /*final double? resultdba;
@@ -73,11 +72,10 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
   }
 
   //Calculando la biomasa
-  void _calculateBiomassResult() {
-    /*final double biomassA =
-        (resultdba ?? 0) + (resulthba ?? 0) + (resultbha ?? 0);
+  void _calculateBiomassResult(StateBiomass stateBiomass) {
+    final double totalBiomass = stateBiomass.totalBiomass;
 
-    final String formattedBiomassA = biomassA.toStringAsFixed(2);*/
+    final String formattedBiomass = totalBiomass.toStringAsFixed(2);
 
     showDialog(
         context: context,
@@ -85,7 +83,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
         builder: (context) => AlertDialog(
               title: const Text('Resultado de cálculo'),
               content: Text(
-                'La biomasa total es: ${stateBiomass?.totalBiomass.toStringAsFixed(2)}',
+                'La biomasa total es: $formattedBiomass',
                 textAlign: TextAlign.justify,
               ),
               actions: [
@@ -96,6 +94,46 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const CarbonScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
+  //Dialogo para mostrar al usuario que le faltan llenar algunos datos
+  void _showMissingCalculationsDialog(
+      BuildContext context, StateBiomass stateBiomass) {
+    List<String> missingCalculations = [];
+
+    if (!stateBiomass.isDryBiomassCalculated) {
+      missingCalculations.add('Biomasa seca');
+    }
+    if (!stateBiomass.isHerbaceousBiomassCalculated) {
+      missingCalculations.add('Biomasa herbácea');
+    }
+    if (!stateBiomass.isLeafLitterBiomassCalculated) {
+      missingCalculations.add('Biomasa hojarasca');
+    }
+
+    String message =
+        'Falta calcular: ${missingCalculations.join(', ')} para obtener la biomasa total';
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Calculos imcompletos',
+                textAlign: TextAlign.center,
+              ),
+              content: Text(
+                message,
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
                     },
                     child: const Text('Aceptar'))
               ],
@@ -227,16 +265,20 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateBiomass.isHerbaceousBiomassCalculated
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const HerbaceousBiomassScreen()),
-                        );
-                      },
+                      onPressed: stateBiomass.isHerbaceousBiomassCalculated
+                          ? null
+                          : () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const HerbaceousBiomassScreen()),
+                              );
+                            },
                       child: const Text(
                         'Biomasa herbácea',
                         style: TextStyle(fontSize: 18, color: Colors.white),
@@ -254,16 +296,20 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateBiomass.isLeafLitterBiomassCalculated
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const LeafLitterBiomassScreen()),
-                        );
-                      },
+                      onPressed: stateBiomass.isLeafLitterBiomassCalculated
+                          ? null
+                          : () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const LeafLitterBiomassScreen()),
+                              );
+                            },
                       child: const Text(
                         'Biomasa hojarasca',
                         style: TextStyle(fontSize: 18, color: Colors.white),
@@ -272,7 +318,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                   ),
                 ),
 
-                //Guardar
+                //Calcular la biomass total
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
@@ -283,7 +329,13 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                         backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 70, 150, 13)),
                       ),
-                      onPressed: _calculateBiomassResult,
+                      onPressed: () {
+                        if (stateBiomass.areAllCalculationsCompleted) {
+                          _calculateBiomassResult;
+                        } else {
+                          _showMissingCalculationsDialog(context, stateBiomass);
+                        }
+                      },
                       child: const Text(
                         'Calcular',
                         style: TextStyle(fontSize: 18, color: Colors.white),

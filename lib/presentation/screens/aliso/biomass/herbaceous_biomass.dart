@@ -58,7 +58,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
