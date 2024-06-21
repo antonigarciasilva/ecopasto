@@ -10,7 +10,7 @@ class StateBiomassP with ChangeNotifier {
   bool get isHerbaceousBiomassPCalculatedP => herbaceousBiomassP != null;
   bool get isLeafLitterBiomassPCalculatedP => leafLitterBiomassP != null;
 
-  bool get areCalculationsCompleted =>
+  bool get areCalculationsCompletedP =>
       isDryBiomassCalculatedP &&
       isHerbaceousBiomassPCalculatedP &&
       isLeafLitterBiomassPCalculatedP;

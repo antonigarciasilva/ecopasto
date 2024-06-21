@@ -310,7 +310,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
                             const Color.fromARGB(255, 70, 150, 13)),
                       ),
                       onPressed: () {
-                        if (stateBiomassC.areAllCalculationsCompleted) {
+                        if (stateBiomassC.areAllCalculationsCompletedC) {
                           _calculateBiomassResultC(stateBiomassC);
                         } else {
                           _showMissingCalculationsDialog(

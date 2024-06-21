@@ -308,7 +308,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        if (stateBiomassP.areCalculationsCompleted) {
+                        if (stateBiomassP.areCalculationsCompletedP) {
                           _calculateBiomassResultP;
                         } else {
                           _showMissingCalculationsDialog(

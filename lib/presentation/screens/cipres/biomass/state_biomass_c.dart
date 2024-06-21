@@ -11,7 +11,7 @@ class StateBiomassC with ChangeNotifier {
   bool get isherbaceousCalculatedC => herbaceousBiomassC != null;
   bool get isleafLitterBiomassCCalculatedC => leafLitterBiomassC != null;
 
-  bool get areAllCalculationsCompleted =>
+  bool get areAllCalculationsCompletedC =>
       isDryBiomassCalculatedC &&
       isherbaceousCalculatedC &&
       isleafLitterBiomassCCalculatedC;

@@ -106,13 +106,13 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
     List<String> missingCalculations = [];
 
     if (!stateBiomass.isDryBiomassCalculated) {
-      missingCalculations.add('Biomasa seca');
+      missingCalculations.add('biomasa seca');
     }
     if (!stateBiomass.isHerbaceousBiomassCalculated) {
-      missingCalculations.add('Biomasa herbácea');
+      missingCalculations.add('biomasa herbácea');
     }
     if (!stateBiomass.isLeafLitterBiomassCalculated) {
-      missingCalculations.add('Biomasa hojarasca');
+      missingCalculations.add('biomasa hojarasca');
     }
 
     String message =

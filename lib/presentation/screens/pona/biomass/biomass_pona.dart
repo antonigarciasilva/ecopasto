@@ -28,19 +28,22 @@ class _BiomassPonaState extends State<BiomassPona> {
   }
 
   //calculando la biomasa
-  void _calculateBiomassResultO() {
+  void _calculateBiomassResultO(StateBiomassO stateBiomassO) {
+    final double totalBiomassO = stateBiomassO.totalBiomassO;
+
+    final String formattedBiomassO = totalBiomassO.toStringAsFixed(2);
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text(
-                'La biomasa total es: ${stateBiomassO?.totalBiomassO.toStringAsFixed(2)}',
+                'La biomasa total es: $formattedBiomassO',
                 textAlign: TextAlign.justify,
               ),
               actions: [
                 TextButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const CarbonPonaScreen()));
@@ -80,8 +83,48 @@ class _BiomassPonaState extends State<BiomassPona> {
             ));
   }
 
+  //Dialogo para mensajes de lo que falta
+  void _showMissingCalculationsDialog(
+      BuildContext context, StateBiomassO stateBiomassO) {
+    List<String> missingCalculations = [];
+
+    if (!stateBiomassO.isDryBiomassCalculatedO) {
+      missingCalculations.add('biomasa seca');
+    }
+    if (!stateBiomassO.isHerbaceousBiomassCalculatedO) {
+      missingCalculations.add('biomasa herbácea');
+    }
+    if (!stateBiomassO.isLeafLitterBiomassCalculatedO) {
+      missingCalculations.add('biomasa hojarasca');
+    }
+
+    String message =
+        'Falta calcular: ${missingCalculations.join(', ')} para obtener la biomasa total';
+
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Calculos incompletos',
+                textAlign: TextAlign.center,
+              ),
+              content: Text(
+                message,
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
+    final stateBiomassO = Provider.of<StateBiomassO>(context);
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -173,15 +216,20 @@ class _BiomassPonaState extends State<BiomassPona> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateBiomassO.isDryBiomassCalculatedO
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryBiomassPona()),
-                        );
-                      },
+                      onPressed: stateBiomassO.isDryBiomassCalculatedO
+                          ? null
+                          : () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DryBiomassPona()),
+                              );
+                            },
                       child: const Text(
                         'Biomasa seca',
                         style: TextStyle(fontSize: 18, color: Colors.white),
@@ -199,16 +247,20 @@ class _BiomassPonaState extends State<BiomassPona> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateBiomassO.isHerbaceousBiomassCalculatedO
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const HerbaceousBiomassPona()),
-                        );
-                      },
+                      onPressed: stateBiomassO.isHerbaceousBiomassCalculatedO
+                          ? null
+                          : () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const HerbaceousBiomassPona()),
+                              );
+                            },
                       child: const Text(
                         'Biomasa herbácea',
                         style: TextStyle(fontSize: 18, color: Colors.white),
@@ -226,16 +278,20 @@ class _BiomassPonaState extends State<BiomassPona> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateBiomassO.isLeafLitterBiomassCalculatedO
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const LeafLitterBiomassPona()),
-                        );
-                      },
+                      onPressed: stateBiomassO.isLeafLitterBiomassCalculatedO
+                          ? null
+                          : () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const LeafLitterBiomassPona()),
+                              );
+                            },
                       child: const Text(
                         'Biomasa hojarasca',
                         style: TextStyle(fontSize: 18, color: Colors.white),
@@ -255,7 +311,14 @@ class _BiomassPonaState extends State<BiomassPona> {
                         backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: _calculateBiomassResultO,
+                      onPressed: () {
+                        if (stateBiomassO.areAllCalculationsCompletedO) {
+                          _calculateBiomassResultO;
+                        } else {
+                          _showMissingCalculationsDialog(
+                              context, stateBiomassO);
+                        }
+                      },
                       child: const Text(
                         'Calcular',
                         style: TextStyle(fontSize: 18, color: Colors.white),

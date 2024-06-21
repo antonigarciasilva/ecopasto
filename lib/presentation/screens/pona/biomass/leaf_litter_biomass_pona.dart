@@ -271,7 +271,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                     ),
                   ),
 
-                  //Guardar
+                  //Calcular
                   const SizedBox(height: 20.0),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
