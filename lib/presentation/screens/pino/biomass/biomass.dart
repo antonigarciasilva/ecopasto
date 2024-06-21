@@ -309,7 +309,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                       ),
                       onPressed: () {
                         if (stateBiomassP.areCalculationsCompletedP) {
-                          _calculateBiomassResultP;
+                          _calculateBiomassResultP(stateBiomassP);
                         } else {
                           _showMissingCalculationsDialog(
                               context, stateBiomassP);

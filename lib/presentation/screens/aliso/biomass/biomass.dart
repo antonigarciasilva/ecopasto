@@ -331,7 +331,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                       ),
                       onPressed: () {
                         if (stateBiomass.areAllCalculationsCompleted) {
-                          _calculateBiomassResult;
+                          _calculateBiomassResult(stateBiomass);
                         } else {
                           _showMissingCalculationsDialog(context, stateBiomass);
                         }

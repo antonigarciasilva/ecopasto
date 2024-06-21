@@ -313,7 +313,7 @@ class _BiomassPonaState extends State<BiomassPona> {
                       ),
                       onPressed: () {
                         if (stateBiomassO.areAllCalculationsCompletedO) {
-                          _calculateBiomassResultO;
+                          _calculateBiomassResultO(stateBiomassO);
                         } else {
                           _showMissingCalculationsDialog(
                               context, stateBiomassO);

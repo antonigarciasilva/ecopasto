@@ -39,11 +39,11 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
       final double pfm = double.parse(_controllerWeightPFM.text);
       final double pst = double.parse(_controllerWeightPST.text);
 
-      final double resulthba = (psm / pfm * pst) * 0.01;
-      final String formattedResult = resulthba.toStringAsFixed(2);
+      final double herbacaousBiomass = (psm / pfm * pst) * 0.01;
+      final String formattedResult = herbacaousBiomass.toStringAsFixed(2);
 
       Provider.of<StateBiomass>(context, listen: false)
-          .setHerbaceousBiomass(resulthba);
+          .setHerbaceousBiomass(herbacaousBiomass);
 
       showDialog(
           context: context,

@@ -14,7 +14,7 @@ class NewDryBiomassScreen extends StatefulWidget {
 class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDap = TextEditingController();
-  double? resultdba;
+  double? dryBiomass;
 
   //Validación del DAP
   String? _validateDap(String? value) {
@@ -34,11 +34,11 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
     if (_formKey.currentState!.validate()) {
       double dap = double.parse(_controllerDap.text);
 
-      resultdba = -22.695 + 1.5085 * (dap);
-      final String formattedResult = resultdba!.toStringAsFixed(2);
+      dryBiomass = -22.695 + 1.5085 * (dap);
+      final String formattedResult = dryBiomass!.toStringAsFixed(2);
 
       Provider.of<StateBiomass>(context, listen: false)
-          .setDryBiomass(resultdba!);
+          .setDryBiomass(dryBiomass!);
 
       showDialog(
           context: context,
@@ -195,11 +195,11 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        if (resultdba != null)
+                        if (dryBiomass != null)
                           Visibility(
                             visible: false,
                             child: Text(
-                              ' ${resultdba?.toStringAsFixed(2)}',
+                              ' ${dryBiomass?.toStringAsFixed(2)}',
                               style: const TextStyle(fontSize: 16),
                             ),
                           )
