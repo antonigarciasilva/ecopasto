@@ -26,13 +26,16 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
   }
 
   //Calculo de la biomass
-  void _calculateBiomassResultP() {
+  void _calculateBiomassResultP(StateBiomassP stateBiomassP) {
+    final double totalBiomassP = stateBiomassP.totalBiomassP;
+
+    final String formattedBiomassP = totalBiomassP.toStringAsFixed(2);
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text(
-                'La biomasa total es: ${stateBiomassP?.totalBiomassP.toStringAsFixed(2)}',
+                'La biomasa total es: $formattedBiomassP',
                 textAlign: TextAlign.justify,
               ),
               actions: [
@@ -78,8 +81,47 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
             ));
   }
 
+  //Dialogo de mensaje de error
+  void _showMissingCalculationsDialog(
+      BuildContext context, StateBiomassP stateBiomassP) {
+    List<String> missingCalculations = [];
+
+    if (!stateBiomassP.isDryBiomassCalculatedP) {
+      missingCalculations.add('biomasa seca');
+    }
+
+    if (!stateBiomassP.isHerbaceousBiomassPCalculatedP) {
+      missingCalculations.add('biomasa herbácea');
+    }
+
+    if (!stateBiomassP.isLeafLitterBiomassPCalculatedP) {
+      missingCalculations.add('biomasa hojarasca');
+    }
+
+    String message =
+        'Falta calcular: ${missingCalculations.join(', ')} para obtener la biomasa total';
+
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: const Text('Cálculo incompletos'),
+              content: Text(
+                message,
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
+    final stateBiomassP = Provider.of<StateBiomassP>(context);
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -171,15 +213,19 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateBiomassP.isDryBiomassCalculatedP
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryBiomassP()),
-                        );
-                      },
+                      onPressed: stateBiomassP.isDryBiomassCalculatedP
+                          ? null
+                          : () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DryBiomassP()),
+                              );
+                            },
                       child: const Text(
                         'Biomasa seca',
                         style: TextStyle(fontSize: 18, color: Colors.white),
@@ -197,14 +243,19 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateBiomassP.isHerbaceousBiomassPCalculatedP
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HerbaceousBiomassP()),
-                        );
+                        stateBiomassP.isHerbaceousBiomassPCalculatedP
+                            ? null
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const HerbaceousBiomassP()),
+                              );
                       },
                       child: const Text(
                         'Biomasa herbácea',
@@ -223,14 +274,19 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateBiomassP.isLeafLitterBiomassPCalculatedP
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LeafLitterBiomassP()),
-                        );
+                        stateBiomassP.isLeafLitterBiomassPCalculatedP
+                            ? null
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const LeafLitterBiomassP()),
+                              );
                       },
                       child: const Text(
                         'Biomasa hojarasca',
@@ -251,7 +307,14 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                         backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: _calculateBiomassResultP,
+                      onPressed: () {
+                        if (stateBiomassP.areCalculationsCompleted) {
+                          _calculateBiomassResultP;
+                        } else {
+                          _showMissingCalculationsDialog(
+                              context, stateBiomassP);
+                        }
+                      },
                       child: const Text(
                         'Calcular',
                         style: TextStyle(fontSize: 18, color: Colors.white),

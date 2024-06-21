@@ -27,16 +27,19 @@ class StateBiomassC with ChangeNotifier {
 
   void setDryBiomassC(double value) {
     _resultdbac = value;
+    dryBiomassC = value;
     notifyListeners();
   }
 
   void setHerbaceousBiomassC(double value) {
     _resulthbac = value;
+    herbaceousBiomassC = value;
     notifyListeners();
   }
 
   void setLeafLitterBiomassC(double value) {
     _resultbhac = value;
+    leafLitterBiomassC = value;
     notifyListeners();
   }
 
