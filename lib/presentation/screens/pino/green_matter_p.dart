@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/pino/pino_screen.dart';
+import 'package:version/presentation/screens/pino/state_pino.dart';
 
 class GreenMatterP extends StatefulWidget {
   const GreenMatterP({super.key});
@@ -11,10 +13,10 @@ class GreenMatterP extends StatefulWidget {
 }
 
 class _GreenMatterPState extends State<GreenMatterP> {
-  String? selectedValue;
   //Vamos a validar nuestro formulario
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightP = TextEditingController();
+  double? greenPino;
 
   //Validar form de peso
   String? _validateWeightP(String? value) {
@@ -33,7 +35,12 @@ class _GreenMatterPState extends State<GreenMatterP> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
+      final double greenMatterP = double.parse(_controllerWeightP.text);
+
+      final double greenPino = greenMatterP;
+
+      Provider.of<StatePino>(context, listen: false).setGreenPino(greenPino);
+      Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const PinoScreen()));
     }
   }
@@ -58,10 +65,7 @@ class _GreenMatterPState extends State<GreenMatterP> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const GreenMatterP()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

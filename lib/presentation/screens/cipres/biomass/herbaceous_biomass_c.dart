@@ -87,11 +87,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const HerbaceousBiomassC()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

@@ -82,10 +82,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SoilCarbonScreen()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

@@ -11,8 +11,6 @@ class DryMatterScreen extends StatefulWidget {
 }
 
 class MyGreenMatterScreen extends State<DryMatterScreen> {
-  //String? selectedValue;
-
   //Para hacer las validaciones tenemos que tner nuestro:
   // Globalkey para ver el estado del formulario  y los controladores para poder acceder a la i del texto
   final _formKey = GlobalKey<FormState>();
@@ -89,10 +87,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
               actions: [
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryMatterScreen()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

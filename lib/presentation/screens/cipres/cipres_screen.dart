@@ -33,10 +33,7 @@ class _CipresScreenState extends State<CipresScreen> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CipresScreen()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

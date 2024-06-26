@@ -92,10 +92,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BiomassCarbonC()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

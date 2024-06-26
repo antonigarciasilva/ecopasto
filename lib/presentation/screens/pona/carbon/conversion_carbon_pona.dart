@@ -80,11 +80,7 @@ class _ConversionCarbonPonaState extends State<ConversionCarbonPona> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const ConversionCarbonPona()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

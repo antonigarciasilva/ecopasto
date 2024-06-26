@@ -91,10 +91,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryBiomassPona()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

@@ -82,10 +82,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryPonaScreen()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

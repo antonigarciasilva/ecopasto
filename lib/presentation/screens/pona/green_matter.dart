@@ -57,10 +57,7 @@ class _GreenMatterPonaState extends State<GreenMatterPona> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const GreenMatterPona()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

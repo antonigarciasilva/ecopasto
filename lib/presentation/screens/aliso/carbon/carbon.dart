@@ -26,10 +26,7 @@ class CarbonScreen extends StatelessWidget {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CarbonScreen()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

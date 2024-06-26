@@ -45,19 +45,6 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
     return null;*/
   }
 
-/*
-  //Creamos un método para asignar valor
-  void _assignGreenAliso() {
-    if (_formKey.currentState!.validate()) {
-      final double greenMatterA = double.parse(_controllerWeightAliso.text);
-
-      final double greenAliso = greenMatterA;
-
-      Provider.of<StateAliso>(context, listen: false).setGreenAliso(greenAliso);
-    }
-  }
-  */
-
   //Validamos el botton guardar
   void _submitForm() {
     //usamos la llave creada del Globalkey, luego con el currentState, vemos su estado actual

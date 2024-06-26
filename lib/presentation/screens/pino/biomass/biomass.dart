@@ -71,10 +71,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BiomassPinoScreen()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

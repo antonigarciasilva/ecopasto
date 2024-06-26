@@ -79,11 +79,7 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const ConversionCarbonScreen()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

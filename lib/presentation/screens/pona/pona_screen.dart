@@ -29,10 +29,7 @@ class PonaScreen extends StatelessWidget {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const PonaScreen()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

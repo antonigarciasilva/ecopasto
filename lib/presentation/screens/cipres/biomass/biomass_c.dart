@@ -72,10 +72,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BiomassScreenC()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

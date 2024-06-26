@@ -73,10 +73,7 @@ class _BiomassPonaState extends State<BiomassPona> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BiomassPona()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

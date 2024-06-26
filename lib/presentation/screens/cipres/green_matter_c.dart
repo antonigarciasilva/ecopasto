@@ -55,10 +55,7 @@ class _GreenMatterCState extends State<GreenMatterC> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const GreenMatterC()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

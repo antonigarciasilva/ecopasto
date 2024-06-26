@@ -78,10 +78,7 @@ class _DryMatterCState extends State<DryMatterC> {
               actions: [
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryMatterC()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

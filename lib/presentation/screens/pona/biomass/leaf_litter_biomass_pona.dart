@@ -89,11 +89,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const LeafLitterBiomassPona()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

@@ -88,11 +88,7 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const LeafLitterBiomassP()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

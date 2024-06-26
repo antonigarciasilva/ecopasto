@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/pino/biomass/biomass.dart';
 import 'package:version/presentation/screens/pino/carbon/carbon.dart';
 import 'package:version/presentation/screens/pino/dry_matter_p.dart';
 import 'package:version/presentation/screens/pino/green_matter_p.dart';
+import 'package:version/presentation/screens/pino/state_pino.dart';
 import 'package:version/presentation/screens/widgets/side_menu.dart';
 
-class PinoScreen extends StatelessWidget {
+class PinoScreen extends StatefulWidget {
   const PinoScreen({super.key});
+
+  @override
+  State<PinoScreen> createState() => _PinoScreenState();
+}
+
+class _PinoScreenState extends State<PinoScreen> {
+  //Llamamos al provider
+  StatePino? statePino;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    statePino = Provider.of<StatePino>(context);
+  }
 
   //Funcion de boton informativo
   void openDialog(BuildContext context) {
@@ -29,10 +45,7 @@ class PinoScreen extends StatelessWidget {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const PinoScreen()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],
@@ -41,6 +54,7 @@ class PinoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final statePino = Provider.of<StatePino>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -87,16 +101,6 @@ class PinoScreen extends StatelessWidget {
                   ),
                 ]),
 
-                /* //Título
-                //const SizedBox(height: 5.0),
-                const Text(
-                  'Silvipastoreo con Pino',
-                  style: TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ), */
-
                 //Materia verde
                 const SizedBox(height: 20.0),
                 MouseRegion(
@@ -106,15 +110,19 @@ class PinoScreen extends StatelessWidget {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            statePino.isGreenPinoCalculated
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const GreenMatterP()),
-                        );
-                      },
+                      onPressed: statePino.isGreenPinoCalculated
+                          ? null
+                          : () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const GreenMatterP()),
+                              );
+                            },
                       child: const Text(
                         '1. Materia verde',
                         style: TextStyle(fontSize: 18, color: Colors.white),
@@ -132,15 +140,19 @@ class PinoScreen extends StatelessWidget {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            statePino.isDryMatterPinoCalculated
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryMatterP()),
-                        );
-                      },
+                      onPressed: statePino.isDryMatterPinoCalculated
+                          ? null
+                          : () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DryMatterP()),
+                              );
+                            },
                       child: const Text(
                         '2. Materia seca',
                         style: TextStyle(fontSize: 18, color: Colors.white),

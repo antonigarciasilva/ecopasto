@@ -88,10 +88,7 @@ class _AlisoScreenState extends State<AlisoScreen> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AlisoScreen()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

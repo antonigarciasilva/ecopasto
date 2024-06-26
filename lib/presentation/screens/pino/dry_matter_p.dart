@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/pino/pino_screen.dart';
+import 'package:version/presentation/screens/pino/state_pino.dart';
 
 class DryMatterP extends StatefulWidget {
   const DryMatterP({super.key});
@@ -14,6 +16,7 @@ class _DryMatterPState extends State<DryMatterP> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightDry = TextEditingController();
   final TextEditingController _controllerWeightWet = TextEditingController();
+  double? dryMatterPino;
 
   //Validar form de peso
   String? _validateWeightP(String? value) {
@@ -34,8 +37,11 @@ class _DryMatterPState extends State<DryMatterP> {
       final double pms = double.parse(_controllerWeightDry.text);
       final double pmh = double.parse(_controllerWeightWet.text);
 
-      final double resultmsp = pms / pmh * 100;
-      final String formattedResult = resultmsp.toStringAsFixed(2);
+      final double dryMatterPino = pms / pmh * 100;
+      final String formattedResult = dryMatterPino.toStringAsFixed(2);
+
+      Provider.of<StatePino>(context, listen: false)
+          .setDryMatterPino(dryMatterPino);
 
       showDialog(
           context: context,
@@ -49,8 +55,7 @@ class _DryMatterPState extends State<DryMatterP> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const PinoScreen()));
@@ -80,10 +85,7 @@ class _DryMatterPState extends State<DryMatterP> {
               actions: [
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryMatterP()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],
