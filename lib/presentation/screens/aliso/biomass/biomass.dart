@@ -8,10 +8,6 @@ import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
 
 class BiomassAlderScreen extends StatefulWidget {
-  /*final double? resultdba;
-  final double? resulthba;
-  final double? resultbha;
-  this.resultdba, this.resultbha, this.resulthba*/
   const BiomassAlderScreen({
     super.key,
   });
@@ -28,6 +24,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
     super.didChangeDependencies();
     stateBiomass = Provider.of<StateBiomass>(context);
   }
+
   /* double? resultdba;
   double? resulthba;
   double? resultbha;
@@ -40,7 +37,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
     resulthba = widget.resulthba;
   } */
 
-  //Dialogo informativo sobre el Aliso
+  //Dialogo informativo sobre la biomasa
   void openDialog(BuildContext context) {
     showDialog(
         context: context,

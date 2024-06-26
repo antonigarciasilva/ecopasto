@@ -16,7 +16,6 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
   final TextEditingController _controllerWeightPSM = TextEditingController();
   final TextEditingController _controllerWeightPFM = TextEditingController();
   final TextEditingController _controllerWeightPST = TextEditingController();
-  double? resulthba;
 
   //Validación del peso
   String? _validateWeight(String? value) {
@@ -287,13 +286,6 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                       ),
                     ),
                   ),
-                  if (resulthba != null)
-                    Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: Visibility(
-                            visible: false,
-                            child: Text(
-                                'Biomosa herbácea es: ${resulthba!.toStringAsFixed(2)}')))
                 ],
               ),
             ),

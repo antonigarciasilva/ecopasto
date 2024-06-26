@@ -1,13 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
+
 import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
 import 'package:version/presentation/screens/aliso/dry_matter.dart';
 import 'package:version/presentation/screens/aliso/green_matter.dart';
+import 'package:version/presentation/screens/aliso/state_aliso.dart';
+
 import 'package:version/presentation/screens/widgets/side_menu.dart';
 
-class AlisoScreen extends StatelessWidget {
+class AlisoScreen extends StatefulWidget {
   const AlisoScreen({super.key});
+
+  @override
+  State<AlisoScreen> createState() => _AlisoScreenState();
+}
+
+class _AlisoScreenState extends State<AlisoScreen> {
+  //Llamado de provider
+  StateAliso? stateAliso;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateAliso = Provider.of<StateAliso>(context);
+  }
+
+  //Dialogo para mostrar al usuario que le falta llenar algunos botones
+  void _showMissingCalculationsDialog(
+      BuildContext context, StateAliso stateAliso) {
+    List<String> missingCalculations = [];
+
+    if (!stateAliso.isGreenAlisoCalculated) {
+      missingCalculations.add('materia verde');
+    }
+
+    if (!stateAliso.isDryMatterAlissoCalculated) {
+      missingCalculations.add('materia seca');
+    }
+
+    if (!stateAliso.isTotalBiomassCalculated) {
+      missingCalculations.add('biomasa total');
+    }
+
+    String message =
+        'Falta calcular: ${missingCalculations.join(', ')} para poder continuar';
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Calculos imcompletos',
+                textAlign: TextAlign.center,
+              ),
+              content: Text(
+                message,
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
 
   //Dialogo informativo sobre el Aliso
   void openDialog(BuildContext context) {
@@ -41,6 +100,7 @@ class AlisoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stateAliso = Provider.of<StateAliso>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -88,18 +148,7 @@ class AlisoScreen extends StatelessWidget {
                   ),
                 ]),
 
-                /*Título
-                //const SizedBox(height: 5.0),
-                const Text(
-                  'Silvipastoreo con Aliso',
-                  style: TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ), */
-
                 //Materia verde
-                //const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
@@ -107,15 +156,20 @@ class AlisoScreen extends StatelessWidget {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateAliso.isGreenAlisoCalculated
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const GreenMatterScreen()),
-                        );
-                      },
+                      onPressed: stateAliso.isGreenAlisoCalculated
+                          ? null
+                          : () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const GreenMatterScreen()),
+                              );
+                            },
                       child: const Text(
                         '1. Materia verde',
                         style: TextStyle(fontSize: 18, color: Colors.white),
@@ -133,15 +187,20 @@ class AlisoScreen extends StatelessWidget {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateAliso.isDryMatterAlissoCalculated
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryMatterScreen()),
-                        );
-                      },
+                      onPressed: stateAliso.isDryMatterAlissoCalculated
+                          ? null
+                          : () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DryMatterScreen()),
+                              );
+                            },
                       child: const Text(
                         '2. Materia seca',
                         style: TextStyle(fontSize: 18, color: Colors.white),

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
 import 'package:version/presentation/screens/aliso/aliso_screen.dart';
+
+import 'package:version/presentation/screens/aliso/state_aliso.dart';
 
 class GreenMatterScreen extends StatefulWidget {
   const GreenMatterScreen({super.key});
@@ -10,7 +14,6 @@ class GreenMatterScreen extends StatefulWidget {
 }
 
 class MyGreenMatterScreen extends State<GreenMatterScreen> {
-  String? selectedValue;
   //Tengo que tener necesariamente estas dos cosas para hacer mi validadciones
   //GlobalKey<FormaState> variable = inicializo con GlobalKey<FromState(); la variable se va a usar en el form y evaluamos el estado de nuestro formulario
   //Como key: varibale
@@ -18,9 +21,8 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
   //Con los controladores vamos a poder acceder a la información de cada texto
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeight = TextEditingController();
-
-  String? value;
+  final TextEditingController _controllerWeightAliso = TextEditingController();
+  double? greenAliso;
 
   //Validar el peso de la materia verde
   String? _validateWeight(String? value) {
@@ -43,13 +45,31 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
     return null;*/
   }
 
+/*
+  //Creamos un método para asignar valor
+  void _assignGreenAliso() {
+    if (_formKey.currentState!.validate()) {
+      final double greenMatterA = double.parse(_controllerWeightAliso.text);
+
+      final double greenAliso = greenMatterA;
+
+      Provider.of<StateAliso>(context, listen: false).setGreenAliso(greenAliso);
+    }
+  }
+  */
+
   //Validamos el botton guardar
   void _submitForm() {
     //usamos la llave creada del Globalkey, luego con el currentState, vemos su estado actual
     // El cual acepta valores nulos, por eso lo agregamos un "!", para decir que si o sí no será nula
     //Luego ponemos un "." y accedemos al metodo validate que da valores booleanos
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
+      final double greenMatterA = double.parse(_controllerWeightAliso.text);
+
+      final double greenAliso = greenMatterA;
+
+      Provider.of<StateAliso>(context, listen: false).setGreenAliso(greenAliso);
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const AlisoScreen()),
       );
@@ -149,7 +169,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
-                      controller: _controllerWeight,
+                      controller: _controllerWeightAliso,
                       validator: _validateWeight,
                       decoration: InputDecoration(
                         //prefixIcon: const Icon(Icons.person_4),

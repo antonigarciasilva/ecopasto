@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/aliso/aliso_screen.dart';
+import 'package:version/presentation/screens/aliso/state_aliso.dart';
 
 class DryMatterScreen extends StatefulWidget {
   const DryMatterScreen({super.key});
@@ -16,6 +18,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDryWeight = TextEditingController();
   final TextEditingController _controllerWetWeight = TextEditingController();
+  double? dryMatterAliso;
 
   //Validamos el peso de seco
   String? _validateWeight(String? value) {
@@ -38,8 +41,11 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
       final double pms = double.parse(_controllerDryWeight.text);
       final double pmh = double.parse(_controllerWetWeight.text);
 
-      final double resultmsa = pms / pmh * 100;
-      final String formattedResult = resultmsa.toStringAsFixed(2);
+      final double dryMatterAliso = pms / pmh * 100;
+      final String formattedResult = dryMatterAliso.toStringAsFixed(2);
+
+      Provider.of<StateAliso>(context, listen: false)
+          .setDryMatterAliso(dryMatterAliso);
 
       showDialog(
           context: context,
@@ -53,8 +59,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const AlisoScreen()));

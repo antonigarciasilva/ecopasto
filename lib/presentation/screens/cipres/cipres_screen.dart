@@ -6,9 +6,14 @@ import 'package:version/presentation/screens/cipres/dry_matter_c.dart';
 import 'package:version/presentation/screens/cipres/green_matter_c.dart';
 import 'package:version/presentation/screens/widgets/side_menu.dart';
 
-class CipresScreen extends StatelessWidget {
+class CipresScreen extends StatefulWidget {
   const CipresScreen({super.key});
 
+  @override
+  State<CipresScreen> createState() => _CipresScreenState();
+}
+
+class _CipresScreenState extends State<CipresScreen> {
   void openDialog(BuildContext context) {
     showDialog(
         context: context,
@@ -83,16 +88,6 @@ class CipresScreen extends StatelessWidget {
                     ),
                   ),
                 ]),
-
-                /*//Título
-                //const SizedBox(height: 5.0),
-                const Text(
-                  'Silvipastoreo con Cipres',
-                  style: TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ), */
 
                 //Materia verde
                 const SizedBox(height: 20.0),

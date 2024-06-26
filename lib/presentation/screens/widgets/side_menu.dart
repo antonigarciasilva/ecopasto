@@ -42,6 +42,20 @@ class _SideMenuState extends State<SideMenu> {
                   fontSize: 20, color: Color.fromARGB(255, 82, 12, 7)),
             )),
 
+        //Selecciona nuevo sistemas silvopastoril
+        ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 35),
+          leading: const Icon(Icons.anchor_sharp),
+          title: const Text('Selec. sistema silvopastoril'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const NewSelectSilvoScreen()));
+          },
+        ),
+
         //Aliso
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
