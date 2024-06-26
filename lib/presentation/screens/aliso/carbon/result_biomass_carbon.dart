@@ -70,6 +70,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                 Text(
                   'El carbono total en la biomasa es de: ${resultCarbonBiomass.toStringAsFixed(2)} Tn/Ha',
                   style: const TextStyle(fontSize: 20),
+                  textAlign: TextAlign.justify,
                 ),
                 const SizedBox(
                   height: 20,
@@ -77,6 +78,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                 Text(
                   'Nivel de carbono: $level',
                   style: TextStyle(fontSize: 24, color: levelColor),
+                  textAlign: TextAlign.justify,
                 ),
                 const SizedBox(
                   height: 20,
@@ -84,6 +86,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                 Text(
                   getRecommendations(level),
                   style: const TextStyle(fontSize: 18),
+                  textAlign: TextAlign.justify,
                 ),
 
                 const SizedBox(
@@ -93,6 +96,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                   getNextMeasuremetTime(level),
                   style: const TextStyle(
                       fontSize: 18, fontStyle: FontStyle.italic),
+                  textAlign: TextAlign.justify,
                 ),
 
                 //Boton de aceptar
