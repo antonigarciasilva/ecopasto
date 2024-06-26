@@ -52,6 +52,44 @@ class _PonaScreenState extends State<PonaScreen> {
             ));
   }
 
+  //Dialogo para mostrar al usuario que le falta llenar algunos botones
+  void _showMissingCalculationsDialog0(
+      BuildContext context, StatePona statePona) {
+    List<String> missingCalculationsO = [];
+
+    if (!statePona.isGreenPonaCalculated) {
+      missingCalculationsO.add('materia verde');
+    }
+
+    if (!statePona.isDryMatterPonaCalculated) {
+      missingCalculationsO.add('materia seca');
+    }
+
+    String message =
+        'Falta calcular: ${missingCalculationsO.join(', ')} para poder continuar';
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Calculos imcompletos',
+                textAlign: TextAlign.center,
+              ),
+              content: Text(
+                message,
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final statePona = Provider.of<StatePona>(context);
@@ -148,12 +186,17 @@ class _PonaScreenState extends State<PonaScreen> {
                       onPressed: statePona.isDryMatterPonaCalculated
                           ? null
                           : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const DryPonaScreen()),
-                              );
+                              if (statePona.isGreenPonaCalculated) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DryPonaScreen()),
+                                );
+                              } else {
+                                _showMissingCalculationsDialog0(
+                                    context, statePona);
+                              }
                             },
                       child: const Text(
                         '2. Materia seca',
@@ -175,11 +218,16 @@ class _PonaScreenState extends State<PonaScreen> {
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BiomassPona()),
-                        );
+                        if (statePona.isDryMatterPonaCalculated &&
+                            statePona.isGreenPonaCalculated) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const BiomassPona()),
+                          );
+                        } else {
+                          _showMissingCalculationsDialog0(context, statePona);
+                        }
                       },
                       child: const Text(
                         ' 3. Biomasa',

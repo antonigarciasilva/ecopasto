@@ -50,6 +50,44 @@ class _CipresScreenState extends State<CipresScreen> {
             ));
   }
 
+  //Dialogo para mostrar al usuario que le falta llenar algunos botones
+  void _showMissingCalculationsDialogC(
+      BuildContext context, StateCipres stateCipres) {
+    List<String> missingCalculationsC = [];
+
+    if (!stateCipres.isGreenCipresCalculated) {
+      missingCalculationsC.add('materia verde');
+    }
+
+    if (!stateCipres.isDryMatterCipresCalculated) {
+      missingCalculationsC.add('materia seca');
+    }
+
+    String message =
+        'Falta calcular: ${missingCalculationsC.join(', ')} para poder continuar';
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Calculos imcompletos',
+                textAlign: TextAlign.center,
+              ),
+              content: Text(
+                message,
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final stateCipres = Provider.of<StateCipres>(context);
@@ -143,11 +181,16 @@ class _CipresScreenState extends State<CipresScreen> {
                       onPressed: stateCipres.isDryMatterCipresCalculated
                           ? null
                           : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const DryMatterC()),
-                              );
+                              if (stateCipres.isGreenCipresCalculated) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const DryMatterC()),
+                                );
+                              } else {
+                                _showMissingCalculationsDialogC(
+                                    context, stateCipres);
+                              }
                             },
                       child: const Text(
                         '2. Materia seca',
@@ -169,11 +212,16 @@ class _CipresScreenState extends State<CipresScreen> {
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BiomassScreenC()),
-                        );
+                        if (stateCipres.isDryMatterCipresCalculated &&
+                            stateCipres.isGreenCipresCalculated) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const BiomassScreenC()),
+                          );
+                        } else {
+                          _showMissingCalculationsDialogC(context, stateCipres);
+                        }
                       },
                       child: const Text(
                         ' 3. Biomasa',

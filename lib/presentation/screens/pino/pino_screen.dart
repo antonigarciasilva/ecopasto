@@ -52,6 +52,44 @@ class _PinoScreenState extends State<PinoScreen> {
             ));
   }
 
+  //Dialogo para mostrar al usuario que le falta llenar algunos botones
+  void _showMissingCalculationsDialogP(
+      BuildContext context, StatePino statePino) {
+    List<String> missingCalculationsP = [];
+
+    if (!statePino.isGreenPinoCalculated) {
+      missingCalculationsP.add('materia verde');
+    }
+
+    if (!statePino.isDryMatterPinoCalculated) {
+      missingCalculationsP.add('materia seca');
+    }
+
+    String message =
+        'Falta calcular: ${missingCalculationsP.join(', ')} para poder continuar';
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Calculos imcompletos',
+                textAlign: TextAlign.center,
+              ),
+              content: Text(
+                message,
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final statePino = Provider.of<StatePino>(context);
@@ -147,11 +185,16 @@ class _PinoScreenState extends State<PinoScreen> {
                       onPressed: statePino.isDryMatterPinoCalculated
                           ? null
                           : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const DryMatterP()),
-                              );
+                              if (statePino.isGreenPinoCalculated) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const DryMatterP()),
+                                );
+                              } else {
+                                _showMissingCalculationsDialogP(
+                                    context, statePino);
+                              }
                             },
                       child: const Text(
                         '2. Materia seca',
@@ -173,11 +216,17 @@ class _PinoScreenState extends State<PinoScreen> {
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BiomassPinoScreen()),
-                        );
+                        if (statePino.isDryMatterPinoCalculated &&
+                            statePino.isGreenPinoCalculated) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const BiomassPinoScreen()),
+                          );
+                        } else {
+                          _showMissingCalculationsDialogP(context, statePino);
+                        }
                       },
                       child: const Text(
                         ' 3. Biomasa',

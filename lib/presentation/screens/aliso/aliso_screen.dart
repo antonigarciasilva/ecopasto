@@ -39,10 +39,6 @@ class _AlisoScreenState extends State<AlisoScreen> {
       missingCalculations.add('materia seca');
     }
 
-    if (!stateAliso.isTotalBiomassCalculated) {
-      missingCalculations.add('biomasa total');
-    }
-
     String message =
         'Falta calcular: ${missingCalculations.join(', ')} para poder continuar';
 
@@ -191,12 +187,17 @@ class _AlisoScreenState extends State<AlisoScreen> {
                       onPressed: stateAliso.isDryMatterAlissoCalculated
                           ? null
                           : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const DryMatterScreen()),
-                              );
+                              if (stateAliso.isGreenAlisoCalculated) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DryMatterScreen()),
+                                );
+                              } else {
+                                _showMissingCalculationsDialog(
+                                    context, stateAliso);
+                              }
                             },
                       child: const Text(
                         '2. Materia seca',
@@ -218,11 +219,17 @@ class _AlisoScreenState extends State<AlisoScreen> {
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BiomassAlderScreen()),
-                        );
+                        if (stateAliso.isDryMatterAlissoCalculated &&
+                            stateAliso.isGreenAlisoCalculated) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const BiomassAlderScreen()),
+                          );
+                        } else {
+                          _showMissingCalculationsDialog(context, stateAliso);
+                        }
                       },
                       child: const Text(
                         ' 3. Biomasa',
