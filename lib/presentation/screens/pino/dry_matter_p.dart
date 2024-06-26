@@ -173,7 +173,7 @@ class _DryMatterPState extends State<DryMatterP> {
                     ),
                   ),
 
-                  //Peso de la materia verde
+                  //Peso de la materia seca
                   const SizedBox(height: 25),
 
                   const Text(

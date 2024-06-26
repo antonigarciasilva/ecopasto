@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/cipres/cipres_screen.dart';
 import 'package:intl/intl.dart';
+import 'package:version/presentation/screens/cipres/state_cipres.dart';
 
 class GreenMatterC extends StatefulWidget {
   const GreenMatterC({super.key});
@@ -14,6 +16,7 @@ class _GreenMatterCState extends State<GreenMatterC> {
   String? selectedValue;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightC = TextEditingController();
+  double? greenCipres;
 
   //Validar el peso
   String? _validateWeightC(String? value) {
@@ -30,6 +33,11 @@ class _GreenMatterCState extends State<GreenMatterC> {
   //Validación del boton
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
+      final double greenMatterC = double.parse(_controllerWeightC.text);
+      final double greenCipres = greenMatterC;
+
+      Provider.of<StateCipres>(context, listen: false)
+          .setGreenCipres(greenCipres);
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const CipresScreen()));
     }

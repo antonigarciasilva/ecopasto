@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:version/presentation/screens/cipres/cipres_screen.dart';
+import 'package:version/presentation/screens/cipres/state_cipres.dart';
 
 class DryMatterC extends StatefulWidget {
   const DryMatterC({super.key});
@@ -12,6 +15,7 @@ class _DryMatterCState extends State<DryMatterC> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightDry = TextEditingController();
   final _controllerWeightWet = TextEditingController();
+  double? dryMatterCipres;
 
   //Validar el peso
   String? _validateWeightC(String? value) {
@@ -32,8 +36,11 @@ class _DryMatterCState extends State<DryMatterC> {
       final double pms = double.parse(_controllerWeightDry.text);
       final double pmh = double.parse(_controllerWeightWet.text);
 
-      final double resultmsc = pms / pmh * 100;
-      final String formattedResult = resultmsc.toStringAsFixed(2);
+      final double dryMatterCipres = pms / pmh * 100;
+      final String formattedResult = dryMatterCipres.toStringAsFixed(2);
+
+      Provider.of<StateCipres>(context, listen: false)
+          .setDryMatterCipres(dryMatterCipres);
 
       showDialog(
           context: context,
@@ -165,7 +172,7 @@ class _DryMatterCState extends State<DryMatterC> {
                     ),
                   ),
 
-                  //Peso de la materia verde
+                  //Peso de la materia seca
                   const SizedBox(height: 25),
 
                   const Text(

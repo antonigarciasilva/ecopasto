@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/cipres/biomass/biomass_c.dart';
 import 'package:version/presentation/screens/cipres/carbon/carbon_c.dart';
 import 'package:version/presentation/screens/cipres/dry_matter_c.dart';
 import 'package:version/presentation/screens/cipres/green_matter_c.dart';
+import 'package:version/presentation/screens/cipres/state_cipres.dart';
 import 'package:version/presentation/screens/widgets/side_menu.dart';
 
 class CipresScreen extends StatefulWidget {
@@ -14,6 +16,14 @@ class CipresScreen extends StatefulWidget {
 }
 
 class _CipresScreenState extends State<CipresScreen> {
+  //llamamos al provider
+  StateCipres? stateCipres;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateCipres = Provider.of<StateCipres>(context);
+  }
+
   void openDialog(BuildContext context) {
     showDialog(
         context: context,
@@ -42,6 +52,7 @@ class _CipresScreenState extends State<CipresScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final stateCipres = Provider.of<StateCipres>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -95,15 +106,19 @@ class _CipresScreenState extends State<CipresScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateCipres.isGreenCipresCalculated
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const GreenMatterC()),
-                        );
-                      },
+                      onPressed: stateCipres.isGreenCipresCalculated
+                          ? null
+                          : () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const GreenMatterC()),
+                              );
+                            },
                       child: const Text(
                         '1. Materia verde',
                         style: TextStyle(fontSize: 18, color: Colors.white),
@@ -121,15 +136,19 @@ class _CipresScreenState extends State<CipresScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            stateCipres.isDryMatterCipresCalculated
+                                ? Colors.grey
+                                : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DryMatterC()),
-                        );
-                      },
+                      onPressed: stateCipres.isDryMatterCipresCalculated
+                          ? null
+                          : () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DryMatterC()),
+                              );
+                            },
                       child: const Text(
                         '2. Materia seca',
                         style: TextStyle(fontSize: 18, color: Colors.white),

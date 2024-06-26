@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/pona/pona_screen.dart';
+import 'package:version/presentation/screens/pona/state_pona.dart';
 
 class DryPonaScreen extends StatefulWidget {
   const DryPonaScreen({super.key});
@@ -14,6 +16,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightDry = TextEditingController();
   final TextEditingController _controllerWeightWet = TextEditingController();
+  double? dryMatterPona;
 
   //Validar form de peso
   String? _validateWeightP(String? value) {
@@ -35,8 +38,11 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
       final double pms = double.parse(_controllerWeightDry.text);
       final double pmh = double.parse(_controllerWeightWet.text);
 
-      final double resultmso = pms / pmh * 100;
-      final String formattedResult = resultmso.toStringAsFixed(2);
+      final double dryMatterPona = pms / pmh * 100;
+      final String formattedResult = dryMatterPona.toStringAsFixed(2);
+
+      Provider.of<StatePona>(context, listen: false)
+          .setDryMatterPona(dryMatterPona);
 
       showDialog(
           context: context,
@@ -171,6 +177,35 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                           style: TextStyle(fontSize: 10),
                         ),
                       ),
+                    ),
+                  ),
+
+                  //Peso de la materia seca
+                  const SizedBox(height: 25),
+
+                  const Text(
+                    'Peso de la materia seca (PMS): ',
+                    style: TextStyle(fontSize: 15),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: _controllerWeightDry,
+                      validator: _validateWeightP,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        labelText: 'Ingresa el peso en Kg',
+                        labelStyle: const TextStyle(fontSize: 15),
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
 

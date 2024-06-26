@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/pona/pona_screen.dart';
+import 'package:version/presentation/screens/pona/state_pona.dart';
 
 class GreenMatterPona extends StatefulWidget {
   const GreenMatterPona({super.key});
@@ -14,6 +16,7 @@ class _GreenMatterPonaState extends State<GreenMatterPona> {
   //Vamos a validar nuestro formulario
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightP = TextEditingController();
+  double? greenPona;
 
   //Validar form de peso
   String? _validateWeightP(String? value) {
@@ -31,8 +34,12 @@ class _GreenMatterPonaState extends State<GreenMatterPona> {
 //Validación del boton
 
   void _submitForm() {
+    final greenMatterO = double.parse(_controllerWeightP.text);
+    final greenPona = greenMatterO;
+
+    Provider.of<StatePona>(context, listen: false).setGreenPona(greenPona);
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
+      Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const PonaScreen()));
     }
   }
