@@ -37,6 +37,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
               title: Text(
                 'La biomasa total es: $formattedBiomassP',
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 18),
               ),
               actions: [
                 TextButton(
@@ -61,6 +62,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
               title: const Text(
                 '¿Qué es la biomasa?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'En los sistemas silvopastoriles, la biomasa se refiere a la materia orgánica generada por la combinación de árboles, arbustos, pastos y ganado, optimizando el uso del suelo mediante la integración de la producción forestal y ganadera. Estos sistemas mejoran la fertilidad del suelo, facilitan un ciclo cerrado de nutrientes, capturan carbono, diversifican los ingresos y mejoran el microclima.',
@@ -175,7 +177,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                       ),
                       onPressed: () {},
                       child: const Text(
-                        'BVT(Tm/ha) = BM ARBÓREA + BN HERBÁCEA \n + BM HOJARASCA',
+                        'BVT(T/ha) = BM ARBÓREA + BN HERBÁCEA \n + BM HOJARASCA',
                         style: TextStyle(fontSize: 16, color: Colors.black),
                         textAlign: TextAlign.center,
                       ),
@@ -194,7 +196,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*BVT: Biomasa vegetal total (Tm/ha)',
+                        '*BVT: Biomasa vegetal total (T/ha)',
                         style: TextStyle(fontSize: 10),
                       ),
                     ),
@@ -293,7 +295,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                   ),
                 ),
 
-                //Guardar
+                //Calcular
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,

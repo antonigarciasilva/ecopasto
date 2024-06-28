@@ -56,9 +56,10 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
               title: const Text(
                 '¿Qué es el carbono en la biomasa?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
-                'es la cantidad de carbono en componentes vivos de un ecosistema. Incluye árboles, arbustos, pastos y raíces. Las plantas capturan CO2 de la atmósfera y lo almacenan en sus tejidos. Actúa como un sumidero de carbono, ayudando a mitigar el cambio climático.',
+                'Es la cantidad de carbono en componentes vivos de un ecosistema. Incluye árboles, arbustos, pastos y raíces. Las plantas capturan CO2 de la atmósfera y lo almacenan en sus tejidos. Actúa como un sumidero de carbono, ayudando a mitigar el cambio climático.',
                 textAlign: TextAlign.justify,
               ),
               actions: [
@@ -136,7 +137,7 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'CBV(t/ha): BVT * 0.4270',
+                          'CBV(T/ha): BVT * 0.4270',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -151,7 +152,7 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*CBV: Carbono en biomasa vegetal(Tm/ha) \n'
+                          '*CBV: Carbono en biomasa vegetal(T/ha) \n'
                           '*0.4270: Fracción de carbono de Pino \n',
                           style: TextStyle(fontSize: 10),
                         ),
@@ -168,7 +169,7 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                     children: <Widget>[
                       Text(
                         'Reemplazando valares: \n'
-                        'CBV(tn/ha): ${stateBiomassP!.totalBiomassP.toStringAsFixed(2)} * 0.4270',
+                        'CBV(T/ha): ${stateBiomassP!.totalBiomassP.toStringAsFixed(2)} * 0.4270',
                         style: const TextStyle(
                           fontSize: 15,
                         ),

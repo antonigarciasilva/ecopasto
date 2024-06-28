@@ -48,8 +48,9 @@ class _DryBiomassPState extends State<DryBiomassP> {
           builder: (context) => AlertDialog(
                   title: const Text('Resultado del cáculo'),
                   content: Text(
-                    'La biomasa seca es: $formattedResult ',
+                    'La biomasa seca es: $formattedResult T/ha',
                     textAlign: TextAlign.justify,
+                    style: const TextStyle(fontSize: 18),
                   ),
                   actions: [
                     TextButton(
@@ -77,6 +78,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
               title: const Text(
                 '¿Qué es la biomasa seca?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'La biomasa seca se refiere a la cantidad de materia orgánica que queda después de eliminar toda el agua contenida en ella. Este proceso se realiza generalmente mediante secado en un horno hasta alcanzar un peso constante. La biomasa seca es una medida importante porque proporciona una estimación precisa de la materia orgánica real, excluyendo el contenido de agua que puede variar significativamente.',

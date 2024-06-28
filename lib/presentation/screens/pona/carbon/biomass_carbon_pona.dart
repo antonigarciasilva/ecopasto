@@ -56,6 +56,7 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona> {
               title: const Text(
                 '¿Qué es el carbono en la biomasa?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'es la cantidad de carbono en componentes vivos de un ecosistema. Incluye árboles, arbustos, pastos y raíces. Las plantas capturan CO2 de la atmósfera y lo almacenan en sus tejidos. Actúa como un sumidero de carbono, ayudando a mitigar el cambio climático.',
@@ -133,7 +134,7 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'CBV(t/ha): BVT * 0.5674',
+                          'CBV(T/ha): BVT * 0.5674',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -148,7 +149,7 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*CBV: Carbono en biomasa vegetal(t/ha) \n'
+                          '*CBV: Carbono en biomasa vegetal(T/ha) \n'
                           '*0.5674: Fracción de carbono de Pona \n',
                           style: TextStyle(fontSize: 10),
                         ),
@@ -164,7 +165,7 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona> {
                     children: [
                       Text(
                         'Reemplazando valores: \n'
-                        'CBV(Tn/ha): ${stateBiomassO!.totalBiomassO.toStringAsFixed(2)} * 0.5674',
+                        'CBV(T/ha): ${stateBiomassO!.totalBiomassO.toStringAsFixed(2)} * 0.5674',
                         style: const TextStyle(fontSize: 15),
                         textAlign: TextAlign.center,
                       )

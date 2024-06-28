@@ -30,6 +30,7 @@ class _NewCipresScreenState extends State<NewCipresScreen> {
               title: const Text(
                 '¿Qué es el Ciprés?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'El árbol de ciprés (Cupressus spp.) en sistemas silvopastoriles es una especie de árbol conífero que se utiliza por su rápido crecimiento y su capacidad para proporcionar sombra y protección contra el viento. También puede ayudar a reducir la erosión del suelo y mejorar la biodiversidad en la zona.',
@@ -96,7 +97,7 @@ class _NewCipresScreenState extends State<NewCipresScreen> {
                 _buildButton(
                   context,
                   0,
-                  '1. Materia verdeverde',
+                  '1. Materia verde',
                   const GreenMatterC(),
                 ),
 

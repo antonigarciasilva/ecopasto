@@ -49,8 +49,9 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
           builder: (context) => AlertDialog(
                 title: const Text('Resultado del cálculo'),
                 content: Text(
-                  'La biomasa herbácea es: $formattedResult Tm/ha',
+                  'La biomasa herbácea es: $formattedResult T/ha',
                   textAlign: TextAlign.justify,
+                  style: const TextStyle(fontSize: 18),
                 ),
                 actions: [
                   TextButton(
@@ -77,6 +78,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
               title: const Text(
                 '¿Qué es la biomasa herbácea?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'La biomasa herbácea se refiere a la materia orgánica de las plantas herbáceas, que son plantas no leñosas como pastos, flores silvestres y otras plantas de bajo crecimiento. Estas plantas suelen ser de ciclo de vida corto y juegan un papel importante en los ecosistemas, proporcionando alimento para herbívoros, contribuyendo a la estabilidad del suelo y participando en los ciclos de nutrientes.',
@@ -155,7 +157,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'BH(Tm/ha) = ((PSM/PFM) * PFT) * 0.01',
+                          'BH(T/ha) = ((PSM/PFM) * PFT) * 0.01',
                           style: TextStyle(fontSize: 16, color: Colors.black),
                           textAlign: TextAlign.center,
                         ),
@@ -172,7 +174,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*BH: Biomasa herbácea(Tm/ha) \n'
+                          '*BH: Biomasa herbácea(T/ha) \n'
                           '*0.01: Factor de conversión para biomasa herbácea \n',
                           style: TextStyle(fontSize: 10),
                         ),
@@ -180,91 +182,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                     ),
                   ),
 
-                  //PSM
-                  const SizedBox(height: 25),
-
-                  const Text(
-                    'Peso seco de la materia (PSM): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      controller: _controllerWeightPSM,
-                      validator: _validateWeight,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        labelText: 'Ingresa el peso en gr',
-                        labelStyle: const TextStyle(fontSize: 14),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-
-                  //PFM
-                  const SizedBox(height: 25),
-
-                  const Text(
-                    'Peso fresco de la muestra (PFM): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      controller: _controllerWeightPFM,
-                      validator: _validateWeight,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        labelText: 'Ingresa el peso en gr',
-                        labelStyle: const TextStyle(fontSize: 14),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-
-                  //PST
-                  const SizedBox(height: 25),
-
-                  const Text(
-                    'Peso fresco total por m² (PFT): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      controller: _controllerWeightPST,
-                      validator: _validateWeight,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        labelText: 'Ingresa el peso en gr/m²',
-                        labelStyle: const TextStyle(fontSize: 14),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-
-                  //Guardar
+                  //Calcular
                   const SizedBox(height: 20.0),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,

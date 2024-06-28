@@ -35,6 +35,7 @@ class _PinoScreenState extends State<PinoScreen> {
               title: const Text(
                 '¿Qué es el Pino?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'El árbol de pino (Pinus spp.) en sistemas silvopastoriles es una especie de árbol conífero ampliamente utilizada por su madera, resina y otros productos forestales. En sistemas silvopastoriles, el pino proporciona sombra, protección contra el viento y mejora la calidad del suelo. Además, puede ser utilizado como fuente de alimento y forraje para animales en sistemas agroforestales.',
@@ -75,6 +76,7 @@ class _PinoScreenState extends State<PinoScreen> {
               title: const Text(
                 'Calculos imcompletos',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
               ),
               content: Text(
                 message,

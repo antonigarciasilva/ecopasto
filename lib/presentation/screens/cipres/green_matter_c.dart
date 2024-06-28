@@ -25,7 +25,7 @@ class _GreenMatterCState extends State<GreenMatterC> {
     }
     final wieghtRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
     if (!wieghtRegExp.hasMatch(value)) {
-      return 'Solo acepta valones numéricos';
+      return 'Solo se acepta valores numéricos';
     }
     return null;
   }
@@ -53,6 +53,7 @@ class _GreenMatterCState extends State<GreenMatterC> {
               title: const Text(
                 '¿Cómo sacar la materia verde?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'Se procede al corte y pesado del material vegetativo del SSP, en un área de 1 m2, con 3 repeticiones, con el apoyo de un cuadrante de madera o fierro y una hoz se va a realizar el corte a una altura de 05 cm del suelo, para luego pesar las muestras en una balanza de 5kg, expresando el resultado en kg de materia verde/m2 (kg mv.m2). ',

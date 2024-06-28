@@ -20,7 +20,7 @@ class _ConversionCarbonPonaState extends State<ConversionCarbonPona> {
     //validar con ReGEXP
     final coRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
     if (!coRegExp.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
+      return 'Solo se acepta valores numéricos';
     }
     return null;
   }
@@ -40,9 +40,10 @@ class _ConversionCarbonPonaState extends State<ConversionCarbonPona> {
           builder: (context) => AlertDialog(
                   title: const Text(
                     'Resultado del cálculo',
+                    style: TextStyle(fontSize: 18),
                   ),
                   content: Text(
-                    'la cantidad de CO₂ es: $formattedResult Tn/ha',
+                    'la cantidad de CO₂ es: $formattedResult T/ha',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [
@@ -70,6 +71,7 @@ class _ConversionCarbonPonaState extends State<ConversionCarbonPona> {
               title: const Text(
                 '¿Qué es la conversión del carbono a CO2?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'La conversión del carbono en dióxido de carbono (CO₂) es un proceso natural y humano en el que el carbono se oxida para formar CO₂. Esto ocurre en la respiración celular, la descomposición y la quema de combustibles fósiles. El aumento de CO₂ en la atmósfera es una causa principal del cambio climático. Para reducir estas emisiones, se emplean estrategias como la reforestación y el uso de energías renovables.',
@@ -147,7 +149,7 @@ class _ConversionCarbonPonaState extends State<ConversionCarbonPona> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'CO₂ (Tn/ha) = CO * 3.666',
+                          'CO₂ (T/ha) = CO * 3.666',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),

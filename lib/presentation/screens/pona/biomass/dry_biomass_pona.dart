@@ -51,7 +51,10 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
-                  title: const Text('Resultado del cáculo'),
+                  title: const Text(
+                    'Resultado del cáculo',
+                    style: TextStyle(fontSize: 18),
+                  ),
                   content: Text(
                     'La biomasa seca es: $formattedResult ',
                     textAlign: TextAlign.justify,
@@ -80,6 +83,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
         builder: (context) => AlertDialog(
               title: const Text(
                 '¿Qué es la biomasa seca?',
+                style: TextStyle(fontSize: 18),
                 textAlign: TextAlign.justify,
               ),
               content: const Text(
@@ -236,7 +240,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                     ),
                   ),
 
-                  //Guardar
+                  //Calcular
                   const SizedBox(height: 20.0),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,

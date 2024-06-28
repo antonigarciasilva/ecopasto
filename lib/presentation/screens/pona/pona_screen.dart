@@ -35,6 +35,7 @@ class _PonaScreenState extends State<PonaScreen> {
               title: const Text(
                 '¿Qué es la Pona?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'El árbol de la pona (Calycophyllum spruceanum) en sistemas silvopastoriles es una especie arbórea nativa de la Amazonía utilizada por su rápido crecimiento y capacidad para mejorar la calidad del suelo. Proporciona sombra y protección contra el viento, y también puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
@@ -75,6 +76,7 @@ class _PonaScreenState extends State<PonaScreen> {
               title: const Text(
                 'Calculos imcompletos',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
               ),
               content: Text(
                 message,

@@ -41,7 +41,10 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
-                  title: const Text('Resultado del cálculo'),
+                  title: const Text(
+                    'Resultado del cálculo',
+                    style: TextStyle(fontSize: 18),
+                  ),
                   content: Text(
                     'El peso del suelo (Ws) es: $result T/ha',
                     textAlign: TextAlign.justify,
@@ -80,6 +83,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
               title: const Text(
                 '¿Qué es el carbono en el suelo?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'El carbono en el suelo es la cantidad de carbono en la materia orgánica del suelo. Incluye restos de plantas y animales, y microorganismos. Este carbono entra al suelo por la descomposición de materiales orgánicos. El suelo actúa como un sumidero de carbono a largo plazo, mejorando la fertilidad y estructura del suelo.',

@@ -19,15 +19,6 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
     super.didChangeDependencies();
     stateBiomassC = Provider.of<StateBiomassC>(context);
   }
-/*
-  void _seeform() {
-    Text(
-        'CBV(tn/ha): ${stateBiomassC!.totalBiomassC.toStringAsFixed(2)} * 0.5000 \n ',
-        style: const TextStyle(
-          fontSize: 15,
-        ));
-  }
-*/
 
   void _seeResultCarbonBiomassC() {
     Navigator.push(
@@ -35,26 +26,6 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
         MaterialPageRoute(
             builder: (context) => ResultCarbonBiomassC(
                 resultCarbonBiomassC: stateBiomassC!.resultCarbonBiomassC)));
-    /*
-    showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text('Resultado de cálculo'),
-              content: Text(
-                'El total de carbono en la biomsa es: ${stateBiomassC?.resultCarbonBiomassC.toStringAsFixed(2)} Tn/ha ',
-                textAlign: TextAlign.justify,
-              ),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CarbonScreenC()));
-                    },
-                    child: const Text('Aceptar'))
-              ],
-            )); */
   }
 
   //Calculamos el carbon con la biomasa
@@ -82,9 +53,10 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
               title: const Text(
                 '¿Qué es el carbono en la biomasa?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
-                'es la cantidad de carbono en componentes vivos de un ecosistema. Incluye árboles, arbustos, pastos y raíces. Las plantas capturan CO2 de la atmósfera y lo almacenan en sus tejidos. Actúa como un sumidero de carbono, ayudando a mitigar el cambio climático.',
+                'Es la cantidad de carbono en componentes vivos de un ecosistema. Incluye árboles, arbustos, pastos y raíces. Las plantas capturan CO2 de la atmósfera y lo almacenan en sus tejidos. Actúa como un sumidero de carbono, ayudando a mitigar el cambio climático.',
                 textAlign: TextAlign.justify,
               ),
               actions: [
@@ -158,7 +130,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
                       ),
                       onPressed: () {},
                       child: const Text(
-                        'CBV(t/ha): BVT * 0.5000',
+                        'CBV(T/ha): BVT * 0.5000',
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
@@ -173,7 +145,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*CBV: Carbono en biomasa vegetal(Tn/ha) \n'
+                        '*CBV: Carbono en biomasa vegetal(T/ha) \n'
                         '*0.5000: Fracción de carbono de Ciprés \n',
                         style: TextStyle(fontSize: 10),
                       ),
@@ -187,7 +159,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
                   children: <Widget>[
                     Text(
                       'Reemplazando valores:\n'
-                      'CBV(tn/ha): ${stateBiomassC!.totalBiomassC.toStringAsFixed(2)} * 0.5000 \n ',
+                      'CBV(T/ha): ${stateBiomassC!.totalBiomassC.toStringAsFixed(2)} * 0.5000 \n ',
                       style: const TextStyle(
                         fontSize: 15,
                       ),
