@@ -49,6 +49,20 @@ class ResultCarbonBiomass extends StatelessWidget {
     }
   }
 
+  //Vamos a insertar imgs
+  String getImagePath(String level) {
+    switch (level) {
+      case 'Bajo':
+        return 'assets/result/bajo.jpg';
+      case 'Medio':
+        return 'assets/result/medio.jpg';
+      case 'Excelente':
+        return 'assets/result/excelente.jpg';
+      default:
+        return 'assets/result/medio.jpg';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     String level = getCarbonLevel(resultCarbonBiomass);
@@ -63,52 +77,77 @@ class ResultCarbonBiomass extends StatelessWidget {
     }
     return Scaffold(
         appBar: AppBar(title: const Text('Resultado del cálculo')),
-        body: Center(
-          child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(children: [
-                Text(
-                  'El carbono total en la biomasa es de: ${resultCarbonBiomass.toStringAsFixed(2)} Tn/Ha',
-                  style: const TextStyle(fontSize: 20),
-                  textAlign: TextAlign.justify,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'Nivel de carbono: $level',
-                  style: TextStyle(fontSize: 24, color: levelColor),
-                  textAlign: TextAlign.justify,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  getRecommendations(level),
-                  style: const TextStyle(fontSize: 18),
-                  textAlign: TextAlign.justify,
-                ),
+        body: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
 
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  getNextMeasuremetTime(level),
-                  style: const TextStyle(
-                      fontSize: 18, fontStyle: FontStyle.italic),
-                  textAlign: TextAlign.justify,
-                ),
+                        SizedBox(
+                            child: Image.asset(
+                          getImagePath(level),
+                          height: 200,
+                        )),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          'El carbono total en la biomasa es de: ${resultCarbonBiomass.toStringAsFixed(2)} Tn/Ha',
+                          style: const TextStyle(fontSize: 18),
+                          textAlign: TextAlign.justify,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          'Nivel de carbono: $level',
+                          style: TextStyle(fontSize: 21, color: levelColor),
+                          textAlign: TextAlign.justify,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          getRecommendations(level),
+                          style: const TextStyle(fontSize: 16),
+                          textAlign: TextAlign.justify,
+                        ),
 
-                //Boton de aceptar
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CarbonScreen()));
-                    },
-                    child: const Text('Aceptar'))
-              ])),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          getNextMeasuremetTime(level),
+                          style: const TextStyle(
+                              fontSize: 15, fontStyle: FontStyle.italic),
+                          textAlign: TextAlign.justify,
+                        ),
+
+                        //Boton de aceptar
+                        ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStateProperty.all<Color>(
+                                    Colors.green)),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CarbonScreen()));
+                            },
+                            child: const Text('Aceptar',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white)))
+                      ])),
+            ),
+          ),
         ));
   }
 }

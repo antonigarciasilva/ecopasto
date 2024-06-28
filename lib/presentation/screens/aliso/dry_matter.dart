@@ -49,9 +49,12 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
-                  title: const Text('Resultado del cáculo'),
+                  title: const Text(
+                    'Resultado del cáculo',
+                    style: TextStyle(fontSize: 18),
+                  ),
                   content: Text(
-                    'El peso de la materia seca es: $formattedResult kg.m²',
+                    'El peso de la materia seca es: $formattedResult % MS',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [
@@ -79,6 +82,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
               title: const Text(
                 '¿Cómo sacar el peso de la muestra seca (PSM)',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'Se emplea una sub muestra de la materia verde de 500g dependiendo de la cantidad de pastura, luego, se coloca en una estufa a 60 °C, hasta obtener un peso constante y con la ayuda de una balanza de 1 Kg se optine el PSM',

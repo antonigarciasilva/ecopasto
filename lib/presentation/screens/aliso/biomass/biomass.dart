@@ -47,6 +47,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
               title: const Text(
                 '¿Qué es la biomasa?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'En los sistemas silvopastoriles, la biomasa se refiere a la materia orgánica generada por la combinación de árboles, arbustos, pastos y ganado, optimizando el uso del suelo mediante la integración de la producción forestal y ganadera. Estos sistemas mejoran la fertilidad del suelo, facilitan un ciclo cerrado de nutrientes, capturan carbono, diversifican los ingresos y mejoran el microclima.',
@@ -76,9 +77,12 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-              title: const Text('Resultado de cálculo'),
+              title: const Text(
+                'Resultado de cálculo',
+                style: TextStyle(fontSize: 18),
+              ),
               content: Text(
-                'La biomasa total es: $formattedBiomass',
+                'La biomasa total es: $formattedBiomass T/ha',
                 textAlign: TextAlign.justify,
               ),
               actions: [
@@ -118,7 +122,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: const Text(
-                'Calculos imcompletos',
+                'Cálculos imcompletos',
                 textAlign: TextAlign.center,
               ),
               content: Text(
@@ -213,7 +217,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*BVT: Biomasa vegetal total (Tm/ha)',
+                        '*BVT: Biomasa vegetal total (T/ha)',
                         style: TextStyle(fontSize: 10),
                       ),
                     ),

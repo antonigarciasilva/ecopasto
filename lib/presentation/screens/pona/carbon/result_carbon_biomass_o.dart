@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:version/presentation/screens/pona/carbon/carbon_pona.dart';
 
 class ResultCarbonBiomassO extends StatelessWidget {
+  //para el resultado
   final double resultCarbonBiomassO;
-  const ResultCarbonBiomassO({super.key, required this.resultCarbonBiomassO});
+
+  //constructor
+  const ResultCarbonBiomassO({
+    super.key,
+    required this.resultCarbonBiomassO,
+  });
 
   //Vamos a definir los rangos
   String getCarbonLevelO(double resultCarbonBiomassO) {
@@ -91,10 +97,14 @@ class ResultCarbonBiomassO extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(
-                    height: 20,
+                    height: 60,
                   ),
 
-                  SizedBox(child: Image.asset(getImagePath(level))),
+                  SizedBox(
+                      child: Image.asset(
+                    getImagePath(level),
+                    height: 200,
+                  )),
                   const SizedBox(
                     height: 20,
                   ),
@@ -108,7 +118,7 @@ class ResultCarbonBiomassO extends StatelessWidget {
                   ),
                   Text(
                     'Nivel de carbono: $level',
-                    style: TextStyle(fontSize: 24, color: levelColor),
+                    style: TextStyle(fontSize: 21, color: levelColor),
                     textAlign: TextAlign.justify,
                   ),
                   const SizedBox(

@@ -48,7 +48,7 @@ class _DryMatterCState extends State<DryMatterC> {
           builder: (context) => AlertDialog(
                   title: const Text('Resultado del cáculo'),
                   content: Text(
-                    'El peso de la materia seca es: $formattedResult kg.m²',
+                    'El peso de la materia seca es: $formattedResult % MS',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [

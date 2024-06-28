@@ -44,9 +44,12 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
-                  title: const Text('Resultado del cáculo'),
+                  title: const Text(
+                    'Resultado del cálculo',
+                    style: TextStyle(fontSize: 18),
+                  ),
                   content: Text(
-                    'La biomasa seca es: $formattedResult ',
+                    'La biomasa seca es: $formattedResult T/ha',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [
@@ -75,6 +78,7 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
               title: const Text(
                 '¿Qué es la biomasa seca?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'La biomasa seca es la materia orgánica total de un árbol, medida en peso seco. Se calcula usando el diámetro a la altura del pecho (DAP) y fórmulas alométricas específicas para cada especie.',

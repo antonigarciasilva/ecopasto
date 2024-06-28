@@ -15,6 +15,7 @@ class CarbonScreen extends StatelessWidget {
         builder: (context) => AlertDialog(
               title: const Text(
                 '¿Qué es el carbono?',
+                style: TextStyle(fontSize: 18),
                 textAlign: TextAlign.justify,
               ),
               content: const Text(

@@ -56,6 +56,7 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
         builder: (context) => AlertDialog(
               title: const Text(
                 '¿Qué es el carbono en la biomasa?',
+                style: TextStyle(fontSize: 18),
                 textAlign: TextAlign.justify,
               ),
               content: const Text(
@@ -134,7 +135,7 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'CBV(Tn/ha): BVT * 0.4270',
+                          'CBV(T/ha): BVT * 0.4270',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -149,7 +150,7 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*CBV: Carbono en biomasa vegetal(Tn/ha) \n'
+                          '*CBV: Carbono en biomasa vegetal(T/ha) \n'
                           '*0.4270: Fracción de carbono de Aliso \n',
                           style: TextStyle(fontSize: 10),
                         ),
@@ -164,7 +165,7 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                     children: <Widget>[
                       Text(
                         'Reemplazando valores:\n'
-                        'CBV(tn/ha): ${stateBiomass!.totalBiomass.toStringAsFixed(2)} * 0.4270 \n ',
+                        'CBV(T/ha): ${stateBiomass!.totalBiomass.toStringAsFixed(2)} * 0.4270 \n ',
                         style: const TextStyle(
                           fontSize: 15,
                         ),

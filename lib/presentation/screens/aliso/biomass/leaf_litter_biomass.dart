@@ -49,9 +49,12 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
-                title: const Text('Resultado del cálculo'),
+                title: const Text(
+                  'Resultado del cálculo',
+                  style: TextStyle(fontSize: 18),
+                ),
                 content: Text(
-                  'La biomasa herbácea es: $formattedResult Tm/ha',
+                  'La biomasa herbácea es: $formattedResult T/ha',
                   textAlign: TextAlign.justify,
                 ),
                 actions: [
@@ -79,6 +82,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
               title: const Text(
                 '¿Qué es la biomasa hojarasca?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'La biomasa de hojarasca incluye las hojas caídas, ramas pequeñas, flores, frutos y otros restos vegetales que se acumulan en el suelo del bosque o de cualquier área con vegetación arbórea. Esta hojarasca es una fuente crucial de nutrientes para el suelo, ya que se descompone y enriquece el suelo con materia orgánica, mejorando su estructura y fertilidad.',
@@ -155,7 +159,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'BH(Tm/ha) = ((PSM/PFM) * PFT) * 0.04',
+                          'BH(T/ha) = ((PSM/PFM) * PFT) * 0.04',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
@@ -173,7 +177,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '*BH: Biomasa hojarasca(Tm/ha) \n'
+                          '*BH: Biomasa hojarasca(T/ha) \n'
                           '*0.04: Factor de conversión para biomasa hojarasca \n',
                           style: TextStyle(fontSize: 10),
                         ),

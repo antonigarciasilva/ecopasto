@@ -30,8 +30,10 @@ environment:
 dependencies:
   animate_do: ^3.3.4
   cupertino_icons: ^1.0.6
+  echart_flutter: ^0.1.0+2
   flutter:
     sdk: flutter
+  flutter_charts: ^0.5.2
   flutter_launcher_icons: ^0.13.1
   flutter_provider: ^2.1.0
   flutter_riverpod: ^2.5.1
@@ -100,7 +102,7 @@ flutter:
     #Slides
     - assets/slides/
 
-    #Results 
+    #Results
     - assets/result/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -40,9 +40,10 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
           builder: (context) => AlertDialog(
                   title: const Text(
                     'Resultado del cálculo',
+                    style: TextStyle(fontSize: 18),
                   ),
                   content: Text(
-                    'la cantidad de CO₂ es: $formattedResult Tn/ha',
+                    'la cantidad de CO₂ es: $formattedResult T/ha',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [
@@ -67,8 +68,9 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: const Text(
-                '¿Qué es la conversión del carbono a CO2?',
+                '¿Qué es la conversión del carbono a CO₂?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'La conversión del carbono en dióxido de carbono (CO₂) es un proceso natural y humano en el que el carbono se oxida para formar CO₂. Esto ocurre en la respiración celular, la descomposición y la quema de combustibles fósiles. El aumento de CO₂ en la atmósfera es una causa principal del cambio climático. Para reducir estas emisiones, se emplean estrategias como la reforestación y el uso de energías renovables.',

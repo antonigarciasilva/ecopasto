@@ -47,8 +47,9 @@ class _AlisoScreenState extends State<AlisoScreen> {
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: const Text(
-                'Calculos imcompletos',
+                'Cálculos imcompletos',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
               ),
               content: Text(
                 message,
@@ -74,6 +75,7 @@ class _AlisoScreenState extends State<AlisoScreen> {
               title: const Text(
                 '¿Qué es el Aliso?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
                 'El árbol de aliso (Alnus acuminata) en sistemas silvopastoriles es una especie arbórea utilizada por sus beneficios ambientales y productivos. Proporciona sombra, mejora la calidad del suelo y puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',

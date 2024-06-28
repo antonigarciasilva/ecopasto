@@ -42,7 +42,7 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
         builder: (context) => AlertDialog(
           title: const Text('Resultado del cálculo'),
           content: Text(
-            'El peso del suelo (Ws) es: $result t/ha',
+            'El peso del suelo (Ws) es: $result T/ha',
             textAlign: TextAlign.justify,
           ),
           actions: [
@@ -149,7 +149,7 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'Ws (t/ha) = a * p * da',
+                          'Ws (T/ha) = a * p * da',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -162,7 +162,7 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*Ws: Peso del suelo (t/ha) ',
+                        '*Ws: Peso del suelo (T/ha) ',
                         style: TextStyle(fontSize: 10),
                       ),
                     ),
@@ -231,7 +231,7 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        labelText: 'Ingrese la (da) en Kg/m3',
+                        labelText: 'Ingrese la (da) en Kg/m³',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
                       textAlign: TextAlign.center,
