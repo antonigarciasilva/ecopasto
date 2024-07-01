@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
-import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
+
+import 'package:version/presentation/screens/aliso/state_aliso.dart';
 
 class HerbaceousBiomassScreen extends StatefulWidget {
   const HerbaceousBiomassScreen({super.key});
@@ -12,64 +14,44 @@ class HerbaceousBiomassScreen extends StatefulWidget {
 }
 
 class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightPSM = TextEditingController();
-  final TextEditingController _controllerWeightPFM = TextEditingController();
-  final TextEditingController _controllerWeightPST = TextEditingController();
+  StateS? stateS;
+  String? errorMessage;
 
-  //Validación del peso
-  String? _validateWeight(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Por favor, ingrese el peso';
-    }
-    //Validación de peso
-    final weightRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!weightRegExp.hasMatch(value)) {
-      return 'Solo acepta valores númericos';
-    }
-    return null;
+  //Para usar el provider
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateS = Provider.of<StateS>(context);
   }
 
   // Calculo de la biomasa herbacea
 
   void _calculateHerbaceousBiomassResult() {
-    if (_formKey.currentState!.validate()) {
-      final double psm = double.parse(_controllerWeightPSM.text);
-      final double pfm = double.parse(_controllerWeightPFM.text);
-      final double pst = double.parse(_controllerWeightPST.text);
-
-      final double herbacaousBiomass = (psm / pfm * pst) * 0.01;
-      final String formattedResult = herbacaousBiomass.toStringAsFixed(2);
-
-      Provider.of<StateBiomass>(context, listen: false)
-          .setHerbaceousBiomass(herbacaousBiomass);
-
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => AlertDialog(
-                title: const Text(
-                  'Resultado del cálculo',
-                  style: TextStyle(fontSize: 18),
-                ),
-                content: Text(
-                  'La biomasa herbácea es: $formattedResult T/ha',
-                  textAlign: TextAlign.justify,
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const BiomassAlderScreen()));
-                      },
-                      child: const Text('Aceptar'))
-                ],
-              ));
-    }
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Resultado del cálculo',
+                style: TextStyle(fontSize: 18),
+              ),
+              content: Text(
+                'La biomasa herbácea es: ${stateS!.resultBiomassHerbaceous.toStringAsFixed(2)} T/ha',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const BiomassAlderScreen()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
   }
 
   //Dialogo informativo sobre el Aliso
@@ -107,7 +89,6 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
     return Scaffold(
       body: SafeArea(
         child: Form(
-          key: _formKey,
           child: Center(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -185,6 +166,24 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                         ),
                       ),
                     ),
+                  ),
+
+                  //Formula con variable completa
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Reemplazando valores:\n'
+                        'BH(T/ha): (${stateS!.dryMatterAliso!.toStringAsFixed(2)} / ${stateS!.greenAliso!.toStringAsFixed(2)} * ${stateS!.greenAliso!.toStringAsFixed(2)} )\n '
+                        ' * 0.01  ',
+                        style: const TextStyle(
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(width: 20),
+                    ],
                   ),
 
                   //Calcular

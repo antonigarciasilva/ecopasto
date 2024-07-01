@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
-
-import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
-import 'package:version/presentation/screens/aliso/dry_matter.dart';
-import 'package:version/presentation/screens/aliso/green_matter.dart';
 import 'package:version/presentation/screens/aliso/state_aliso.dart';
+import 'package:version/presentation/screens/no_tree/biomass/herbaceous_biomass_s.dart';
+import 'package:version/presentation/screens/no_tree/carbon/carbon_screen_s.dart';
+import 'package:version/presentation/screens/no_tree/dry_matter_s.dart';
+import 'package:version/presentation/screens/no_tree/green_matter_s.dart';
 
 import 'package:version/presentation/screens/widgets/side_menu.dart';
 
@@ -28,14 +27,13 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
               title: const Text(
                 '¿Qué es un pastizal?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               content: const Text(
-                'El árbol de aliso (Alnus acuminata) en sistemas silvopastoriles es una especie arbórea utilizada por sus beneficios ambientales y productivos. Proporciona sombra, mejora la calidad del suelo y puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
+                'Un pastizal es una extensión de tierra cubierta predominantemente por pastos y otras plantas herbáceas, utilizada principalmente para el pastoreo de ganado.',
                 textAlign: TextAlign.justify,
               ),
               actions: [
-                //con el goRouter podemos acceder al context.pop
-
                 FilledButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -47,11 +45,11 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final stateAliso = Provider.of<StateAliso>(context);
+    final stateS = Provider.of<StateS>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Silvopastoreo con pastizales',
+          'Sistema sin arboles',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -73,7 +71,7 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Image.asset(
-                      'assets/img/aliso/aliso.jpg',
+                      'assets/img/sinarbol/biomass/biomass_s.png',
                       fit: BoxFit.fitWidth,
                       height: 299,
                     ),
@@ -103,18 +101,18 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            stateAliso.isGreenAlisoCalculated
+                            stateS.isGreenSCalculated
                                 ? Colors.grey
                                 : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: stateAliso.isGreenAlisoCalculated
+                      onPressed: stateS.isGreenSCalculated
                           ? null
                           : () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const GreenMatterScreen()),
+                                        const GreenMatterScreenS()),
                               );
                             },
                       child: const Text(
@@ -134,19 +132,18 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            stateAliso.isDryMatterAlissoCalculated
+                            stateS.isDryMatterSCalculated
                                 ? Colors.grey
                                 : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: stateAliso.isDryMatterAlissoCalculated
+                      onPressed: stateS.isDryMatterSCalculated
                           ? null
                           : () {
-                              if (stateAliso.isGreenAlisoCalculated) {
+                              if (stateS.isGreenSCalculated) {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const DryMatterScreen()),
+                                      builder: (context) => const DryMatterS()),
                                 );
                               }
                             },
@@ -170,13 +167,13 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        if (stateAliso.isDryMatterAlissoCalculated &&
-                            stateAliso.isGreenAlisoCalculated) {
+                        if (stateS.isDryMatterSCalculated &&
+                            stateS.isGreenSCalculated) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const BiomassAlderScreen()),
+                                    const HerbaceousBiomassS()),
                           );
                         }
                       },
@@ -203,7 +200,7 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const CarbonScreen()),
+                              builder: (context) => const CarbonScreenS()),
                         );
                       },
                       child: const Text(

@@ -23,7 +23,7 @@ void main() {
       ChangeNotifierProvider(create: (context) => StateBiomassC()),
       ChangeNotifierProvider(create: (context) => StateBiomassP()),
       ChangeNotifierProvider(create: (context) => StateBiomassO()),
-      ChangeNotifierProvider(create: (context) => StateAliso()),
+      ChangeNotifierProvider(create: (context) => StateS()),
       ChangeNotifierProvider(create: (context) => StatePino()),
       ChangeNotifierProvider(create: (context) => StateCipres()),
       ChangeNotifierProvider(create: (context) => StatePona()),

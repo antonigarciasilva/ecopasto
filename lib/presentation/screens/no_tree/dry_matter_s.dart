@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/aliso/state_aliso.dart';
+import 'package:version/presentation/screens/no_tree/no_tree_screen.dart';
 
-import 'package:version/presentation/screens/cipres/cipres_screen.dart';
-import 'package:version/presentation/screens/cipres/state_cipres.dart';
-
-class DryMatterC extends StatefulWidget {
-  const DryMatterC({super.key});
+class DryMatterS extends StatefulWidget {
+  const DryMatterS({super.key});
 
   @override
-  State<DryMatterC> createState() => _DryMatterCState();
+  State<DryMatterS> createState() => _DryMatterSState();
 }
 
-class _DryMatterCState extends State<DryMatterC> {
+class _DryMatterSState extends State<DryMatterS> {
+  //Para hacer las validaciones tenemos que tner nuestro:
+  // Globalkey para ver el estado del formulario  y los controladores para poder acceder a la i del texto
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightDry = TextEditingController();
-  final _controllerWeightWet = TextEditingController();
-  double? dryMatterCipres;
+  final TextEditingController _controllerDryWeight = TextEditingController();
+  final TextEditingController _controllerWetWeight = TextEditingController();
+  double? dryMatteS;
 
-  //Validar el peso
-  String? _validateWeightC(String? value) {
+  //Validamos el peso de seco
+  String? _validateWeight(String? value) {
     if (value == null || value.isEmpty) {
       return 'Por favor, ingrese el peso';
     }
-    final weightRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!weightRegExp.hasMatch(value)) {
-      return 'Solo se acepta valores numéricos';
+
+    //Validación de regex
+    final dryWeight = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    if (!dryWeight.hasMatch(value)) {
+      return 'Solo acepta valores numéricos';
     }
     return null;
   }
@@ -33,14 +36,13 @@ class _DryMatterCState extends State<DryMatterC> {
 
   void _calculateDryMatterResult() {
     if (_formKey.currentState!.validate()) {
-      final double pms = double.parse(_controllerWeightDry.text);
-      final double pmh = double.parse(_controllerWeightWet.text);
+      final double pms = double.parse(_controllerDryWeight.text);
+      final double pmh = double.parse(_controllerWetWeight.text);
 
-      final double dryMatterCipres = pms / pmh * 100;
-      final String formattedResult = dryMatterCipres.toStringAsFixed(2);
+      final double dryMatterS = pms / pmh * 100;
+      final String formattedResult = dryMatterS.toStringAsFixed(2);
 
-      Provider.of<StateCipres>(context, listen: false)
-          .setDryMatterCipres(dryMatterCipres);
+      Provider.of<StateS>(context, listen: false).setDryMatterAliso(dryMatterS);
 
       showDialog(
           context: context,
@@ -57,11 +59,10 @@ class _DryMatterCState extends State<DryMatterC> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CipresScreen()));
+                                builder: (context) => const NoTreeScreen()));
                       },
                       child: const Text('Aceptar'),
                     )
@@ -69,7 +70,7 @@ class _DryMatterCState extends State<DryMatterC> {
     }
   }
 
-//Función de botón informativo
+  //Función de botón informativo
 
   void openDialog(BuildContext context) {
     showDialog(
@@ -111,11 +112,12 @@ class _DryMatterCState extends State<DryMatterC> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/cipres/drymatter/dry_c.jpg',
+                        'assets/img/sinarbol/drymatter/dry_s.png',
                         fit: BoxFit.fitWidth,
                         height: 259,
                       ),
                     ),
+
                     //Possition of the botton
                     Positioned(
                       child: FilledButton.tonal(
@@ -132,7 +134,7 @@ class _DryMatterCState extends State<DryMatterC> {
                   //Título
                   const SizedBox(height: 25.0),
                   const Text(
-                    'Calculando la materia seca con pino',
+                    'Calculando la materia seca con pastizal',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -153,8 +155,8 @@ class _DryMatterCState extends State<DryMatterC> {
                         onPressed: () {},
                         child: const Text(
                           'MS/m² (Kg) = PMS/PMH * 100',
-                          style: TextStyle(fontSize: 16, color: Colors.black),
                           textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ),
                     ),
@@ -191,8 +193,8 @@ class _DryMatterCState extends State<DryMatterC> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
-                      controller: _controllerWeightDry,
-                      validator: _validateWeightC,
+                      controller: _controllerDryWeight,
+                      validator: _validateWeight,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
@@ -218,8 +220,8 @@ class _DryMatterCState extends State<DryMatterC> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
-                      controller: _controllerWeightWet,
-                      validator: _validateWeightC,
+                      controller: _controllerWetWeight,
+                      validator: _validateWeight,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),

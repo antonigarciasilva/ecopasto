@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import 'package:version/presentation/screens/aliso/aliso_screen.dart';
-
 import 'package:version/presentation/screens/aliso/state_aliso.dart';
+import 'package:version/presentation/screens/no_tree/no_tree_screen.dart';
 
-class GreenMatterScreen extends StatefulWidget {
-  const GreenMatterScreen({super.key});
+class GreenMatterScreenS extends StatefulWidget {
+  const GreenMatterScreenS({super.key});
   @override
   MyGreenMatterScreen createState() => MyGreenMatterScreen();
 }
 
-class MyGreenMatterScreen extends State<GreenMatterScreen> {
+class MyGreenMatterScreen extends State<GreenMatterScreenS> {
   //Tengo que tener necesariamente estas dos cosas para hacer mi validadciones
   //GlobalKey<FormaState> variable = inicializo con GlobalKey<FromState(); la variable se va a usar en el form y evaluamos el estado de nuestro formulario
   //Como key: varibale
@@ -21,8 +20,8 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
   //Con los controladores vamos a poder acceder a la información de cada texto
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightAliso = TextEditingController();
-  double? greenAliso;
+  final TextEditingController _controllerWeightS = TextEditingController();
+  double? greenS;
 
   //Validar el peso de la materia verde
   String? _validateWeight(String? value) {
@@ -35,14 +34,6 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
       return 'Solo acepta valores numéricos';
     }
     return null;
-
-/*
-    //Podemos agregar más if, por ejemplo
-    if (value.length >= 5) {
-      return "Peso muy exagerado"; 
-    }
-
-    return null;*/
   }
 
   //Validamos el botton guardar
@@ -51,14 +42,14 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
     // El cual acepta valores nulos, por eso lo agregamos un "!", para decir que si o sí no será nula
     //Luego ponemos un "." y accedemos al metodo validate que da valores booleanos
     if (_formKey.currentState!.validate()) {
-      final double greenMatterA = double.parse(_controllerWeightAliso.text);
+      final double greenMatterS = double.parse(_controllerWeightS.text);
 
-      final double greenAliso = greenMatterA;
+      final double greenS = greenMatterS;
 
-      Provider.of<StateS>(context, listen: false).setGreenS(greenAliso);
+      Provider.of<StateS>(context, listen: false).setGreenS(greenS);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const AlisoScreen()),
+        MaterialPageRoute(builder: (context) => const NoTreeScreen()),
       );
     }
   }
@@ -87,7 +78,8 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const GreenMatterScreen()));
+                              builder: (context) =>
+                                  const GreenMatterScreenS()));
                     },
                     child: const Text('Aceptar'))
               ],
@@ -109,7 +101,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/aliso/greenmatter/green_alder.jpg',
+                        'assets/img/sinarbol/greenmatter/green_s.png',
                         fit: BoxFit.fitWidth,
                         height: 259,
                       ),
@@ -135,7 +127,8 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                   //Título
                   const SizedBox(height: 25.0),
                   const Text(
-                    'Calculando la materia verde con Aliso',
+                    'Calculando la materia verde en un pastizal',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -157,7 +150,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
-                      controller: _controllerWeightAliso,
+                      controller: _controllerWeightS,
                       validator: _validateWeight,
                       decoration: InputDecoration(
                         //prefixIcon: const Icon(Icons.person_4),

@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 
-class StateAliso with ChangeNotifier {
+class StateS with ChangeNotifier {
   //Para validar la materia verde y seca
   double? greenAliso;
   double? dryMatterAliso;
   double? totalBiomass;
 
-  bool get isGreenAlisoCalculated => greenAliso != null;
-  bool get isDryMatterAlissoCalculated => dryMatterAliso != null;
+  bool get isGreenSCalculated => greenAliso != null;
+  bool get isDryMatterSCalculated => dryMatterAliso != null;
   bool get isTotalBiomassCalculated => totalBiomass != null;
 
   bool get areAllCalculationsCompletedA =>
-      isGreenAlisoCalculated &&
-      isDryMatterAlissoCalculated &&
-      isTotalBiomassCalculated;
+      isGreenSCalculated && isDryMatterSCalculated && isTotalBiomassCalculated;
 
-  void setGreenAliso(double value) {
+  void setGreenS(double value) {
     greenAliso = value;
     notifyListeners();
   }
@@ -28,5 +26,10 @@ class StateAliso with ChangeNotifier {
   void setTotalBiomas(double value) {
     totalBiomass = value;
     notifyListeners();
+  }
+
+  double get resultBiomassHerbaceous {
+    return ((dryMatterAliso ?? 0) / (greenAliso ?? 0) * (greenAliso ?? 0)) *
+        0.01;
   }
 }

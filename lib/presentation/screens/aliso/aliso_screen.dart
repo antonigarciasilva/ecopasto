@@ -19,23 +19,22 @@ class AlisoScreen extends StatefulWidget {
 
 class _AlisoScreenState extends State<AlisoScreen> {
   //Llamado de provider
-  StateAliso? stateAliso;
+  StateS? stateAliso;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    stateAliso = Provider.of<StateAliso>(context);
+    stateAliso = Provider.of<StateS>(context);
   }
 
   //Dialogo para mostrar al usuario que le falta llenar algunos botones
-  void _showMissingCalculationsDialog(
-      BuildContext context, StateAliso stateAliso) {
+  void _showMissingCalculationsDialog(BuildContext context, StateS stateAliso) {
     List<String> missingCalculations = [];
 
-    if (!stateAliso.isGreenAlisoCalculated) {
+    if (!stateAliso.isGreenSCalculated) {
       missingCalculations.add('materia verde');
     }
 
-    if (!stateAliso.isDryMatterAlissoCalculated) {
+    if (!stateAliso.isDryMatterSCalculated) {
       missingCalculations.add('materia seca');
     }
 
@@ -95,7 +94,7 @@ class _AlisoScreenState extends State<AlisoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final stateAliso = Provider.of<StateAliso>(context);
+    final stateAliso = Provider.of<StateS>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -151,11 +150,11 @@ class _AlisoScreenState extends State<AlisoScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            stateAliso.isGreenAlisoCalculated
+                            stateAliso.isGreenSCalculated
                                 ? Colors.grey
                                 : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: stateAliso.isGreenAlisoCalculated
+                      onPressed: stateAliso.isGreenSCalculated
                           ? null
                           : () {
                               Navigator.push(
@@ -182,14 +181,14 @@ class _AlisoScreenState extends State<AlisoScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            stateAliso.isDryMatterAlissoCalculated
+                            stateAliso.isDryMatterSCalculated
                                 ? Colors.grey
                                 : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: stateAliso.isDryMatterAlissoCalculated
+                      onPressed: stateAliso.isDryMatterSCalculated
                           ? null
                           : () {
-                              if (stateAliso.isGreenAlisoCalculated) {
+                              if (stateAliso.isGreenSCalculated) {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -221,8 +220,8 @@ class _AlisoScreenState extends State<AlisoScreen> {
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        if (stateAliso.isDryMatterAlissoCalculated &&
-                            stateAliso.isGreenAlisoCalculated) {
+                        if (stateAliso.isDryMatterSCalculated &&
+                            stateAliso.isGreenSCalculated) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
