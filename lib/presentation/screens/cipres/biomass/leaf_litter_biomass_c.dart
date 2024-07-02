@@ -37,11 +37,11 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC> {
       final double pfm = double.parse(_controllerWeightPFM.text);
       final double pst = double.parse(_controllerWeightPST.text);
 
-      final double resultbhc = (psm / pfm * pst) * 0.04;
-      final String formattedResult = resultbhc.toStringAsFixed(2);
+      final double leafLitterBiomassC = (psm / pfm * pst) * 0.04;
+      final String formattedResult = leafLitterBiomassC.toStringAsFixed(2);
 
       Provider.of<StateBiomassC>(context, listen: false)
-          .setLeafLitterBiomassC(resultbhc);
+          .setLeafLitterBiomassC(leafLitterBiomassC);
 
       showDialog(
           context: context,

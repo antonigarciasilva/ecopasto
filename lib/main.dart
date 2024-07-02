@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/aliso/aliso_screen.dart';
 import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
-import 'package:version/presentation/screens/cipres/state_cipres.dart';
 
 import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 import 'package:version/presentation/screens/pino/state_pino.dart';
 import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 import 'package:version/presentation/screens/pona/state_pona.dart';
-import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
 
 //void main() => runApp(const MyApp());
 
@@ -24,7 +23,6 @@ void main() {
       ChangeNotifierProvider(create: (context) => StateBiomassP()),
       ChangeNotifierProvider(create: (context) => StateBiomassO()),
       ChangeNotifierProvider(create: (context) => StatePino()),
-      ChangeNotifierProvider(create: (context) => StateCipres()),
       ChangeNotifierProvider(create: (context) => StatePona()),
     ],
     child: const MyApp(),
@@ -39,7 +37,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: NewSelectSilvoScreen(),
+      home: AlisoScreen(),
     );
   }
 }

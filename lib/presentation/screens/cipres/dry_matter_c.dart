@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 
 import 'package:version/presentation/screens/cipres/cipres_screen.dart';
-import 'package:version/presentation/screens/cipres/state_cipres.dart';
 
 class DryMatterC extends StatefulWidget {
   const DryMatterC({super.key});
@@ -39,7 +39,7 @@ class _DryMatterCState extends State<DryMatterC> {
       final double dryMatterCipres = pms / pmh * 100;
       final String formattedResult = dryMatterCipres.toStringAsFixed(2);
 
-      Provider.of<StateCipres>(context, listen: false)
+      Provider.of<StateBiomassC>(context, listen: false)
           .setDryMatterCipres(dryMatterCipres);
 
       showDialog(

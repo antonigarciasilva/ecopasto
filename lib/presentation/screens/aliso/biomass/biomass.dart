@@ -260,30 +260,29 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 220,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomass.resultBiomassHerbaceous > 0
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: stateBiomass.resultBiomassHerbaceous > 0
-                          ? null
-                          : () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const HerbaceousBiomassScreen()),
-                              );
-                            },
-                      child: const Text(
-                        'Biomasa herbácea',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                      width: 220,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              stateBiomass.resultBiomassHerbaceous > 0
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: stateBiomass.isHerbaceousBiomassCalculated
+                            ? null
+                            : () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const HerbaceousBiomassScreen()),
+                                );
+                              },
+                        child: const Text(
+                          'Biomasa herbácea',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      )),
                 ),
 
                 //Biomasa hojarasca

@@ -13,7 +13,7 @@ class DryBiomassCNew extends StatefulWidget {
 class _DryBiomassCNewState extends State<DryBiomassCNew> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDapP = TextEditingController();
-  double? resultdbc;
+  double? dryBiomassC;
 
   // Validación del DAP
   String? _validateDap(String? value) {
@@ -33,11 +33,11 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
     if (_formKey.currentState!.validate()) {
       final double dap = double.parse(_controllerDapP.text);
 
-      resultdbc = 0.2639 * dap;
-      final String formattedResult = resultdbc!.toStringAsFixed(2);
+      dryBiomassC = 0.2639 * dap;
+      final String formattedResult = dryBiomassC!.toStringAsFixed(2);
 
       Provider.of<StateBiomassC>(context, listen: false)
-          .setDryBiomassC(resultdbc!);
+          .setDryBiomassC(dryBiomassC!);
 
       showDialog(
           context: context,
@@ -213,13 +213,13 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                     ),
                   ),
                 ),
-                if (resultdbc != null)
+                if (dryBiomassC != null)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: Visibility(
                       visible: false,
                       child: Text(
-                        'Biomasa seca calculada: ${resultdbc!.toStringAsFixed(2)}',
+                        'Biomasa seca calculada: ${dryBiomassC!.toStringAsFixed(2)}',
                       ),
                     ),
                   ),

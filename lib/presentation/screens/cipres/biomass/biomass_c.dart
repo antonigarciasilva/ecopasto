@@ -35,7 +35,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text(
-                'La biomasa total es: $formattedBiomassC',
+                'La biomasa total es: $formattedBiomassC T/ha',
                 textAlign: TextAlign.justify,
                 style: const TextStyle(fontSize: 18),
               ),
@@ -244,14 +244,14 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomassC.isherbaceousCalculatedC
+                            stateBiomassC.resultHerbaceousBiomassC > 0
                                 ? Colors.grey
                                 : const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: stateBiomassC.isherbaceousCalculatedC
                           ? null
                           : () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>

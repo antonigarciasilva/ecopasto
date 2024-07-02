@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 class StateBiomassC with ChangeNotifier {
   //Para hacer las validaciones de los botones
 
+  double? greenCipres;
+  double? dryMatterCipres;
+
   double? dryBiomassC;
   double? herbaceousBiomassC;
   double? leafLitterBiomassC;
+
+  bool get isGreenCipresCalculated => greenCipres != null;
+  bool get isDryMatterCipresCalculated => dryMatterCipres != null;
 
   bool get isDryBiomassCalculatedC => dryBiomassC != null;
   bool get isherbaceousCalculatedC => herbaceousBiomassC != null;
@@ -13,41 +19,55 @@ class StateBiomassC with ChangeNotifier {
 
   bool get areAllCalculationsCompletedC =>
       isDryBiomassCalculatedC &&
-      isherbaceousCalculatedC &&
+      (resultHerbaceousBiomassC > 0) &&
       isleafLitterBiomassCCalculatedC;
 
-//Para la respuesta de biomasa y carbono
-  double? _resultdbac;
-  double? _resulthbac;
-  double? _resultbhac;
-
-  double? get resultdbac => _resultdbac;
-  double? get resulthbac => _resulthbac;
-  double? get resultbhac => _resultbhac;
+  bool get areAllCalculationsCompletedA =>
+      isGreenCipresCalculated && isDryMatterCipresCalculated;
 
   void setDryBiomassC(double value) {
-    _resultdbac = value;
     dryBiomassC = value;
     notifyListeners();
   }
 
   void setHerbaceousBiomassC(double value) {
-    _resulthbac = value;
     herbaceousBiomassC = value;
     notifyListeners();
   }
 
   void setLeafLitterBiomassC(double value) {
-    _resultbhac = value;
     leafLitterBiomassC = value;
     notifyListeners();
   }
 
+  void setGreenCipres(double value) {
+    greenCipres = value;
+    notifyListeners();
+  }
+
+  void setDryMatterCipres(double value) {
+    dryMatterCipres = value;
+    notifyListeners();
+  }
+
   double get totalBiomassC {
-    return (_resultbhac ?? 0) + (_resultdbac ?? 0) + (_resulthbac ?? 0);
+    return (dryBiomassC ?? 0) +
+        (leafLitterBiomassC ?? 0) +
+        (resultHerbaceousBiomassC);
   }
 
   double get resultCarbonBiomassC {
     return totalBiomassC * 0.5000;
+  }
+
+  double get resultHerbaceousBiomassC {
+    return ((dryMatterCipres ?? 0) /
+        (greenCipres ?? 0) *
+        (greenCipres ?? 0) *
+        0.01);
+  }
+
+  double get resultConversionCarbonC {
+    return resultCarbonBiomassC * 3.666;
   }
 }

@@ -131,6 +131,10 @@ class ResultCarbonBiomassC extends StatelessWidget {
                     textAlign: TextAlign.justify,
                   ),
 
+                  const SizedBox(
+                    height: 20,
+                  ),
+
                   //Botón de regreso
                   ElevatedButton(
                       style: ButtonStyle(

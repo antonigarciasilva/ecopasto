@@ -131,6 +131,9 @@ class ResultCarbonBiomassP extends StatelessWidget {
                         fontSize: 15, fontStyle: FontStyle.italic),
                     textAlign: TextAlign.justify,
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
 
                   //Botón aceptar
                   ElevatedButton(

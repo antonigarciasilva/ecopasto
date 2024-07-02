@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/cipres/biomass/biomass_c.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/carbon/carbon_c.dart';
 import 'package:version/presentation/screens/cipres/dry_matter_c.dart';
 import 'package:version/presentation/screens/cipres/green_matter_c.dart';
-import 'package:version/presentation/screens/cipres/state_cipres.dart';
+
 import 'package:version/presentation/screens/widgets/side_menu.dart';
 
 class CipresScreen extends StatefulWidget {
@@ -17,11 +18,11 @@ class CipresScreen extends StatefulWidget {
 
 class _CipresScreenState extends State<CipresScreen> {
   //llamamos al provider
-  StateCipres? stateCipres;
+  StateBiomassC? stateCipres;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    stateCipres = Provider.of<StateCipres>(context);
+    stateCipres = Provider.of<StateBiomassC>(context);
   }
 
   void openDialog(BuildContext context) {
@@ -53,7 +54,7 @@ class _CipresScreenState extends State<CipresScreen> {
 
   //Dialogo para mostrar al usuario que le falta llenar algunos botones
   void _showMissingCalculationsDialogC(
-      BuildContext context, StateCipres stateCipres) {
+      BuildContext context, StateBiomassC stateCipres) {
     List<String> missingCalculationsC = [];
 
     if (!stateCipres.isGreenCipresCalculated) {
@@ -92,7 +93,7 @@ class _CipresScreenState extends State<CipresScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final stateCipres = Provider.of<StateCipres>(context);
+    final stateCipres = Provider.of<StateBiomassC>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(

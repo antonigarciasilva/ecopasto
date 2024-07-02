@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/cipres_screen.dart';
 import 'package:intl/intl.dart';
-import 'package:version/presentation/screens/cipres/state_cipres.dart';
 
 class GreenMatterC extends StatefulWidget {
   const GreenMatterC({super.key});
@@ -36,7 +36,7 @@ class _GreenMatterCState extends State<GreenMatterC> {
       final double greenMatterC = double.parse(_controllerWeightC.text);
       final double greenCipres = greenMatterC;
 
-      Provider.of<StateCipres>(context, listen: false)
+      Provider.of<StateBiomassC>(context, listen: false)
           .setGreenCipres(greenCipres);
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const CipresScreen()));
