@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
 import 'package:version/presentation/screens/aliso/dry_matter.dart';
 import 'package:version/presentation/screens/aliso/green_matter.dart';
-import 'package:version/presentation/screens/aliso/state_aliso.dart';
 
 import 'package:version/presentation/screens/widgets/side_menu.dart';
 
@@ -19,15 +19,16 @@ class AlisoScreen extends StatefulWidget {
 
 class _AlisoScreenState extends State<AlisoScreen> {
   //Llamado de provider
-  StateS? stateAliso;
+  StateBiomass? stateBiomass;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    stateAliso = Provider.of<StateS>(context);
+    stateBiomass = Provider.of<StateBiomass>(context);
   }
 
   //Dialogo para mostrar al usuario que le falta llenar algunos botones
-  void _showMissingCalculationsDialog(BuildContext context, StateS stateAliso) {
+  void _showMissingCalculationsDialog(
+      BuildContext context, StateBiomass stateAliso) {
     List<String> missingCalculations = [];
 
     if (!stateAliso.isGreenSCalculated) {
@@ -94,7 +95,7 @@ class _AlisoScreenState extends State<AlisoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final stateAliso = Provider.of<StateS>(context);
+    final stateAliso = Provider.of<StateBiomass>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(

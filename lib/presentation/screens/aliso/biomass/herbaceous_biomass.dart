@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
-
-import 'package:version/presentation/screens/aliso/state_aliso.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 class HerbaceousBiomassScreen extends StatefulWidget {
   const HerbaceousBiomassScreen({super.key});
@@ -14,14 +13,14 @@ class HerbaceousBiomassScreen extends StatefulWidget {
 }
 
 class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
-  StateS? stateS;
+  StateBiomass? stateS;
   String? errorMessage;
 
   //Para usar el provider
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    stateS = Provider.of<StateS>(context);
+    stateS = Provider.of<StateBiomass>(context);
   }
 
   // Calculo de la biomasa herbacea

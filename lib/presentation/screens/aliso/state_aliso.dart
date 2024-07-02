@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 class StateS with ChangeNotifier {
   //Para validar la materia verde y seca
@@ -8,10 +8,9 @@ class StateS with ChangeNotifier {
 
   bool get isGreenSCalculated => greenAliso != null;
   bool get isDryMatterSCalculated => dryMatterAliso != null;
-  bool get isTotalBiomassCalculated => totalBiomass != null;
 
   bool get areAllCalculationsCompletedA =>
-      isGreenSCalculated && isDryMatterSCalculated && isTotalBiomassCalculated;
+      isGreenSCalculated && isDryMatterSCalculated;
 
   void setGreenS(double value) {
     greenAliso = value;
@@ -33,3 +32,4 @@ class StateS with ChangeNotifier {
         0.01;
   }
 }
+*/

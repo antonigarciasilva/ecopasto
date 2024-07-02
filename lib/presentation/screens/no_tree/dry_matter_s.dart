@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:version/presentation/screens/aliso/state_aliso.dart';
+
 import 'package:version/presentation/screens/no_tree/no_tree_screen.dart';
+import 'package:version/presentation/screens/no_tree/state_s.dart';
 
 class DryMatterS extends StatefulWidget {
   const DryMatterS({super.key});
@@ -42,7 +43,7 @@ class _DryMatterSState extends State<DryMatterS> {
       final double dryMatterS = pms / pmh * 100;
       final String formattedResult = dryMatterS.toStringAsFixed(2);
 
-      Provider.of<StateS>(context, listen: false).setDryMatterAliso(dryMatterS);
+      Provider.of<StateST>(context, listen: false).setDryMatterS(dryMatterS);
 
       showDialog(
           context: context,

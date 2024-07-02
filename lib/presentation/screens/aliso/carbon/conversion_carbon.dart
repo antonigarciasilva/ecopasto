@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
 
 class ConversionCarbonScreen extends StatefulWidget {
@@ -9,55 +11,54 @@ class ConversionCarbonScreen extends StatefulWidget {
 }
 
 class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerCO = TextEditingController();
+  StateBiomass? stateBiomass;
+  String? errorMessage;
 
-  //Validar el peso
-  String? _validateWeightCO(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Por favor, ingresa el peso';
-    }
-    //validar con ReGEXP
-    final coRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!coRegExp.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
-    }
-    return null;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomass = Provider.of<StateBiomass>(context);
   }
+//Mostrar mensaje de error
 
+  void _seeError() {
+    if (stateBiomass?.resultCarbonBiomass == 0.00) {
+      setState(() {
+        errorMessage =
+            'Por favor, completa el modulo de carbono para hacer la conversión';
+      });
+    } else {
+      setState(() {
+        errorMessage = null;
+      });
+      _calculateCarbonToCO2Result();
+    }
+  }
   //Calculo de la conversión de carbono a C02
 
   void _calculateCarbonToCO2Result() {
-    if (_formKey.currentState!.validate()) {
-      final double co = double.parse(_controllerCO.text);
-
-      final double resultCtoCO2a = co * 3.666;
-      final String formattedResult = resultCtoCO2a.toStringAsFixed(2);
-
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => AlertDialog(
-                  title: const Text(
-                    'Resultado del cálculo',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  content: Text(
-                    'la cantidad de CO₂ es: $formattedResult T/ha',
-                    textAlign: TextAlign.justify,
-                  ),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const CarbonScreen()));
-                        },
-                        child: const Text('Aceptar'))
-                  ]));
-    }
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+                title: const Text(
+                  'Resultado del cálculo',
+                  style: TextStyle(fontSize: 18),
+                ),
+                content: Text(
+                    'la cantidad de CO₂ es: ${stateBiomass!.resultConversionCarbon.toStringAsFixed(2)} T/ha',
+                    textAlign: TextAlign.justify),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CarbonScreen()));
+                      },
+                      child: const Text('Aceptar'))
+                ]));
   }
 
   //Dialogo informativo sobre el carbono
@@ -90,10 +91,10 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final stateBiomass = Provider.of<StateBiomass>(context);
     return Scaffold(
       body: SafeArea(
         child: Form(
-          key: _formKey,
           child: Center(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -148,7 +149,7 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'CO₂ (Tm/ha) = CO * 3.666',
+                          'CO₂ (T/ha) = CO * 3.666',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -169,31 +170,21 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                     ),
                   ),
 
-                  //BVT
-                  const SizedBox(height: 20),
-
-                  const Text(
-                    'Carbono orgánico (CO): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      controller: _controllerCO,
-                      validator: _validateWeightCO,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el valor de (CO)',
-                        labelStyle: const TextStyle(fontSize: 14),
+                  //Formula con variable completa
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Reemplazando valores:\n'
+                        'CO₂ (T/ha) = ${stateBiomass.resultCarbonBiomass.toStringAsFixed(2)} * 3.666',
+                        style: const TextStyle(
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
+                      const SizedBox(width: 20),
+                    ],
                   ),
 
                   //Calcular
@@ -207,7 +198,13 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                           backgroundColor: WidgetStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _calculateCarbonToCO2Result,
+                        onPressed: () {
+                          if (stateBiomass.isConversionCarbon) {
+                            _calculateCarbonToCO2Result();
+                          } else {
+                            _seeError();
+                          }
+                        },
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),

@@ -178,7 +178,7 @@ class _BiomassPonaState extends State<BiomassPona> {
                       ),
                       onPressed: () {},
                       child: const Text(
-                        'BVT(Tm/ha) = BM ARBÓREA + BN HERBÁCEA \n + BM HOJARASCA',
+                        'BVT(T/ha) = BM ARBÓREA + BN HERBÁCEA \n + BM HOJARASCA',
                         style: TextStyle(fontSize: 16, color: Colors.black),
                         textAlign: TextAlign.center,
                       ),

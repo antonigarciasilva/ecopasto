@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
-import 'package:version/presentation/screens/aliso/state_aliso.dart';
+
 import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/state_cipres.dart';
 
@@ -23,7 +23,6 @@ void main() {
       ChangeNotifierProvider(create: (context) => StateBiomassC()),
       ChangeNotifierProvider(create: (context) => StateBiomassP()),
       ChangeNotifierProvider(create: (context) => StateBiomassO()),
-      ChangeNotifierProvider(create: (context) => StateS()),
       ChangeNotifierProvider(create: (context) => StatePino()),
       ChangeNotifierProvider(create: (context) => StateCipres()),
       ChangeNotifierProvider(create: (context) => StatePona()),

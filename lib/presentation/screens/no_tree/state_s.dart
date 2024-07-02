@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class StateS with ChangeNotifier {
+class StateST with ChangeNotifier {
   //Para validar la materia verde y seca
   double? greenS;
   double? dryMatterS;

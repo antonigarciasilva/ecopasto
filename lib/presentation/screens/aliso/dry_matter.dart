@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/aliso/aliso_screen.dart';
-import 'package:version/presentation/screens/aliso/state_aliso.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 class DryMatterScreen extends StatefulWidget {
   const DryMatterScreen({super.key});
@@ -42,7 +42,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
       final double dryMatterAliso = pms / pmh * 100;
       final String formattedResult = dryMatterAliso.toStringAsFixed(2);
 
-      Provider.of<StateS>(context, listen: false)
+      Provider.of<StateBiomass>(context, listen: false)
           .setDryMatterAliso(dryMatterAliso);
 
       showDialog(

@@ -198,7 +198,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                       ),
                       onPressed: () {},
                       child: const Text(
-                        'BVT(Tm/ha) = BM ARBÓREA + BN HERBÁCEA \n + BM HOJARASCA',
+                        'BVT(T/ha) = BM ARBÓREA + BN HERBÁCEA \n + BM HOJARASCA',
                         style: TextStyle(fontSize: 16, color: Colors.black),
                         textAlign: TextAlign.center,
                       ),
@@ -264,11 +264,11 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomass.isHerbaceousBiomassCalculated
+                            stateBiomass.resultBiomassHerbaceous > 0
                                 ? Colors.grey
                                 : const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: stateBiomass.isHerbaceousBiomassCalculated
+                      onPressed: stateBiomass.resultBiomassHerbaceous > 0
                           ? null
                           : () {
                               Navigator.pushReplacement(

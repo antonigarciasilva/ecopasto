@@ -4,8 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/aliso/aliso_screen.dart';
-
-import 'package:version/presentation/screens/aliso/state_aliso.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 class GreenMatterScreen extends StatefulWidget {
   const GreenMatterScreen({super.key});
@@ -55,7 +54,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
 
       final double greenAliso = greenMatterA;
 
-      Provider.of<StateS>(context, listen: false).setGreenS(greenAliso);
+      Provider.of<StateBiomass>(context, listen: false).setGreenS(greenAliso);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const AlisoScreen()),

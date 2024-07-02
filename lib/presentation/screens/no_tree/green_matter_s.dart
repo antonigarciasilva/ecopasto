@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import 'package:version/presentation/screens/aliso/state_aliso.dart';
 import 'package:version/presentation/screens/no_tree/no_tree_screen.dart';
+import 'package:version/presentation/screens/no_tree/state_s.dart';
 
 class GreenMatterScreenS extends StatefulWidget {
   const GreenMatterScreenS({super.key});
@@ -46,7 +46,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreenS> {
 
       final double greenS = greenMatterS;
 
-      Provider.of<StateS>(context, listen: false).setGreenS(greenS);
+      Provider.of<StateST>(context, listen: false).setGreenS(greenS);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const NoTreeScreen()),
