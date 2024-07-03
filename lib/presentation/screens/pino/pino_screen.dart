@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/pino/biomass/biomass.dart';
+import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 import 'package:version/presentation/screens/pino/carbon/carbon.dart';
 import 'package:version/presentation/screens/pino/dry_matter_p.dart';
 import 'package:version/presentation/screens/pino/green_matter_p.dart';
-import 'package:version/presentation/screens/pino/state_pino.dart';
+
 import 'package:version/presentation/screens/widgets/side_menu.dart';
 
 class PinoScreen extends StatefulWidget {
@@ -17,12 +18,12 @@ class PinoScreen extends StatefulWidget {
 
 class _PinoScreenState extends State<PinoScreen> {
   //Llamamos al provider
-  StatePino? statePino;
+  StateBiomassP? statePino;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    statePino = Provider.of<StatePino>(context);
+    statePino = Provider.of<StateBiomassP>(context);
   }
 
   //Funcion de boton informativo
@@ -55,7 +56,7 @@ class _PinoScreenState extends State<PinoScreen> {
 
   //Dialogo para mostrar al usuario que le falta llenar algunos botones
   void _showMissingCalculationsDialogP(
-      BuildContext context, StatePino statePino) {
+      BuildContext context, StateBiomassP statePino) {
     List<String> missingCalculationsP = [];
 
     if (!statePino.isGreenPinoCalculated) {
@@ -94,7 +95,7 @@ class _PinoScreenState extends State<PinoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final statePino = Provider.of<StatePino>(context);
+    final statePino = Provider.of<StateBiomassP>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(

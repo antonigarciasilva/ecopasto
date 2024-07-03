@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 
 import 'package:version/presentation/screens/pino/pino_screen.dart';
-import 'package:version/presentation/screens/pino/state_pino.dart';
 
 class DryMatterP extends StatefulWidget {
   const DryMatterP({super.key});
@@ -40,7 +40,7 @@ class _DryMatterPState extends State<DryMatterP> {
       final double dryMatterPino = pms / pmh * 100;
       final String formattedResult = dryMatterPino.toStringAsFixed(2);
 
-      Provider.of<StatePino>(context, listen: false)
+      Provider.of<StateBiomassP>(context, listen: false)
           .setDryMatterPino(dryMatterPino);
 
       showDialog(

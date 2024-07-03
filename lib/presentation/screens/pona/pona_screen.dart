@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/pona/biomass/biomass_pona.dart';
+import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 import 'package:version/presentation/screens/pona/carbon/carbon_pona.dart';
 import 'package:version/presentation/screens/pona/dry_pona.dart';
 import 'package:version/presentation/screens/pona/green_matter.dart';
-import 'package:version/presentation/screens/pona/state_pona.dart';
+
 import 'package:version/presentation/screens/widgets/side_menu.dart';
 
 class PonaScreen extends StatefulWidget {
@@ -17,12 +18,12 @@ class PonaScreen extends StatefulWidget {
 
 class _PonaScreenState extends State<PonaScreen> {
   //Llamamos al provider
-  StatePona? statePona;
+  StateBiomassO? statePona;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    statePona = Provider.of<StatePona>(context);
+    statePona = Provider.of<StateBiomassO>(context);
   }
 
   //Funcion de boton informativo
@@ -55,7 +56,7 @@ class _PonaScreenState extends State<PonaScreen> {
 
   //Dialogo para mostrar al usuario que le falta llenar algunos botones
   void _showMissingCalculationsDialog0(
-      BuildContext context, StatePona statePona) {
+      BuildContext context, StateBiomassO statePona) {
     List<String> missingCalculationsO = [];
 
     if (!statePona.isGreenPonaCalculated) {
@@ -94,7 +95,7 @@ class _PonaScreenState extends State<PonaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final statePona = Provider.of<StatePona>(context);
+    final statePona = Provider.of<StateBiomassO>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(

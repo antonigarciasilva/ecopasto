@@ -7,9 +7,8 @@ import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 
 import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
-import 'package:version/presentation/screens/pino/state_pino.dart';
+
 import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
-import 'package:version/presentation/screens/pona/state_pona.dart';
 
 //void main() => runApp(const MyApp());
 
@@ -22,8 +21,6 @@ void main() {
       ChangeNotifierProvider(create: (context) => StateBiomassC()),
       ChangeNotifierProvider(create: (context) => StateBiomassP()),
       ChangeNotifierProvider(create: (context) => StateBiomassO()),
-      ChangeNotifierProvider(create: (context) => StatePino()),
-      ChangeNotifierProvider(create: (context) => StatePona()),
     ],
     child: const MyApp(),
   ));

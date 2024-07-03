@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 
 import 'package:version/presentation/screens/pona/pona_screen.dart';
-import 'package:version/presentation/screens/pona/state_pona.dart';
 
 class DryPonaScreen extends StatefulWidget {
   const DryPonaScreen({super.key});
@@ -41,7 +41,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
       final double dryMatterPona = pms / pmh * 100;
       final String formattedResult = dryMatterPona.toStringAsFixed(2);
 
-      Provider.of<StatePona>(context, listen: false)
+      Provider.of<StateBiomassO>(context, listen: false)
           .setDryMatterPona(dryMatterPona);
 
       showDialog(

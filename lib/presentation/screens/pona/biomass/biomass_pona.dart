@@ -244,7 +244,7 @@ class _BiomassPonaState extends State<BiomassPona> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomassO.isHerbaceousBiomassCalculatedO
+                            stateBiomassO.resultHerbaceousBiomassO > 0
                                 ? Colors.grey
                                 : const Color.fromARGB(255, 51, 79, 31)),
                       ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 
 import 'package:version/presentation/screens/pino/carbon/carbon.dart';
 
@@ -10,56 +12,41 @@ class ConversionCarbonPino extends StatefulWidget {
 }
 
 class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerCO = TextEditingController();
+  StateBiomassP? stateBiomassP;
 
-  //Validar el peso
-  String? _validateWeightCO(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Por favor, ingresa el peso';
-    }
-    //validar con ReGEXP
-    final coRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!coRegExp.hasMatch(value)) {
-      return 'Solo se acepta valores numéricos';
-    }
-    return null;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomassP = Provider.of<StateBiomassP>(context);
   }
 
   //Calculo de la conversión de carbono a C02
 
   void _calculateCarbonToCO2Result() {
-    if (_formKey.currentState!.validate()) {
-      final double co = double.parse(_controllerCO.text);
-
-      final double resultCtoCO2p = co * 3.666;
-      final String formattedResult = resultCtoCO2p.toStringAsFixed(2);
-
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => AlertDialog(
-                  title: const Text(
-                    'Resultado del cálculo',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  content: Text(
-                    'la cantidad de CO₂ es: $formattedResult T/ha',
-                    textAlign: TextAlign.justify,
-                  ),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const CarbonPinoScreen()));
-                        },
-                        child: const Text('Aceptar'))
-                  ]));
-    }
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+                title: const Text(
+                  'Resultado del cálculo',
+                  style: TextStyle(fontSize: 18),
+                ),
+                content: Text(
+                  'la cantidad de CO₂ es: ${stateBiomassP!.resultConversionCarbonP.toStringAsFixed(2)} T/ha',
+                  textAlign: TextAlign.justify,
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const CarbonPinoScreen()));
+                      },
+                      child: const Text('Aceptar'))
+                ]));
   }
 
   //Dialogo informativo sobre el carbono
@@ -99,7 +86,6 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
     return Scaffold(
       body: SafeArea(
         child: Form(
-          key: _formKey,
           child: Center(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -176,31 +162,21 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
                     ),
                   ),
 
-                  //BVT
-                  const SizedBox(height: 25),
-
-                  const Text(
-                    'Carbono orgánico (CO): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      controller: _controllerCO,
-                      validator: _validateWeightCO,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el valor de (CO)',
-                        labelStyle: const TextStyle(fontSize: 14),
+                  //Formula con variable completa
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Reemplazando valores:\n'
+                        'CO₂ (T/ha) = ${stateBiomassP!.resultCarbonBiomassP.toStringAsFixed(2)} * 3.666',
+                        style: const TextStyle(
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
+                      const SizedBox(width: 20),
+                    ],
                   ),
 
                   //Calcular

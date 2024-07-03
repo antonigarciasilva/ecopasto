@@ -99,7 +99,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          'El carbono total en la biomasa es de: ${resultCarbonBiomass.toStringAsFixed(2)} Tn/Ha',
+                          'El carbono total en la biomasa es de: ${resultCarbonBiomass.toStringAsFixed(2)} T/ha',
                           style: const TextStyle(fontSize: 18),
                           textAlign: TextAlign.justify,
                         ),

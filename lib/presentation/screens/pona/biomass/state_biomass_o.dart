@@ -6,47 +6,66 @@ class StateBiomassO with ChangeNotifier {
   double? herbaceousBiomassO;
   double? leafLitterBiomassO;
 
+  double? greenPona;
+  double? dryMatterPona;
+
+  bool get isGreenPonaCalculated => greenPona != null;
+  bool get isDryMatterPonaCalculated => dryMatterPona != null;
+
   bool get isDryBiomassCalculatedO => dryBiomassO != null;
   bool get isHerbaceousBiomassCalculatedO => herbaceousBiomassO != null;
   bool get isLeafLitterBiomassCalculatedO => leafLitterBiomassO != null;
 
   bool get areAllCalculationsCompletedO =>
       isDryBiomassCalculatedO &&
-      isHerbaceousBiomassCalculatedO &&
+      (resultHerbaceousBiomassO > 0) &&
       isLeafLitterBiomassCalculatedO;
 
-  //Para calcular la biomasa total
-  double _resultdbao = 0.0;
-  double _resulthbao = 0.0;
-  double _resultbhao = 0.0;
-
-  double get resultdbao => _resultdbao;
-  double get resulthbao => _resulthbao;
-  double get resultbhao => _resultbhao;
+  bool get areAllCalculationsCompletedMatterO =>
+      isGreenPonaCalculated && isDryMatterPonaCalculated;
 
   void setDryBiomassO(double value) {
-    _resultdbao = value;
     dryBiomassO = value;
     notifyListeners();
   }
 
   void setHerbaceousBiomassO(double value) {
-    _resulthbao = value;
     herbaceousBiomassO = value;
     notifyListeners();
   }
 
   void setLeafLitterBiomassO(double value) {
-    _resultbhao = value;
     leafLitterBiomassO = value;
     notifyListeners();
   }
 
+  void setGreenPona(double value) {
+    greenPona = value;
+    notifyListeners();
+  }
+
+  void setDryMatterPona(double value) {
+    dryMatterPona = value;
+    notifyListeners();
+  }
+
   double get totalBiomassO {
-    return (_resultbhao) + (_resultdbao) + (_resulthbao);
+    return (leafLitterBiomassO ?? 0) +
+        (dryBiomassO ?? 0) +
+        (resultHerbaceousBiomassO);
   }
 
   double get resultCarbonBiomassO {
     return totalBiomassO * 0.5674;
+  }
+
+  double get resultHerbaceousBiomassO {
+    return (((dryMatterPona ?? 0) / (greenPona ?? 0)) *
+        (greenPona ?? 0) *
+        0.01);
+  }
+
+  double get resultConversionCarbonO {
+    return resultCarbonBiomassO * 3.666;
   }
 }

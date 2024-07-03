@@ -53,7 +53,7 @@ class StateBiomass with ChangeNotifier {
   }
 
   double get resultBiomassHerbaceous {
-    return ((dryMatterAliso ?? 0) / (greenAliso ?? 0) * (greenAliso ?? 0)) *
+    return (((dryMatterAliso ?? 0) / (greenAliso ?? 0)) * (greenAliso ?? 0)) *
         0.01;
   }
 

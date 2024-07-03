@@ -11,63 +11,40 @@ class HerbaceousBiomassPona extends StatefulWidget {
 }
 
 class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightPSM = TextEditingController();
-  final TextEditingController _controllerWeightPFM = TextEditingController();
-  final TextEditingController _controllerWeightPST = TextEditingController();
+  StateBiomassO? stateBiomassO;
 
-  //Validación del peso
-  String? _validateWeight(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Por favor, ingrese el peso';
-    }
-    //Validación de peso
-    final weightRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!weightRegExp.hasMatch(value)) {
-      return 'Solo se acepta valores númericos';
-    }
-    return null;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomassO = Provider.of<StateBiomassO>(context);
   }
-
   // Calculo de la biomasa herbacea
 
   void _calculateHerbaceousBiomassResult() {
-    if (_formKey.currentState!.validate()) {
-      final double psm = double.parse(_controllerWeightPSM.text);
-      final double pfm = double.parse(_controllerWeightPFM.text);
-      final double pst = double.parse(_controllerWeightPST.text);
-
-      final double resulthbo = (psm / pfm * pst) * 0.01;
-      final String formattedResult = resulthbo.toStringAsFixed(2);
-
-      Provider.of<StateBiomassO>(context, listen: false)
-          .setHerbaceousBiomassO(resulthbo);
-
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => AlertDialog(
-                title: const Text(
-                  'Resultado del cálculo',
-                  style: TextStyle(fontSize: 18),
-                ),
-                content: Text(
-                  'La biomasa herbácea es: $formattedResult T/ha',
-                  textAlign: TextAlign.justify,
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const BiomassPona()));
-                      },
-                      child: const Text('Aceptar'))
-                ],
-              ));
-    }
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Resultado del cálculo',
+                style: TextStyle(fontSize: 18),
+              ),
+              content: Text(
+                'La biomasa herbácea es: ${stateBiomassO!.resultHerbaceousBiomassO.toStringAsFixed(2)} T/ha',
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BiomassPona()));
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
   }
 
   //Dialogo informativo sobre el Aliso
@@ -103,7 +80,6 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
     return Scaffold(
       body: SafeArea(
         child: Form(
-          key: _formKey,
           child: Center(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -183,8 +159,24 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
                       ),
                     ),
                   ),
-
-                  //Guardar
+                  //Formula con variable completa
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Reemplazando valores:\n'
+                        'BH(T/ha): (${stateBiomassO!.dryMatterPona!.toStringAsFixed(2)} / ${stateBiomassO!.greenPona!.toStringAsFixed(2)} * ${stateBiomassO!.greenPona!.toStringAsFixed(2)} )\n '
+                        ' * 0.01  ',
+                        style: const TextStyle(
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(width: 20),
+                    ],
+                  ),
+                  //Calcular
                   const SizedBox(height: 20.0),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,

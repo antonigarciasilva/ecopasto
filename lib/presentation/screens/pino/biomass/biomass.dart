@@ -242,7 +242,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomassP.isHerbaceousBiomassPCalculatedP
+                            stateBiomassP.resultHerbaceousBiomassP > 0
                                 ? Colors.grey
                                 : const Color.fromARGB(255, 51, 79, 31)),
                       ),

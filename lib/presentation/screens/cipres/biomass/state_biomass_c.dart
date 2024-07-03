@@ -61,8 +61,7 @@ class StateBiomassC with ChangeNotifier {
   }
 
   double get resultHerbaceousBiomassC {
-    return ((dryMatterCipres ?? 0) /
-        (greenCipres ?? 0) *
+    return (((dryMatterCipres ?? 0) / (greenCipres ?? 0)) *
         (greenCipres ?? 0) *
         0.01);
   }

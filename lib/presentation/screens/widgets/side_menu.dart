@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:version/presentation/screens/aliso/aliso_screen.dart';
 import 'package:version/presentation/screens/cipres/cipres_screen.dart';
 import 'package:version/presentation/screens/pino/pino_screen.dart';
+import 'package:version/presentation/screens/pona/pona_screen.dart';
 import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
 import 'package:version/presentation/screens/tutorial/tutorial_screen.dart';
 
@@ -100,7 +101,7 @@ class _SideMenuState extends State<SideMenu> {
           onTap: () {
             Navigator.pop(context);
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const AlisoScreen()));
+                MaterialPageRoute(builder: (context) => const PonaScreen()));
           },
         ),
 
