@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:version/presentation/screens/no_tree/biomass/herbaceous_biomass_s.dart';
-import 'package:version/presentation/screens/no_tree/carbon/carbon_screen_s.dart';
+
 import 'package:version/presentation/screens/no_tree/dry_matter_s.dart';
 import 'package:version/presentation/screens/no_tree/green_matter_s.dart';
 import 'package:version/presentation/screens/no_tree/state_s.dart';
@@ -17,7 +16,7 @@ class NoTreeScreen extends StatefulWidget {
 }
 
 class _NoTreeScreenState extends State<NoTreeScreen> {
-  //Dialogo informativo sobre el Aliso
+  //Dialogo informativo sobre el pastizal
   void openDialog(BuildContext context) {
     showDialog(
         context: context,
@@ -173,38 +172,12 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const HerbaceousBiomassS()),
+                                    const HerbaceousBiomassST()),
                           );
                         }
                       },
                       child: const Text(
-                        ' 3. Biomasa',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-
-                //Carbono en la biomasa
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CarbonScreenS()),
-                        );
-                      },
-                      child: const Text(
-                        '4. Carbono en la biomasa',
+                        ' 3. Biomasa Herbacea',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),

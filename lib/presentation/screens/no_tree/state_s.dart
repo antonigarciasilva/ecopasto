@@ -20,4 +20,8 @@ class StateST with ChangeNotifier {
     dryMatterS = value;
     notifyListeners();
   }
+
+  double get resultHerbaceousBiomassST {
+    return (((dryMatterS ?? 0) / (greenS ?? 0)) * (greenS ?? 0) * 0.01);
+  }
 }

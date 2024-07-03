@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:version/presentation/screens/aliso/aliso_screen.dart';
 import 'package:version/presentation/screens/cipres/cipres_screen.dart';
+import 'package:version/presentation/screens/no_tree/no_tree_screen.dart';
 import 'package:version/presentation/screens/pino/pino_screen.dart';
 import 'package:version/presentation/screens/pona/pona_screen.dart';
 import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
@@ -102,6 +103,18 @@ class _SideMenuState extends State<SideMenu> {
             Navigator.pop(context);
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const PonaScreen()));
+          },
+        ),
+
+        //Pastizal
+        ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 35),
+          leading: const Icon(Icons.place_rounded),
+          title: const Text('Pastizal'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const NoTreeScreen()));
           },
         ),
 
