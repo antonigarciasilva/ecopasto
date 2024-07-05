@@ -78,6 +78,7 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
           child: Center(

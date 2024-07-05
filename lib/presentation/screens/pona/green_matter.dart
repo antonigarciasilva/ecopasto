@@ -75,6 +75,7 @@ class _GreenMatterPonaState extends State<GreenMatterPona> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: SafeArea(

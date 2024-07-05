@@ -122,6 +122,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
   Widget build(BuildContext context) {
     final stateBiomassP = Provider.of<StateBiomassP>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

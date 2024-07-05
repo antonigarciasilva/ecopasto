@@ -123,6 +123,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
   Widget build(BuildContext context) {
     final stateBiomassC = Provider.of<StateBiomassC>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

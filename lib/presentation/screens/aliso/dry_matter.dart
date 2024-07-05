@@ -101,6 +101,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: SafeArea(

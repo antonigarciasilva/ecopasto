@@ -46,7 +46,9 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
   Widget build(BuildContext context) {
     final stateS = Provider.of<StateST>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text(
           'Sistema sin arboles',
           style: TextStyle(

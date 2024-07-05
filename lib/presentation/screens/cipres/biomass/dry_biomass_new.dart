@@ -97,6 +97,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

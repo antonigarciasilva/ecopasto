@@ -97,7 +97,9 @@ class _AlisoScreenState extends State<AlisoScreen> {
   Widget build(BuildContext context) {
     final stateAliso = Provider.of<StateBiomass>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text(
           'Silvopastoreo con Aliso',
           style: TextStyle(

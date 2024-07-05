@@ -103,6 +103,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
           key: _formKey,

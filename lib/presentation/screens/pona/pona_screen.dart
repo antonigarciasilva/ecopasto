@@ -97,7 +97,9 @@ class _PonaScreenState extends State<PonaScreen> {
   Widget build(BuildContext context) {
     final statePona = Provider.of<StateBiomassO>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text(
           'Silvopastoreo con Pona',
           style: TextStyle(

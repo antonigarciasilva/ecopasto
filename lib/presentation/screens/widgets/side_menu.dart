@@ -29,6 +29,7 @@ class _SideMenuState extends State<SideMenu> {
 
     //Esto es para que se quede seleccionado el boton cuando le das click
     return NavigationDrawer(
+      backgroundColor: Colors.white,
       selectedIndex: navDrawerIndex,
       onDestinationSelected: (value) {
         setState(() {

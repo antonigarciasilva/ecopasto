@@ -74,6 +74,7 @@ class _GreenMatterCState extends State<GreenMatterC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: SafeArea(

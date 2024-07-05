@@ -102,6 +102,7 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
           key: _formKey,

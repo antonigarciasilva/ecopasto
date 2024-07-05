@@ -143,6 +143,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
   Widget build(BuildContext context) {
     final stateBiomass = Provider.of<StateBiomass>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -240,7 +241,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                       onPressed: stateBiomass.isDryBiomassCalculated
                           ? null
                           : () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
@@ -271,7 +272,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                         onPressed: stateBiomass.isHerbaceousBiomassCalculated
                             ? null
                             : () {
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
@@ -301,7 +302,7 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                       onPressed: stateBiomass.isLeafLitterBiomassCalculated
                           ? null
                           : () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>

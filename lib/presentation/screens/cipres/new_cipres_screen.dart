@@ -49,7 +49,9 @@ class _NewCipresScreenState extends State<NewCipresScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text(
           'Silvopastoreo con Ciprés',
           style: TextStyle(

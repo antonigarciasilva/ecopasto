@@ -95,6 +95,7 @@ class _CipresScreenState extends State<CipresScreen> {
   Widget build(BuildContext context) {
     final stateCipres = Provider.of<StateBiomassC>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           'Silvopastoreo con Ciprés',

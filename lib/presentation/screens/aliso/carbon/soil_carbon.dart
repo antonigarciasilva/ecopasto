@@ -96,6 +96,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
           key: _formKey,
@@ -152,7 +153,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'Ws (Tm/ha) = a * p * da',
+                          'Ws (T/ha) = a * p * da',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),

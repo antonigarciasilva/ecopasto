@@ -80,6 +80,7 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
           child: Center(

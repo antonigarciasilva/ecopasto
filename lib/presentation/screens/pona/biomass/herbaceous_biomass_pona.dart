@@ -78,6 +78,7 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
           child: Center(

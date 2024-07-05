@@ -100,6 +100,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
           key: _formKey,

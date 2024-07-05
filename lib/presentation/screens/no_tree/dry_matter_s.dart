@@ -101,6 +101,7 @@ class _DryMatterSState extends State<DryMatterS> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: SafeArea(

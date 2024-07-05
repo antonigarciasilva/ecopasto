@@ -77,6 +77,7 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
           child: Center(

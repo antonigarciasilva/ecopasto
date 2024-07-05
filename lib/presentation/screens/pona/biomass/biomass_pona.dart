@@ -123,6 +123,7 @@ class _BiomassPonaState extends State<BiomassPona> {
   Widget build(BuildContext context) {
     final stateBiomassO = Provider.of<StateBiomassO>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

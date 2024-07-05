@@ -86,6 +86,7 @@ class _HerbaceousBiomassSTState extends State<HerbaceousBiomassST> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
           child: Center(

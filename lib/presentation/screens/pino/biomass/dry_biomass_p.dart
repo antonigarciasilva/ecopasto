@@ -99,6 +99,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

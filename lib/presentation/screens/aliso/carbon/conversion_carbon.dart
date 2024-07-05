@@ -93,6 +93,7 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
   Widget build(BuildContext context) {
     final stateBiomass = Provider.of<StateBiomass>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
           child: Center(

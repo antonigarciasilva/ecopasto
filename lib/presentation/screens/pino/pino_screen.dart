@@ -38,10 +38,18 @@ class _PinoScreenState extends State<PinoScreen> {
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 18),
               ),
-              content: const Text(
-                'El árbol de pino (Pinus spp.) en sistemas silvopastoriles es una especie de árbol conífero ampliamente utilizada por su madera, resina y otros productos forestales. En sistemas silvopastoriles, el pino proporciona sombra, protección contra el viento y mejora la calidad del suelo. Además, puede ser utilizado como fuente de alimento y forraje para animales en sistemas agroforestales.',
-                textAlign: TextAlign.justify,
-              ),
+              content: RichText(
+                  textAlign: TextAlign.justify,
+                  text: const TextSpan(
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                      children: [
+                        TextSpan(
+                            text: 'Pinus sylvestris',
+                            style: TextStyle(fontStyle: FontStyle.italic)),
+                        TextSpan(
+                            text:
+                                ' en sistemas silvopastoriles es una especie de árbol conífero ampliamente utilizada por su madera, resina y otros productos forestales. En sistemas silvopastoriles, el pino proporciona sombra, protección contra el viento y mejora la calidad del suelo. Además, puede ser utilizado como fuente de alimento y forraje para animales en sistemas agroforestales.')
+                      ])),
               actions: [
                 //con el goRouter podemos acceder al context.pop
 
@@ -97,6 +105,7 @@ class _PinoScreenState extends State<PinoScreen> {
   Widget build(BuildContext context) {
     final statePino = Provider.of<StateBiomassP>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           'Silvopastoreo con Pino',

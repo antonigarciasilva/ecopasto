@@ -76,7 +76,11 @@ class ResultCarbonBiomass extends StatelessWidget {
       levelColor = Colors.green;
     }
     return Scaffold(
-        appBar: AppBar(title: const Text('Resultado del cálculo')),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text('Resultado del cálculo'),
+          backgroundColor: Colors.white,
+        ),
         body: SafeArea(
           child: Center(
             child: SingleChildScrollView(
