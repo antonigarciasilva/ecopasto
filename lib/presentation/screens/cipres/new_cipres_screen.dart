@@ -32,10 +32,19 @@ class _NewCipresScreenState extends State<NewCipresScreen> {
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 18),
               ),
-              content: const Text(
-                'El árbol de ciprés (Cupressus spp.) en sistemas silvopastoriles es una especie de árbol conífero que se utiliza por su rápido crecimiento y su capacidad para proporcionar sombra y protección contra el viento. También puede ayudar a reducir la erosión del suelo y mejorar la biodiversidad en la zona.',
-                textAlign: TextAlign.justify,
-              ),
+              content: RichText(
+                  textAlign: TextAlign.justify,
+                  text: const TextSpan(
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                      children: [
+                        TextSpan(
+                            text: 'Cupressus ',
+                            style: TextStyle(fontStyle: FontStyle.italic)),
+                        TextSpan(
+                          text:
+                              ' en sistemas silvopastoriles es una especie de árbol conífero que se utiliza por su rápido crecimiento y su capacidad para proporcionar sombra y protección contra el viento. También puede ayudar a reducir la erosión del suelo y mejorar la biodiversidad en la zona.',
+                        )
+                      ])),
               actions: [
                 FilledButton(
                     onPressed: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:version/presentation/screens/aliso/biomass/biomass.dart';
@@ -77,9 +78,21 @@ class _AlisoScreenState extends State<AlisoScreen> {
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 18),
               ),
-              content: const Text(
-                'El árbol de aliso (Alnus acuminata) en sistemas silvopastoriles es una especie arbórea utilizada por sus beneficios ambientales y productivos. Proporciona sombra, mejora la calidad del suelo y puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
+              content: RichText(
                 textAlign: TextAlign.justify,
+                text: const TextSpan(
+                    style: TextStyle(fontSize: 16, color: Colors.black),
+                    children: [
+                      TextSpan(
+                          text: 'Alnus acuminata',
+                          style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.bold)),
+                      TextSpan(
+                        text:
+                            ' en sistemas silvopastoriles es una especie arbórea utilizada por sus beneficios ambientales y productivos. Proporciona sombra, mejora la calidad del suelo y puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
+                      )
+                    ]),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop

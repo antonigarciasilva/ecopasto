@@ -17,7 +17,7 @@ class SlideInfo {
 final slides = <SlideInfo>[
   SlideInfo(
       'Bienvenido a EcoPasto',
-      'Una herramienta fácil y didactida para cuantificar el carbono en sistemas silvopastoriles.',
+      'Una herramienta fácil y didactida para cuantificar el carbono en sistemas silvopastoriles (Pino, Pona, Ciprés y Aliso).',
       'assets/slides/silvipastoril.jpg'),
   SlideInfo(
       'Fácil de usar',

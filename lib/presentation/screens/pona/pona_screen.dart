@@ -38,10 +38,21 @@ class _PonaScreenState extends State<PonaScreen> {
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 18),
               ),
-              content: const Text(
-                'El árbol de la pona (Calycophyllum spruceanum) en sistemas silvopastoriles es una especie arbórea nativa de la Amazonía utilizada por su rápido crecimiento y capacidad para mejorar la calidad del suelo. Proporciona sombra y protección contra el viento, y también puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
-                textAlign: TextAlign.justify,
-              ),
+              content: RichText(
+                  textAlign: TextAlign.justify,
+                  text: const TextSpan(
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                      children: [
+                        TextSpan(
+                            text: 'Calycophyllum Spruceanum',
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold)),
+                        TextSpan(
+                          text:
+                              ' en sistemas silvopastoriles es una especie arbórea nativa de la Amazonía utilizada por su rápido crecimiento y capacidad para mejorar la calidad del suelo. Proporciona sombra y protección contra el viento, y también puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
+                        )
+                      ])),
               actions: [
                 //con el goRouter podemos acceder al context.pop
 

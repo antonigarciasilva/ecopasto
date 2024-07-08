@@ -45,7 +45,9 @@ class _PinoScreenState extends State<PinoScreen> {
                       children: [
                         TextSpan(
                             text: 'Pinus sylvestris',
-                            style: TextStyle(fontStyle: FontStyle.italic)),
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold)),
                         TextSpan(
                             text:
                                 ' en sistemas silvopastoriles es una especie de árbol conífero ampliamente utilizada por su madera, resina y otros productos forestales. En sistemas silvopastoriles, el pino proporciona sombra, protección contra el viento y mejora la calidad del suelo. Además, puede ser utilizado como fuente de alimento y forraje para animales en sistemas agroforestales.')
