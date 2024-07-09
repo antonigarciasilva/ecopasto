@@ -24,4 +24,12 @@ class StateST with ChangeNotifier {
   double get resultHerbaceousBiomassST {
     return (((dryMatterS ?? 0) / (greenS ?? 0)) * (greenS ?? 0) * 0.01);
   }
+
+  double get resultCarbonBiomassST {
+    return resultHerbaceousBiomassST * 0.4270;
+  }
+
+  double get resultConversionCarbonST {
+    return resultCarbonBiomassST * 3.666;
+  }
 }

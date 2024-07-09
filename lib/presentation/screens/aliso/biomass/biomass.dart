@@ -25,18 +25,6 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
     stateBiomass = Provider.of<StateBiomass>(context);
   }
 
-  /* double? resultdba;
-  double? resulthba;
-  double? resultbha;
-
-  @override
-  void initState() {
-    super.initState();
-    resultdba = widget.resultdba;
-    resultbha = widget.resultbha;
-    resulthba = widget.resulthba;
-  } */
-
   //Dialogo informativo sobre la biomasa
   void openDialog(BuildContext context) {
     showDialog(

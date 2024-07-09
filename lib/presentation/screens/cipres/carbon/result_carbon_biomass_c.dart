@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:version/presentation/screens/cipres/carbon/carbon_c.dart';
 
 class ResultCarbonBiomassC extends StatelessWidget {
   final double resultCarbonBiomassC;
+
   const ResultCarbonBiomassC({super.key, required this.resultCarbonBiomassC});
 
   //Vamos a definir los rangos
@@ -98,6 +100,146 @@ class ResultCarbonBiomassC extends StatelessWidget {
                     getImagePath(level),
                     height: 200,
                   )),
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                  Table(
+                    border: TableBorder.all(),
+                    columnWidths: const <int, TableColumnWidth>{
+                      0: FixedColumnWidth(75),
+                      1: FixedColumnWidth(42),
+                      2: FixedColumnWidth(42),
+                      3: FixedColumnWidth(42),
+                      4: FixedColumnWidth(42),
+                      5: FixedColumnWidth(42),
+                    },
+                    children: [
+                      // Títulos de la cabecera de la tabla
+                      TableRow(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variables',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Aliso',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Pino',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Ciprés',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Pona',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('SSA',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+                      // Primera fila de datos
+                      TableRow(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Retención de carbono total'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 1'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 2'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 3'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 4'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 5'),
+                          ),
+                        ],
+                      ),
+                      // Segunda fila de datos
+                      TableRow(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Biomasa vegetal total'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 6'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 7'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 8'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 9'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 10'),
+                          ),
+                        ],
+                      ),
+                      // Tercera fila de datos
+                      TableRow(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Dióxido de carbono'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 11'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 12'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 13'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 14'),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Variable 15'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+
                   const SizedBox(
                     height: 20,
                   ),

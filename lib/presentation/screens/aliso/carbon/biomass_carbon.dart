@@ -3,6 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 
 import 'package:version/presentation/screens/aliso/carbon/result_biomass_carbon.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
+import 'package:version/presentation/screens/no_tree/state_s.dart';
+import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
+import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 
 class BiomassCarbonScreen extends StatefulWidget {
   const BiomassCarbonScreen({super.key});
@@ -13,6 +17,11 @@ class BiomassCarbonScreen extends StatefulWidget {
 
 class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
   StateBiomass? stateBiomass;
+  StateBiomassC? stateBiomassC;
+  StateBiomassP? stateBiomassP;
+  StateBiomassO? stateBiomassO;
+  StateST? stateST;
+
   String? errorMessage;
 
   //Para usar el provider
@@ -20,6 +29,10 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     stateBiomass = Provider.of<StateBiomass>(context);
+    stateBiomassC = Provider.of<StateBiomassC>(context);
+    stateBiomassP = Provider.of<StateBiomassP>(context);
+    stateBiomassO = Provider.of<StateBiomassO>(context);
+    stateST = Provider.of<StateST>(context);
   }
 
   //Función para ver el resultado
@@ -28,7 +41,29 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
         context,
         MaterialPageRoute(
             builder: (context) => ResultCarbonBiomass(
+                  //Aliso
                   resultCarbonBiomass: stateBiomass!.resultCarbonBiomass,
+                  totalBiomass: stateBiomass!.totalBiomass,
+                  resultConversionCarbon: stateBiomass!.resultConversionCarbon,
+                  //Ciprés
+                  resultCarbonBiomassC: stateBiomassC!.resultCarbonBiomassC,
+                  totalBiomassC: stateBiomassC!.totalBiomassC,
+                  resultConversionCarbonC:
+                      stateBiomassC!.resultConversionCarbonC,
+                  //Pona
+                  resultCarbonBiomassO: stateBiomassO!.resultCarbonBiomassO,
+                  totalBiomassO: stateBiomassO!.totalBiomassO,
+                  resultConversionCarbonO:
+                      stateBiomassO!.resultConversionCarbonO,
+                  //SSA
+                  resultCarbonBiomassST: stateST!.resultCarbonBiomassST,
+                  resultHerbaceousBiomassST: stateST!.resultHerbaceousBiomassST,
+                  resultConversionCarbonST: stateST!.resultConversionCarbonST,
+                  //Pino
+                  resultCarbonBiomassP: stateBiomassP!.resultCarbonBiomassP,
+                  totalBiomassP: stateBiomassP!.totalBiomassP,
+                  resultConversionCarbonP:
+                      stateBiomassP!.resultConversionCarbonP,
                 )));
   }
 
