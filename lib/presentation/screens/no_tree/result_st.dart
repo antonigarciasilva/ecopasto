@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:version/presentation/screens/cipres/carbon/carbon_c.dart';
-import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
 
-class ResultCarbonBiomassC extends StatelessWidget {
+class ResultSt extends StatelessWidget {
   //Variables de Aliso
   final double resultCarbonBiomass;
   final double totalBiomass;
@@ -25,7 +24,7 @@ class ResultCarbonBiomassC extends StatelessWidget {
   final double resultHerbaceousBiomassST;
   final double resultConversionCarbonST;
 
-  const ResultCarbonBiomassC(
+  const ResultSt(
       {super.key,
       required this.resultCarbonBiomassC,
       required this.resultCarbonBiomass,
@@ -102,7 +101,7 @@ class ResultCarbonBiomassC extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String level = getCarbonLevelC(resultCarbonBiomassC);
+    String level = getCarbonLevelC(resultHerbaceousBiomassST);
     Color levelColor;
 
     if (level == 'Bajo') {
@@ -438,7 +437,7 @@ class ResultCarbonBiomassC extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    'El carbono total en la biomasa es de: ${resultCarbonBiomassC.toStringAsFixed(2)} T/ha',
+                    'El carbono total en la biomasa es de: ${resultCarbonBiomassST.toStringAsFixed(2)} T/ha',
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 18),
                   ),
@@ -482,8 +481,7 @@ class ResultCarbonBiomassC extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    const NewSelectSilvoScreen()));
+                                builder: (context) => const CarbonScreenC()));
                       },
                       child: const Text('Aceptar',
                           style: TextStyle(fontSize: 18, color: Colors.white)))

@@ -37,8 +37,9 @@ class _BiomassPonaState extends State<BiomassPona> {
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text(
-                'La biomasa total es: $formattedBiomassO',
+                'La biomasa total es: $formattedBiomassO T/ha',
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 18),
               ),
               actions: [
                 TextButton(

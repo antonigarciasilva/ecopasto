@@ -1,8 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
-import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
+import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
+
+//Clase para representar los datos para el gráfico
+class BiomassData {
+  final String treeType;
+  final String variable;
+  final double value;
+
+  BiomassData(
+    this.treeType,
+    this.variable,
+    this.value,
+  );
+}
 
 class ResultCarbonBiomass extends StatelessWidget {
+  //Preparamos las listas para el gráfico
+  List<BiomassData> getchartDate() {
+    return [
+      //Aliso
+      BiomassData(
+        'Aliso',
+        'TB',
+        totalBiomass,
+      ),
+      BiomassData('Aliso', 'CB', resultCarbonBiomass),
+      BiomassData('Aliso', 'CC', resultConversionCarbon),
+
+      //Ciprés
+      BiomassData(
+        'Cipres',
+        'TB',
+        totalBiomassC,
+      ),
+      BiomassData('Cipres', 'CB', resultCarbonBiomassC),
+      BiomassData('Cipres', 'CC', resultConversionCarbonC),
+
+      //Pino
+      BiomassData(
+        'Pino',
+        'TB',
+        totalBiomassP,
+      ),
+      BiomassData('Pino', 'CB', resultCarbonBiomassP),
+      BiomassData('Pino', 'CC', resultConversionCarbonP),
+      //Pona
+      BiomassData(
+        'Pona',
+        'TB',
+        totalBiomassO,
+      ),
+      BiomassData('Pona', 'CB', resultCarbonBiomassO),
+      BiomassData('Pona', 'CC', resultConversionCarbonO),
+
+      //SSA
+      BiomassData(
+        'Ssa',
+        'TB',
+        resultHerbaceousBiomassST,
+      ),
+      BiomassData('Pona', 'CB', resultCarbonBiomassST),
+      BiomassData('Pona', 'CC', resultConversionCarbonST),
+    ];
+  }
+
   //Variables de Aliso
   final double resultCarbonBiomass;
   final double totalBiomass;
@@ -104,6 +167,7 @@ class ResultCarbonBiomass extends StatelessWidget {
   Widget build(BuildContext context) {
     String level = getCarbonLevel(resultCarbonBiomass);
     Color levelColor;
+    final List<BiomassData> chartData = getchartDate();
 
     if (level == 'Bajo') {
       levelColor = Colors.red;
@@ -126,6 +190,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         const SizedBox(
                           height: 20,
@@ -435,6 +500,113 @@ class ResultCarbonBiomass extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
+
+                        //Implementamos el gráfico
+                        SizedBox(
+                          height: 350,
+                          width: 290,
+                          //Inicializamos el gráfico cartesiano
+                          child: SfCartesianChart(
+                            title: const ChartTitle(
+                                text: 'Análisis de biomasa y carbono \n'
+                                    'en Sistemas Silvopastoriles',
+                                textStyle: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold)),
+                            //Personalizando el eje x
+                            primaryXAxis: const CategoryAxis(
+                              title: AxisTitle(
+                                  text: 'Variables',
+                                  textStyle:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                              labelStyle: TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
+
+                            //Personalizando el eje y
+                            primaryYAxis: const NumericAxis(
+                              title: AxisTitle(
+                                  text: 'T / ha',
+                                  textStyle:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                              interval: 50,
+                              minimum: 0,
+                              maximum: 1000,
+                              majorGridLines: MajorGridLines(width: 1),
+                            ),
+
+                            legend: const Legend(isVisible: true),
+
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            series: <CartesianSeries>[
+                              LineSeries<BiomassData, String>(
+                                dataSource: chartData
+                                    .where((data) => data.treeType == 'Aliso')
+                                    .toList(),
+                                xValueMapper: (BiomassData data, _) =>
+                                    data.variable,
+                                yValueMapper: (BiomassData data, _) =>
+                                    data.value,
+                                name: 'Aliso',
+                                dataLabelSettings:
+                                    const DataLabelSettings(isVisible: true),
+                              ),
+                              LineSeries<BiomassData, String>(
+                                dataSource: chartData
+                                    .where((data) => data.treeType == 'Cipres')
+                                    .toList(),
+                                xValueMapper: (BiomassData data, _) =>
+                                    data.variable,
+                                yValueMapper: (BiomassData data, _) =>
+                                    data.value,
+                                name: 'Ciprés',
+                                dataLabelSettings:
+                                    const DataLabelSettings(isVisible: true),
+                              ),
+                              LineSeries<BiomassData, String>(
+                                dataSource: chartData
+                                    .where((data) => data.treeType == 'Pino')
+                                    .toList(),
+                                xValueMapper: (BiomassData data, _) =>
+                                    data.variable,
+                                yValueMapper: (BiomassData data, _) =>
+                                    data.value,
+                                name: 'Pino',
+                                color: Colors.red,
+                                dataLabelSettings:
+                                    const DataLabelSettings(isVisible: true),
+                              ),
+                              LineSeries<BiomassData, String>(
+                                dataSource: chartData
+                                    .where((data) => data.treeType == 'Pona')
+                                    .toList(),
+                                xValueMapper: (BiomassData data, _) =>
+                                    data.variable,
+                                yValueMapper: (BiomassData data, _) =>
+                                    data.value,
+                                name: 'Pona',
+                                dataLabelSettings:
+                                    const DataLabelSettings(isVisible: true),
+                              ),
+                              LineSeries<BiomassData, String>(
+                                dataSource: chartData
+                                    .where((data) => data.treeType == 'SSA')
+                                    .toList(),
+                                xValueMapper: (BiomassData data, _) =>
+                                    data.variable,
+                                yValueMapper: (BiomassData data, _) =>
+                                    data.value,
+                                name: 'SSA',
+                                dataLabelSettings:
+                                    const DataLabelSettings(isVisible: true),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        const SizedBox(
+                          height: 20,
+                        ),
                         Text(
                           'El carbono total en la biomasa es de: ${resultCarbonBiomass.toStringAsFixed(2)} T/ha',
                           style: const TextStyle(fontSize: 18),
@@ -480,7 +652,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const CarbonScreen()));
+                                          const NewSelectSilvoScreen()));
                             },
                             child: const Text('Aceptar',
                                 style: TextStyle(

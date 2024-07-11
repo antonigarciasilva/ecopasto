@@ -56,8 +56,9 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
                     style: TextStyle(fontSize: 18),
                   ),
                   content: Text(
-                    'La biomasa seca es: $formattedResult ',
+                    'La biomasa seca es: $formattedResult T/ha ',
                     textAlign: TextAlign.justify,
+                    style: const TextStyle(fontSize: 18),
                   ),
                   actions: [
                     TextButton(

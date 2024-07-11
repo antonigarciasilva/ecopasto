@@ -35,7 +35,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text(
-                'La biomasa total es: $formattedBiomassP',
+                'La biomasa total es: $formattedBiomassP T/ha',
                 textAlign: TextAlign.justify,
                 style: const TextStyle(fontSize: 18),
               ),

@@ -43,6 +43,7 @@ dependencies:
   material: ^1.0.0+2
   provider: ^6.1.2
   responsive_builder: ^0.7.0
+  syncfusion_flutter_charts: ^26.1.41+1
 
 dev_dependencies:
   flutter_lints: ^3.0.0

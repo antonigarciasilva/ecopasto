@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
+import 'package:version/presentation/screens/no_tree/result_st.dart';
 
 import 'package:version/presentation/screens/no_tree/state_s.dart';
-import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
+import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
+import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 
 class HerbaceousBiomassST extends StatefulWidget {
   const HerbaceousBiomassST({super.key});
@@ -13,6 +17,10 @@ class HerbaceousBiomassST extends StatefulWidget {
 }
 
 class _HerbaceousBiomassSTState extends State<HerbaceousBiomassST> {
+  StateBiomass? stateBiomass;
+  StateBiomassC? stateBiomassC;
+  StateBiomassP? stateBiomassP;
+  StateBiomassO? stateBiomassO;
   StateST? stateST;
   String? errorMessage;
 
@@ -20,37 +28,57 @@ class _HerbaceousBiomassSTState extends State<HerbaceousBiomassST> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    stateBiomass = Provider.of<StateBiomass>(context);
+    stateBiomassC = Provider.of<StateBiomassC>(context);
+    stateBiomassP = Provider.of<StateBiomassP>(context);
+    stateBiomassO = Provider.of<StateBiomassO>(context);
     stateST = Provider.of<StateST>(context);
   }
 
-  // Calculo de la biomasa herbacea
+  void _seeResultCarbonST() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ResultSt(
+                  //Aliso
+                  resultCarbonBiomass: stateBiomass!.resultCarbonBiomass,
+                  totalBiomass: stateBiomass!.totalBiomass,
+                  resultConversionCarbon: stateBiomass!.resultConversionCarbon,
+                  //Ciprés
+                  resultCarbonBiomassC: stateBiomassC!.resultCarbonBiomassC,
+                  totalBiomassC: stateBiomassC!.totalBiomassC,
+                  resultConversionCarbonC:
+                      stateBiomassC!.resultConversionCarbonC,
+                  //Pona
+                  resultCarbonBiomassO: stateBiomassO!.resultCarbonBiomassO,
+                  totalBiomassO: stateBiomassO!.totalBiomassO,
+                  resultConversionCarbonO:
+                      stateBiomassO!.resultConversionCarbonO,
+                  //SSA
+                  resultCarbonBiomassST: stateST!.resultCarbonBiomassST,
+                  resultHerbaceousBiomassST: stateST!.resultHerbaceousBiomassST,
+                  resultConversionCarbonST: stateST!.resultConversionCarbonST,
+                  //Pino
+                  resultCarbonBiomassP: stateBiomassP!.resultCarbonBiomassP,
+                  totalBiomassP: stateBiomassP!.totalBiomassP,
+                  resultConversionCarbonP:
+                      stateBiomassP!.resultConversionCarbonP,
+                )));
+  }
 
-  void _calculateHerbaceousBiomassResult() {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => AlertDialog(
-              title: const Text(
-                'Resultado del cálculo',
-                style: TextStyle(fontSize: 18),
-              ),
-              content: Text(
-                'La biomasa herbácea es: ${stateST!.resultHerbaceousBiomassST.toStringAsFixed(2)} T/ha',
-                textAlign: TextAlign.justify,
-              ),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const NewSelectSilvoScreen()));
-                    },
-                    child: const Text('Aceptar'))
-              ],
-            ));
+//Calculamos el carbon con la biomasa
+  void _calculateBiomassCarbonResult() {
+    if (stateST?.resultHerbaceousBiomassST == 0.00) {
+      setState(() {
+        errorMessage =
+            'Por favor, completa el modulo de biomasa para calcular el carbono';
+      });
+    } else {
+      setState(() {
+        errorMessage = null;
+      });
+      _seeResultCarbonST();
+    }
   }
 
   //Dialogo informativo sobre el Aliso
@@ -197,7 +225,7 @@ class _HerbaceousBiomassSTState extends State<HerbaceousBiomassST> {
                           backgroundColor: WidgetStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _calculateHerbaceousBiomassResult,
+                        onPressed: _calculateBiomassCarbonResult,
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),
