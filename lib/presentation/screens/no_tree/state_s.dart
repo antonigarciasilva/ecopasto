@@ -32,4 +32,10 @@ class StateST with ChangeNotifier {
   double get resultConversionCarbonST {
     return resultCarbonBiomassST * 3.666;
   }
+
+  double get sumaTotalST {
+    return resultHerbaceousBiomassST +
+        resultCarbonBiomassST +
+        resultConversionCarbonST;
+  }
 }

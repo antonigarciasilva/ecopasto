@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
@@ -23,46 +24,51 @@ class ResultCarbonBiomass extends StatelessWidget {
       //Aliso
       BiomassData(
         'Aliso',
-        'TB',
+        'Biomasa vegetal',
         totalBiomass,
       ),
-      BiomassData('Aliso', 'CB', resultCarbonBiomass),
-      BiomassData('Aliso', 'CC', resultConversionCarbon),
+      BiomassData('Aliso', 'Retención de carbono', resultCarbonBiomass),
+      BiomassData('Aliso', 'Dióxido de carbono', resultConversionCarbon),
+      BiomassData('Aliso', 'Total', sumaTotal),
 
       //Ciprés
       BiomassData(
         'Cipres',
-        'TB',
+        'Biomasa vegetal',
         totalBiomassC,
       ),
-      BiomassData('Cipres', 'CB', resultCarbonBiomassC),
-      BiomassData('Cipres', 'CC', resultConversionCarbonC),
+      BiomassData('Cipres', 'Retención de carbono', resultCarbonBiomassC),
+      BiomassData('Cipres', 'Dióxido de carbono', resultConversionCarbonC),
+      BiomassData('Cipres', 'Total', sumaTotalC),
 
       //Pino
       BiomassData(
         'Pino',
-        'TB',
+        'Biomasa vegetal',
         totalBiomassP,
       ),
-      BiomassData('Pino', 'CB', resultCarbonBiomassP),
-      BiomassData('Pino', 'CC', resultConversionCarbonP),
+      BiomassData('Pino', 'Retención de carbono', resultCarbonBiomassP),
+      BiomassData('Pino', 'Dióxido de carbono', resultConversionCarbonP),
+      BiomassData('Pino', 'Total', sumaTotalP),
       //Pona
       BiomassData(
         'Pona',
-        'TB',
+        'Biomasa vegetal',
         totalBiomassO,
       ),
-      BiomassData('Pona', 'CB', resultCarbonBiomassO),
-      BiomassData('Pona', 'CC', resultConversionCarbonO),
+      BiomassData('Pona', 'Retención de carbono', resultCarbonBiomassO),
+      BiomassData('Pona', 'Dióxido de carbono', resultConversionCarbonO),
+      BiomassData('Pona', 'Total', sumaTotalO),
 
       //SSA
       BiomassData(
         'Ssa',
-        'TB',
+        'Biomasa vegetal',
         resultHerbaceousBiomassST,
       ),
-      BiomassData('Pona', 'CB', resultCarbonBiomassST),
-      BiomassData('Pona', 'CC', resultConversionCarbonST),
+      BiomassData('Pona', 'Retención de carbono', resultCarbonBiomassST),
+      BiomassData('Pona', 'Dióxido de carbono', resultConversionCarbonST),
+      BiomassData('Pona', 'Total', sumaTotalST),
     ];
   }
 
@@ -70,22 +76,27 @@ class ResultCarbonBiomass extends StatelessWidget {
   final double resultCarbonBiomass;
   final double totalBiomass;
   final double resultConversionCarbon;
+  final double sumaTotal;
 //Variables de ciprés
   final double resultCarbonBiomassC;
   final double totalBiomassC;
   final double resultConversionCarbonC;
+  final double sumaTotalC;
 //Variables de Pona
   final double resultCarbonBiomassO;
   final double totalBiomassO;
   final double resultConversionCarbonO;
+  final double sumaTotalO;
 //Variables de Pino
   final double resultCarbonBiomassP;
   final double totalBiomassP;
   final double resultConversionCarbonP;
+  final double sumaTotalP;
 //Variables de SSA
   final double resultCarbonBiomassST;
   final double resultHerbaceousBiomassST;
   final double resultConversionCarbonST;
+  final double sumaTotalST;
 
   const ResultCarbonBiomass({
     super.key,
@@ -104,6 +115,11 @@ class ResultCarbonBiomass extends StatelessWidget {
     required this.resultCarbonBiomassP,
     required this.totalBiomassP,
     required this.resultConversionCarbonP,
+    required this.sumaTotal,
+    required this.sumaTotalC,
+    required this.sumaTotalO,
+    required this.sumaTotalP,
+    required this.sumaTotalST,
   });
 
   //Vamos a definir los rangos
@@ -204,6 +220,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
+                        //Armamos la tabla
                         Table(
                           border: TableBorder.all(),
                           columnWidths: const <int, TableColumnWidth>{
@@ -494,7 +511,77 @@ class ResultCarbonBiomass extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                 ),
                               ),
-                            ])
+                            ]),
+
+                            //Fila de la suma total
+                            TableRow(children: [
+                              Container(
+                                padding: const EdgeInsets.all(8),
+                                child: const Text(
+                                  'Total',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.justify,
+                                ),
+                              ),
+                              //Aliso
+                              Container(
+                                padding: const EdgeInsets.all(4),
+                                child: Text(
+                                  '${sumaTotal.toStringAsFixed(2)}',
+                                  style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              //Ciprés
+                              Container(
+                                padding: const EdgeInsets.all(4),
+                                child: Text(
+                                  '${sumaTotalC.toStringAsFixed(2)}',
+                                  style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              //Pino
+                              Container(
+                                padding: const EdgeInsets.all(4),
+                                child: Text(
+                                  '${sumaTotalP.toStringAsFixed(2)}',
+                                  style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              //Pona
+                              Container(
+                                padding: const EdgeInsets.all(4),
+                                child: Text(
+                                  '${sumaTotalP.toStringAsFixed(2)}',
+                                  style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              //SSA
+                              Container(
+                                padding: const EdgeInsets.all(4),
+                                child: Text(
+                                  '${sumaTotalST.toStringAsFixed(2)}',
+                                  style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ]),
                           ],
                         ),
                         const SizedBox(
@@ -502,40 +589,60 @@ class ResultCarbonBiomass extends StatelessWidget {
                         ),
 
                         //Implementamos el gráfico
+
                         SizedBox(
-                          height: 350,
-                          width: 290,
+                          height: 380,
+                          width: 280,
+
                           //Inicializamos el gráfico cartesiano
                           child: SfCartesianChart(
                             title: const ChartTitle(
-                                text: 'Análisis de biomasa y carbono \n'
+                                text:
+                                    'Análisis de biomasa y retención de carbono \n'
                                     'en Sistemas Silvopastoriles',
                                 textStyle: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.bold)),
+                                    fontSize: 11, fontWeight: FontWeight.bold)),
                             //Personalizando el eje x
-                            primaryXAxis: const CategoryAxis(
-                              title: AxisTitle(
-                                  text: 'Variables',
-                                  textStyle:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              labelStyle: TextStyle(
-                                fontSize: 12,
-                              ),
+                            primaryXAxis: CategoryAxis(
+                              title: const AxisTitle(
+                                  text: 'Sistemas silvopastoriles',
+                                  textStyle: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12)),
+                              axisLabelFormatter:
+                                  (AxisLabelRenderDetails details) {
+                                // Dividir las etiquetas largas en varias líneas
+                                final text = details.text.replaceAll(' ', '\n');
+                                return ChartAxisLabel(
+                                  text,
+                                  const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 9,
+                                  ),
+                                );
+                              },
                             ),
 
                             //Personalizando el eje y
                             primaryYAxis: const NumericAxis(
                               title: AxisTitle(
                                   text: 'T / ha',
-                                  textStyle:
-                                      TextStyle(fontWeight: FontWeight.bold)),
+                                  textStyle: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12)),
                               interval: 50,
                               minimum: 0,
-                              maximum: 1000,
+                              maximum: 4000,
                               majorGridLines: MajorGridLines(width: 1),
                             ),
 
-                            legend: const Legend(isVisible: true),
+                            legend: const Legend(
+                                isVisible: true,
+                                overflowMode: LegendItemOverflowMode.scroll,
+                                position: LegendPosition.bottom,
+                                alignment: ChartAlignment.center,
+                                textStyle: TextStyle(fontSize: 12)),
 
                             tooltipBehavior: TooltipBehavior(enable: true),
                             series: <CartesianSeries>[
@@ -548,8 +655,31 @@ class ResultCarbonBiomass extends StatelessWidget {
                                 yValueMapper: (BiomassData data, _) =>
                                     data.value,
                                 name: 'Aliso',
-                                dataLabelSettings:
-                                    const DataLabelSettings(isVisible: true),
+                                color: Colors.blue,
+                                //Agregamos markers
+                                markerSettings: const MarkerSettings(
+                                  isVisible: true,
+                                  shape: DataMarkerType.circle,
+                                  color: Colors.blue,
+                                  borderWidth: 1,
+                                  borderColor: Colors.blue,
+                                ),
+                                //Números dentro del gráfico
+                                dataLabelSettings: DataLabelSettings(
+                                    isVisible: true,
+                                    builder: (dynamic data,
+                                        dynamic point,
+                                        dynamic series,
+                                        int pointIndex,
+                                        int seriesIndex) {
+                                      return Text(
+                                        data.value.toStringAsFixed(2),
+                                        style: const TextStyle(
+                                          fontSize: 8,
+                                          color: Colors.black,
+                                        ),
+                                      );
+                                    }),
                               ),
                               LineSeries<BiomassData, String>(
                                 dataSource: chartData
@@ -560,8 +690,31 @@ class ResultCarbonBiomass extends StatelessWidget {
                                 yValueMapper: (BiomassData data, _) =>
                                     data.value,
                                 name: 'Ciprés',
-                                dataLabelSettings:
-                                    const DataLabelSettings(isVisible: true),
+                                color: Colors.green,
+                                //Agregamos markers
+                                markerSettings: const MarkerSettings(
+                                  isVisible: true,
+                                  shape: DataMarkerType.circle,
+                                  color: Colors.green,
+                                  borderWidth: 1,
+                                  borderColor: Colors.green,
+                                ),
+                                //Números dentro del gráfico
+                                dataLabelSettings: DataLabelSettings(
+                                    isVisible: true,
+                                    builder: (dynamic data,
+                                        dynamic point,
+                                        dynamic series,
+                                        int pointIndex,
+                                        int seriesIndex) {
+                                      return Text(
+                                        data.value.toStringAsFixed(2),
+                                        style: const TextStyle(
+                                          fontSize: 8,
+                                          color: Colors.black,
+                                        ),
+                                      );
+                                    }),
                               ),
                               LineSeries<BiomassData, String>(
                                 dataSource: chartData
@@ -573,8 +726,30 @@ class ResultCarbonBiomass extends StatelessWidget {
                                     data.value,
                                 name: 'Pino',
                                 color: Colors.red,
-                                dataLabelSettings:
-                                    const DataLabelSettings(isVisible: true),
+                                //Agregamos markers
+                                markerSettings: const MarkerSettings(
+                                  isVisible: true,
+                                  shape: DataMarkerType.circle,
+                                  color: Colors.red,
+                                  borderWidth: 1,
+                                  borderColor: Colors.red,
+                                ),
+                                //Números dentro del gráfico
+                                dataLabelSettings: DataLabelSettings(
+                                    isVisible: true,
+                                    builder: (dynamic data,
+                                        dynamic point,
+                                        dynamic series,
+                                        int pointIndex,
+                                        int seriesIndex) {
+                                      return Text(
+                                        data.value.toStringAsFixed(2),
+                                        style: const TextStyle(
+                                          fontSize: 8,
+                                          color: Colors.black,
+                                        ),
+                                      );
+                                    }),
                               ),
                               LineSeries<BiomassData, String>(
                                 dataSource: chartData
@@ -585,8 +760,31 @@ class ResultCarbonBiomass extends StatelessWidget {
                                 yValueMapper: (BiomassData data, _) =>
                                     data.value,
                                 name: 'Pona',
-                                dataLabelSettings:
-                                    const DataLabelSettings(isVisible: true),
+                                color: Colors.yellow,
+                                //Agregamos markers
+                                markerSettings: const MarkerSettings(
+                                  isVisible: true,
+                                  shape: DataMarkerType.circle,
+                                  color: Colors.yellow,
+                                  borderWidth: 1,
+                                  borderColor: Colors.yellow,
+                                ),
+                                //Números dentro del gráfico
+                                dataLabelSettings: DataLabelSettings(
+                                    isVisible: true,
+                                    builder: (dynamic data,
+                                        dynamic point,
+                                        dynamic series,
+                                        int pointIndex,
+                                        int seriesIndex) {
+                                      return Text(
+                                        data.value.toStringAsFixed(2),
+                                        style: const TextStyle(
+                                          fontSize: 8,
+                                          color: Colors.black,
+                                        ),
+                                      );
+                                    }),
                               ),
                               LineSeries<BiomassData, String>(
                                 dataSource: chartData
@@ -597,8 +795,31 @@ class ResultCarbonBiomass extends StatelessWidget {
                                 yValueMapper: (BiomassData data, _) =>
                                     data.value,
                                 name: 'SSA',
-                                dataLabelSettings:
-                                    const DataLabelSettings(isVisible: true),
+                                color: Colors.purple[900],
+                                //Agregamos markers
+                                markerSettings: const MarkerSettings(
+                                  isVisible: true,
+                                  shape: DataMarkerType.circle,
+                                  color: Colors.purple,
+                                  borderWidth: 1,
+                                  borderColor: Colors.purple,
+                                ),
+                                //Números dentro del gráfico
+                                dataLabelSettings: DataLabelSettings(
+                                    isVisible: true,
+                                    builder: (dynamic data,
+                                        dynamic point,
+                                        dynamic series,
+                                        int pointIndex,
+                                        int seriesIndex) {
+                                      return Text(
+                                        data.value.toStringAsFixed(2),
+                                        style: const TextStyle(
+                                          fontSize: 8,
+                                          color: Colors.black,
+                                        ),
+                                      );
+                                    }),
                               ),
                             ],
                           ),

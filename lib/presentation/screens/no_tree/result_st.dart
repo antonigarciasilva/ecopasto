@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:version/presentation/screens/cipres/carbon/carbon_c.dart';
+import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
 
 class ResultSt extends StatelessWidget {
   //Variables de Aliso
@@ -481,7 +482,8 @@ class ResultSt extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CarbonScreenC()));
+                                builder: (context) =>
+                                    const NewSelectSilvoScreen()));
                       },
                       child: const Text('Aceptar',
                           style: TextStyle(fontSize: 18, color: Colors.white)))

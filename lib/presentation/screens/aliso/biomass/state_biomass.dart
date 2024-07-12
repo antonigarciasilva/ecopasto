@@ -70,4 +70,8 @@ class StateBiomass with ChangeNotifier {
   double get resultConversionCarbon {
     return resultCarbonBiomass * 3.666;
   }
+
+  double get sumaTotal {
+    return totalBiomass + resultCarbonBiomass + resultConversionCarbon;
+  }
 }

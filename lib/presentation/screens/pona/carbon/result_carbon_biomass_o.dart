@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:version/presentation/screens/pona/carbon/carbon_pona.dart';
 import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
 
 class ResultCarbonBiomassO extends StatelessWidget {
