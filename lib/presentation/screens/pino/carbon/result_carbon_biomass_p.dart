@@ -1,28 +1,100 @@
 import 'package:flutter/material.dart';
-
+import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
 
+//Clase para representar los datos para el gráfico
+class BiomassData {
+  final String treeType;
+  final String variable;
+  final double value;
+
+  BiomassData(
+    this.treeType,
+    this.variable,
+    this.value,
+  );
+}
+
 class ResultCarbonBiomassP extends StatelessWidget {
+  //Preparamos las listas para el gráfico
+  List<BiomassData> getchartDate() {
+    return [
+      //Aliso
+      BiomassData(
+        'Aliso',
+        'Biomasa vegetal',
+        totalBiomass,
+      ),
+      BiomassData('Aliso', 'Retención de carbono', resultCarbonBiomass),
+      BiomassData('Aliso', 'Dióxido de carbono', resultConversionCarbon),
+      BiomassData('Aliso', 'Total', sumaTotal),
+
+      //Ciprés
+      BiomassData(
+        'Cipres',
+        'Biomasa vegetal',
+        totalBiomassC,
+      ),
+      BiomassData('Cipres', 'Retención de carbono', resultCarbonBiomassC),
+      BiomassData('Cipres', 'Dióxido de carbono', resultConversionCarbonC),
+      BiomassData('Cipres', 'Total', sumaTotalC),
+
+      //Pino
+      BiomassData(
+        'Pino',
+        'Biomasa vegetal',
+        totalBiomassP,
+      ),
+      BiomassData('Pino', 'Retención de carbono', resultCarbonBiomassP),
+      BiomassData('Pino', 'Dióxido de carbono', resultConversionCarbonP),
+      BiomassData('Pino', 'Total', sumaTotalP),
+      //Pona
+      BiomassData(
+        'Pona',
+        'Biomasa vegetal',
+        totalBiomassO,
+      ),
+      BiomassData('Pona', 'Retención de carbono', resultCarbonBiomassO),
+      BiomassData('Pona', 'Dióxido de carbono', resultConversionCarbonO),
+      BiomassData('Pona', 'Total', sumaTotalO),
+
+      //SSA
+      BiomassData(
+        'Ssa',
+        'Biomasa vegetal',
+        resultHerbaceousBiomassST,
+      ),
+      BiomassData('Pona', 'Retención de carbono', resultCarbonBiomassST),
+      BiomassData('Pona', 'Dióxido de carbono', resultConversionCarbonST),
+      BiomassData('Pona', 'Total', sumaTotalST),
+    ];
+  }
+
   //Variables de Aliso
   final double resultCarbonBiomass;
   final double totalBiomass;
   final double resultConversionCarbon;
+  final double sumaTotal;
 //Variables de ciprés
   final double resultCarbonBiomassC;
   final double totalBiomassC;
   final double resultConversionCarbonC;
+  final double sumaTotalC;
 //Variables de Pona
   final double resultCarbonBiomassO;
   final double totalBiomassO;
   final double resultConversionCarbonO;
+  final double sumaTotalO;
 //Variables de Pino
   final double resultCarbonBiomassP;
   final double totalBiomassP;
   final double resultConversionCarbonP;
+  final double sumaTotalP;
 //Variables de SSA
   final double resultCarbonBiomassST;
   final double resultHerbaceousBiomassST;
   final double resultConversionCarbonST;
+  final double sumaTotalST;
   const ResultCarbonBiomassP(
       {super.key,
       required this.resultCarbonBiomassP,
@@ -39,7 +111,12 @@ class ResultCarbonBiomassP extends StatelessWidget {
       required this.resultConversionCarbonP,
       required this.resultCarbonBiomassST,
       required this.resultHerbaceousBiomassST,
-      required this.resultConversionCarbonST});
+      required this.resultConversionCarbonST,
+      required this.sumaTotal,
+      required this.sumaTotalC,
+      required this.sumaTotalO,
+      required this.sumaTotalP,
+      required this.sumaTotalST});
 
   //Vamos a definir los rangos
   String getCarbonLevelP(double resultCarbonBiomassP) {
@@ -102,6 +179,7 @@ class ResultCarbonBiomassP extends StatelessWidget {
   Widget build(BuildContext context) {
     String level = getCarbonLevelP(resultCarbonBiomassP);
     Color levelColor;
+    final List<BiomassData> chartData = getchartDate();
 
     if (level == 'Bajo') {
       levelColor = Colors.red;
@@ -432,6 +510,232 @@ class ResultCarbonBiomassP extends StatelessWidget {
                     ],
                   ),
 
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                  //Implementamos el gráfico
+
+                  SizedBox(
+                    height: 380,
+                    width: 280,
+
+                    //Inicializamos el gráfico cartesiano
+                    child: SfCartesianChart(
+                      title: const ChartTitle(
+                          text: 'Análisis de biomasa y retención de carbono \n'
+                              'en Sistemas Silvopastoriles',
+                          textStyle: TextStyle(
+                              fontSize: 11, fontWeight: FontWeight.bold)),
+                      //Personalizando el eje x
+                      primaryXAxis: CategoryAxis(
+                        title: const AxisTitle(
+                            text: 'Sistemas silvopastoriles',
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 12)),
+                        axisLabelFormatter: (AxisLabelRenderDetails details) {
+                          // Dividir las etiquetas largas en varias líneas
+                          final text = details.text.replaceAll(' ', '\n');
+                          return ChartAxisLabel(
+                            text,
+                            const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 9,
+                            ),
+                          );
+                        },
+                      ),
+
+                      //Personalizando el eje y
+                      primaryYAxis: const NumericAxis(
+                        title: AxisTitle(
+                            text: 'T / ha',
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 12)),
+                        interval: 50,
+                        minimum: 0,
+                        maximum: 4000,
+                        majorGridLines: MajorGridLines(width: 1),
+                      ),
+
+                      legend: const Legend(
+                          isVisible: true,
+                          overflowMode: LegendItemOverflowMode.scroll,
+                          position: LegendPosition.bottom,
+                          alignment: ChartAlignment.center,
+                          textStyle: TextStyle(fontSize: 12)),
+
+                      tooltipBehavior: TooltipBehavior(enable: true),
+                      series: <CartesianSeries>[
+                        LineSeries<BiomassData, String>(
+                          dataSource: chartData
+                              .where((data) => data.treeType == 'Aliso')
+                              .toList(),
+                          xValueMapper: (BiomassData data, _) => data.variable,
+                          yValueMapper: (BiomassData data, _) => data.value,
+                          name: 'Aliso',
+                          color: Colors.blue,
+                          //Agregamos markers
+                          markerSettings: const MarkerSettings(
+                            isVisible: true,
+                            shape: DataMarkerType.circle,
+                            color: Colors.blue,
+                            borderWidth: 1,
+                            borderColor: Colors.blue,
+                          ),
+                          //Números dentro del gráfico
+                          dataLabelSettings: DataLabelSettings(
+                              isVisible: true,
+                              builder: (dynamic data,
+                                  dynamic point,
+                                  dynamic series,
+                                  int pointIndex,
+                                  int seriesIndex) {
+                                return Text(
+                                  data.value.toStringAsFixed(2),
+                                  style: const TextStyle(
+                                    fontSize: 8,
+                                    color: Colors.black,
+                                  ),
+                                );
+                              }),
+                        ),
+                        LineSeries<BiomassData, String>(
+                          dataSource: chartData
+                              .where((data) => data.treeType == 'Cipres')
+                              .toList(),
+                          xValueMapper: (BiomassData data, _) => data.variable,
+                          yValueMapper: (BiomassData data, _) => data.value,
+                          name: 'Ciprés',
+                          color: Colors.green,
+                          //Agregamos markers
+                          markerSettings: const MarkerSettings(
+                            isVisible: true,
+                            shape: DataMarkerType.circle,
+                            color: Colors.green,
+                            borderWidth: 1,
+                            borderColor: Colors.green,
+                          ),
+                          //Números dentro del gráfico
+                          dataLabelSettings: DataLabelSettings(
+                              isVisible: true,
+                              builder: (dynamic data,
+                                  dynamic point,
+                                  dynamic series,
+                                  int pointIndex,
+                                  int seriesIndex) {
+                                return Text(
+                                  data.value.toStringAsFixed(2),
+                                  style: const TextStyle(
+                                    fontSize: 8,
+                                    color: Colors.black,
+                                  ),
+                                );
+                              }),
+                        ),
+                        LineSeries<BiomassData, String>(
+                          dataSource: chartData
+                              .where((data) => data.treeType == 'Pino')
+                              .toList(),
+                          xValueMapper: (BiomassData data, _) => data.variable,
+                          yValueMapper: (BiomassData data, _) => data.value,
+                          name: 'Pino',
+                          color: Colors.red,
+                          //Agregamos markers
+                          markerSettings: const MarkerSettings(
+                            isVisible: true,
+                            shape: DataMarkerType.circle,
+                            color: Colors.red,
+                            borderWidth: 1,
+                            borderColor: Colors.red,
+                          ),
+                          //Números dentro del gráfico
+                          dataLabelSettings: DataLabelSettings(
+                              isVisible: true,
+                              builder: (dynamic data,
+                                  dynamic point,
+                                  dynamic series,
+                                  int pointIndex,
+                                  int seriesIndex) {
+                                return Text(
+                                  data.value.toStringAsFixed(2),
+                                  style: const TextStyle(
+                                    fontSize: 8,
+                                    color: Colors.black,
+                                  ),
+                                );
+                              }),
+                        ),
+                        LineSeries<BiomassData, String>(
+                          dataSource: chartData
+                              .where((data) => data.treeType == 'Pona')
+                              .toList(),
+                          xValueMapper: (BiomassData data, _) => data.variable,
+                          yValueMapper: (BiomassData data, _) => data.value,
+                          name: 'Pona',
+                          color: Colors.yellow,
+                          //Agregamos markers
+                          markerSettings: const MarkerSettings(
+                            isVisible: true,
+                            shape: DataMarkerType.circle,
+                            color: Colors.yellow,
+                            borderWidth: 1,
+                            borderColor: Colors.yellow,
+                          ),
+                          //Números dentro del gráfico
+                          dataLabelSettings: DataLabelSettings(
+                              isVisible: true,
+                              builder: (dynamic data,
+                                  dynamic point,
+                                  dynamic series,
+                                  int pointIndex,
+                                  int seriesIndex) {
+                                return Text(
+                                  data.value.toStringAsFixed(2),
+                                  style: const TextStyle(
+                                    fontSize: 8,
+                                    color: Colors.black,
+                                  ),
+                                );
+                              }),
+                        ),
+                        LineSeries<BiomassData, String>(
+                          dataSource: chartData
+                              .where((data) => data.treeType == 'SSA')
+                              .toList(),
+                          xValueMapper: (BiomassData data, _) => data.variable,
+                          yValueMapper: (BiomassData data, _) => data.value,
+                          name: 'SSA',
+                          color: Colors.purple[900],
+                          //Agregamos markers
+                          markerSettings: const MarkerSettings(
+                            isVisible: true,
+                            shape: DataMarkerType.circle,
+                            color: Colors.purple,
+                            borderWidth: 1,
+                            borderColor: Colors.purple,
+                          ),
+                          //Números dentro del gráfico
+                          dataLabelSettings: DataLabelSettings(
+                              isVisible: true,
+                              builder: (dynamic data,
+                                  dynamic point,
+                                  dynamic series,
+                                  int pointIndex,
+                                  int seriesIndex) {
+                                return Text(
+                                  data.value.toStringAsFixed(2),
+                                  style: const TextStyle(
+                                    fontSize: 8,
+                                    color: Colors.black,
+                                  ),
+                                );
+                              }),
+                        ),
+                      ],
+                    ),
+                  ),
                   const SizedBox(
                     height: 20,
                   ),

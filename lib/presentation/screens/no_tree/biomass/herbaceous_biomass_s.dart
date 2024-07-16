@@ -44,25 +44,30 @@ class _HerbaceousBiomassSTState extends State<HerbaceousBiomassST> {
                   resultCarbonBiomass: stateBiomass!.resultCarbonBiomass,
                   totalBiomass: stateBiomass!.totalBiomass,
                   resultConversionCarbon: stateBiomass!.resultConversionCarbon,
+                  sumaTotal: stateBiomass!.sumaTotal,
                   //Ciprés
                   resultCarbonBiomassC: stateBiomassC!.resultCarbonBiomassC,
                   totalBiomassC: stateBiomassC!.totalBiomassC,
                   resultConversionCarbonC:
                       stateBiomassC!.resultConversionCarbonC,
+                  sumaTotalC: stateBiomassC!.sumaTotalC,
                   //Pona
                   resultCarbonBiomassO: stateBiomassO!.resultCarbonBiomassO,
                   totalBiomassO: stateBiomassO!.totalBiomassO,
                   resultConversionCarbonO:
                       stateBiomassO!.resultConversionCarbonO,
+                  sumaTotalO: stateBiomassO!.sumaTotalO,
                   //SSA
                   resultCarbonBiomassST: stateST!.resultCarbonBiomassST,
                   resultHerbaceousBiomassST: stateST!.resultHerbaceousBiomassST,
                   resultConversionCarbonST: stateST!.resultConversionCarbonST,
+                  sumaTotalST: stateST!.sumaTotalST,
                   //Pino
                   resultCarbonBiomassP: stateBiomassP!.resultCarbonBiomassP,
                   totalBiomassP: stateBiomassP!.totalBiomassP,
                   resultConversionCarbonP:
                       stateBiomassP!.resultConversionCarbonP,
+                  sumaTotalP: stateBiomassP!.sumaTotalP,
                 )));
   }
 

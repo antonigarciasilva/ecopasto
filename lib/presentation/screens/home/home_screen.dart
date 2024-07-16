@@ -28,7 +28,7 @@ class SplashScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -37,9 +37,9 @@ class SplashScreen extends StatelessWidget {
               'ECO CARBON',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 9, 50, 125),
+                color: Color.fromARGB(255, 14, 69, 113),
               ),
             ),
             const SizedBox(
@@ -47,8 +47,8 @@ class SplashScreen extends StatelessWidget {
             ),
             Image.asset(
               'assets/img/lo_untrm.jpg',
-              height: 160,
-              width: 1600,
+              height: 140,
+              width: 1000,
             ),
             const SizedBox(
               height: 20,
@@ -57,9 +57,9 @@ class SplashScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/img/igbi_blanco.jpg',
-                  height: 110,
-                  width: 80,
+                  'assets/img/igbi_azul.png',
+                  height: 130,
+                  width: 115,
                 ),
                 const SizedBox(
                   width: 30,
@@ -77,7 +77,7 @@ class SplashScreen extends StatelessWidget {
             const CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(
                   Color.fromARGB(255, 4, 72, 127)),
-              strokeWidth: 3.5,
+              strokeWidth: 2.5,
             ),
           ],
         ),
