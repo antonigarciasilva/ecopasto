@@ -217,30 +217,45 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 220,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomass.isDryBiomassCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 220,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                stateBiomass.isDryBiomassCalculated
+                                    ? Colors.grey
+                                    : const Color.fromARGB(255, 51, 79, 31)),
+                          ),
+                          onPressed: stateBiomass.isDryBiomassCalculated
+                              ? null
+                              : () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const NewDryBiomassScreen()),
+                                  );
+                                },
+                          child: const Text(
+                            'Biomasa seca',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
                       ),
-                      onPressed: stateBiomass.isDryBiomassCalculated
-                          ? null
-                          : () {
+                      if (stateBiomass.isDryBiomassCalculated)
+                        IconButton(
+                            onPressed: () {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const NewDryBiomassScreen()),
-                              );
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const NewDryBiomassScreen()));
                             },
-                      child: const Text(
-                        'Biomasa seca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
+                            icon: const Icon(Icons.edit))
+                    ],
                   ),
                 ),
 
