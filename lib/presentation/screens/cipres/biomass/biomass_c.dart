@@ -209,31 +209,46 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 220,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomassC.isDryBiomassCalculatedC
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: stateBiomassC.isDryBiomassCalculatedC
-                          ? null
-                          : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const DryBiomassCNew()),
-                              );
-                            },
-                      child: const Text(
-                        'Biomasa seca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 220,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(
+                                  stateBiomassC.isDryBiomassCalculatedC
+                                      ? Colors.grey
+                                      : const Color.fromARGB(255, 51, 79, 31)),
+                            ),
+                            onPressed: stateBiomassC.isDryBiomassCalculatedC
+                                ? null
+                                : () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const DryBiomassCNew()),
+                                    );
+                                  },
+                            child: const Text(
+                              'Biomasa seca',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        if (stateBiomassC.isDryBiomassCalculatedC)
+                          IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DryBiomassCNew()));
+                              },
+                              icon: const Icon(Icons.edit))
+                      ]),
                 ),
 
                 //Biomasa herbácea
@@ -271,31 +286,47 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 220,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomassC.isleafLitterBiomassCCalculatedC
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: stateBiomassC.isleafLitterBiomassCCalculatedC
-                          ? null
-                          : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LeafLitterBiomassC()),
-                              );
-                            },
-                      child: const Text(
-                        'Biomasa hojarasca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 220,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(
+                                  stateBiomassC.isleafLitterBiomassCCalculatedC
+                                      ? Colors.grey
+                                      : const Color.fromARGB(255, 51, 79, 31)),
+                            ),
+                            onPressed:
+                                stateBiomassC.isleafLitterBiomassCCalculatedC
+                                    ? null
+                                    : () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LeafLitterBiomassC()),
+                                        );
+                                      },
+                            child: const Text(
+                              'Biomasa hojarasca',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        if (stateBiomassC.isleafLitterBiomassCCalculatedC)
+                          IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LeafLitterBiomassC()));
+                              },
+                              icon: const Icon(Icons.edit))
+                      ]),
                 ),
 
                 //Calcular

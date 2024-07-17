@@ -208,30 +208,46 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 220,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomassP.isDryBiomassCalculatedP
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: stateBiomassP.isDryBiomassCalculatedP
-                          ? null
-                          : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const DryBiomassP()),
-                              );
-                            },
-                      child: const Text(
-                        'Biomasa seca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 220,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(
+                                  stateBiomassP.isDryBiomassCalculatedP
+                                      ? Colors.grey
+                                      : const Color.fromARGB(255, 51, 79, 31)),
+                            ),
+                            onPressed: stateBiomassP.isDryBiomassCalculatedP
+                                ? null
+                                : () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const DryBiomassP()),
+                                    );
+                                  },
+                            child: const Text(
+                              'Biomasa seca',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        if (stateBiomassP.isDryBiomassCalculatedP)
+                          IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DryBiomassP()));
+                              },
+                              icon: const Icon(Icons.edit))
+                      ]),
                 ),
 
                 //Biomasa herbácea
@@ -269,31 +285,46 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 220,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomassP.isLeafLitterBiomassPCalculatedP
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        stateBiomassP.isLeafLitterBiomassPCalculatedP
-                            ? null
-                            : Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LeafLitterBiomassP()),
-                              );
-                      },
-                      child: const Text(
-                        'Biomasa hojarasca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 220,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(
+                                  stateBiomassP.isLeafLitterBiomassPCalculatedP
+                                      ? Colors.grey
+                                      : const Color.fromARGB(255, 51, 79, 31)),
+                            ),
+                            onPressed: () {
+                              stateBiomassP.isLeafLitterBiomassPCalculatedP
+                                  ? null
+                                  : Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LeafLitterBiomassP()),
+                                    );
+                            },
+                            child: const Text(
+                              'Biomasa hojarasca',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        if (stateBiomassP.isLeafLitterBiomassPCalculatedP)
+                          IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LeafLitterBiomassP()));
+                              },
+                              icon: const Icon(Icons.edit))
+                      ]),
                 ),
 
                 //Calcular

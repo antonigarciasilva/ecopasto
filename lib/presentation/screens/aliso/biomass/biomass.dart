@@ -293,30 +293,45 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 220,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomass.isLeafLitterBiomassCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 220,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                stateBiomass.isLeafLitterBiomassCalculated
+                                    ? Colors.grey
+                                    : const Color.fromARGB(255, 51, 79, 31)),
+                          ),
+                          onPressed: stateBiomass.isLeafLitterBiomassCalculated
+                              ? null
+                              : () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LeafLitterBiomassScreen()),
+                                  );
+                                },
+                          child: const Text(
+                            'Biomasa hojarasca',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
                       ),
-                      onPressed: stateBiomass.isLeafLitterBiomassCalculated
-                          ? null
-                          : () {
+                      if (stateBiomass.isLeafLitterBiomassCalculated)
+                        IconButton(
+                            onPressed: () {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LeafLitterBiomassScreen()),
-                              );
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LeafLitterBiomassScreen()));
                             },
-                      child: const Text(
-                        'Biomasa hojarasca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
+                            icon: const Icon(Icons.edit))
+                    ],
                   ),
                 ),
 
