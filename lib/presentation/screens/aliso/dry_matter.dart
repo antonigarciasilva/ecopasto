@@ -13,6 +13,7 @@ class DryMatterScreen extends StatefulWidget {
 class MyGreenMatterScreen extends State<DryMatterScreen> {
 //Creamos una variable para crear el provider
   StateBiomass? stateBiomass;
+
   //Usamos el provider
   @override
   void didChangeDependencies() {
@@ -20,7 +21,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
     stateBiomass = Provider.of<StateBiomass>(context);
   }
 
-  //Para hacer las validaciones tenemos que tner nuestro:
+  //Para hacer las validaciones tenemos que tener nuestro:
   // Globalkey para ver el estado del formulario  y los controladores para poder acceder a la i del texto
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDryWeight = TextEditingController();
@@ -46,8 +47,9 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
   void _calculateDryMatterResult() {
     if (_formKey.currentState!.validate()) {
       final double pms = double.parse(_controllerDryWeight.text);
-//TO DO FATAL ERROR
-      final double dryMatterAliso = pms / 0;
+
+      final double dryMatterAliso = pms / (stateBiomass!.greenAliso ?? 0) * 100;
+
       final String formattedResult = dryMatterAliso.toStringAsFixed(2);
 
       Provider.of<StateBiomass>(context, listen: false)

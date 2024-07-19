@@ -16,7 +16,15 @@ class _DryMatterSState extends State<DryMatterS> {
   // Globalkey para ver el estado del formulario  y los controladores para poder acceder a la i del texto
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDryWeight = TextEditingController();
-  final TextEditingController _controllerWetWeight = TextEditingController();
+  //Creamos variable para provider
+  StateST? stateST;
+  //invocamos al porvider
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateST = Provider.of<StateST>(context);
+  }
+
   double? dryMatteS;
 
   //Validamos el peso de seco
@@ -38,9 +46,8 @@ class _DryMatterSState extends State<DryMatterS> {
   void _calculateDryMatterResult() {
     if (_formKey.currentState!.validate()) {
       final double pms = double.parse(_controllerDryWeight.text);
-      final double pmh = double.parse(_controllerWetWeight.text);
 
-      final double dryMatterS = pms / pmh * 100;
+      final double dryMatterS = pms / (stateST!.greenS ?? 0) * 100;
       final String formattedResult = dryMatterS.toStringAsFixed(2);
 
       Provider.of<StateST>(context, listen: false).setDryMatterS(dryMatterS);
@@ -200,34 +207,6 @@ class _DryMatterSState extends State<DryMatterS> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingresa el peso en Kg',
-                        labelStyle: const TextStyle(fontSize: 15),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-
-                  //Peso de la materia húmeda
-                  const SizedBox(height: 25),
-
-                  const Text(
-                    'Peso de la materia húmeda(PMH): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      controller: _controllerWetWeight,
-                      validator: _validateWeight,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
                         labelText: 'Ingresa el peso en Kg',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),

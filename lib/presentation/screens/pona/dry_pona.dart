@@ -15,7 +15,15 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
   //Vamos a validar nuestro formulario
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightDry = TextEditingController();
-  final TextEditingController _controllerWeightWet = TextEditingController();
+  //Creamos la variable para el provider
+  StateBiomassO? stateBiomassO;
+  //Invocamos el provider
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomassO = Provider.of<StateBiomassO>(context);
+  }
+
   double? dryMatterPona;
 
   //Validar form de peso
@@ -36,9 +44,8 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
   void _calculateDryMatterResult() {
     if (_formKey.currentState!.validate()) {
       final double pms = double.parse(_controllerWeightDry.text);
-      final double pmh = double.parse(_controllerWeightWet.text);
 
-      final double dryMatterPona = pms / pmh * 100;
+      final double dryMatterPona = pms / (stateBiomassO!.greenPona ?? 0) * 100;
       final String formattedResult = dryMatterPona.toStringAsFixed(2);
 
       Provider.of<StateBiomassO>(context, listen: false)
@@ -202,35 +209,6 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _controllerWeightDry,
-                      validator: _validateWeightP,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        labelText: 'Ingresa el peso en Kg',
-                        labelStyle: const TextStyle(fontSize: 15),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-
-                  //Peso de la materia húmeda
-                  const SizedBox(height: 25),
-
-                  const Text(
-                    'Peso de la materia húmeda(PMH): ',
-                    style: TextStyle(fontSize: 15),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      controller: _controllerWeightWet,
                       validator: _validateWeightP,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
