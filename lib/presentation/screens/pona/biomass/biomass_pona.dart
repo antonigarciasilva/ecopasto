@@ -210,46 +210,43 @@ class _BiomassPonaState extends State<BiomassPona> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 220,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: WidgetStateProperty.all<Color>(
-                                  stateBiomassO.isDryBiomassCalculatedO
-                                      ? Colors.grey
-                                      : const Color.fromARGB(255, 51, 79, 31)),
-                            ),
-                            onPressed: stateBiomassO.isDryBiomassCalculatedO
-                                ? null
-                                : () {
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const DryBiomassPona()),
-                                    );
-                                  },
-                            child: const Text(
-                              'Biomasa seca',
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
-                            ),
-                          ),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              stateBiomassO.isDryBiomassCalculatedO
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        if (stateBiomassO.isDryBiomassCalculatedO)
-                          IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const DryBiomassPona()));
+                        onPressed: stateBiomassO.isDryBiomassCalculatedO
+                            ? null
+                            : () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DryBiomassPona()),
+                                );
                               },
-                              icon: const Icon(Icons.edit))
-                      ]),
+                        child: const Text(
+                          'Biomasa seca',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    if (stateBiomassO.isDryBiomassCalculatedO)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DryBiomassPona()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Biomasa herbácea
@@ -257,7 +254,7 @@ class _BiomassPonaState extends State<BiomassPona> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 220,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -287,47 +284,43 @@ class _BiomassPonaState extends State<BiomassPona> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 220,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: WidgetStateProperty.all<Color>(
-                                  stateBiomassO.isLeafLitterBiomassCalculatedO
-                                      ? Colors.grey
-                                      : const Color.fromARGB(255, 51, 79, 31)),
-                            ),
-                            onPressed:
-                                stateBiomassO.isLeafLitterBiomassCalculatedO
-                                    ? null
-                                    : () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const LeafLitterBiomassPona()),
-                                        );
-                                      },
-                            child: const Text(
-                              'Biomasa hojarasca',
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
-                            ),
-                          ),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              stateBiomassO.isLeafLitterBiomassCalculatedO
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        if (stateBiomassO.isLeafLitterBiomassCalculatedO)
-                          IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const LeafLitterBiomassPona()));
+                        onPressed: stateBiomassO.isLeafLitterBiomassCalculatedO
+                            ? null
+                            : () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LeafLitterBiomassPona()),
+                                );
                               },
-                              icon: const Icon(Icons.edit))
-                      ]),
+                        child: const Text(
+                          'Biomasa hojarasca',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    if (stateBiomassO.isLeafLitterBiomassCalculatedO)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const LeafLitterBiomassPona()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Guardar
@@ -335,7 +328,7 @@ class _BiomassPonaState extends State<BiomassPona> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 220,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(

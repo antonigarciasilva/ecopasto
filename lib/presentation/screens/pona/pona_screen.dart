@@ -159,67 +159,91 @@ class _PonaScreenState extends State<PonaScreen> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            statePona.isGreenPonaCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              statePona.isGreenPonaCalculated
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: statePona.isGreenPonaCalculated
+                            ? null
+                            : () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const GreenMatterPona()),
+                                );
+                              },
+                        child: const Text(
+                          '1. Materia verde',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
-                      onPressed: statePona.isGreenPonaCalculated
-                          ? null
-                          : () {
-                              Navigator.push(
+                    ),
+                    if (statePona.isGreenPonaCalculated)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const GreenMatterPona()),
-                              );
-                            },
-                      child: const Text(
-                        '1. Materia verde',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                                        const GreenMatterPona()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Materia seca
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            statePona.isDryMatterPonaCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: statePona.isDryMatterPonaCalculated
-                          ? null
-                          : () {
-                              if (statePona.isGreenPonaCalculated) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const DryPonaScreen()),
-                                );
-                              } else {
-                                _showMissingCalculationsDialog0(
-                                    context, statePona);
-                              }
-                            },
-                      child: const Text(
-                        '2. Materia seca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              statePona.isDryMatterPonaCalculated
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: statePona.isDryMatterPonaCalculated
+                            ? null
+                            : () {
+                                if (statePona.isGreenPonaCalculated) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DryPonaScreen()),
+                                  );
+                                } else {
+                                  _showMissingCalculationsDialog0(
+                                      context, statePona);
+                                }
+                              },
+                        child: const Text(
+                          '2. Materia seca',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
+                    if (statePona.isDryMatterPonaCalculated)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DryPonaScreen()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Biomasa
@@ -227,7 +251,7 @@ class _PonaScreenState extends State<PonaScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 260,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -258,7 +282,7 @@ class _PonaScreenState extends State<PonaScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 260,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -274,6 +298,7 @@ class _PonaScreenState extends State<PonaScreen> {
                       child: const Text(
                         '4. Carbono en la biomasa',
                         style: TextStyle(fontSize: 18, color: Colors.white),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),

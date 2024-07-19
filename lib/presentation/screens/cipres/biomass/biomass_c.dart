@@ -213,7 +213,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: 220,
+                          width: 240,
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all<Color>(
@@ -256,7 +256,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 220,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -290,7 +290,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: 220,
+                          width: 240,
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all<Color>(
@@ -334,11 +334,11 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 220,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 70, 150, 13)),
+                            const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
                         if (stateBiomassC.areAllCalculationsCompletedC) {

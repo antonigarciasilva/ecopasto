@@ -154,65 +154,90 @@ class _CipresScreenState extends State<CipresScreen> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateCipres.isGreenCipresCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: stateCipres.isGreenCipresCalculated
-                          ? null
-                          : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const GreenMatterC()),
-                              );
-                            },
-                      child: const Text(
-                        '1. Materia verde',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              stateCipres.isGreenCipresCalculated
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: stateCipres.isGreenCipresCalculated
+                            ? null
+                            : () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const GreenMatterC()),
+                                );
+                              },
+                        child: const Text(
+                          '1. Materia verde',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
+                    if (stateCipres.isGreenCipresCalculated)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const GreenMatterC()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Materia seca
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateCipres.isDryMatterCipresCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: stateCipres.isDryMatterCipresCalculated
-                          ? null
-                          : () {
-                              if (stateCipres.isGreenCipresCalculated) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const DryMatterC()),
-                                );
-                              } else {
-                                _showMissingCalculationsDialogC(
-                                    context, stateCipres);
-                              }
-                            },
-                      child: const Text(
-                        '2. Materia seca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              stateCipres.isDryMatterCipresCalculated
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: stateCipres.isDryMatterCipresCalculated
+                            ? null
+                            : () {
+                                if (stateCipres.isGreenCipresCalculated) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DryMatterC()),
+                                  );
+                                } else {
+                                  _showMissingCalculationsDialogC(
+                                      context, stateCipres);
+                                }
+                              },
+                        child: const Text(
+                          '2. Materia seca',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
+                    if (stateCipres.isDryMatterCipresCalculated)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DryMatterC()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Biomasa
@@ -267,6 +292,7 @@ class _CipresScreenState extends State<CipresScreen> {
                       child: const Text(
                         '4. Carbono en la biomasa',
                         style: TextStyle(fontSize: 18, color: Colors.white),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),

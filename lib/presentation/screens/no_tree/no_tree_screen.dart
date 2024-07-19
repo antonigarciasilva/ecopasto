@@ -97,63 +97,87 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                 //Materia verde
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateS.isGreenSCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              stateS.isGreenSCalculated
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: stateS.isGreenSCalculated
+                            ? null
+                            : () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const GreenMatterScreenS()),
+                                );
+                              },
+                        child: const Text(
+                          '1. Materia verde',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
-                      onPressed: stateS.isGreenSCalculated
-                          ? null
-                          : () {
-                              Navigator.push(
+                    ),
+                    if (stateS.isGreenSCalculated)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const GreenMatterScreenS()),
-                              );
-                            },
-                      child: const Text(
-                        '1. Materia verde',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                                        const GreenMatterScreenS()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Materia seca
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateS.isDryMatterSCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: stateS.isDryMatterSCalculated
-                          ? null
-                          : () {
-                              if (stateS.isGreenSCalculated) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const DryMatterS()),
-                                );
-                              }
-                            },
-                      child: const Text(
-                        '2. Materia seca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              stateS.isDryMatterSCalculated
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: stateS.isDryMatterSCalculated
+                            ? null
+                            : () {
+                                if (stateS.isGreenSCalculated) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DryMatterS()),
+                                  );
+                                }
+                              },
+                        child: const Text(
+                          '2. Materia seca',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
+                    if (stateS.isDryMatterSCalculated)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DryMatterS()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Biomasa
@@ -161,7 +185,7 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 260,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(

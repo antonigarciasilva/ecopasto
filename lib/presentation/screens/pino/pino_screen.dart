@@ -157,65 +157,90 @@ class _PinoScreenState extends State<PinoScreen> {
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            statePino.isGreenPinoCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: statePino.isGreenPinoCalculated
-                          ? null
-                          : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const GreenMatterP()),
-                              );
-                            },
-                      child: const Text(
-                        '1. Materia verde',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              statePino.isGreenPinoCalculated
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: statePino.isGreenPinoCalculated
+                            ? null
+                            : () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const GreenMatterP()),
+                                );
+                              },
+                        child: const Text(
+                          '1. Materia verde',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
+                    if (statePino.isGreenPinoCalculated)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const GreenMatterP()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Materia seca
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            statePino.isDryMatterPinoCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: statePino.isDryMatterPinoCalculated
-                          ? null
-                          : () {
-                              if (statePino.isGreenPinoCalculated) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const DryMatterP()),
-                                );
-                              } else {
-                                _showMissingCalculationsDialogP(
-                                    context, statePino);
-                              }
-                            },
-                      child: const Text(
-                        '2. Materia seca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              statePino.isDryMatterPinoCalculated
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: statePino.isDryMatterPinoCalculated
+                            ? null
+                            : () {
+                                if (statePino.isGreenPinoCalculated) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DryMatterP()),
+                                  );
+                                } else {
+                                  _showMissingCalculationsDialogP(
+                                      context, statePino);
+                                }
+                              },
+                        child: const Text(
+                          '2. Materia seca',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
+                    if (statePino.isDryMatterPinoCalculated)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DryMatterP()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Biomasa
@@ -223,7 +248,7 @@ class _PinoScreenState extends State<PinoScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 260,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -255,7 +280,7 @@ class _PinoScreenState extends State<PinoScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 260,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -271,6 +296,7 @@ class _PinoScreenState extends State<PinoScreen> {
                       child: const Text(
                         '4. Carbono en la biomasa',
                         style: TextStyle(fontSize: 18, color: Colors.white),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),

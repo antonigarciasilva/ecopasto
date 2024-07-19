@@ -161,67 +161,91 @@ class _AlisoScreenState extends State<AlisoScreen> {
                 //Materia verde
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateAliso.isGreenSCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              stateAliso.isGreenSCalculated
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: stateAliso.isGreenSCalculated
+                            ? null
+                            : () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const GreenMatterScreen()),
+                                );
+                              },
+                        child: const Text(
+                          '1. Materia verde',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
-                      onPressed: stateAliso.isGreenSCalculated
-                          ? null
-                          : () {
-                              Navigator.push(
+                    ),
+                    if (stateAliso.isGreenSCalculated)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const GreenMatterScreen()),
-                              );
-                            },
-                      child: const Text(
-                        '1. Materia verde',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                                        const GreenMatterScreen()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Materia seca
                 const SizedBox(height: 20.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 260,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateAliso.isDryMatterSCalculated
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: stateAliso.isDryMatterSCalculated
-                          ? null
-                          : () {
-                              if (stateAliso.isGreenSCalculated) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const DryMatterScreen()),
-                                );
-                              } else {
-                                _showMissingCalculationsDialog(
-                                    context, stateAliso);
-                              }
-                            },
-                      child: const Text(
-                        '2. Materia seca',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: Stack(children: [
+                    SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              stateAliso.isDryMatterSCalculated
+                                  ? Colors.grey
+                                  : const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: stateAliso.isDryMatterSCalculated
+                            ? null
+                            : () {
+                                if (stateAliso.isGreenSCalculated) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DryMatterScreen()),
+                                  );
+                                } else {
+                                  _showMissingCalculationsDialog(
+                                      context, stateAliso);
+                                }
+                              },
+                        child: const Text(
+                          '2. Materia seca',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
+                    if (stateAliso.isDryMatterSCalculated)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DryMatterScreen()));
+                          },
+                          icon: const Icon(Icons.edit))
+                  ]),
                 ),
 
                 //Biomasa
@@ -229,7 +253,7 @@ class _AlisoScreenState extends State<AlisoScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 260,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -261,7 +285,7 @@ class _AlisoScreenState extends State<AlisoScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 260,
+                    width: 240,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -277,6 +301,7 @@ class _AlisoScreenState extends State<AlisoScreen> {
                       child: const Text(
                         '4. Carbono en la biomasa',
                         style: TextStyle(fontSize: 18, color: Colors.white),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
