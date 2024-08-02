@@ -12,7 +12,10 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightA = TextEditingController();
   final TextEditingController _controllerWeightP = TextEditingController();
-  final TextEditingController _controllerWeightDA = TextEditingController();
+ 
+
+  String? _selectedSoilType;
+  double? _soilDensity;
 
   //Validación de los pesos
   String? _validateWeight(String? value) {
@@ -31,11 +34,15 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
 
   void _calculateAndShowResult() {
     if (_formKey.currentState!.validate()) {
+      if(_soilDensity == null){
+        _showValidationDialog('Por favor, ingresa la densidad aparente del suelo para continuar.');
+        return;
+      }
       final double area = double.parse(_controllerWeightA.text);
       final double depth = double.parse(_controllerWeightP.text);
-      final double density = double.parse(_controllerWeightDA.text);
+      
 
-      final double result = area * depth * density;
+      final double result = area * depth * _soilDensity!;
 
       showDialog(
           context: context,
@@ -46,7 +53,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                     style: TextStyle(fontSize: 18),
                   ),
                   content: Text(
-                    'El peso del suelo (Ws) es: $result T/ha',
+                    'El peso del suelo (Ws) es: ${result.toStringAsFixed(2)} T/ha',
                     textAlign: TextAlign.justify,
                   ),
                   actions: [
@@ -63,15 +70,22 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
     }
   }
 
-/*
-  //Validamos el boton
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const CarbonScreenC()));
-    }
+  void _showValidationDialog(String message){
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+     builder: (context) => AlertDialog(
+      title: const Text('Validación'),
+      content: Text(message),
+      actions: [
+        TextButton(onPressed: (){
+          Navigator.pop(context);
+        }, child: const Text('Aceptar'))
+      ],
+     ) );
   }
-*/
+
+
 
   //Dialogo informativo sobre el carbono
   void openDialog(BuildContext context) {
@@ -249,17 +263,34 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
 
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      validator: _validateWeight,
-                      controller: _controllerWeightDA,
-                      keyboardType: TextInputType.number,
+                    child: DropdownButtonFormField(
+                      value: _selectedSoilType,
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'arcilloso-franco',
+                          child: Text('Arcilloso-Franco 1.1 g/cm³')),
+                        DropdownMenuItem(
+                          value: 'franco-arenoso',
+                          child: Text('Franco-Arenoso 1.32 g/cm³')),
+                      ],
+
+                      onChanged: (value){
+                        setState(() {
+                          _selectedSoilType = value;
+                          _soilDensity = value == 'arcilloso-franco'
+                          ? 1.1
+                          : 1.32;
+                        });
+                      },
+                     
+                      
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese la (da) en Kg/m³',
+                        labelText: 'Ingrese la (da) en g/cm³',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
-                      textAlign: TextAlign.center,
+                      dropdownColor: Colors.white,
                     ),
                   ),
 
