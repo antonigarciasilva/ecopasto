@@ -12,12 +12,15 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightA = TextEditingController();
   final TextEditingController _controllerWeightP = TextEditingController();
-  final TextEditingController _controllerWeightDA = TextEditingController();
+
+
+  String? _selectedSoilType;
+  double? _soilDensity;
 
   //Validación de los pesos
   String? _validateWeight(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Por favor, ingresa el peso';
+      return 'Por favor, ingresa un valor';
     }
     //Validación con regex
     final soilRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
@@ -30,11 +33,16 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
   // Calcular el carbono en el suelo
   void _calculateAndShowResult() {
     if (_formKey.currentState!.validate()) {
+
+      if(_soilDensity == null){
+        _showValidationDialog('Por favor, ingresa la densidad aparente del suelo para continuar.');
+        return;
+      }
       final double area = double.parse(_controllerWeightA.text);
       final double depth = double.parse(_controllerWeightP.text);
-      final double density = double.parse(_controllerWeightDA.text);
+ 
 
-      final double result = area * depth * density;
+      final double result = area * depth * _soilDensity!;
 
       showDialog(
         context: context,
@@ -45,7 +53,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
             style: TextStyle(fontSize: 18),
           ),
           content: Text(
-            'El peso del suelo (Ws) es: $result T/ha',
+            'El peso del suelo (Ws) es: ${result.toStringAsFixed(2)} T/ha',
             textAlign: TextAlign.justify,
           ),
           actions: [
@@ -93,6 +101,24 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
             ));
   }
 
+  //Mostrar el dialogo de advertencia de llenar tipo de suelo 
+  void _showValidationDialog(String message){
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text('Validación'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: (){
+              Navigator.pop(context);
+          },
+           child: const Text('Aceptar'))
+        ],
+      )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -237,22 +263,46 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
                   const SizedBox(
                     width: 8,
                   ),
-
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      validator: _validateWeight,
-                      controller: _controllerWeightDA,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese la (da) en Kg/m³',
-                        labelStyle: const TextStyle(fontSize: 15),
-                      ),
-                      textAlign: TextAlign.center,
+                   
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  
+                    child: DropdownButtonFormField<String>(
+                      
+                      value: _selectedSoilType,
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'arcilloso-franco',
+                          child: Text('Arcilloso-franco (1.1 g/cm³)')),
+                        DropdownMenuItem(
+                       
+                          value: 'franco-arenoso',
+                          child: Text('Franco-arenoso (1.32 g/cm³)')),
+                      ],
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedSoilType = value;
+                        _soilDensity = value == 'arcilloso-franco'
+                        ? 1.1
+                        : 1.32;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
+                      labelText: 'Seleccione el tipo de suelo',
+                      labelStyle: const TextStyle(fontSize: 14),
+                    
                     ),
+                    dropdownColor: Colors.white,
+                    
+                    ),
+                
                   ),
+                  
+
+               
 
                   //Guardar
                   const SizedBox(height: 20.0),
