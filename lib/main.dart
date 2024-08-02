@@ -12,7 +12,6 @@ import 'package:version/presentation/screens/no_tree/state_s.dart';
 import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 
 import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
-import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
 
 //void main() => runApp(const MyApp());
 
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: NewSelectSilvoScreen(),
+      home: HomeScreen(),
     );
   }
 }
