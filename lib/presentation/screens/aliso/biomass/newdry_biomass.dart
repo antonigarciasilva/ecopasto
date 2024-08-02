@@ -169,7 +169,7 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                   width: 8,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Form(
                     key: _formKey,
                     child: Column(
