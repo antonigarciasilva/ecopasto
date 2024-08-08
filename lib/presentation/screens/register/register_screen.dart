@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:version/presentation/screens/login/auth.dart';
 import 'package:version/presentation/screens/login/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -9,6 +13,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+//Para las validaciones de firebase_auth
+  String? errorMessage;
+
   String? selectValueG;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameUsuario = TextEditingController();
@@ -17,6 +24,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final TextEditingController _emailControllerR = TextEditingController();
   final TextEditingController _passwordControllerR = TextEditingController();
+
+  // Crear un usuario en Firebase Authentication
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      await Auth().createUserWithEmailAndPassword(
+          email: _emailControllerR.text, password: _passwordControllerR.text);
+      //Navegar a la panatalla de inicio después de un registro exitoso
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()));
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
+
+  //Validamos si esta registrado
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      await Auth().signInWithEmailAndPassword(
+        email: _emailControllerR.text,
+        password: _passwordControllerR.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
 
   //Validación de formularios
   String? _validateEmail(String? value) {
@@ -70,11 +107,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return null;
   }
 
-  //Validamos el boton de registro
+  //Validamos el formulario y realizamos el registro
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
+      createUserWithEmailAndPassword();
     }
   }
 
@@ -141,7 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: TextFormField(
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.number,
                     controller: _phoneNumberR,
                     validator: _validatePhoneNumber,
                     decoration: InputDecoration(
@@ -248,6 +284,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
+                //Mostrar mensaje de error si existe
+                if (errorMessage != null) ...[
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    errorMessage!,
+                    style: const TextStyle(color: Colors.red),
+                    textAlign: TextAlign.center,
+                  )
+                ]
               ],
             ),
           ),

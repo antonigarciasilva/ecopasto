@@ -22,6 +22,11 @@ class StateBiomassC with ChangeNotifier {
       (resultHerbaceousBiomassC > 0) &&
       isleafLitterBiomassCCalculatedC;
 
+  bool get areBaseCalculatedC =>
+      isGreenCipresCalculated &&
+      isDryMatterCipresCalculated &&
+      isDryBiomassCalculatedC;
+
   bool get areAllCalculationsCompletedA =>
       isGreenCipresCalculated && isDryMatterCipresCalculated;
 

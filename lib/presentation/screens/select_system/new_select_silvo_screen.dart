@@ -19,7 +19,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         title: const Text(
           'Seleciona un Sistemas \n'
-          'Silvipastoril',
+          'Silvopastoril',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,

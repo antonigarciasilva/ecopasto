@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/aliso/carbon/biomass_carbon.dart';
 import 'package:version/presentation/screens/aliso/carbon/conversion_carbon.dart';
 import 'package:version/presentation/screens/aliso/carbon/soil_carbon.dart';
 
-class CarbonScreen extends StatelessWidget {
+class CarbonScreen extends StatefulWidget {
   const CarbonScreen({super.key});
+
+  @override
+  State<CarbonScreen> createState() => _CarbonScreenState();
+}
+
+class _CarbonScreenState extends State<CarbonScreen> {
+  //Para usar el stateBiomas con provider
+  StateBiomass? stateBiomass;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomass = Provider.of<StateBiomass>(context);
+  }
 
   //Dialogo informativo sobre el carbono
   void openDialog(BuildContext context) {
@@ -34,8 +49,49 @@ class CarbonScreen extends StatelessWidget {
             ));
   }
 
+  //Dialogo para mostrar al usuario que le faltan llenar algunos datos
+  void _showMissingCalculationsDialogA(
+      BuildContext context, StateBiomass stateBiomass) {
+    List<String> missingCalculations = [];
+
+    if (!stateBiomass.isGreenSCalculated) {
+      missingCalculations.add('materia verde');
+    }
+    if (!stateBiomass.isDryMatterSCalculated) {
+      missingCalculations.add('materia seca');
+    }
+    if (!stateBiomass.isDryBiomassCalculated) {
+      missingCalculations.add('biomasa total');
+    }
+
+    String message =
+        'Falta calcular: ${missingCalculations.join(', ')} para obtener un resultado con carbono';
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Cálculos imcompletos',
+                textAlign: TextAlign.center,
+              ),
+              content: Text(
+                message,
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
+    final stateBiomass = Provider.of<StateBiomass>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -93,12 +149,17 @@ class CarbonScreen extends StatelessWidget {
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const BiomassCarbonScreen()),
-                        );
+                        if (stateBiomass.areAllBaseCalculateCompleted) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const BiomassCarbonScreen()),
+                          );
+                        } else {
+                          _showMissingCalculationsDialogA(
+                              context, stateBiomass);
+                        }
                       },
                       child: const Text(
                         'Carbono en biomasa',
@@ -146,12 +207,17 @@ class CarbonScreen extends StatelessWidget {
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const ConversionCarbonScreen()),
-                        );
+                        if (stateBiomass.areAllBaseCalculateCompleted) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ConversionCarbonScreen()),
+                          );
+                        } else {
+                          _showMissingCalculationsDialogA(
+                              context, stateBiomass);
+                        }
                       },
                       child: const Text(
                         'Conversión de C a CO₂',

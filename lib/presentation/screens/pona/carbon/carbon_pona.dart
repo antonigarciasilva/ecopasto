@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 
 import 'package:version/presentation/screens/pona/carbon/biomass_carbon_pona.dart';
 import 'package:version/presentation/screens/pona/carbon/conversion_carbon_pona.dart';
 
 import 'package:version/presentation/screens/pona/carbon/soil_carbon_pona_n.dart';
 
-class CarbonPonaScreen extends StatelessWidget {
+class CarbonPonaScreen extends StatefulWidget {
   const CarbonPonaScreen({super.key});
+
+  @override
+  State<CarbonPonaScreen> createState() => _CarbonPonaScreenState();
+}
+
+class _CarbonPonaScreenState extends State<CarbonPonaScreen> {
+  //Vamos a llamar al provider
+  StateBiomassO? stateBiomassO;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    stateBiomassO = Provider.of<StateBiomassO>(context);
+  }
 
   //Dialogo informativo sobre el carbono
   void openDialog(BuildContext context) {
@@ -30,6 +46,46 @@ class CarbonPonaScreen extends StatelessWidget {
                 FilledButton(
                     onPressed: () {
                       Navigator.pop(context);
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
+  //Dialogo para mostrar al usuario que le faltan llenar algunos datos
+  void _showMissingCalculationsDialogP(
+      BuildContext context, StateBiomassO stateBiomassO) {
+    List<String> missingCalculations = [];
+
+    if (!stateBiomassO.isGreenPonaCalculated) {
+      missingCalculations.add('materia verde');
+    }
+    if (!stateBiomassO.isDryMatterPonaCalculated) {
+      missingCalculations.add('materia seca');
+    }
+    if (!stateBiomassO.isDryBiomassCalculatedO) {
+      missingCalculations.add('biomasa total');
+    }
+
+    String message =
+        'Falta calcular: ${missingCalculations.join(', ')} para obtener resultados con carbono';
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Cálculos imcompletos',
+                textAlign: TextAlign.center,
+              ),
+              content: Text(
+                message,
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
                     },
                     child: const Text('Aceptar'))
               ],
@@ -146,12 +202,17 @@ class CarbonPonaScreen extends StatelessWidget {
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const ConversionCarbonPona()),
-                        );
+                        if (stateBiomassO!.areCalculatedCarbonoO) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ConversionCarbonPona()),
+                          );
+                        } else {
+                          _showMissingCalculationsDialogP(
+                              context, stateBiomassO!);
+                        }
                       },
                       child: const Text(
                         'Conversión de C a CO₂',

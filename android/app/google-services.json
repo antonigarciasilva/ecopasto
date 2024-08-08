@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "830841362138",
+    "project_id": "silvocarbon",
+    "storage_bucket": "silvocarbon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830841362138:android:2d79b219a930018f00f7e3",
+        "android_client_info": {
+          "package_name": "android.permission.INTERNET"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwsiJ4atJ3Aq2RP3eml1o1Z7lVodTJaVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830841362138:android:c1fff89ac2595bfb00f7e3",
+        "android_client_info": {
+          "package_name": "com.example.version"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwsiJ4atJ3Aq2RP3eml1o1Z7lVodTJaVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

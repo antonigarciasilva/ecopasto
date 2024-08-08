@@ -15,7 +15,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightPSM = TextEditingController();
   final TextEditingController _controllerWeightPFM = TextEditingController();
-  final TextEditingController _controllerWeightPST = TextEditingController();
+
   double? resultbha;
 
   //Validación de peso
@@ -37,9 +37,8 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
     if (_formKey.currentState!.validate()) {
       final double psm = double.parse(_controllerWeightPSM.text);
       final double pfm = double.parse(_controllerWeightPFM.text);
-      final double pst = double.parse(_controllerWeightPST.text);
 
-      final double leafLitterBiomass = (psm / pfm * pst) * 0.04;
+      final double leafLitterBiomass = ((psm / pfm) * pfm) * 0.04;
       final String formattedResult = leafLitterBiomass.toStringAsFixed(2);
 
       Provider.of<StateBiomass>(context, listen: false)
@@ -236,34 +235,6 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                           borderRadius: BorderRadius.circular(25),
                         ),
                         labelText: 'Ingresa el peso en gr',
-                        labelStyle: const TextStyle(fontSize: 14),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-
-                  //PST
-                  const SizedBox(height: 25),
-
-                  const Text(
-                    'Peso fresco total por m² (PFT): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      controller: _controllerWeightPST,
-                      validator: _validateWeight,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        labelText: 'Ingresa el peso en gr/m²',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,

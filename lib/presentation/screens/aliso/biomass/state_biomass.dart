@@ -23,6 +23,9 @@ class StateBiomass with ChangeNotifier {
       (resultBiomassHerbaceous > 0) &&
       isLeafLitterBiomassCalculated;
 
+  bool get areAllBaseCalculateCompleted =>
+      isGreenSCalculated && isDryMatterSCalculated && isDryBiomassCalculated;
+
   bool get isConversionCarbon => (resultCarbonBiomass > 0);
 
   //Para la respuesta de biomasa total y carbono

@@ -21,6 +21,11 @@ class StateBiomassP with ChangeNotifier {
       (resultHerbaceousBiomassP > 0) &&
       isLeafLitterBiomassPCalculatedP;
 
+  bool get areCalculationsP =>
+      isGreenPinoCalculated &&
+      isDryMatterPinoCalculated &&
+      isDryBiomassCalculatedP;
+
   bool get areCalculationsCompletedMatter =>
       isDryMatterPinoCalculated && isGreenPinoCalculated;
 
