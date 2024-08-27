@@ -14,6 +14,15 @@ class StateBiomass with ChangeNotifier {
   double? latitude;
   double? longitude;
 
+  double? dap;
+
+  double? psm;
+  double? pfm;
+
+  bool get isDapa => dap != null;
+  bool get isPsm => psm != null;
+  bool get isPfm => pfm != null;
+
   bool get isGreenSCalculated => greenAliso != null;
   bool get isDryMatterSCalculated => dryMatterAliso != null;
 
@@ -81,6 +90,21 @@ class StateBiomass with ChangeNotifier {
 
   //Para la respuesta de biomasa total y carbono
 
+  void setDap(double value) {
+    dap = value;
+    notifyListeners();
+  }
+
+  void setPsm(double value) {
+    psm = value;
+    notifyListeners();
+  }
+
+  void setPfm(double value) {
+    psm = value;
+    notifyListeners();
+  }
+
   void setGreenS(double value) {
     greenAliso = value;
     notifyListeners();
@@ -147,6 +171,9 @@ class StateBiomass with ChangeNotifier {
       // Para asegurar la ubicación
       'latitude': latitude,
       'longitude': longitude,
+      'dap': dap,
+      'pesoSecoHojarasca': psm,
+      'pesoFrescoHojarasca': pfm,
     };
     try {
       await FirebaseFirestore.instance

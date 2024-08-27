@@ -109,7 +109,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
             right: 20,
             top: 50,
             child: TextButton(
-              child: const Text('Salir'),
+              child: const Text('Saltar'),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -123,22 +123,26 @@ class _TutorialScreenState extends State<TutorialScreen> {
           // no podemos hacerlo null, entonces, se pondrá un SizedBox que es un widget para no mostrar nada hasta que la condición se cumpla.
           if (endReached)
             Positioned(
-              right: 30,
-              bottom: 30,
+              left: 0,
+              right: 0,
+              bottom: 45,
               //Con la librería animated_do, para mejora vista al buttum, va a salir por la deracha después de un segundo
               child: FadeInRight(
                 //from:15 se moverá 15 unidades y de 1 seg en mostrarse
                 from: 15,
                 delay: const Duration(seconds: 1),
-                child: FilledButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const NewSelectSilvoScreen()));
-                    },
-                    child: const Text('Comenzar')),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FilledButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const NewSelectSilvoScreen()));
+                      },
+                      child: const Text('Comenzar')),
+                ),
               ),
             )
           else

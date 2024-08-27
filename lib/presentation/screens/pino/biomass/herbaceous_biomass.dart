@@ -155,6 +155,7 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*BH: Biomasa herbácea(T/ha) \n'
+                          '*PFT: Peso fresco total por m² \n'
                           '*0.01: Factor de conversión para biomasa herbácea \n',
                           style: TextStyle(fontSize: 10),
                         ),

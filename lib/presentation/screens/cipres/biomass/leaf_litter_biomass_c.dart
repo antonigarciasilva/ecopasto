@@ -177,6 +177,7 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*BH: Biomasa hojarasca(Tm/ha) \n'
+                          '*PFT: Peso fresco total por m² \n'
                           '*0.04: Factor de conversión para biomasa hojarasca \n',
                           style: TextStyle(fontSize: 10),
                         ),

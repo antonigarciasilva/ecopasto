@@ -28,61 +28,59 @@ class SplashScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'ECO CARBON',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 14, 69, 113),
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Image.asset(
-              'assets/img/lo_untrm.jpg',
-              height: 140,
-              width: 1000,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/img/igbi_azul.png',
-                  height: 130,
-                  width: 115,
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        body: Stack(children: <Widget>[
+          Positioned.fill(
+            child: ColorFiltered(
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.3),
+                  BlendMode.darken,
                 ),
-                const SizedBox(
-                  width: 30,
-                ),
-                Image.asset(
-                  'assets/img/fizab_negro.png',
-                  height: 80,
-                  width: 80,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 74,
-            ),
-            const CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(
-                  Color.fromARGB(255, 4, 72, 127)),
-              strokeWidth: 2.5,
-            ),
-          ],
-        ),
-      ),
-    );
+                child:
+                    Image.asset('assets/img/pantalla.jpg', fit: BoxFit.cover)),
+          ),
+          Positioned(
+              //Posición superior ajustada
+              top: MediaQuery.of(context).size.height * 0.15,
+              left: 0,
+              right: 0,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/img/logo_untrm_u.png',
+                      height: 140,
+                    ),
+                    const SizedBox(
+                      height: 70,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/img/fizab_blanco.png',
+                          height: 80,
+                          width: 80,
+                        ),
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        Image.asset(
+                          'assets/img/igbi_blanco_u.png',
+                          height: 130, //80 y 80
+                          width: 115,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 90,
+                    ),
+                    const CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          Color.fromARGB(255, 251, 252, 252)),
+                      strokeWidth: 2.5,
+                    ),
+                  ]))
+        ]));
   }
 }
-//Color.fromARGB(255, 82, 12, 7)
