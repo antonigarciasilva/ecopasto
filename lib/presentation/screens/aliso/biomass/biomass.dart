@@ -344,9 +344,32 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                         backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (stateBiomass.areAllCalculationsCompleted) {
                           _calculateBiomassResult(stateBiomass);
+
+                          //Guardar los datos en Firestore después de calcular
+                          try {
+                            //Obtener la ubicación antes de guardar
+                            await stateBiomass.getCurrentLocation();
+                            //Guardamos en firestore después de calcuular y obtener la ubicación
+                            await stateBiomass.saveToFirestore();
+
+                            //Para verificar si le widget aún esta montando
+                            if (!mounted) return;
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        'Datos guardados satisfactoriamente!')));
+                          } catch (e) {
+                            if (!mounted)
+                              // ignore: curly_braces_in_flow_control_structures
+                              return; //Verificar si el widget está montado
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text('Error al guardar data: $e')));
+                          }
                         } else {
                           _showMissingCalculationsDialog(context, stateBiomass);
                         }

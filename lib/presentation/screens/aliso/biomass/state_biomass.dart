@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class StateBiomass with ChangeNotifier {
 //Para hacer las validaciones de los botones
@@ -8,6 +10,9 @@ class StateBiomass with ChangeNotifier {
   double? dryBiomass;
   double? herbaceousBiomass;
   double? leafLitterBiomass;
+
+  double? latitude;
+  double? longitude;
 
   bool get isGreenSCalculated => greenAliso != null;
   bool get isDryMatterSCalculated => dryMatterAliso != null;
@@ -27,6 +32,52 @@ class StateBiomass with ChangeNotifier {
       isGreenSCalculated && isDryMatterSCalculated && isDryBiomassCalculated;
 
   bool get isConversionCarbon => (resultCarbonBiomass > 0);
+
+  //Método para obtener la ubicación actual
+  Future<void> getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    //Verificamos si los servicios de localización están habilitados
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      //Si no están habilitados, puede que quieras mostrar un mensaje al usuario
+      return Future.error('Los servicios de ubicación están deshabilitados');
+    }
+
+    //Verifica los permisos de localización
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        //Los permisos están denegados, puede que quieras mostrar un mensaje
+        return Future.error('Los permisos de ubicación están deshabilitados.');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      //Los permisos están denegados de forma permanente, no puedes continuar
+      return Future.error(
+          'Los permisos de ubicación están denegados permanentemente, no podemos solicitar permisos.');
+    }
+
+    //Obten la ubicación actual, para android, ios y web
+    LocationSettings locationSettings = const LocationSettings(
+      accuracy: LocationAccuracy.high, //alta precisión
+      distanceFilter: 100, //Notificar cada 100 metros de cambio
+    );
+
+    //Obtener la ubicación actual con las configuracioones apropiadas
+    Position position = await Geolocator.getCurrentPosition(
+      locationSettings: locationSettings,
+    );
+
+    latitude = position.latitude;
+    longitude = position.longitude;
+
+    notifyListeners();
+  }
 
   //Para la respuesta de biomasa total y carbono
 
@@ -76,5 +127,36 @@ class StateBiomass with ChangeNotifier {
 
   double get sumaTotal {
     return totalBiomass + resultCarbonBiomass + resultConversionCarbon;
+  }
+
+//Metodo para guardar en firestore
+  Future<void> saveToFirestore() async {
+    final data = {
+      'greenAliso': greenAliso,
+      'dryMatterAliso': dryMatterAliso,
+      'dryBiomass': dryBiomass,
+
+      'leafLitterBiomass': leafLitterBiomass,
+      'resultBiomassHerbaceous': resultBiomassHerbaceous,
+      'totalBiomass': totalBiomass,
+      'resultCarbonBiomass': resultCarbonBiomass,
+      'resultConversionCarbon': resultConversionCarbon,
+      'sumaTotal': sumaTotal,
+      // Para registrar el tiempo de almacenamiento
+      'timestamp': FieldValue.serverTimestamp(),
+      // Para asegurar la ubicación
+      'latitude': latitude,
+      'longitude': longitude,
+    };
+    try {
+      await FirebaseFirestore.instance
+          .collection('biomassCalculationsAliso')
+          .add(data);
+      // ignore: avoid_print
+      print("Datos almacenados correctamente en Firestore");
+    } catch (e) {
+      // ignore: avoid_print
+      print("Error al almacenar data: $e");
+    }
   }
 }
