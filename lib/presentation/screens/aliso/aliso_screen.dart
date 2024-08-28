@@ -121,194 +121,246 @@ class _AlisoScreenState extends State<AlisoScreen> {
           ),
           textAlign: TextAlign.center,
         ),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       drawer: const SideMenu(),
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                //Botón informativo
-                Stack(children: [
-                  //imagen de la pantalla
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/aliso/aliso.jpg',
-                      fit: BoxFit.fitWidth,
-                      height: 299,
-                    ),
-                  ),
+        child: Stack(
+          children: [
+            //Imagen de fondo
+            Positioned.fill(
+                child: Image.asset(
+              'assets/img/aliso/aliso.jpg',
+              fit: BoxFit.cover,
+              color: Colors.black.withOpacity(0.3),
+              colorBlendMode: BlendMode.darken,
+            )),
 
-                  Positioned(
-                    right: 5,
-                    top: 50,
-                    child: FilledButton.tonal(
-                      onPressed: () => openDialog(context),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                      ),
-                      child: const Icon(
-                        Icons.info_outline,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ]),
-
-                //Materia verde
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: Stack(children: [
-                    SizedBox(
-                      width: 240,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              stateAliso.isGreenSCalculated
-                                  ? Colors.grey
-                                  : const Color.fromARGB(255, 51, 79, 31)),
+            //Contenido principal
+            Center(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    //Botón informativo
+                    Stack(
+                      children: [
+                        //Materia verde
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: Stack(children: [
+                            SizedBox(
+                              width: 240,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      WidgetStateProperty.all<Color>(
+                                          stateAliso.isGreenSCalculated
+                                              ? Colors.grey
+                                              : const Color.fromARGB(
+                                                  255, 51, 79, 31)),
+                                ),
+                                onPressed: stateAliso.isGreenSCalculated
+                                    ? null
+                                    : () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const GreenMatterScreen()),
+                                        );
+                                      },
+                                child: const Text(
+                                  '1. Materia verde',
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            if (stateAliso.isGreenSCalculated)
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const GreenMatterScreen()));
+                                  },
+                                  icon: const Icon(Icons.edit))
+                          ]),
                         ),
-                        onPressed: stateAliso.isGreenSCalculated
-                            ? null
-                            : () {
+                      ],
+                    ),
+
+                    //Materia seca
+                    const SizedBox(height: 20.0),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Stack(children: [
+                        SizedBox(
+                          width: 240,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(
+                                  stateAliso.isDryMatterSCalculated
+                                      ? Colors.grey
+                                      : const Color.fromARGB(255, 51, 79, 31)),
+                            ),
+                            onPressed: stateAliso.isDryMatterSCalculated
+                                ? null
+                                : () {
+                                    if (stateAliso.isGreenSCalculated) {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const DryMatterScreen()),
+                                      );
+                                    } else {
+                                      _showMissingCalculationsDialog(
+                                          context, stateAliso);
+                                    }
+                                  },
+                            child: const Text(
+                              '2. Materia seca',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        if (stateAliso.isDryMatterSCalculated)
+                          IconButton(
+                              onPressed: () {
                                 Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const GreenMatterScreen()),
-                                );
-                              },
-                        child: const Text(
-                          '1. Materia verde',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    if (stateAliso.isGreenSCalculated)
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const GreenMatterScreen()));
-                          },
-                          icon: const Icon(Icons.edit))
-                  ]),
-                ),
-
-                //Materia seca
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: Stack(children: [
-                    SizedBox(
-                      width: 240,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              stateAliso.isDryMatterSCalculated
-                                  ? Colors.grey
-                                  : const Color.fromARGB(255, 51, 79, 31)),
-                        ),
-                        onPressed: stateAliso.isDryMatterSCalculated
-                            ? null
-                            : () {
-                                if (stateAliso.isGreenSCalculated) {
-                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const DryMatterScreen()),
-                                  );
-                                } else {
-                                  _showMissingCalculationsDialog(
-                                      context, stateAliso);
-                                }
+                                            const DryMatterScreen()));
                               },
-                        child: const Text(
-                          '2. Materia seca',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
-                      ),
+                              icon: const Icon(Icons.edit))
+                      ]),
                     ),
-                    if (stateAliso.isDryMatterSCalculated)
-                      IconButton(
+
+                    //Biomasa
+                    const SizedBox(height: 20.0),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: SizedBox(
+                        width: 240,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                const Color.fromARGB(255, 51, 79, 31)),
+                          ),
                           onPressed: () {
-                            Navigator.push(
+                            if (stateAliso.isDryMatterSCalculated &&
+                                stateAliso.isGreenSCalculated) {
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const DryMatterScreen()));
+                                        const BiomassAlderScreen()),
+                              );
+                            } else {
+                              _showMissingCalculationsDialog(
+                                  context, stateAliso);
+                            }
                           },
-                          icon: const Icon(Icons.edit))
-                  ]),
-                ),
-
-                //Biomasa
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        if (stateAliso.isDryMatterSCalculated &&
-                            stateAliso.isGreenSCalculated) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const BiomassAlderScreen()),
-                          );
-                        } else {
-                          _showMissingCalculationsDialog(context, stateAliso);
-                        }
-                      },
-                      child: const Text(
-                        ' 3. Biomasa',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                          child: const Text(
+                            ' 3. Biomasa',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
 
-                //Carbono en la biomasa
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CarbonScreen()),
-                        );
-                      },
-                      child: const Text(
-                        '4. Carbono en la biomasa',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                        textAlign: TextAlign.center,
+                    //Carbono en la biomasa
+                    const SizedBox(height: 20.0),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: SizedBox(
+                        width: 240,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                const Color.fromARGB(255, 51, 79, 31)),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const CarbonScreen()),
+                            );
+                          },
+                          child: const Text(
+                            '4. Carbono en la biomasa',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+            //logos parte inferior
+            Positioned(
+              bottom: 20,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/img/fizab_blanco.png',
+                    height: 60,
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Image.asset(
+                    'assets/img/igbi_blanco_u.png',
+                    height: 60,
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Image.asset(
+                    'assets/img/agrolab_blanco.png',
+                    height: 60,
+                  )
+                ],
+              ),
+            ),
+            //Botón informativo
+            Positioned(
+              top: 20,
+              right: 20,
+              child: FilledButton.tonal(
+                onPressed: () => openDialog(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                ),
+                child: const Icon(
+                  Icons.info_outline,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+
+            //Logo de la app
+
+            Positioned(
+              top: 65,
+              right: 125,
+              child: Image.asset(
+                'assets/img/agrolab_blanco.png',
+                height: 60,
+              ),
+            )
+          ],
         ),
       ),
     );
