@@ -39,6 +39,7 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
 
       Provider.of<StateBiomass>(context, listen: false)
           .setDryBiomass(dryBiomass!);
+      Provider.of<StateBiomass>(context, listen: false).setDap(dap);
 
       showDialog(
           context: context,

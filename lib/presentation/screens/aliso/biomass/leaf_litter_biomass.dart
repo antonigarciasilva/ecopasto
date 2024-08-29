@@ -44,6 +44,10 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
       Provider.of<StateBiomass>(context, listen: false)
           .setLeafLitterBiomass(leafLitterBiomass);
 
+      Provider.of<StateBiomass>(context, listen: false).setPsm(psm);
+
+      Provider.of<StateBiomass>(context, listen: false).setPfm(pfm);
+
       showDialog(
           context: context,
           barrierDismissible: false,

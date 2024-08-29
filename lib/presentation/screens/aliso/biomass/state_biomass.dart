@@ -101,7 +101,7 @@ class StateBiomass with ChangeNotifier {
   }
 
   void setPfm(double value) {
-    psm = value;
+    pfm = value;
     notifyListeners();
   }
 

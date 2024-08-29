@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Esperar dos segundos antes de navegar a la siguiente pantalla
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 6), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginScreen()),
       );

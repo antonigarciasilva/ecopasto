@@ -34,14 +34,6 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
       return 'Solo acepta valores numéricos';
     }
     return null;
-
-/*
-    //Podemos agregar más if, por ejemplo
-    if (value.length >= 5) {
-      return "Peso muy exagerado"; 
-    }
-
-    return null;*/
   }
 
   //Validamos el botton guardar
@@ -152,7 +144,6 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                   const SizedBox(height: 5),
 
                   //Ingresa el peso de materia verde
-
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
@@ -160,8 +151,6 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                       controller: _controllerWeightAliso,
                       validator: _validateWeight,
                       decoration: InputDecoration(
-                        //prefixIcon: const Icon(Icons.person_4),
-
                         labelText: 'Ingresa el peso en Kg/m²',
                         labelStyle: const TextStyle(fontSize: 14),
                         border: OutlineInputBorder(
