@@ -45,6 +45,7 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
+                  backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cálculo',
                     style: TextStyle(fontSize: 18),
@@ -76,6 +77,7 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
         //solo para salir con los botones y no cuando le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la biomasa seca?',
                 textAlign: TextAlign.justify,
@@ -110,15 +112,17 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Image.asset(
-                      'assets/img/aliso/biomass/biomas_alder.jpg',
+                      'assets/img/aliso/biomass/al_dry_biomass.jpg',
                       fit: BoxFit.fitWidth,
-                      height: 259,
+                      height: 329,
+                      color: Colors.black.withOpacity(0.3),
+                      colorBlendMode: BlendMode.darken,
                     ),
                   ),
                   //Posición del botón
                   Positioned(
-                    right: 5,
-                    top: 50,
+                    right: 0,
+                    top: 30,
                     child: FilledButton.tonal(
                         onPressed: () => openDialog(context),
                         style: ElevatedButton.styleFrom(

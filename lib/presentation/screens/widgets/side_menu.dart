@@ -23,9 +23,6 @@ class _SideMenuState extends State<SideMenu> {
   Widget build(BuildContext context) {
     //Código para ver cuanto espacio hay desde el top hasta donde comienza el menú
     final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
-    /*if (Platform.isAndroid) {
-      print('Android $hasNotch');
-    }¨*/
 
     //Esto es para que se quede seleccionado el boton cuando le das click
     return NavigationDrawer(
@@ -45,10 +42,16 @@ class _SideMenuState extends State<SideMenu> {
                   fontSize: 20, color: Color.fromARGB(255, 82, 12, 7)),
             )),
 
+        //Linea que divide
+        const Padding(
+          padding: EdgeInsets.fromLTRB(28, 3, 28, 10),
+          child: Divider(),
+        ),
+
         //Selecciona nuevo sistemas silvopastoril
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.anchor_sharp),
+          leading: const Icon(Icons.nature_people),
           title: const Text('Selec. sistema silvopastoril'),
           onTap: () {
             Navigator.pop(context);
@@ -62,8 +65,11 @@ class _SideMenuState extends State<SideMenu> {
         //Aliso
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.energy_savings_leaf_rounded),
-          title: const Text('Aliso'),
+          leading: const Icon(Icons.eco_rounded),
+          title: const Text(
+            'Aliso',
+            style: TextStyle(fontSize: 16),
+          ),
           onTap: () {
             Navigator.pop(context);
             Navigator.push(context,
@@ -74,8 +80,11 @@ class _SideMenuState extends State<SideMenu> {
         //Pino
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.directions_transit_filled_rounded),
-          title: const Text('Pino'),
+          leading: const Icon(Icons.park),
+          title: const Text(
+            'Pino',
+            style: TextStyle(fontSize: 16),
+          ),
           onTap: () {
             Navigator.pop(context);
             Navigator.push(context,
@@ -86,8 +95,11 @@ class _SideMenuState extends State<SideMenu> {
         //Ciprés
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.temple_buddhist_rounded),
-          title: const Text('Ciprés'),
+          leading: const Icon(Icons.forest),
+          title: const Text(
+            'Ciprés',
+            style: TextStyle(fontSize: 16),
+          ),
           onTap: () {
             Navigator.pop(context);
             Navigator.push(context,
@@ -98,8 +110,11 @@ class _SideMenuState extends State<SideMenu> {
         //Pona
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.terrain_rounded),
-          title: const Text('Pona'),
+          leading: const Icon(Icons.nature),
+          title: const Text(
+            'Pona',
+            style: TextStyle(fontSize: 16),
+          ),
           onTap: () {
             Navigator.pop(context);
             Navigator.push(context,
@@ -110,8 +125,11 @@ class _SideMenuState extends State<SideMenu> {
         //Pastizal
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.place_rounded),
-          title: const Text('Pastizal'),
+          leading: const Icon(Icons.grass),
+          title: const Text(
+            'Pastizal',
+            style: TextStyle(fontSize: 16),
+          ),
           onTap: () {
             Navigator.pop(context);
             Navigator.push(context,
@@ -119,13 +137,8 @@ class _SideMenuState extends State<SideMenu> {
           },
         ),
 
-        /*const NavigationDrawerDestination(
-            icon: Icon(Icons.safety_check), label: Text('bays')), */
-
-        //Linea que divide
-        const Padding(
-          padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
-          child: Divider(),
+        const SizedBox(
+          height: 10,
         ),
 
         //Más opciones
@@ -136,6 +149,12 @@ class _SideMenuState extends State<SideMenu> {
               style: TextStyle(
                   fontSize: 20, color: Color.fromARGB(255, 82, 12, 7)),
             )),
+
+        //Linea que divide
+        const Padding(
+          padding: EdgeInsets.fromLTRB(28, 3, 28, 10),
+          child: Divider(),
+        ),
 
         //Tutorial
         ListTile(

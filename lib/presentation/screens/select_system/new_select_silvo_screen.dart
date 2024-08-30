@@ -21,7 +21,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
           'Seleciona un Sistemas \n'
           'Silvopastoril',
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             fontStyle: FontStyle.normal,
           ),
@@ -35,11 +35,12 @@ class NewSelectSilvoScreen extends StatelessWidget {
           child: ListView(
               physics: const BouncingScrollPhysics(),
               children: <Widget>[
+                //top
                 const SizedBox(
-                  height: 50,
+                  height: 20,
                 ),
                 SizedBox(
-                  height: 160.0,
+                  height: 280.0,
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
@@ -59,8 +60,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(children: [
                               Image.asset(
                                 'assets/img/pino/pino.jpg',
-                                height: 150,
-                                width: 150,
+                                height: 280,
+                                width: 200,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -68,17 +69,27 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                 left: 0,
                                 right: 0,
                                 child: Container(
-                                    padding: const EdgeInsets.all(6),
-                                    color: Colors.white.withOpacity(0.5),
-                                    child: const Text(
-                                      'Pino',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )),
+                                  padding: const EdgeInsets.all(6),
+                                  color: Colors.white.withOpacity(0.7),
+                                  child: const Text.rich(
+                                    TextSpan(
+                                        text: 'Pinus sylvestris ',
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic,
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: '(Pino)',
+                                            style: TextStyle(
+                                              fontStyle: FontStyle.normal,
+                                            ),
+                                          )
+                                        ]),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               )
                             ]),
                           ),
@@ -101,8 +112,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(children: [
                               Image.asset(
                                 'assets/img/cipres/cipres.jpg',
-                                height: 150,
-                                width: 150,
+                                height: 280,
+                                width: 200,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -110,17 +121,27 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                 left: 0,
                                 right: 0,
                                 child: Container(
-                                    padding: const EdgeInsets.all(6),
-                                    color: Colors.white.withOpacity(0.5),
-                                    child: const Text(
-                                      'Ciprés',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )),
+                                  padding: const EdgeInsets.all(6),
+                                  color: Colors.white.withOpacity(0.7),
+                                  child: const Text.rich(
+                                    TextSpan(
+                                        text: 'Cupressus ',
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic,
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: '(Ciprés)',
+                                            style: TextStyle(
+                                              fontStyle: FontStyle.normal,
+                                            ),
+                                          )
+                                        ]),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               )
                             ]),
                           ),
@@ -141,9 +162,9 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
                               Image.asset(
-                                'assets/img/aliso/aliso.jpg',
-                                height: 150,
-                                width: 150,
+                                'assets/img/aliso/aliso_verde.jpg',
+                                height: 280,
+                                width: 200,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -151,17 +172,27 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                 left: 0,
                                 right: 0,
                                 child: Container(
-                                    padding: const EdgeInsets.all(6),
-                                    color: Colors.white.withOpacity(0.5),
-                                    child: const Text(
-                                      'Aliso',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )),
+                                  padding: const EdgeInsets.all(6),
+                                  color: Colors.white.withOpacity(0.7),
+                                  child: const Text.rich(
+                                    TextSpan(
+                                        text: 'Alnus glutinosa ',
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic,
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: '(Aliso)',
+                                            style: TextStyle(
+                                              fontStyle: FontStyle.normal,
+                                            ),
+                                          )
+                                        ]),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               )
                             ]),
                           ),
@@ -183,8 +214,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(children: [
                               Image.asset(
                                 'assets/img/pona/pona.jpg',
-                                height: 150,
-                                width: 150,
+                                height: 280,
+                                width: 200,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -192,17 +223,26 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                 left: 0,
                                 right: 0,
                                 child: Container(
-                                    padding: const EdgeInsets.all(6),
-                                    color: Colors.white.withOpacity(0.5),
-                                    child: const Text(
-                                      'Pona',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )),
+                                  padding: const EdgeInsets.all(6),
+                                  color: Colors.white.withOpacity(0.7),
+                                  child: const Text.rich(
+                                    TextSpan(
+                                        text: 'Socratea exorrhiza ',
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic,
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text: '(Pona)',
+                                              style: TextStyle(
+                                                fontStyle: FontStyle.normal,
+                                              ))
+                                        ]),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               )
                             ]),
                           ),
@@ -226,8 +266,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                               children: [
                                 Image.asset(
                                   'assets/img/sinarbol/sin_pasto.jpg',
-                                  height: 150,
-                                  width: 150,
+                                  height: 280,
+                                  width: 200,
                                   fit: BoxFit.cover,
                                 ),
                                 Positioned(
@@ -236,7 +276,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                   right: 0,
                                   child: Container(
                                       padding: const EdgeInsets.all(6),
-                                      color: Colors.white.withOpacity(0.4),
+                                      color: Colors.white.withOpacity(0.7),
                                       child: const Text(
                                         'Sin Arboles',
                                         textAlign: TextAlign.center,
@@ -257,7 +297,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                 ),
 
                 const SizedBox(
-                  height: 80,
+                  height: 30,
                 ),
                 //todo Concepto
                 const ExpansionTile(

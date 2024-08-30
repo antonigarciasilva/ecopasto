@@ -61,6 +61,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Cómo sacar la materia verde?',
                 textAlign: TextAlign.justify,
@@ -103,14 +104,14 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                       child: Image.asset(
                         'assets/img/aliso/greenmatter/green_alder.jpg',
                         fit: BoxFit.fitWidth,
-                        height: 259,
+                        height: 350,
                       ),
                     ),
 
                     //Position of the buttom
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      right: 0,
+                      top: 25,
                       child: FilledButton.tonal(
                         onPressed: () => openDialog(context),
                         style: ElevatedButton.styleFrom(

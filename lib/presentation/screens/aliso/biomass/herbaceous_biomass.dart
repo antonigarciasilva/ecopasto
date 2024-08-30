@@ -30,6 +30,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 'Resultado del cálculo',
                 style: TextStyle(fontSize: 18),
@@ -60,6 +61,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la biomasa herbácea?',
                 textAlign: TextAlign.justify,
@@ -101,13 +103,13 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                       child: Image.asset(
                         'assets/img/aliso/biomass/biomas_alder.jpg',
                         fit: BoxFit.fitWidth,
-                        height: 259,
+                        height: 209,
                       ),
                     ),
                     //Possition of the botton
                     Positioned(
                       right: 5,
-                      top: 50,
+                      top: 20,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(

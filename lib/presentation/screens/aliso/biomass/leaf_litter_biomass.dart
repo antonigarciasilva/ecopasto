@@ -52,6 +52,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
+                backgroundColor: Colors.white,
                 title: const Text(
                   'Resultado del cálculo',
                   style: TextStyle(fontSize: 18),
@@ -82,6 +83,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la biomasa hojarasca?',
                 textAlign: TextAlign.justify,
@@ -120,15 +122,15 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/aliso/biomass/biomas_alder.jpg',
+                        'assets/img/aliso/biomass/al_biomass_leaf.jpg',
                         fit: BoxFit.fitWidth,
-                        height: 259,
+                        height: 209,
                       ),
                     ),
                     //Possition of the botton
                     Positioned(
                       right: 5,
-                      top: 50,
+                      top: 20,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(

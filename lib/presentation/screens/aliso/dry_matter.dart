@@ -59,6 +59,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
+                  backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cáculo',
                     style: TextStyle(fontSize: 18),
@@ -89,6 +90,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
         //Solo para salir con los botones y no cuando le das click a cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Cómo sacar el peso de la muestra seca (PSM)',
                 textAlign: TextAlign.justify,
@@ -124,14 +126,16 @@ class MyGreenMatterScreen extends State<DryMatterScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/aliso/drymatter/dry_alder.jpg',
+                        'assets/img/aliso/drymatter/aliso_seco.jpg',
                         fit: BoxFit.fitWidth,
-                        height: 259,
+                        height: 309,
                       ),
                     ),
 
                     //Possition of the botton
                     Positioned(
+                      right: 0,
+                      top: 10,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(

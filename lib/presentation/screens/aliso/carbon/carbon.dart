@@ -28,6 +28,7 @@ class _CarbonScreenState extends State<CarbonScreen> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es el carbono?',
                 style: TextStyle(fontSize: 18),
@@ -71,6 +72,7 @@ class _CarbonScreenState extends State<CarbonScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 'Cálculos imcompletos',
                 textAlign: TextAlign.center,
