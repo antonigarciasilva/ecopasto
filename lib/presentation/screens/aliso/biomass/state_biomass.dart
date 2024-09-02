@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -155,7 +156,10 @@ class StateBiomass with ChangeNotifier {
 
 //Metodo para guardar en firestore
   Future<void> saveToFirestore() async {
+    //obtener el UID del usuario autenticado
+    final userId = FirebaseAuth.instance.currentUser?.uid;
     final data = {
+      'userId': userId,
       'greenAliso': greenAliso,
       'dryMatterAliso': dryMatterAliso,
       'dryBiomass': dryBiomass,

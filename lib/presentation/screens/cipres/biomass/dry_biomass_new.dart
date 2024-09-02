@@ -38,6 +38,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
 
       Provider.of<StateBiomassC>(context, listen: false)
           .setDryBiomassC(dryBiomassC!);
+      Provider.of<StateBiomassC>(context, listen: false).setDapC(dap);
 
       showDialog(
           context: context,

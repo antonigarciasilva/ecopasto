@@ -40,6 +40,8 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC> {
 
       Provider.of<StateBiomassC>(context, listen: false)
           .setLeafLitterBiomassC(leafLitterBiomassC);
+      Provider.of<StateBiomassC>(context, listen: false).setPsmC(psm);
+      Provider.of<StateBiomassC>(context, listen: false).setPfmC(pfm);
 
       showDialog(
           context: context,
