@@ -230,7 +230,30 @@ class _HerbaceousBiomassSTState extends State<HerbaceousBiomassST> {
                           backgroundColor: WidgetStateProperty.all<Color>(
                               const Color.fromARGB(255, 51, 79, 31)),
                         ),
-                        onPressed: _calculateBiomassCarbonResult,
+                        onPressed: () async {
+                          if (stateST!.areAllCalculationsCompletedS) {
+                            _calculateBiomassCarbonResult();
+                          }
+                          //Guardar los datos en Firestore después de calcular
+                          try {
+                            //Obtener la ubicación antes de guardar
+                            await stateST!.getCurrentLocation();
+                            //Guardamos en Firestore después de calcular y obtener la ubicación
+                            await stateST!.saveToFirestore();
+                            //Para verificar si el widget aún esta montado
+                            if (mounted) return;
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        'Datos guardados satisfactoriamente!')));
+                          } catch (e) {
+                            if (!mounted) return;
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text('Error al guardar datos: $e')));
+                          }
+                        },
                         child: const Text(
                           'Calcular',
                           style: TextStyle(fontSize: 18, color: Colors.white),

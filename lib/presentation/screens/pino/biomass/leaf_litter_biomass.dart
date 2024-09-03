@@ -40,6 +40,8 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
 
       Provider.of<StateBiomassP>(context, listen: false)
           .setLeafLitterBiomassP(resulthba);
+      Provider.of<StateBiomassP>(context, listen: false).setPfmP(pfm);
+      Provider.of<StateBiomassP>(context, listen: false).setPsmP(psm);
 
       showDialog(
           context: context,

@@ -41,6 +41,8 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
 
       Provider.of<StateBiomassO>(context, listen: false)
           .setLeafLitterBiomassO(resulthba);
+      Provider.of<StateBiomassO>(context, listen: false).setPsmO(psm);
+      Provider.of<StateBiomassO>(context, listen: false).setPfmO(pfm);
 
       showDialog(
           context: context,

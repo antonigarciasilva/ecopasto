@@ -334,9 +334,28 @@ class _BiomassPonaState extends State<BiomassPona> {
                         backgroundColor: WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 51, 79, 31)),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (stateBiomassO.areAllCalculationsCompletedO) {
                           _calculateBiomassResultO(stateBiomassO);
+                          //Guardar los datos en Firestore después de calcular
+                          try {
+                            //Obtener la ubicación antes de guardar
+                            await stateBiomassO.getCurrentLocation();
+                            //Guardamos en Firestore después de calcular y obtener la ubicación
+                            await stateBiomassO.saveToFirestore();
+                            //Para verificar si el widget aún esta montado
+                            if (mounted) return;
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        'Datos guardados satisfactoriamente!')));
+                          } catch (e) {
+                            if (!mounted) return;
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text('Error al guardar datos: $e')));
+                          }
                         } else {
                           _showMissingCalculationsDialog(
                               context, stateBiomassO);

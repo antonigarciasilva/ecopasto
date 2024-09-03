@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/no_tree/biomass/herbaceous_biomass_s.dart';
 
@@ -36,6 +37,43 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                 FilledButton(
                     onPressed: () {
                       Navigator.pop(context);
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
+  //Método para alerta cuando te falta llenar los datos
+  void _showMissingCalculationDialog(BuildContext context, StateST stateSt) {
+    List<String> missingCalculations = [];
+
+    if (!stateSt.isGreenSCalculated) {
+      missingCalculations.add('materia verde');
+    }
+    if (!stateSt.isDryMatterSCalculated) {
+      missingCalculations.add('materia seca');
+    }
+
+    String message =
+        'Falta calcular: ${missingCalculations.join(', ')} para poder continuar';
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text(
+                'Cálculos imcompletos',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
+              ),
+              content: Text(
+                message,
+                textAlign: TextAlign.justify,
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
                     },
                     child: const Text('Aceptar'))
               ],
@@ -160,6 +198,9 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                                         builder: (context) =>
                                             const DryMatterS()),
                                   );
+                                } else {
+                                  _showMissingCalculationDialog(
+                                      context, StateST());
                                 }
                               },
                         child: const Text(
@@ -200,6 +241,8 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                                 builder: (context) =>
                                     const HerbaceousBiomassST()),
                           );
+                        } else {
+                          _showMissingCalculationDialog(context, StateST());
                         }
                       },
                       child: const Text(

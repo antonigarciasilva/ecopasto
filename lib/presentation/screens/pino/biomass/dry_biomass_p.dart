@@ -41,6 +41,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
 
       Provider.of<StateBiomassP>(context, listen: false)
           .setDryBiomassP(resultdbp);
+      Provider.of<StateBiomassP>(context, listen: false).setDapP(dap);
 
       showDialog(
           context: context,

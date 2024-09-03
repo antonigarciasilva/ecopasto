@@ -47,6 +47,9 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
       Provider.of<StateBiomassO>(context, listen: false)
           .setDryBiomassO(resultdbo);
 
+      Provider.of<StateBiomassO>(context, listen: false).setDapO(dap);
+      Provider.of<StateBiomassO>(context, listen: false).setAfO(af);
+
       showDialog(
           context: context,
           barrierDismissible: false,

@@ -783,7 +783,7 @@ class ResultSt extends StatelessWidget {
                           backgroundColor:
                               WidgetStateProperty.all<Color>(Colors.green)),
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>

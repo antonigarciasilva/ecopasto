@@ -51,6 +51,7 @@ class _DryMatterSState extends State<DryMatterS> {
       final String formattedResult = dryMatterS.toStringAsFixed(2);
 
       Provider.of<StateST>(context, listen: false).setDryMatterS(dryMatterS);
+      Provider.of<StateST>(context, listen: false).setPmsS(pms);
 
       showDialog(
           context: context,

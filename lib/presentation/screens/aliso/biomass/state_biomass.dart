@@ -181,7 +181,7 @@ class StateBiomass with ChangeNotifier {
     };
     try {
       await FirebaseFirestore.instance
-          .collection('biomassCalculationsAliso')
+          .collection('dataCalculationsAliso')
           .add(data);
       // ignore: avoid_print
       print("Datos almacenados correctamente en Firestore");
