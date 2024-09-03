@@ -337,8 +337,22 @@ class _AlisoScreenState extends State<AlisoScreen> {
             ),
             //Botón informativo
             Positioned(
+                top: 45,
+                right: 120,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //Logo de la app
+                    Image.asset(
+                      'assets/img/amas_white.png',
+                      height: 90,
+                    ),
+                  ],
+                )),
+
+            Positioned(
               top: 20,
-              right: 20,
+              right: 10,
               child: FilledButton.tonal(
                 onPressed: () => openDialog(context),
                 style: ElevatedButton.styleFrom(
@@ -348,17 +362,6 @@ class _AlisoScreenState extends State<AlisoScreen> {
                   Icons.info_outline,
                   color: Colors.white,
                 ),
-              ),
-            ),
-
-            //Logo de la app
-
-            Positioned(
-              top: 65,
-              right: 125,
-              child: Image.asset(
-                'assets/img/agrolab_blanco.png',
-                height: 60,
               ),
             )
           ],

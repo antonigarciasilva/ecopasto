@@ -163,7 +163,7 @@ class LoginPageState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Image.asset(
-                  'assets/img/EcoPasto.png',
+                  'assets/img/amas_color.png',
                   height: 250,
                 ),
                 const SizedBox(height: 20.0),

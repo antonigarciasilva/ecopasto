@@ -266,25 +266,31 @@ class _CarbonScreenState extends State<CarbonScreen> {
             ),
             //Botón informativo
             Positioned(
-              top: 20,
-              right: 20,
-              child: FilledButton.tonal(
-                  onPressed: () => openDialog(context),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent),
-                  child: const Icon(
-                    Icons.info_outline,
-                    color: Colors.white,
-                  )),
-            ),
+                top: 45,
+                right: 120,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //Logo de la app
+                    Image.asset(
+                      'assets/img/amas_white.png',
+                      height: 90,
+                    ),
+                  ],
+                )),
 
-            //Logo de la app
             Positioned(
-              top: 65,
-              right: 125,
-              child: Image.asset(
-                'assets/img/agrolab_blanco.png',
-                height: 60,
+              top: 20,
+              right: 10,
+              child: FilledButton.tonal(
+                onPressed: () => openDialog(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                ),
+                child: const Icon(
+                  Icons.info_outline,
+                  color: Colors.white,
+                ),
               ),
             )
           ],
