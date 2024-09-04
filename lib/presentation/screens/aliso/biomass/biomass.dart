@@ -155,8 +155,8 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                 children: <Widget>[
                   //Logo de la app
                   Image.asset(
-                    'assets/img/amas_white.png',
-                    height: 150,
+                    'assets/img/only_logo.png',
+                    height: 100,
                   ),
                   //Título
                   const SizedBox(height: 30.0),
@@ -381,39 +381,39 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                       ),
                     ),
                   ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  //logos parte inferior
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/img/fizab_blanco.png',
+                        height: 60,
+                      ),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      Image.asset(
+                        'assets/img/igbi_blanco_u.png',
+                        height: 60,
+                      ),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      Image.asset(
+                        'assets/img/agrolab_blanco.png',
+                        height: 60,
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
-          //logos parte inferior
-          Positioned(
-            bottom: 20,
-            left: 0,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/img/fizab_blanco.png',
-                  height: 60,
-                ),
-                const SizedBox(
-                  width: 40,
-                ),
-                Image.asset(
-                  'assets/img/igbi_blanco_u.png',
-                  height: 60,
-                ),
-                const SizedBox(
-                  width: 40,
-                ),
-                Image.asset(
-                  'assets/img/agrolab_blanco.png',
-                  height: 60,
-                )
-              ],
-            ),
-          ),
+
           //Botón informativo
           Positioned(
             top: 20,

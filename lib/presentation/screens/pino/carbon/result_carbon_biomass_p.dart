@@ -506,7 +506,71 @@ class ResultCarbonBiomassP extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                      ])
+                      ]),
+                      //Fila de la suma total
+                      TableRow(children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          child: const Text(
+                            'Total',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.justify,
+                          ),
+                        ),
+                        //Aliso
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          child: Text(
+                            sumaTotal.toStringAsFixed(2),
+                            style: const TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        //Ciprés
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          child: Text(
+                            sumaTotalC.toStringAsFixed(2),
+                            style: const TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        //Pino
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          child: Text(
+                            sumaTotalP.toStringAsFixed(2),
+                            style: const TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        //Pona
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          child: Text(
+                            sumaTotalP.toStringAsFixed(2),
+                            style: const TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        //SSA
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          child: Text(
+                            sumaTotalST.toStringAsFixed(2),
+                            style: const TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
                     ],
                   ),
 

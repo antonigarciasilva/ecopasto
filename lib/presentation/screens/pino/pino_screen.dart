@@ -142,14 +142,12 @@ class _PinoScreenState extends State<PinoScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     // Logo de la app
-                    Stack(
-                      children: [
-                        Image.asset(
-                          'assets/img/amas_white.png',
-                          height: 100,
-                        ),
-                      ],
+
+                    Image.asset(
+                      'assets/img/only_logo.png',
+                      height: 100,
                     ),
+
                     const SizedBox(height: 50),
 
                     // Materia verde
@@ -321,42 +319,38 @@ class _PinoScreenState extends State<PinoScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 20,
+                    ),
+                    //logos parte inferior
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/img/fizab_blanco.png',
+                          height: 60,
+                        ),
+                        const SizedBox(
+                          width: 40,
+                        ),
+                        Image.asset(
+                          'assets/img/igbi_blanco_u.png',
+                          height: 60,
+                        ),
+                        const SizedBox(
+                          width: 40,
+                        ),
+                        Image.asset(
+                          'assets/img/agrolab_blanco.png',
+                          height: 60,
+                        )
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
 
-            //logos parte inferior
-            Positioned(
-              bottom: 20,
-              left: 0,
-              right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/img/fizab_blanco.png',
-                    height: 60,
-                  ),
-                  const SizedBox(
-                    width: 40,
-                  ),
-                  Image.asset(
-                    'assets/img/igbi_blanco_u.png',
-                    height: 60,
-                  ),
-                  const SizedBox(
-                    width: 40,
-                  ),
-                  Image.asset(
-                    'assets/img/agrolab_blanco.png',
-                    height: 60,
-                  )
-                ],
-              ),
-            ),
             //Botón informativo
 
             Positioned(

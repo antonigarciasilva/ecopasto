@@ -122,192 +122,229 @@ class _PonaScreenState extends State<PonaScreen> {
       ),
       drawer: const SideMenu(),
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Stack(children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/pona/pona.jpg',
-                      fit: BoxFit.fitWidth,
-                      height: 299,
-                    ),
+          child: Stack(
+        children: [
+          //imagen de fondo
+          Positioned.fill(
+              child: Image.asset(
+            'assets/img/pona/pona_v.jpg',
+            fit: BoxFit.cover,
+            color: Colors.black.withOpacity(0.5),
+            colorBlendMode: BlendMode.darken,
+          )),
+
+          //Contenido de fondo
+          Center(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  //Logo de la app
+                  Image.asset(
+                    'assets/img/only_logo.png',
+                    height: 150,
                   ),
 
-                  //Position of the buttom
-                  Positioned(
-                    right: 5,
-                    top: 50,
-                    child: FilledButton.tonal(
-                      onPressed: () => openDialog(context),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                      ),
-                      child: const Icon(
-                        Icons.info_outline,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ]),
-
-                //Materia verde
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: Stack(children: [
-                    SizedBox(
-                      width: 240,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              statePona.isGreenPonaCalculated
-                                  ? Colors.grey
-                                  : const Color.fromARGB(255, 51, 79, 31)),
-                        ),
-                        onPressed: statePona.isGreenPonaCalculated
-                            ? null
-                            : () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const GreenMatterPona()),
-                                );
-                              },
-                        child: const Text(
-                          '1. Materia verde',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    if (statePona.isGreenPonaCalculated)
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const GreenMatterPona()));
-                          },
-                          icon: const Icon(Icons.edit))
-                  ]),
-                ),
-
-                //Materia seca
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: Stack(children: [
-                    SizedBox(
-                      width: 240,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              statePona.isDryMatterPonaCalculated
-                                  ? Colors.grey
-                                  : const Color.fromARGB(255, 51, 79, 31)),
-                        ),
-                        onPressed: statePona.isDryMatterPonaCalculated
-                            ? null
-                            : () {
-                                if (statePona.isGreenPonaCalculated) {
+                  //Materia verde
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Stack(children: [
+                      SizedBox(
+                        width: 240,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                statePona.isGreenPonaCalculated
+                                    ? Colors.grey
+                                    : const Color.fromARGB(255, 51, 79, 31)),
+                          ),
+                          onPressed: statePona.isGreenPonaCalculated
+                              ? null
+                              : () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const DryPonaScreen()),
+                                            const GreenMatterPona()),
                                   );
-                                } else {
-                                  _showMissingCalculationsDialog0(
-                                      context, statePona);
-                                }
-                              },
+                                },
+                          child: const Text(
+                            '1. Materia verde',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      if (statePona.isGreenPonaCalculated)
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const GreenMatterPona()));
+                            },
+                            icon: const Icon(Icons.edit))
+                    ]),
+                  ),
+
+                  //Materia seca
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Stack(children: [
+                      SizedBox(
+                        width: 240,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                statePona.isDryMatterPonaCalculated
+                                    ? Colors.grey
+                                    : const Color.fromARGB(255, 51, 79, 31)),
+                          ),
+                          onPressed: statePona.isDryMatterPonaCalculated
+                              ? null
+                              : () {
+                                  if (statePona.isGreenPonaCalculated) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const DryPonaScreen()),
+                                    );
+                                  } else {
+                                    _showMissingCalculationsDialog0(
+                                        context, statePona);
+                                  }
+                                },
+                          child: const Text(
+                            '2. Materia seca',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      if (statePona.isDryMatterPonaCalculated)
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DryPonaScreen()));
+                            },
+                            icon: const Icon(Icons.edit))
+                    ]),
+                  ),
+
+                  //Biomasa
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: () {
+                          if (statePona.isDryMatterPonaCalculated &&
+                              statePona.isGreenPonaCalculated) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const BiomassPona()),
+                            );
+                          } else {
+                            _showMissingCalculationsDialog0(context, statePona);
+                          }
+                        },
                         child: const Text(
-                          '2. Materia seca',
+                          ' 3. Biomasa',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),
                     ),
-                    if (statePona.isDryMatterPonaCalculated)
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const DryPonaScreen()));
-                          },
-                          icon: const Icon(Icons.edit))
-                  ]),
-                ),
+                  ),
 
-                //Biomasa
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        if (statePona.isDryMatterPonaCalculated &&
-                            statePona.isGreenPonaCalculated) {
+                  //Carbono en la biomasa
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BiomassPona()),
+                                builder: (context) => const CarbonPonaScreen()),
                           );
-                        } else {
-                          _showMissingCalculationsDialog0(context, statePona);
-                        }
-                      },
-                      child: const Text(
-                        ' 3. Biomasa',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        },
+                        child: const Text(
+                          '4. Carbono en la biomasa',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
+                  const SizedBox(height: 40.0),
+                ],
+              ),
+            ),
+          ),
+          //logos parte inferior
+          Positioned(
+            bottom: 20,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/img/fizab_blanco.png',
+                  height: 60,
                 ),
-
-                //Carbono en la biomasa
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CarbonPonaScreen()),
-                        );
-                      },
-                      child: const Text(
-                        '4. Carbono en la biomasa',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
+                const SizedBox(
+                  width: 40,
                 ),
+                Image.asset(
+                  'assets/img/igbi_blanco_u.png',
+                  height: 60,
+                ),
+                const SizedBox(
+                  width: 40,
+                ),
+                Image.asset(
+                  'assets/img/agrolab_blanco.png',
+                  height: 60,
+                )
               ],
             ),
           ),
-        ),
-      ),
+          //Botón informativo
+          Positioned(
+            top: 20,
+            right: 10,
+            child: FilledButton.tonal(
+              onPressed: () => openDialog(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+              ),
+              child: const Icon(
+                Icons.info_outline,
+                color: Colors.white,
+              ),
+            ),
+          )
+        ],
+      )),
     );
   }
 }

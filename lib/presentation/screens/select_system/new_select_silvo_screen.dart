@@ -40,7 +40,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                   height: 20,
                 ),
                 SizedBox(
-                  height: 280.0,
+                  height: 340,
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
@@ -60,8 +60,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(children: [
                               Image.asset(
                                 'assets/img/pino/pino.jpg',
-                                height: 280,
-                                width: 200,
+                                height: 340,
+                                width: 240,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -112,8 +112,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(children: [
                               Image.asset(
                                 'assets/img/cipres/cipres.jpg',
-                                height: 280,
-                                width: 200,
+                                height: 340,
+                                width: 240,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -162,9 +162,9 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
                               Image.asset(
-                                'assets/img/aliso/aliso_verde.jpg',
-                                height: 280,
-                                width: 200,
+                                'assets/img/aliso/aliso.jpg',
+                                height: 340,
+                                width: 240,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -214,8 +214,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(children: [
                               Image.asset(
                                 'assets/img/pona/pona.jpg',
-                                height: 280,
-                                width: 200,
+                                height: 340,
+                                width: 240,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -266,8 +266,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                               children: [
                                 Image.asset(
                                   'assets/img/sinarbol/sin_pasto.jpg',
-                                  height: 280,
-                                  width: 200,
+                                  height: 340,
+                                  width: 240,
                                   fit: BoxFit.cover,
                                 ),
                                 Positioned(

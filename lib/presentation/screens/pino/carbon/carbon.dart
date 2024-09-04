@@ -117,13 +117,11 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Stack(children: [
-                    //Logo de la app
-                    Image.asset(
-                      'assets/img/amas_white.png',
-                      height: 150,
-                    ),
-                  ]),
+                  //Logo de la app
+                  Image.asset(
+                    'assets/img/only_logo.png',
+                    height: 150,
+                  ),
 
                   //Título
                   const SizedBox(height: 25.0),
@@ -239,39 +237,38 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  //logos parte inferior
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/img/fizab_blanco.png',
+                        height: 60,
+                      ),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      Image.asset(
+                        'assets/img/igbi_blanco_u.png',
+                        height: 60,
+                      ),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      Image.asset(
+                        'assets/img/agrolab_blanco.png',
+                        height: 60,
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
-          //logos parte inferior
-          Positioned(
-            bottom: 20,
-            left: 0,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/img/fizab_blanco.png',
-                  height: 60,
-                ),
-                const SizedBox(
-                  width: 40,
-                ),
-                Image.asset(
-                  'assets/img/igbi_blanco_u.png',
-                  height: 60,
-                ),
-                const SizedBox(
-                  width: 40,
-                ),
-                Image.asset(
-                  'assets/img/agrolab_blanco.png',
-                  height: 60,
-                )
-              ],
-            ),
-          ),
+
           //Botón informativo
           Positioned(
               top: 45,

@@ -131,7 +131,7 @@ class _AlisoScreenState extends State<AlisoScreen> {
             //Imagen de fondo
             Positioned.fill(
                 child: Image.asset(
-              'assets/img/aliso/aliso.jpg',
+              'assets/img/aliso/aliso_verde.jpg',
               fit: BoxFit.cover,
               color: Colors.black.withOpacity(0.3),
               colorBlendMode: BlendMode.darken,
@@ -144,18 +144,14 @@ class _AlisoScreenState extends State<AlisoScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    //Botón informativo
-                    Stack(
-                      children: [
-                        //Logo de la app
-                        Image.asset(
-                          'assets/img/amas_white.png',
-                          height: 100,
-                        ),
-                      ],
+                    //Logo de la app
+                    Image.asset(
+                      'assets/img/only_logo.png',
+                      height: 100,
                     ),
+
                     const SizedBox(
-                      height: 50,
+                      height: 20,
                     ),
 
                     //Materia verde

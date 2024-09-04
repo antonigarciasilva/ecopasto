@@ -143,14 +143,11 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Stack(children: [
-                      //Logo de la app
-                      Image.asset(
-                        'assets/img/amas_white.png',
-                        height: 100,
-                      ),
-                      //Possition of the botton
-                    ]),
+                    //Logo de la app
+                    Image.asset(
+                      'assets/img/only_logo.png',
+                      height: 100,
+                    ),
 
                     //Título
                     const SizedBox(height: 15.0),
@@ -195,7 +192,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             '*BVT: Biomasa vegetal total (T/ha)',
-                            style: TextStyle(fontSize: 10),
+                            style: TextStyle(fontSize: 10, color: Colors.white),
                           ),
                         ),
                       ),
@@ -368,41 +365,37 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 90,
-                    )
+                      height: 20,
+                    ),
+                    //logos parte inferior
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/img/fizab_blanco.png',
+                          height: 60,
+                        ),
+                        const SizedBox(
+                          width: 40,
+                        ),
+                        Image.asset(
+                          'assets/img/igbi_blanco_u.png',
+                          height: 60,
+                        ),
+                        const SizedBox(
+                          width: 40,
+                        ),
+                        Image.asset(
+                          'assets/img/agrolab_blanco.png',
+                          height: 60,
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),
             ),
-            //logos parte inferior
-            Positioned(
-              bottom: 20,
-              left: 0,
-              right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/img/fizab_blanco.png',
-                    height: 60,
-                  ),
-                  const SizedBox(
-                    width: 40,
-                  ),
-                  Image.asset(
-                    'assets/img/igbi_blanco_u.png',
-                    height: 60,
-                  ),
-                  const SizedBox(
-                    width: 40,
-                  ),
-                  Image.asset(
-                    'assets/img/agrolab_blanco.png',
-                    height: 60,
-                  )
-                ],
-              ),
-            ),
+
             //Botón informativo
             Positioned(
               top: 20,

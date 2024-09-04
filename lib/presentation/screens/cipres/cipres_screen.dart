@@ -119,39 +119,31 @@ class _CipresScreenState extends State<CipresScreen> {
       ),
       drawer: const SideMenu(),
       body: SafeArea(
-        child: Center(
+          child: Stack(children: [
+        //Imagen de fondo
+        Positioned.fill(
+            child: Image.asset(
+          'assets/img/cipres/cipres_v.jpg',
+          fit: BoxFit.cover,
+          color: Colors.black.withOpacity(0.3),
+          colorBlendMode: BlendMode.darken,
+        )),
+
+        //Contenido principal
+        Center(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Stack(children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/cipres/cypress.jpg',
-                      fit: BoxFit.fitWidth,
-                      height: 299,
-                    ),
-                  ),
-                  Positioned(
-                    right: 5,
-                    top: 10,
-                    child: FilledButton.tonal(
-                      onPressed: () => openDialog(context),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                      ),
-                      child: const Icon(
-                        Icons.info_outline,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ]),
+                //Logo de la app
+                Image.asset(
+                  'assets/img/only_logo.png',
+                  height: 100,
+                ),
 
                 //Materia verde
-                const SizedBox(height: 20.0),
+                const SizedBox(height: 50.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: Stack(children: [
@@ -297,11 +289,57 @@ class _CipresScreenState extends State<CipresScreen> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 40.0),
               ],
             ),
           ),
         ),
-      ),
+        //logos parte inferior
+        Positioned(
+          bottom: 20,
+          left: 0,
+          right: 0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/img/fizab_blanco.png',
+                height: 60,
+              ),
+              const SizedBox(
+                width: 40,
+              ),
+              Image.asset(
+                'assets/img/igbi_blanco_u.png',
+                height: 60,
+              ),
+              const SizedBox(
+                width: 40,
+              ),
+              Image.asset(
+                'assets/img/agrolab_blanco.png',
+                height: 60,
+              )
+            ],
+          ),
+        ),
+        //Botón informativo
+
+        Positioned(
+          top: 20,
+          right: 10,
+          child: FilledButton.tonal(
+            onPressed: () => openDialog(context),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+            ),
+            child: const Icon(
+              Icons.info_outline,
+              color: Colors.white,
+            ),
+          ),
+        )
+      ])),
     );
   }
 }

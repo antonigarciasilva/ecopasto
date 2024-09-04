@@ -98,165 +98,203 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
       ),
       drawer: const SideMenu(),
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                //Botón informativo
-                Stack(children: [
-                  //imagen de la pantalla
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/sinarbol/biomass/biomass_s.png',
-                      fit: BoxFit.fitWidth,
-                      height: 299,
-                    ),
+          child: Stack(
+        children: [
+          //Imagen de fondo
+          Positioned.fill(
+              child: Image.asset(
+            'assets/img/sinarbol/sin_pasto.jpg',
+            fit: BoxFit.cover,
+            color: Colors.black.withOpacity(0.3),
+            colorBlendMode: BlendMode.darken,
+          )),
+
+          //Contenido principal
+          Center(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  //Logo de la app
+                  Image.asset(
+                    'assets/img/only_logo.png',
+                    height: 100,
                   ),
 
-                  Positioned(
-                    right: 5,
-                    top: 50,
-                    child: FilledButton.tonal(
-                      onPressed: () => openDialog(context),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                      ),
-                      child: const Icon(
-                        Icons.info_outline,
-                        color: Colors.white,
-                      ),
-                    ),
+                  const SizedBox(
+                    height: 40,
                   ),
-                ]),
-
-                //Materia verde
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: Stack(children: [
-                    SizedBox(
-                      width: 240,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              stateS.isGreenSCalculated
-                                  ? Colors.grey
-                                  : const Color.fromARGB(255, 51, 79, 31)),
-                        ),
-                        onPressed: stateS.isGreenSCalculated
-                            ? null
-                            : () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const GreenMatterScreenS()),
-                                );
-                              },
-                        child: const Text(
-                          '1. Materia verde',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    if (stateS.isGreenSCalculated)
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const GreenMatterScreenS()));
-                          },
-                          icon: const Icon(Icons.edit))
-                  ]),
-                ),
-
-                //Materia seca
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: Stack(children: [
-                    SizedBox(
-                      width: 240,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              stateS.isDryMatterSCalculated
-                                  ? Colors.grey
-                                  : const Color.fromARGB(255, 51, 79, 31)),
-                        ),
-                        onPressed: stateS.isDryMatterSCalculated
-                            ? null
-                            : () {
-                                if (stateS.isGreenSCalculated) {
+                  //Materia verde
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Stack(children: [
+                      SizedBox(
+                        width: 240,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                stateS.isGreenSCalculated
+                                    ? Colors.grey
+                                    : const Color.fromARGB(255, 51, 79, 31)),
+                          ),
+                          onPressed: stateS.isGreenSCalculated
+                              ? null
+                              : () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const DryMatterS()),
+                                            const GreenMatterScreenS()),
                                   );
-                                } else {
-                                  _showMissingCalculationDialog(
-                                      context, StateST());
-                                }
-                              },
+                                },
+                          child: const Text(
+                            '1. Materia verde',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      if (stateS.isGreenSCalculated)
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const GreenMatterScreenS()));
+                            },
+                            icon: const Icon(Icons.edit))
+                    ]),
+                  ),
+
+                  //Materia seca
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Stack(children: [
+                      SizedBox(
+                        width: 240,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                stateS.isDryMatterSCalculated
+                                    ? Colors.grey
+                                    : const Color.fromARGB(255, 51, 79, 31)),
+                          ),
+                          onPressed: stateS.isDryMatterSCalculated
+                              ? null
+                              : () {
+                                  if (stateS.isGreenSCalculated) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const DryMatterS()),
+                                    );
+                                  } else {
+                                    _showMissingCalculationDialog(
+                                        context, StateST());
+                                  }
+                                },
+                          child: const Text(
+                            '2. Materia seca',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      if (stateS.isDryMatterSCalculated)
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DryMatterS()));
+                            },
+                            icon: const Icon(Icons.edit))
+                    ]),
+                  ),
+
+                  //Biomasa
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: () {
+                          if (stateS.isDryMatterSCalculated &&
+                              stateS.isGreenSCalculated) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const HerbaceousBiomassST()),
+                            );
+                          } else {
+                            _showMissingCalculationDialog(context, StateST());
+                          }
+                        },
                         child: const Text(
-                          '2. Materia seca',
+                          ' 3. Biomasa Herbacea',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),
                     ),
-                    if (stateS.isDryMatterSCalculated)
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const DryMatterS()));
-                          },
-                          icon: const Icon(Icons.edit))
-                  ]),
-                ),
-
-                //Biomasa
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        if (stateS.isDryMatterSCalculated &&
-                            stateS.isGreenSCalculated) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const HerbaceousBiomassST()),
-                          );
-                        } else {
-                          _showMissingCalculationDialog(context, StateST());
-                        }
-                      },
-                      child: const Text(
-                        ' 3. Biomasa Herbacea',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
                   ),
-                ),
-              ],
+
+                  const SizedBox(
+                    height: 70,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/img/fizab_blanco.png',
+                        height: 60,
+                      ),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      Image.asset(
+                        'assets/img/igbi_blanco_u.png',
+                        height: 60,
+                      ),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      Image.asset(
+                        'assets/img/agrolab_blanco.png',
+                        height: 60,
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+          //Botón informativo
+
+          Positioned(
+            top: 20,
+            right: 10,
+            child: FilledButton.tonal(
+              onPressed: () => openDialog(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+              ),
+              child: const Icon(
+                Icons.info_outline,
+                color: Colors.white,
+              ),
+            ),
+          )
+        ],
+      )),
     );
   }
 }
