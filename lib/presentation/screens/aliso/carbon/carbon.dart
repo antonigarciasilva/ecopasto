@@ -113,19 +113,25 @@ class _CarbonScreenState extends State<CarbonScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Stack(children: [
-                      //Título
-                      SizedBox(height: 25.0),
-                      Text(
-                        'Calculando carbono en la biomasa con Aliso',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
+                    Stack(children: [
+                      //Logo de la app
+                      Image.asset(
+                        'assets/img/amas_white.png',
+                        height: 150,
                       ),
                     ]),
+
+                    //Título
+                    const SizedBox(height: 30.0),
+                    const Text(
+                      'Calculando carbono en la biomasa con Aliso',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
 
                     //Carbono en biomasa
                     const SizedBox(height: 20.0),
@@ -248,14 +254,14 @@ class _CarbonScreenState extends State<CarbonScreen> {
                     height: 60,
                   ),
                   const SizedBox(
-                    width: 20,
+                    width: 40,
                   ),
                   Image.asset(
                     'assets/img/igbi_blanco_u.png',
                     height: 60,
                   ),
                   const SizedBox(
-                    width: 20,
+                    width: 40,
                   ),
                   Image.asset(
                     'assets/img/agrolab_blanco.png',
@@ -267,32 +273,25 @@ class _CarbonScreenState extends State<CarbonScreen> {
             //Botón informativo
             Positioned(
                 top: 45,
-                right: 120,
+                right: 10,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    //Logo de la app
-                    Image.asset(
-                      'assets/img/amas_white.png',
-                      height: 90,
+                    Positioned(
+                      height: 100,
+                      child: FilledButton.tonal(
+                        onPressed: () => openDialog(context),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                        ),
+                        child: const Icon(
+                          Icons.info_outline,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 )),
-
-            Positioned(
-              top: 20,
-              right: 10,
-              child: FilledButton.tonal(
-                onPressed: () => openDialog(context),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                ),
-                child: const Icon(
-                  Icons.info_outline,
-                  color: Colors.white,
-                ),
-              ),
-            )
           ],
         ),
       ),

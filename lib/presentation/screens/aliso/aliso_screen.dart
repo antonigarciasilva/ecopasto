@@ -147,51 +147,58 @@ class _AlisoScreenState extends State<AlisoScreen> {
                     //Botón informativo
                     Stack(
                       children: [
-                        //Materia verde
-                        MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: Stack(children: [
-                            SizedBox(
-                              width: 240,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      WidgetStateProperty.all<Color>(
-                                          stateAliso.isGreenSCalculated
-                                              ? Colors.grey
-                                              : const Color.fromARGB(
-                                                  255, 51, 79, 31)),
-                                ),
-                                onPressed: stateAliso.isGreenSCalculated
-                                    ? null
-                                    : () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const GreenMatterScreen()),
-                                        );
-                                      },
-                                child: const Text(
-                                  '1. Materia verde',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                ),
-                              ),
-                            ),
-                            if (stateAliso.isGreenSCalculated)
-                              IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const GreenMatterScreen()));
-                                  },
-                                  icon: const Icon(Icons.edit))
-                          ]),
+                        //Logo de la app
+                        Image.asset(
+                          'assets/img/amas_white.png',
+                          height: 100,
                         ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+
+                    //Materia verde
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Stack(children: [
+                        SizedBox(
+                          width: 240,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(
+                                  stateAliso.isGreenSCalculated
+                                      ? Colors.grey
+                                      : const Color.fromARGB(255, 51, 79, 31)),
+                            ),
+                            onPressed: stateAliso.isGreenSCalculated
+                                ? null
+                                : () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const GreenMatterScreen()),
+                                    );
+                                  },
+                            child: const Text(
+                              '1. Materia verde',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        if (stateAliso.isGreenSCalculated)
+                          IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const GreenMatterScreen()));
+                              },
+                              icon: const Icon(Icons.edit))
+                      ]),
                     ),
 
                     //Materia seca
@@ -319,14 +326,14 @@ class _AlisoScreenState extends State<AlisoScreen> {
                     height: 60,
                   ),
                   const SizedBox(
-                    width: 20,
+                    width: 40,
                   ),
                   Image.asset(
                     'assets/img/igbi_blanco_u.png',
                     height: 60,
                   ),
                   const SizedBox(
-                    width: 20,
+                    width: 40,
                   ),
                   Image.asset(
                     'assets/img/agrolab_blanco.png',
@@ -336,19 +343,6 @@ class _AlisoScreenState extends State<AlisoScreen> {
               ),
             ),
             //Botón informativo
-            Positioned(
-                top: 45,
-                right: 120,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //Logo de la app
-                    Image.asset(
-                      'assets/img/amas_white.png',
-                      height: 90,
-                    ),
-                  ],
-                )),
 
             Positioned(
               top: 20,

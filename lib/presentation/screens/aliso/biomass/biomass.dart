@@ -153,8 +153,13 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  //Logo de la app
+                  Image.asset(
+                    'assets/img/amas_white.png',
+                    height: 150,
+                  ),
                   //Título
-                  const SizedBox(height: 25.0),
+                  const SizedBox(height: 30.0),
                   const Text(
                     'Calculando la biomasa con Aliso',
                     style: TextStyle(
@@ -393,14 +398,14 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
                   height: 60,
                 ),
                 const SizedBox(
-                  width: 20,
+                  width: 40,
                 ),
                 Image.asset(
                   'assets/img/igbi_blanco_u.png',
                   height: 60,
                 ),
                 const SizedBox(
-                  width: 20,
+                  width: 40,
                 ),
                 Image.asset(
                   'assets/img/agrolab_blanco.png',
@@ -410,20 +415,6 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
             ),
           ),
           //Botón informativo
-          Positioned(
-              top: 25,
-              right: 120,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //Logo de la app
-                  Image.asset(
-                    'assets/img/amas_white.png',
-                    height: 90,
-                  ),
-                ],
-              )),
-
           Positioned(
             top: 20,
             right: 10,

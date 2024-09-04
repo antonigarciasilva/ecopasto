@@ -100,156 +100,202 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
+          child: Stack(
+        children: [
+          //Imagen de fondo
+          Positioned.fill(
+              child: Image.asset(
+            'assets/img/pino/carbon/carbon_pino.jpg',
+            fit: BoxFit.cover,
+            color: Colors.black.withOpacity(0.5),
+            colorBlendMode: BlendMode.darken,
+          )),
+
+          Center(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Stack(children: [
+                    //Logo de la app
+                    Image.asset(
+                      'assets/img/amas_white.png',
+                      height: 150,
+                    ),
+                  ]),
+
+                  //Título
+                  const SizedBox(height: 25.0),
+                  const Text(
+                    'Calculando carbono en la biomasa con Pino',
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+
+                  //Carbono en biomasa
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: () {
+                          if (stateBiomassP.areCalculationsCompletedP) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const BiomassCarbonPino()),
+                            );
+                          } else {
+                            _showMissingCalculationsDialogP(
+                                context, stateBiomassP);
+                          }
+                        },
+                        child: const Text(
+                          'Carbono en biomasa',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  //Carbono en el suelo
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SoilCarbonPino()),
+                          );
+                        },
+                        child: const Text(
+                          'Carbono en el suelo',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  //Conversión de carbono a dióxido de carbono
+                  const SizedBox(height: 20.0),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      width: 240,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              const Color.fromARGB(255, 51, 79, 31)),
+                        ),
+                        onPressed: () {
+                          if (stateBiomassP.areCalculationsCompletedP) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ConversionCarbonPino()),
+                            );
+                          } else {
+                            _showMissingCalculationsDialogP(
+                                context, stateBiomassP);
+                          }
+                        },
+                        child: const Text(
+                          'Conversión de C a CO₂',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  //NOTA
+
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 60),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '*C: Carbono \n'
+                        '*CO₂: Dióxido de carbono \n',
+                        style: TextStyle(fontSize: 10, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          //logos parte inferior
+          Positioned(
+            bottom: 20,
+            left: 0,
+            right: 0,
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Stack(children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/pino/carbon/carbon_p.png',
-                      fit: BoxFit.fitWidth,
-                      height: 259,
-                    ),
-                  ),
-
-                  //Possition of the botton
-                  Positioned(
-                    right: 5,
-                    top: 50,
-                    child: FilledButton.tonal(
-                        onPressed: () => openDialog(context),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent),
-                        child: const Icon(
-                          Icons.info_outline,
-                          color: Colors.white,
-                        )),
-                  )
-                ]),
-
-                //Título
-                const SizedBox(height: 25.0),
-                const Text(
-                  'Calculando carbono en la biomasa con Pino',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
+              children: [
+                Image.asset(
+                  'assets/img/fizab_blanco.png',
+                  height: 60,
                 ),
-
-                //Carbono en biomasa
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        if (stateBiomassP.areCalculationsCompletedP) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const BiomassCarbonPino()),
-                          );
-                        } else {
-                          _showMissingCalculationsDialogP(
-                              context, stateBiomassP);
-                        }
-                      },
-                      child: const Text(
-                        'Carbono en biomasa',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                const SizedBox(
+                  width: 40,
                 ),
-
-                //Carbono en el suelo
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SoilCarbonPino()),
-                        );
-                      },
-                      child: const Text(
-                        'Carbono en el suelo',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                Image.asset(
+                  'assets/img/igbi_blanco_u.png',
+                  height: 60,
                 ),
-
-                //Conversión de carbono a dióxido de carbono
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        if (stateBiomassP.areCalculationsCompletedP) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const ConversionCarbonPino()),
-                          );
-                        } else {
-                          _showMissingCalculationsDialogP(
-                              context, stateBiomassP);
-                        }
-                      },
-                      child: const Text(
-                        'Conversión de C a CO₂',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                const SizedBox(
+                  width: 40,
                 ),
-
-                //NOTA
-
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 60),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      '*C: Carbono \n'
-                      '*CO₂: Dióxido de carbono \n',
-                      style: TextStyle(fontSize: 10),
-                    ),
-                  ),
-                ),
+                Image.asset(
+                  'assets/img/agrolab_blanco.png',
+                  height: 60,
+                )
               ],
             ),
           ),
-        ),
-      ),
+          //Botón informativo
+          Positioned(
+              top: 45,
+              right: 10,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Positioned(
+                    height: 100,
+                    child: FilledButton.tonal(
+                      onPressed: () => openDialog(context),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                      ),
+                      child: const Icon(
+                        Icons.info_outline,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+        ],
+      )),
     );
   }
 }

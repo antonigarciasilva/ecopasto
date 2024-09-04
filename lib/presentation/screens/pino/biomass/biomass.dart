@@ -124,250 +124,301 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Stack(children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/img/pino/biomass/biomass.jpg',
-                      fit: BoxFit.fitWidth,
-                      height: 259,
-                    ),
-                  ),
+        child: Stack(
+          children: [
+            //Imagen de fondo
 
-                  //Possition of the botton
-                  Positioned(
-                    right: 5,
-                    top: 50,
-                    child: FilledButton.tonal(
-                        onPressed: () => openDialog(context),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent),
-                        child: const Icon(
-                          Icons.info_outline,
-                          color: Colors.white,
-                        )),
-                  )
-                ]),
+            Positioned.fill(
+                child: Image.asset(
+              'assets/img/pino/biomass/biomasa_pino.jpg',
+              fit: BoxFit.cover,
+              color: Colors.black.withOpacity(0.5),
+              colorBlendMode: BlendMode.darken,
+            )),
 
-                //Título
-                const SizedBox(height: 25.0),
-                const Text(
-                  'Calculando la biomasa con Pino',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-
-                //Formula
-                const SizedBox(height: 25.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 320,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 191, 192, 191)),
+            //contenido central
+            Center(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Stack(children: [
+                      //Logo de la app
+                      Image.asset(
+                        'assets/img/amas_white.png',
+                        height: 100,
                       ),
-                      onPressed: () {},
-                      child: const Text(
-                        'BVT(T/ha) = BM ARBÓREA + BN HERBÁCEA \n + BM HOJARASCA',
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
-                //Color plomo 255, 191, 192, 191
+                      //Possition of the botton
+                    ]),
 
-                //NOTA
-                const SizedBox(
-                  height: 5,
-                ),
-                const SizedBox(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        '*BVT: Biomasa vegetal total (T/ha)',
-                        style: TextStyle(fontSize: 10),
-                      ),
+                    //Título
+                    const SizedBox(height: 15.0),
+                    const Text(
+                      'Calculando la biomasa con Pino',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white),
                     ),
-                  ),
-                ),
 
-                //Biomasa seca
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: Stack(children: [
-                    SizedBox(
-                      width: 240,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              stateBiomassP.isDryBiomassCalculatedP
-                                  ? Colors.grey
-                                  : const Color.fromARGB(255, 51, 79, 31)),
+                    //Formula
+                    const SizedBox(height: 25.0),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: SizedBox(
+                        width: 320,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                const Color.fromARGB(255, 191, 192, 191)),
+                          ),
+                          onPressed: () {},
+                          child: const Text(
+                            'BVT(T/ha) = BM ARBÓREA + BN HERBÁCEA \n + BM HOJARASCA',
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                        onPressed: stateBiomassP.isDryBiomassCalculatedP
-                            ? null
-                            : () {
+                      ),
+                    ),
+                    //Color plomo 255, 191, 192, 191
+
+                    //NOTA
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const SizedBox(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            '*BVT: Biomasa vegetal total (T/ha)',
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    //Biomasa seca
+                    const SizedBox(height: 20.0),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Stack(children: [
+                        SizedBox(
+                          width: 240,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(
+                                  stateBiomassP.isDryBiomassCalculatedP
+                                      ? Colors.grey
+                                      : const Color.fromARGB(255, 51, 79, 31)),
+                            ),
+                            onPressed: stateBiomassP.isDryBiomassCalculatedP
+                                ? null
+                                : () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const DryBiomassP()),
+                                    );
+                                  },
+                            child: const Text(
+                              'Biomasa seca',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        if (stateBiomassP.isDryBiomassCalculatedP)
+                          IconButton(
+                              onPressed: () {
                                 Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const DryBiomassP()),
-                                );
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DryBiomassP()));
                               },
-                        child: const Text(
-                          'Biomasa seca',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                              icon: const Icon(Icons.edit))
+                      ]),
+                    ),
+
+                    //Biomasa herbácea
+                    const SizedBox(height: 20.0),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: SizedBox(
+                        width: 240,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                stateBiomassP.resultHerbaceousBiomassP > 0
+                                    ? Colors.grey
+                                    : const Color.fromARGB(255, 51, 79, 31)),
+                          ),
+                          onPressed: () {
+                            stateBiomassP.isHerbaceousBiomassPCalculatedP
+                                ? null
+                                : Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HerbaceousBiomassP()),
+                                  );
+                          },
+                          child: const Text(
+                            'Biomasa herbácea',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
                         ),
                       ),
                     ),
-                    if (stateBiomassP.isDryBiomassCalculatedP)
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const DryBiomassP()));
-                          },
-                          icon: const Icon(Icons.edit))
-                  ]),
-                ),
 
-                //Biomasa herbácea
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            stateBiomassP.resultHerbaceousBiomassP > 0
-                                ? Colors.grey
-                                : const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () {
-                        stateBiomassP.isHerbaceousBiomassPCalculatedP
-                            ? null
-                            : Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const HerbaceousBiomassP()),
-                              );
-                      },
-                      child: const Text(
-                        'Biomasa herbácea',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-
-                //Biomasa hojarasca
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: Stack(children: [
-                    SizedBox(
-                      width: 240,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
+                    //Biomasa hojarasca
+                    const SizedBox(height: 20.0),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Stack(children: [
+                        SizedBox(
+                          width: 240,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(
+                                  stateBiomassP.isLeafLitterBiomassPCalculatedP
+                                      ? Colors.grey
+                                      : const Color.fromARGB(255, 51, 79, 31)),
+                            ),
+                            onPressed: () {
                               stateBiomassP.isLeafLitterBiomassPCalculatedP
-                                  ? Colors.grey
-                                  : const Color.fromARGB(255, 51, 79, 31)),
+                                  ? null
+                                  : Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LeafLitterBiomassP()),
+                                    );
+                            },
+                            child: const Text(
+                              'Biomasa hojarasca',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          ),
                         ),
-                        onPressed: () {
-                          stateBiomassP.isLeafLitterBiomassPCalculatedP
-                              ? null
-                              : Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const LeafLitterBiomassP()),
-                                );
-                        },
-                        child: const Text(
-                          'Biomasa hojarasca',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
-                      ),
+                        if (stateBiomassP.isLeafLitterBiomassPCalculatedP)
+                          IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LeafLitterBiomassP()));
+                              },
+                              icon: const Icon(Icons.edit))
+                      ]),
                     ),
-                    if (stateBiomassP.isLeafLitterBiomassPCalculatedP)
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LeafLitterBiomassP()));
-                          },
-                          icon: const Icon(Icons.edit))
-                  ]),
-                ),
 
-                //Calcular
-                const SizedBox(height: 20.0),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: SizedBox(
-                    width: 240,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
-                      ),
-                      onPressed: () async {
-                        if (stateBiomassP.areCalculationsCompletedP) {
-                          _calculateBiomassResultP(stateBiomassP);
-                          //Guardar los datos en Firestore después de calcular
-                          try {
-                            //Obtener la ubicación antes de guardar
-                            await stateBiomassP.getCurrentLocation();
-                            //Guardamos en Firestore después de calcular y obtener la ubicación
-                            await stateBiomassP.saveToFirestore();
-                            //Para verificar si el widget aún esta montado
-                            if (mounted) return;
-                            // ignore: use_build_context_synchronously
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text(
-                                        'Datos guardados satisfactoriamente!')));
-                          } catch (e) {
-                            if (!mounted) return;
-                            // ignore: use_build_context_synchronously
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text('Error al guardar datos: $e')));
-                          }
-                        } else {
-                          _showMissingCalculationsDialog(
-                              context, stateBiomassP);
-                        }
-                      },
-                      child: const Text(
-                        'Calcular',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                    //Calcular
+                    const SizedBox(height: 20.0),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: SizedBox(
+                        width: 240,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                const Color.fromARGB(255, 51, 79, 31)),
+                          ),
+                          onPressed: () async {
+                            if (stateBiomassP.areCalculationsCompletedP) {
+                              _calculateBiomassResultP(stateBiomassP);
+                              //Guardar los datos en Firestore después de calcular
+                              try {
+                                //Obtener la ubicación antes de guardar
+                                await stateBiomassP.getCurrentLocation();
+                                //Guardamos en Firestore después de calcular y obtener la ubicación
+                                await stateBiomassP.saveToFirestore();
+                                //Para verificar si el widget aún esta montado
+                                if (mounted) return;
+                                // ignore: use_build_context_synchronously
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'Datos guardados satisfactoriamente!')));
+                              } catch (e) {
+                                if (!mounted) return;
+                                // ignore: use_build_context_synchronously
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            'Error al guardar datos: $e')));
+                              }
+                            } else {
+                              _showMissingCalculationsDialog(
+                                  context, stateBiomassP);
+                            }
+                          },
+                          child: const Text(
+                            'Calcular',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    const SizedBox(
+                      height: 90,
+                    )
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+            //logos parte inferior
+            Positioned(
+              bottom: 20,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/img/fizab_blanco.png',
+                    height: 60,
+                  ),
+                  const SizedBox(
+                    width: 40,
+                  ),
+                  Image.asset(
+                    'assets/img/igbi_blanco_u.png',
+                    height: 60,
+                  ),
+                  const SizedBox(
+                    width: 40,
+                  ),
+                  Image.asset(
+                    'assets/img/agrolab_blanco.png',
+                    height: 60,
+                  )
+                ],
+              ),
+            ),
+            //Botón informativo
+            Positioned(
+              top: 20,
+              right: 10,
+              child: FilledButton.tonal(
+                onPressed: () => openDialog(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                ),
+                child: const Icon(
+                  Icons.info_outline,
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

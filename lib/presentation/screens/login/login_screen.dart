@@ -164,7 +164,7 @@ class LoginPageState extends State<LoginScreen> {
               children: <Widget>[
                 Image.asset(
                   'assets/img/amas_color.png',
-                  height: 250,
+                  height: 200,
                 ),
                 const SizedBox(height: 20.0),
 
