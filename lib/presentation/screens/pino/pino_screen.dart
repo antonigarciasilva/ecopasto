@@ -129,7 +129,7 @@ class _PinoScreenState extends State<PinoScreen> {
               child: Image.asset(
                 'assets/img/pino/pinos.jpg',
                 fit: BoxFit.cover,
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.black.withOpacity(0.0),
                 colorBlendMode: BlendMode.darken,
               ),
             ),
@@ -142,9 +142,10 @@ class _PinoScreenState extends State<PinoScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     // Logo de la app
-
+                    const SizedBox(height: 30),
                     Image.asset(
-                      'assets/img/only_logo.png',
+                      'assets/img/logo_untrm_u.png',
+                      color: Colors.white.withOpacity(0.8),
                       height: 100,
                     ),
 
@@ -320,31 +321,6 @@ class _PinoScreenState extends State<PinoScreen> {
                     ),
                     const SizedBox(
                       height: 20,
-                    ),
-                    //logos parte inferior
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/img/fizab_blanco.png',
-                          height: 60,
-                        ),
-                        const SizedBox(
-                          width: 40,
-                        ),
-                        Image.asset(
-                          'assets/img/igbi_blanco_u.png',
-                          height: 60,
-                        ),
-                        const SizedBox(
-                          width: 40,
-                        ),
-                        Image.asset(
-                          'assets/img/agrolab_blanco.png',
-                          height: 60,
-                        )
-                      ],
                     ),
                   ],
                 ),

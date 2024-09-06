@@ -407,35 +407,6 @@ class _BiomassAlderScreenState extends State<BiomassAlderScreen> {
               ),
             ),
 
-            //logos parte inferior
-            Positioned(
-              bottom: screenHeight * 0.02,
-              left: 0,
-              right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/img/fizab_blanco.png',
-                    height: screenHeight * 0.08,
-                  ),
-                  SizedBox(
-                    width: screenWidth * 0.1,
-                  ),
-                  Image.asset(
-                    'assets/img/igbi_blanco_u.png',
-                    height: screenHeight * 0.08,
-                  ),
-                  SizedBox(
-                    width: screenWidth * 0.1,
-                  ),
-                  Image.asset(
-                    'assets/img/agrolab_blanco.png',
-                    height: screenHeight * 0.08,
-                  )
-                ],
-              ),
-            ),
             //Botón informativo
 
             Positioned(

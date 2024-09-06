@@ -27,17 +27,20 @@ class SplashScreen extends StatelessWidget {
       );
     });
 
+    //Usamos MediaQuery para obtener el tamaño de la pantalla
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         body: Stack(children: <Widget>[
           Positioned.fill(
             child: ColorFiltered(
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.3),
+                  Colors.black.withOpacity(0.1),
                   BlendMode.darken,
                 ),
-                child:
-                    Image.asset('assets/img/pantalla.jpg', fit: BoxFit.cover)),
+                child: Image.asset('assets/slides/silvipastoril.jpg',
+                    fit: BoxFit.cover)),
           ),
           Positioned(
               //Posición superior ajustada
@@ -49,31 +52,31 @@ class SplashScreen extends StatelessWidget {
                   children: [
                     Image.asset(
                       'assets/img/logo_untrm_u.png',
-                      height: 140,
+                      height: size.height * 0.18,
                     ),
-                    const SizedBox(
-                      height: 70,
+                    SizedBox(
+                      height: size.height * 0.1,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
                           'assets/img/fizab_blanco.png',
-                          height: 80,
-                          width: 80,
+                          height: size.height * 0.1,
+                          width: size.width * 0.3,
                         ),
-                        const SizedBox(
-                          width: 50,
+                        SizedBox(
+                          width: size.width * 0.1,
                         ),
                         Image.asset(
                           'assets/img/igbi_blanco_u.png',
-                          height: 130, //80 y 80
-                          width: 115,
+                          height: size.height * 0.1,
+                          width: size.width * 0.3,
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 90,
+                    SizedBox(
+                      height: size.height * 0.1,
                     ),
                     const CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(

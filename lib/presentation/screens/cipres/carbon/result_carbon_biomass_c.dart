@@ -616,9 +616,9 @@ class ResultCarbonBiomassC extends StatelessWidget {
                             text: 'T / ha',
                             textStyle: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 12)),
-                        interval: 50,
+                        interval: 20,
                         minimum: 0,
-                        maximum: 4000,
+                        maximum: 500,
                         majorGridLines: MajorGridLines(width: 1),
                       ),
 

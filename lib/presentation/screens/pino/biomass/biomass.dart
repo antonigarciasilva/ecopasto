@@ -367,30 +367,6 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    //logos parte inferior
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/img/fizab_blanco.png',
-                          height: 60,
-                        ),
-                        const SizedBox(
-                          width: 40,
-                        ),
-                        Image.asset(
-                          'assets/img/igbi_blanco_u.png',
-                          height: 60,
-                        ),
-                        const SizedBox(
-                          width: 40,
-                        ),
-                        Image.asset(
-                          'assets/img/agrolab_blanco.png',
-                          height: 60,
-                        )
-                      ],
-                    ),
                   ],
                 ),
               ),

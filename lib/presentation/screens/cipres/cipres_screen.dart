@@ -294,37 +294,8 @@ class _CipresScreenState extends State<CipresScreen> {
             ),
           ),
         ),
-        //logos parte inferior
-        Positioned(
-          bottom: 20,
-          left: 0,
-          right: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/img/fizab_blanco.png',
-                height: 60,
-              ),
-              const SizedBox(
-                width: 40,
-              ),
-              Image.asset(
-                'assets/img/igbi_blanco_u.png',
-                height: 60,
-              ),
-              const SizedBox(
-                width: 40,
-              ),
-              Image.asset(
-                'assets/img/agrolab_blanco.png',
-                height: 60,
-              )
-            ],
-          ),
-        ),
-        //Botón informativo
 
+        //Botón informativo
         Positioned(
           top: 20,
           right: 10,
