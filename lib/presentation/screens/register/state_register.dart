@@ -21,7 +21,7 @@ class StateRegister with ChangeNotifier {
   bool get isPasswordControllerR => passwordControllerR != null;
   bool get isGenero => genero != null;
 
-  bool get areRegisteCompleted =>
+  bool get areAllDataCompleted =>
       isNameUsuario &&
       isLastNameUsuario &&
       isPhoneNumberR &&
