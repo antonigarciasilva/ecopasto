@@ -76,6 +76,7 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 'Cálculos imcompletos',
                 textAlign: TextAlign.center,

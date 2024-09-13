@@ -54,6 +54,7 @@ class _DryMatterCState extends State<DryMatterC> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
+                  backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cáculo',
                     style: TextStyle(fontSize: 18),
@@ -85,6 +86,7 @@ class _DryMatterCState extends State<DryMatterC> {
         //Solo para salir con los botones y no cuando le das click a cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Cómo sacar el peso de la muestra seca (PSM)',
                 textAlign: TextAlign.justify,

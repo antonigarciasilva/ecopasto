@@ -33,6 +33,7 @@ class _PonaScreenState extends State<PonaScreen> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la Pona?',
                 textAlign: TextAlign.justify,
@@ -85,6 +86,7 @@ class _PonaScreenState extends State<PonaScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 'Calculos imcompletos',
                 textAlign: TextAlign.center,

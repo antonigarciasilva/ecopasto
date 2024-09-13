@@ -55,6 +55,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
+                  backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cáculo',
                     style: TextStyle(fontSize: 18),
@@ -85,6 +86,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Cómo sacar el peso de la muestra seca (PMS)?',
                 textAlign: TextAlign.justify,

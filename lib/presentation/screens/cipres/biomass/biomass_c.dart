@@ -34,6 +34,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: Text(
                 'La biomasa total es: $formattedBiomassC T/ha',
                 textAlign: TextAlign.justify,
@@ -60,6 +61,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la biomasa?',
                 textAlign: TextAlign.justify,
@@ -104,6 +106,7 @@ class _BiomassScreenCState extends State<BiomassScreenC> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text('Calculos incompletos'),
               content: Text(
                 message,

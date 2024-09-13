@@ -47,7 +47,11 @@ class _DryBiomassPState extends State<DryBiomassP> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
-                  title: const Text('Resultado del cáculo'),
+                  backgroundColor: Colors.white,
+                  title: const Text(
+                    'Resultado del cáculo',
+                    style: TextStyle(fontSize: 16),
+                  ),
                   content: Text(
                     'La biomasa seca es: $formattedResult T/ha',
                     textAlign: TextAlign.justify,
@@ -76,6 +80,7 @@ class _DryBiomassPState extends State<DryBiomassP> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la biomasa seca?',
                 textAlign: TextAlign.justify,

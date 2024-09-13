@@ -16,7 +16,6 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
   String? _selectedSoilType;
   double? _soilDensity;
 
-
   // Validación de los pesos
   String? _validateWeight(String? value) {
     if (value == null || value.isEmpty) {
@@ -33,13 +32,13 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
   // Calcular el carbono en el suelo
   void _calculateAndShowResult() {
     if (_formKey.currentState!.validate()) {
-      if(_soilDensity == null){
-        _showValidationDialog('Por favor, ingresa la densidad aparente del suelo para continuar.');
+      if (_soilDensity == null) {
+        _showValidationDialog(
+            'Por favor, ingresa la densidad aparente del suelo para continuar.');
         return;
       }
       final double area = double.parse(_controllerWeightA.text);
       final double depth = double.parse(_controllerWeightP.text);
-      
 
       final double result = area * depth * _soilDensity!;
 
@@ -47,6 +46,7 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+          backgroundColor: Colors.white,
           title: const Text(
             'Resultado del cálculo',
             style: TextStyle(fontSize: 18),
@@ -79,6 +79,7 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
         title: const Text(
           '¿Qué es el carbono en el suelo?',
           textAlign: TextAlign.justify,
@@ -100,23 +101,23 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
     );
   }
 
-  void _showValidationDialog (String message)
-{
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-   builder: (context)=> AlertDialog(
-    title: const Text('Validación'),
-    content: Text(message),
-    actions: [
-      TextButton(
-        onPressed: (){
-           Navigator.pop(context);
-        }
-        , child: const Text('Aceptar'))
-    ],
-   ));
-}
+  void _showValidationDialog(String message) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              title: const Text('Validación'),
+              content: Text(message),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -256,20 +257,19 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
                       value: _selectedSoilType,
                       items: const [
                         DropdownMenuItem(
-                          value: 'arcilloso-franco',
-                          child: Text('Arcilloso-Franco (1.1 g/cm³)')),
+                            value: 'arcilloso-franco',
+                            child: Text('Arcilloso-Franco (1.1 g/cm³)')),
                         DropdownMenuItem(
-                          value: 'franco-arenoso',
-                          child: Text('Franco-Arenoso (1.32 g/cm³)')),
-                      ],      
+                            value: 'franco-arenoso',
+                            child: Text('Franco-Arenoso (1.32 g/cm³)')),
+                      ],
                       onChanged: (value) {
                         setState(() {
                           _selectedSoilType = value;
-                          _soilDensity = value == 'arcilloso-franco'
-                          ? 1.1
-                          : 1.32;
+                          _soilDensity =
+                              value == 'arcilloso-franco' ? 1.1 : 1.32;
                         });
-                      },              
+                      },
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),

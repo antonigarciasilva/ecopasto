@@ -26,6 +26,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text('Resultado del cálculo',
                   style: TextStyle(fontSize: 18)),
               content: Text(
@@ -54,6 +55,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la biomasa herbácea?',
                 textAlign: TextAlign.justify,

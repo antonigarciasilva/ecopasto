@@ -632,8 +632,8 @@ class ResultSt extends StatelessWidget {
                           textStyle: TextStyle(fontSize: 12)),
 
                       tooltipBehavior: TooltipBehavior(enable: true),
-                      series: <CartesianSeries>[
-                        LineSeries<BiomassData, String>(
+                      series: <ColumnSeries>[
+                        ColumnSeries<BiomassData, String>(
                           dataSource: chartData
                               .where((data) => data.treeType == 'Aliso')
                               .toList(),
@@ -641,14 +641,14 @@ class ResultSt extends StatelessWidget {
                           yValueMapper: (BiomassData data, _) => data.value,
                           name: 'Aliso',
                           color: Colors.blue,
-                          //Agregamos markers
+                          /*Agregamos markers
                           markerSettings: const MarkerSettings(
                             isVisible: true,
                             shape: DataMarkerType.circle,
                             color: Colors.blue,
                             borderWidth: 1,
                             borderColor: Colors.blue,
-                          ),
+                          ), */
                           //Números dentro del gráfico
                           dataLabelSettings: DataLabelSettings(
                               isVisible: true,
@@ -666,7 +666,7 @@ class ResultSt extends StatelessWidget {
                                 );
                               }),
                         ),
-                        LineSeries<BiomassData, String>(
+                        ColumnSeries<BiomassData, String>(
                           dataSource: chartData
                               .where((data) => data.treeType == 'Cipres')
                               .toList(),
@@ -674,14 +674,7 @@ class ResultSt extends StatelessWidget {
                           yValueMapper: (BiomassData data, _) => data.value,
                           name: 'Ciprés',
                           color: Colors.green,
-                          //Agregamos markers
-                          markerSettings: const MarkerSettings(
-                            isVisible: true,
-                            shape: DataMarkerType.circle,
-                            color: Colors.green,
-                            borderWidth: 1,
-                            borderColor: Colors.green,
-                          ),
+
                           //Números dentro del gráfico
                           dataLabelSettings: DataLabelSettings(
                               isVisible: true,
@@ -699,7 +692,7 @@ class ResultSt extends StatelessWidget {
                                 );
                               }),
                         ),
-                        LineSeries<BiomassData, String>(
+                        ColumnSeries<BiomassData, String>(
                           dataSource: chartData
                               .where((data) => data.treeType == 'Pino')
                               .toList(),
@@ -707,14 +700,7 @@ class ResultSt extends StatelessWidget {
                           yValueMapper: (BiomassData data, _) => data.value,
                           name: 'Pino',
                           color: Colors.red,
-                          //Agregamos markers
-                          markerSettings: const MarkerSettings(
-                            isVisible: true,
-                            shape: DataMarkerType.circle,
-                            color: Colors.red,
-                            borderWidth: 1,
-                            borderColor: Colors.red,
-                          ),
+
                           //Números dentro del gráfico
                           dataLabelSettings: DataLabelSettings(
                               isVisible: true,
@@ -732,7 +718,7 @@ class ResultSt extends StatelessWidget {
                                 );
                               }),
                         ),
-                        LineSeries<BiomassData, String>(
+                        ColumnSeries<BiomassData, String>(
                           dataSource: chartData
                               .where((data) => data.treeType == 'Pona')
                               .toList(),
@@ -740,14 +726,7 @@ class ResultSt extends StatelessWidget {
                           yValueMapper: (BiomassData data, _) => data.value,
                           name: 'Pona',
                           color: Colors.yellow,
-                          //Agregamos markers
-                          markerSettings: const MarkerSettings(
-                            isVisible: true,
-                            shape: DataMarkerType.circle,
-                            color: Colors.yellow,
-                            borderWidth: 1,
-                            borderColor: Colors.yellow,
-                          ),
+
                           //Números dentro del gráfico
                           dataLabelSettings: DataLabelSettings(
                               isVisible: true,
@@ -765,7 +744,7 @@ class ResultSt extends StatelessWidget {
                                 );
                               }),
                         ),
-                        LineSeries<BiomassData, String>(
+                        ColumnSeries<BiomassData, String>(
                           dataSource: chartData
                               .where((data) => data.treeType == 'SSA')
                               .toList(),
@@ -773,14 +752,7 @@ class ResultSt extends StatelessWidget {
                           yValueMapper: (BiomassData data, _) => data.value,
                           name: 'SSA',
                           color: Colors.purple[900],
-                          //Agregamos markers
-                          markerSettings: const MarkerSettings(
-                            isVisible: true,
-                            shape: DataMarkerType.circle,
-                            color: Colors.purple,
-                            borderWidth: 1,
-                            borderColor: Colors.purple,
-                          ),
+
                           //Números dentro del gráfico
                           dataLabelSettings: DataLabelSettings(
                               isVisible: true,

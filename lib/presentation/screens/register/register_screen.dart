@@ -57,9 +57,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       await Auth().createUserWithEmailAndPassword(
           email: _emailControllerR.text, password: _passwordControllerR.text);
 
-      //Guardamos los datos en Firestore
-      //await stateRegister!.saveToFirestore();
-
       //Navegar a la panatalla de inicio después de un registro exitoso
       // ignore: use_build_context_synchronously
       if (!mounted) return;

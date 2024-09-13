@@ -238,26 +238,19 @@ class _CarbonPonaScreenState extends State<CarbonPonaScreen> {
 
           //Botón informativo
           Positioned(
-              top: 45,
-              right: 10,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Positioned(
-                    height: 100,
-                    child: FilledButton.tonal(
-                      onPressed: () => openDialog(context),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                      ),
-                      child: const Icon(
-                        Icons.info_outline,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              )),
+            top: 45,
+            right: 10,
+            child: FilledButton.tonal(
+              onPressed: () => openDialog(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+              ),
+              child: const Icon(
+                Icons.info_outline,
+                color: Colors.white,
+              ),
+            ),
+          ),
         ],
       )),
     );

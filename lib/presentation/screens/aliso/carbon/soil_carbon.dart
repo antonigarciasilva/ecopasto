@@ -46,6 +46,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+          backgroundColor: Colors.white,
           title: const Text(
             'Resultado del cálculo',
             style: TextStyle(fontSize: 18),
@@ -78,6 +79,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es el carbono en el suelo?',
                 textAlign: TextAlign.justify,
@@ -105,6 +107,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text('Validación'),
               content: Text(message),
               actions: [

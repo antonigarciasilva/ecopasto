@@ -12,7 +12,6 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightA = TextEditingController();
   final TextEditingController _controllerWeightP = TextEditingController();
- 
 
   String? _selectedSoilType;
   double? _soilDensity;
@@ -34,13 +33,13 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
 
   void _calculateAndShowResult() {
     if (_formKey.currentState!.validate()) {
-      if(_soilDensity == null){
-        _showValidationDialog('Por favor, ingresa la densidad aparente del suelo para continuar.');
+      if (_soilDensity == null) {
+        _showValidationDialog(
+            'Por favor, ingresa la densidad aparente del suelo para continuar.');
         return;
       }
       final double area = double.parse(_controllerWeightA.text);
       final double depth = double.parse(_controllerWeightP.text);
-      
 
       final double result = area * depth * _soilDensity!;
 
@@ -48,6 +47,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
+                  backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cálculo',
                     style: TextStyle(fontSize: 18),
@@ -70,22 +70,23 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
     }
   }
 
-  void _showValidationDialog(String message){
+  void _showValidationDialog(String message) {
     showDialog(
-      context: context,
-      barrierDismissible: false,
-     builder: (context) => AlertDialog(
-      title: const Text('Validación'),
-      content: Text(message),
-      actions: [
-        TextButton(onPressed: (){
-          Navigator.pop(context);
-        }, child: const Text('Aceptar'))
-      ],
-     ) );
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
+              title: const Text('Validación'),
+              content: Text(message),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
   }
-
-
 
   //Dialogo informativo sobre el carbono
   void openDialog(BuildContext context) {
@@ -94,6 +95,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es el carbono en el suelo?',
                 textAlign: TextAlign.justify,
@@ -267,23 +269,19 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                       value: _selectedSoilType,
                       items: const [
                         DropdownMenuItem(
-                          value: 'arcilloso-franco',
-                          child: Text('Arcilloso-Franco 1.1 g/cm³')),
+                            value: 'arcilloso-franco',
+                            child: Text('Arcilloso-Franco 1.1 g/cm³')),
                         DropdownMenuItem(
-                          value: 'franco-arenoso',
-                          child: Text('Franco-Arenoso 1.32 g/cm³')),
+                            value: 'franco-arenoso',
+                            child: Text('Franco-Arenoso 1.32 g/cm³')),
                       ],
-
-                      onChanged: (value){
+                      onChanged: (value) {
                         setState(() {
                           _selectedSoilType = value;
-                          _soilDensity = value == 'arcilloso-franco'
-                          ? 1.1
-                          : 1.32;
+                          _soilDensity =
+                              value == 'arcilloso-franco' ? 1.1 : 1.32;
                         });
                       },
-                     
-                      
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),

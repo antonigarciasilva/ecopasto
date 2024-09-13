@@ -90,6 +90,7 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es el carbono en la biomasa?',
                 textAlign: TextAlign.justify,

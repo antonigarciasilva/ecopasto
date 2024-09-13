@@ -17,7 +17,10 @@ class SlideInfo {
 final slides = <SlideInfo>[
   SlideInfo(
       'Bienvenido a AmaSCarbon',
-      'Una herramienta fácil y didactida para cuantificar el carbono en sistemas silvopastoriles (Pino, Pona, Ciprés y Aliso).',
+      'Cuantificación de carbono en sistemas silvopastoriles (SSP) para una producción ganadera más sostenible. \n \n '
+          'AmaSCarbon: \n más sostenibilidad, \n más vida,\n más naturaleza,\n más aire limpio.',
+
+      //'Una herramienta fácil y didactida para cuantificar el carbono en sistemas silvopastoriles (Pino, Pona, Ciprés y Aliso).',
       'assets/slides/silvipastoril.jpg'),
   SlideInfo(
       'Fácil de usar',
@@ -85,6 +88,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       //Se crea el boton de salida con el Stack
@@ -99,17 +103,25 @@ class _TutorialScreenState extends State<TutorialScreen> {
               //Usamos el map porque queremos mostrar todo lo que tiene el _Slide
               children: slides
                   .map((slideData) => _Slide(
-                      title: slideData.title,
-                      caption: slideData.caption,
-                      imagenUrl: slideData.imagenUrl))
+                        title: slideData.title,
+                        caption: slideData.caption,
+                        imagenUrl: slideData.imagenUrl,
+                        widht: size.width,
+                      ))
                   .toList()),
 
           //Botton para salir de tutorial
           Positioned(
-            right: 20,
-            top: 50,
+            right: size.width * 0.05,
+            top: size.height * 0.05,
             child: TextButton(
-              child: const Text('Saltar'),
+              child: const Text(
+                'Saltar',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue),
+              ),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -125,12 +137,12 @@ class _TutorialScreenState extends State<TutorialScreen> {
             Positioned(
               left: 0,
               right: 0,
-              bottom: 45,
+              bottom: size.height * 0.05,
               //Con la librería animated_do, para mejora vista al buttum, va a salir por la deracha después de un segundo
               child: FadeInRight(
                 //from:15 se moverá 15 unidades y de 1 seg en mostrarse
                 from: 15,
-                delay: const Duration(seconds: 1),
+                delay: const Duration(milliseconds: 500),
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: FilledButton(
@@ -141,7 +153,16 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                 builder: (context) =>
                                     const NewSelectSilvoScreen()));
                       },
-                      child: const Text('Comenzar')),
+                      style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.2,
+                              vertical: size.height * 0.01),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50))),
+                      child: const Text(
+                        'Comenzar',
+                        style: TextStyle(fontSize: 18),
+                      )),
                 ),
               ),
             )
@@ -152,15 +173,16 @@ class _TutorialScreenState extends State<TutorialScreen> {
           Positioned(
               left: 0,
               right: 0,
-              bottom: 20,
+              bottom: size.height * 0.03,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                     slides.length,
                     (index) => Container(
-                          width: 10,
-                          height: 10,
-                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          width: size.width * 0.03,
+                          height: size.height * 0.03,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.01),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: index == currentIndex
@@ -181,34 +203,47 @@ class _Slide extends StatelessWidget {
   final String title;
   final String caption;
   final String imagenUrl;
+  final double widht;
   const _Slide(
-      {required this.title, required this.caption, required this.imagenUrl});
+      {required this.title,
+      required this.caption,
+      required this.widht,
+      required this.imagenUrl});
 
   @override
   Widget build(BuildContext context) {
-    final titleStyle = Theme.of(context).textTheme.titleLarge;
-    final captionStyle = Theme.of(context).textTheme.bodyMedium;
+    final titleStyle = Theme.of(context)
+        .textTheme
+        .titleLarge
+        ?.copyWith(fontWeight: FontWeight.bold, color: Colors.black87);
+
+    final captionStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: Colors.black54,
+        );
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: EdgeInsets.symmetric(horizontal: widht * 0.1),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image(image: AssetImage(imagenUrl)),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: widht * 0.05,
             ),
             Text(
               title,
               style: titleStyle,
+              textAlign: TextAlign.justify,
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: widht * 0.05,
             ),
             Text(
               caption,
               style: captionStyle,
+              textAlign: TextAlign.justify,
             )
           ],
         ),

@@ -61,6 +61,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreenS> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Cómo sacar la materia verde?',
                 textAlign: TextAlign.justify,

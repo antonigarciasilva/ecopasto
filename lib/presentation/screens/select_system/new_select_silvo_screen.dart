@@ -73,17 +73,17 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                   color: Colors.white.withOpacity(0.7),
                                   child: const Text.rich(
                                     TextSpan(
-                                        text: 'Pinus sylvestris ',
+                                        text: 'Pino ',
                                         style: TextStyle(
-                                            fontStyle: FontStyle.italic,
+                                            fontStyle: FontStyle.normal,
                                             color: Colors.black,
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: '(Pino)',
+                                            text: '(Pinus patula)',
                                             style: TextStyle(
-                                              fontStyle: FontStyle.normal,
+                                              fontStyle: FontStyle.italic,
                                             ),
                                           )
                                         ]),
@@ -125,17 +125,17 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                   color: Colors.white.withOpacity(0.7),
                                   child: const Text.rich(
                                     TextSpan(
-                                        text: 'Cupressus ',
+                                        text: 'Ciprés ',
                                         style: TextStyle(
-                                            fontStyle: FontStyle.italic,
+                                            fontStyle: FontStyle.normal,
                                             color: Colors.black,
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: '(Ciprés)',
+                                            text: '(Cupressus macrocarpa)',
                                             style: TextStyle(
-                                              fontStyle: FontStyle.normal,
+                                              fontStyle: FontStyle.italic,
                                             ),
                                           )
                                         ]),
@@ -176,17 +176,17 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                   color: Colors.white.withOpacity(0.7),
                                   child: const Text.rich(
                                     TextSpan(
-                                        text: 'Alnus glutinosa ',
+                                        text: 'Aliso ',
                                         style: TextStyle(
-                                            fontStyle: FontStyle.italic,
+                                            fontStyle: FontStyle.normal,
                                             color: Colors.black,
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: '(Aliso)',
+                                            text: '(Alnus acuminata)',
                                             style: TextStyle(
-                                              fontStyle: FontStyle.normal,
+                                              fontStyle: FontStyle.italic,
                                             ),
                                           )
                                         ]),
@@ -227,17 +227,17 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                   color: Colors.white.withOpacity(0.7),
                                   child: const Text.rich(
                                     TextSpan(
-                                        text: 'Socratea exorrhiza ',
+                                        text: 'Pona ',
                                         style: TextStyle(
-                                            fontStyle: FontStyle.italic,
+                                            fontStyle: FontStyle.normal,
                                             color: Colors.black,
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold),
                                         children: <TextSpan>[
                                           TextSpan(
-                                              text: '(Pona)',
+                                              text: '(Ceroxilum quindiuense )',
                                               style: TextStyle(
-                                                fontStyle: FontStyle.normal,
+                                                fontStyle: FontStyle.italic,
                                               ))
                                         ]),
                                     textAlign: TextAlign.center,

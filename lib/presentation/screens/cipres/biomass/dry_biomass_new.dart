@@ -44,6 +44,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
+                  backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cáculo',
                     style: TextStyle(fontSize: 18),
@@ -74,6 +75,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
       // solo para salir con los botones y no cuando le das click en cualquier lado
       barrierDismissible: false,
       builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
         title: const Text(
           '¿Qué es la biomasa seca?',
           textAlign: TextAlign.justify,

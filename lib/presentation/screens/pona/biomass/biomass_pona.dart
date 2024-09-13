@@ -36,6 +36,7 @@ class _BiomassPonaState extends State<BiomassPona> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: Text(
                 'La biomasa total es: $formattedBiomassO T/ha',
                 textAlign: TextAlign.justify,
@@ -61,6 +62,7 @@ class _BiomassPonaState extends State<BiomassPona> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la biomasa?',
                 textAlign: TextAlign.justify,
@@ -102,6 +104,7 @@ class _BiomassPonaState extends State<BiomassPona> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 'Calculos incompletos',
                 textAlign: TextAlign.center,

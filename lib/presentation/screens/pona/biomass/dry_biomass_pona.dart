@@ -54,6 +54,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
+                  backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cáculo',
                     style: TextStyle(fontSize: 18),
@@ -85,6 +86,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la biomasa seca?',
                 style: TextStyle(fontSize: 18),

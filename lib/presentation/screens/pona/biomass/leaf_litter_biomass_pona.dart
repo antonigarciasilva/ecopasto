@@ -48,6 +48,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
+                backgroundColor: Colors.white,
                 title: const Text('Resultado del cálculo'),
                 content: Text(
                   'La biomasa herbácea es: $formattedResult T/ha',
@@ -76,6 +77,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la biomasa hojarasca?',
                 textAlign: TextAlign.justify,

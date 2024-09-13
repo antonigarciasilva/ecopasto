@@ -57,6 +57,7 @@ class _DryMatterSState extends State<DryMatterS> {
           context: context,
           barrierDismissible: false,
           builder: (context) => AlertDialog(
+                  backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cáculo',
                     style: TextStyle(fontSize: 18),

@@ -27,6 +27,7 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+                backgroundColor: Colors.white,
                 title: const Text(
                   'Resultado del cálculo',
                   style: TextStyle(fontSize: 18),
@@ -56,6 +57,7 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es la conversión del carbono a CO₂?',
                 textAlign: TextAlign.justify,

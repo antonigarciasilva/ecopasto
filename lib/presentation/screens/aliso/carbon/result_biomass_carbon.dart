@@ -631,10 +631,12 @@ class ResultCarbonBiomass extends StatelessWidget {
                                   textStyle: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 12)),
-                              interval: 20,
+                              interval: 10,
                               minimum: 0,
-                              maximum: 500,
-                              majorGridLines: MajorGridLines(width: 1),
+                              maximum: 300,
+                              majorGridLines: MajorGridLines(
+                                width: 1,
+                              ),
                             ),
 
                             legend: const Legend(
@@ -644,9 +646,11 @@ class ResultCarbonBiomass extends StatelessWidget {
                                 alignment: ChartAlignment.center,
                                 textStyle: TextStyle(fontSize: 12)),
 
-                            tooltipBehavior: TooltipBehavior(enable: true),
-                            series: <CartesianSeries>[
-                              LineSeries<BiomassData, String>(
+                            tooltipBehavior: TooltipBehavior(
+                              enable: true,
+                            ),
+                            series: <ColumnSeries>[
+                              ColumnSeries<BiomassData, String>(
                                 dataSource: chartData
                                     .where((data) => data.treeType == 'Aliso')
                                     .toList(),
@@ -656,14 +660,14 @@ class ResultCarbonBiomass extends StatelessWidget {
                                     data.value,
                                 name: 'Aliso',
                                 color: Colors.blue,
-                                //Agregamos markers
+                                /*Agregamos markers
                                 markerSettings: const MarkerSettings(
                                   isVisible: true,
                                   shape: DataMarkerType.circle,
                                   color: Colors.blue,
-                                  borderWidth: 1,
+                                  borderWidth: 0.5,
                                   borderColor: Colors.blue,
-                                ),
+                                ), */
                                 //Números dentro del gráfico
                                 dataLabelSettings: DataLabelSettings(
                                     isVisible: true,
@@ -681,7 +685,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                                       );
                                     }),
                               ),
-                              LineSeries<BiomassData, String>(
+                              ColumnSeries<BiomassData, String>(
                                 dataSource: chartData
                                     .where((data) => data.treeType == 'Cipres')
                                     .toList(),
@@ -691,14 +695,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                                     data.value,
                                 name: 'Ciprés',
                                 color: Colors.green,
-                                //Agregamos markers
-                                markerSettings: const MarkerSettings(
-                                  isVisible: true,
-                                  shape: DataMarkerType.circle,
-                                  color: Colors.green,
-                                  borderWidth: 1,
-                                  borderColor: Colors.green,
-                                ),
+
                                 //Números dentro del gráfico
                                 dataLabelSettings: DataLabelSettings(
                                     isVisible: true,
@@ -716,7 +713,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                                       );
                                     }),
                               ),
-                              LineSeries<BiomassData, String>(
+                              ColumnSeries<BiomassData, String>(
                                 dataSource: chartData
                                     .where((data) => data.treeType == 'Pino')
                                     .toList(),
@@ -726,14 +723,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                                     data.value,
                                 name: 'Pino',
                                 color: Colors.red,
-                                //Agregamos markers
-                                markerSettings: const MarkerSettings(
-                                  isVisible: true,
-                                  shape: DataMarkerType.circle,
-                                  color: Colors.red,
-                                  borderWidth: 1,
-                                  borderColor: Colors.red,
-                                ),
+
                                 //Números dentro del gráfico
                                 dataLabelSettings: DataLabelSettings(
                                     isVisible: true,
@@ -751,7 +741,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                                       );
                                     }),
                               ),
-                              LineSeries<BiomassData, String>(
+                              ColumnSeries<BiomassData, String>(
                                 dataSource: chartData
                                     .where((data) => data.treeType == 'Pona')
                                     .toList(),
@@ -761,14 +751,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                                     data.value,
                                 name: 'Pona',
                                 color: Colors.yellow,
-                                //Agregamos markers
-                                markerSettings: const MarkerSettings(
-                                  isVisible: true,
-                                  shape: DataMarkerType.circle,
-                                  color: Colors.yellow,
-                                  borderWidth: 1,
-                                  borderColor: Colors.yellow,
-                                ),
+
                                 //Números dentro del gráfico
                                 dataLabelSettings: DataLabelSettings(
                                     isVisible: true,
@@ -786,7 +769,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                                       );
                                     }),
                               ),
-                              LineSeries<BiomassData, String>(
+                              ColumnSeries<BiomassData, String>(
                                 dataSource: chartData
                                     .where((data) => data.treeType == 'SSA')
                                     .toList(),
@@ -796,14 +779,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                                     data.value,
                                 name: 'SSA',
                                 color: Colors.purple[900],
-                                //Agregamos markers
-                                markerSettings: const MarkerSettings(
-                                  isVisible: true,
-                                  shape: DataMarkerType.circle,
-                                  color: Colors.purple,
-                                  borderWidth: 1,
-                                  borderColor: Colors.purple,
-                                ),
+
                                 //Números dentro del gráfico
                                 dataLabelSettings: DataLabelSettings(
                                     isVisible: true,

@@ -70,6 +70,7 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 'Cálculos imcompletos',
                 textAlign: TextAlign.center,

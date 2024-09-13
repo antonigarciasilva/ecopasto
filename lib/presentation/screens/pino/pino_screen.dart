@@ -33,6 +33,7 @@ class _PinoScreenState extends State<PinoScreen> {
         //solo para salir con los botones y no cuadno le das click en cualquier lado
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es el Pino?',
                 textAlign: TextAlign.justify,
@@ -84,6 +85,7 @@ class _PinoScreenState extends State<PinoScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 'Calculos imcompletos',
                 textAlign: TextAlign.center,

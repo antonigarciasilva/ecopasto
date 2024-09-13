@@ -47,6 +47,7 @@ class _AlisoScreenState extends State<AlisoScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text(
                 'Cálculos imcompletos',
                 textAlign: TextAlign.center,
