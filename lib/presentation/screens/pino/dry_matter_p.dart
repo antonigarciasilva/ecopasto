@@ -107,6 +107,8 @@ class _DryMatterPState extends State<DryMatterP> {
 
   @override
   Widget build(BuildContext context) {
+    //Creamos una variable para hacer responsive la pg
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Form(
@@ -122,13 +124,15 @@ class _DryMatterPState extends State<DryMatterP> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/pino/drymatter/dry_matter.jpg',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.6,
                       ),
                     ),
 
                     //Possition of the botton
                     Positioned(
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -141,7 +145,9 @@ class _DryMatterPState extends State<DryMatterP> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(
+                    height: size.height * 0.03,
+                  ),
                   const Text(
                     'Calculando la materia seca con Pino',
                     style: TextStyle(
@@ -151,11 +157,13 @@ class _DryMatterPState extends State<DryMatterP> {
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(
+                    height: size.height * 0.03,
+                  ),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -170,13 +178,18 @@ class _DryMatterPState extends State<DryMatterP> {
                       ),
                     ),
                   ),
+                  //Formula
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
 
                   //NOTA
 
-                  const SizedBox(
+                  SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      child: Align(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.15),
+                      child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*MS: materia seca \n'
@@ -188,18 +201,23 @@ class _DryMatterPState extends State<DryMatterP> {
                   ),
 
                   //Peso de la materia seca
-                  const SizedBox(height: 25),
+                  //Formula
+                  SizedBox(
+                    height: size.height * 0.03,
+                  ),
 
                   const Text(
                     'Peso de la materia seca (PMS): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
+                  //Formula
+                  SizedBox(
+                    height: size.height * 0.01,
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: size.width * 0.15),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _controllerWeightDry,
@@ -215,11 +233,14 @@ class _DryMatterPState extends State<DryMatterP> {
                   ),
 
                   //Calcular
-                  const SizedBox(height: 35.0),
+
+                  SizedBox(
+                    height: size.height * 0.03,
+                  ),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

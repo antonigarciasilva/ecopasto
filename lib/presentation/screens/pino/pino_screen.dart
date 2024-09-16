@@ -107,6 +107,8 @@ class _PinoScreenState extends State<PinoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     final statePino = Provider.of<StateBiomassP>(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -115,7 +117,7 @@ class _PinoScreenState extends State<PinoScreen> {
         title: const Text(
           'Silvopastoreo con Pino',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,
@@ -144,23 +146,23 @@ class _PinoScreenState extends State<PinoScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     // Logo de la app
-                    const SizedBox(height: 30),
+                    SizedBox(height: size.height * 0.03),
                     Image.asset(
                       'assets/img/logo_untrm_u.png',
                       color: Colors.white.withOpacity(0.8),
-                      height: 100,
+                      height: size.height * 0.2,
                     ),
 
-                    const SizedBox(height: 50),
+                    SizedBox(height: size.height * 0.05),
 
                     // Materia verde
-                    const SizedBox(height: 20.0),
+
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: Stack(
                         children: [
                           SizedBox(
-                            width: 240,
+                            width: size.width * 0.8,
                             child: ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor: WidgetStateProperty.all<Color>(
@@ -204,13 +206,13 @@ class _PinoScreenState extends State<PinoScreen> {
                     ),
 
                     // Materia seca
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: size.height * 0.03),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: Stack(
                         children: [
                           SizedBox(
-                            width: 240,
+                            width: size.width * 0.8,
                             child: ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor: WidgetStateProperty.all<Color>(
@@ -259,11 +261,11 @@ class _PinoScreenState extends State<PinoScreen> {
                     ),
 
                     // Biomasa
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: size.height * 0.03),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: SizedBox(
-                        width: 240,
+                        width: size.width * 0.8,
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -294,11 +296,11 @@ class _PinoScreenState extends State<PinoScreen> {
                     ),
 
                     // Carbono en la biomasa
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: size.height * 0.03),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: SizedBox(
-                        width: 240,
+                        width: size.width * 0.8,
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -321,9 +323,7 @@ class _PinoScreenState extends State<PinoScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    SizedBox(height: size.height * 0.03),
                   ],
                 ),
               ),
@@ -332,8 +332,8 @@ class _PinoScreenState extends State<PinoScreen> {
             //Botón informativo
 
             Positioned(
-              top: 20,
-              right: 10,
+              top: size.height * 0.03,
+              right: size.width * 0.01,
               child: FilledButton.tonal(
                 onPressed: () => openDialog(context),
                 style: ElevatedButton.styleFrom(

@@ -23,6 +23,7 @@ class _SideMenuState extends State<SideMenu> {
   Widget build(BuildContext context) {
     //Código para ver cuanto espacio hay desde el top hasta donde comienza el menú
     final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
+    final size = MediaQuery.of(context).size;
 
     //Esto es para que se quede seleccionado el boton cuando le das click
     return NavigationDrawer(
@@ -39,7 +40,9 @@ class _SideMenuState extends State<SideMenu> {
             child: const Text(
               'Menú principal',
               style: TextStyle(
-                  fontSize: 20, color: Color.fromARGB(255, 82, 12, 7)),
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
             )),
 
         //Linea que divide
@@ -51,8 +54,16 @@ class _SideMenuState extends State<SideMenu> {
         //Selecciona nuevo sistemas silvopastoril
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.nature_people),
-          title: const Text('Selec. sistema silvopastoril'),
+          leading: const Icon(
+            Icons.nature_people,
+            color: Colors.black,
+          ),
+          title: const Text(
+            'Seleccione un sistema silvopastoril',
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
           onTap: () {
             Navigator.pop(context);
             Navigator.push(
@@ -65,10 +76,16 @@ class _SideMenuState extends State<SideMenu> {
         //Aliso
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.eco_rounded),
+          leading: const Icon(
+            Icons.eco_rounded,
+            color: Colors.black,
+          ),
           title: const Text(
             'Aliso',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+            ),
           ),
           onTap: () {
             Navigator.pop(context);
@@ -80,10 +97,13 @@ class _SideMenuState extends State<SideMenu> {
         //Pino
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.park),
+          leading: const Icon(
+            Icons.park,
+            color: Colors.black,
+          ),
           title: const Text(
             'Pino',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontSize: 16, color: Colors.black),
           ),
           onTap: () {
             Navigator.pop(context);
@@ -95,10 +115,16 @@ class _SideMenuState extends State<SideMenu> {
         //Ciprés
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.forest),
+          leading: const Icon(
+            Icons.forest,
+            color: Colors.black,
+          ),
           title: const Text(
             'Ciprés',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+            ),
           ),
           onTap: () {
             Navigator.pop(context);
@@ -110,10 +136,16 @@ class _SideMenuState extends State<SideMenu> {
         //Pona
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.nature),
+          leading: const Icon(
+            Icons.nature,
+            color: Colors.black,
+          ),
           title: const Text(
             'Pona',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+            ),
           ),
           onTap: () {
             Navigator.pop(context);
@@ -125,10 +157,16 @@ class _SideMenuState extends State<SideMenu> {
         //Pastizal
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.grass),
+          leading: const Icon(
+            Icons.grass,
+            color: Colors.black,
+          ),
           title: const Text(
             'Pastizal',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+            ),
           ),
           onTap: () {
             Navigator.pop(context);
@@ -137,8 +175,8 @@ class _SideMenuState extends State<SideMenu> {
           },
         ),
 
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: size.height * 0.01,
         ),
 
         //Más opciones
@@ -147,7 +185,9 @@ class _SideMenuState extends State<SideMenu> {
             child: const Text(
               'Más opciones',
               style: TextStyle(
-                  fontSize: 20, color: Color.fromARGB(255, 82, 12, 7)),
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
             )),
 
         //Linea que divide
@@ -159,8 +199,16 @@ class _SideMenuState extends State<SideMenu> {
         //Tutorial
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.thumb_up_alt_rounded),
-          title: const Text('Tutorial'),
+          leading: const Icon(
+            Icons.school_sharp,
+            color: Colors.black,
+          ),
+          title: const Text(
+            'Tutorial',
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
           onTap: () {
             Navigator.pop(context);
             Navigator.push(
@@ -173,8 +221,14 @@ class _SideMenuState extends State<SideMenu> {
         //Informativo
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 35),
-          leading: const Icon(Icons.info),
-          title: const Text('¿Qué es un Sistema silvopastoril?'),
+          leading: const Icon(
+            Icons.info,
+            color: Colors.black,
+          ),
+          title: const Text(
+            '¿Qué es un Sistema silvopastoril?',
+            style: TextStyle(color: Colors.black),
+          ),
           onTap: () {
             Navigator.pop(context);
             Navigator.push(

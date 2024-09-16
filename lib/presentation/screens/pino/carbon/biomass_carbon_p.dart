@@ -120,6 +120,8 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -135,15 +137,15 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/pino/carbon/carbon_p.png',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
 
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -156,22 +158,22 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 10.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando carbono en la biomasa con Pino',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
 
                   //Formula
-                  const SizedBox(height: 15.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 300,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -187,11 +189,12 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                   ),
 
                   //NOTA
-                  const SizedBox(height: 1),
-                  const SizedBox(
+                  SizedBox(height: size.height * 0.01),
+                  SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Align(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                      child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*CBV: Carbono en biomasa vegetal(T/ha) \n'
@@ -203,14 +206,12 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                   ),
 
                   //Formula con variable completa
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: size.height * 0.03),
 
                   Column(
                     children: <Widget>[
                       Text(
-                        'Reemplazando valares: \n'
+                        'Reemplazando valares: \n '
                         'CBV(T/ha): ${stateBiomassP!.totalBiomassP.toStringAsFixed(2)} * 0.4270',
                         style: const TextStyle(
                           fontSize: 15,
@@ -222,11 +223,10 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
 
                   //Mostrar el mensaje de error
                   if (errorMessage != null) ...[
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: size.height * 0.01),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.1),
                       child: Text(
                         errorMessage!,
                         style: const TextStyle(fontSize: 15, color: Colors.red),
@@ -236,11 +236,11 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                   ],
 
                   //Calcular
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

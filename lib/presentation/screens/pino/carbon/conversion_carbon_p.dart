@@ -30,11 +30,12 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
                 backgroundColor: Colors.white,
                 title: const Text(
                   'Resultado del cálculo',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 content: Text(
                   'la cantidad de CO₂ es: ${stateBiomassP!.resultConversionCarbonP.toStringAsFixed(2)} T/ha',
                   textAlign: TextAlign.justify,
+                  style: const TextStyle(fontSize: 15),
                 ),
                 actions: [
                   TextButton(
@@ -85,6 +86,8 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -100,15 +103,15 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/pino/carbon/carbon_p.png',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
 
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -125,18 +128,18 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
                   const Text(
                     'Conversión de carbono orgánico a dióxido de carbono',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -152,21 +155,22 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
                   ),
 
                   //NOTA
-
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50),
-                    child: Align(
+                  SizedBox(height: size.height * 0.01),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: size.width * 0.12),
+                    child: const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '*CO₂: Dioxido carbono \n'
                         '*3.666: Factor de conversión \n',
-                        style: TextStyle(fontSize: 10),
+                        style: TextStyle(fontSize: 10, color: Colors.black),
                       ),
                     ),
                   ),
 
                   //Formula con variable completa
-                  const SizedBox(height: 10),
+                  SizedBox(height: size.height * 0.03),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -178,16 +182,15 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 20),
                     ],
                   ),
 
                   //Calcular
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

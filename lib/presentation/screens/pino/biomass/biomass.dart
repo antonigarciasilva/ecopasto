@@ -122,6 +122,9 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
+    //provider
     final stateBiomassP = Provider.of<StateBiomassP>(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -148,25 +151,25 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     //Logo de la app
                     Image.asset(
                       'assets/img/only_logo.png',
-                      height: 100,
+                      height: size.height * 0.2,
                     ),
 
                     //Título
-                    const SizedBox(height: 15.0),
+                    SizedBox(height: size.height * 0.03),
                     const Text(
                       'Calculando la biomasa con Pino',
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 20,
                           fontWeight: FontWeight.w900,
                           color: Colors.white),
                     ),
 
                     //Formula
-                    const SizedBox(height: 25.0),
+                    SizedBox(height: size.height * 0.03),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: SizedBox(
-                        width: 320,
+                        width: size.width * 0.95,
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -184,13 +187,12 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     //Color plomo 255, 191, 192, 191
 
                     //NOTA
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    const SizedBox(
+                    SizedBox(height: size.height * 0.01),
+                    SizedBox(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Align(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                        child: const Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             '*BVT: Biomasa vegetal total (T/ha)',
@@ -201,12 +203,12 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     ),
 
                     //Biomasa seca
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: size.height * 0.03),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: Stack(children: [
                         SizedBox(
-                          width: 240,
+                          width: size.width * 0.8,
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all<Color>(
@@ -245,11 +247,11 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     ),
 
                     //Biomasa herbácea
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: size.height * 0.03),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: SizedBox(
-                        width: 240,
+                        width: size.width * 0.8,
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -276,12 +278,12 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     ),
 
                     //Biomasa hojarasca
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: size.height * 0.03),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: Stack(children: [
                         SizedBox(
-                          width: 240,
+                          width: size.width * 0.8,
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all<Color>(
@@ -320,11 +322,11 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                     ),
 
                     //Calcular
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: size.height * 0.03),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: SizedBox(
-                        width: 240,
+                        width: size.width * 0.8,
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -366,9 +368,7 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    SizedBox(height: size.height * 0.03),
                   ],
                 ),
               ),
@@ -376,8 +376,8 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
 
             //Botón informativo
             Positioned(
-              top: 20,
-              right: 10,
+              top: size.height * 0.03,
+              right: size.width * 0.01,
               child: FilledButton.tonal(
                 onPressed: () => openDialog(context),
                 style: ElevatedButton.styleFrom(

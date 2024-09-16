@@ -97,6 +97,9 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
+    //Provider
     final stateBiomassP = Provider.of<StateBiomassP>(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -121,26 +124,26 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
                   //Logo de la app
                   Image.asset(
                     'assets/img/only_logo.png',
-                    height: 150,
+                    height: size.height * 0.2,
                   ),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando carbono en la biomasa con Pino',
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
 
                   //Carbono en biomasa
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -168,11 +171,11 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
                   ),
 
                   //Carbono en el suelo
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -194,11 +197,11 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
                   ),
 
                   //Conversión de carbono a dióxido de carbono
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -226,10 +229,11 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
                   ),
 
                   //NOTA
-
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 60),
-                    child: Align(
+                  SizedBox(height: size.height * 0.01),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: size.width * 0.12),
+                    child: const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '*C: Carbono \n'
@@ -238,9 +242,7 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: size.height * 0.03),
                 ],
               ),
             ),
@@ -248,13 +250,12 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
 
           //Botón informativo
           Positioned(
-              top: 45,
-              right: 10,
+              top: size.height * 0.05,
+              right: size.width * 0.01,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Positioned(
-                    height: 100,
                     child: FilledButton.tonal(
                       onPressed: () => openDialog(context),
                       style: ElevatedButton.styleFrom(

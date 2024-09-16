@@ -103,6 +103,8 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -119,14 +121,14 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/pino/biomass/biomass.jpg',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -139,7 +141,7 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando la biomasa hojarasca con Pino',
                     textAlign: TextAlign.center,
@@ -150,11 +152,11 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 320,
+                      width: size.width * 0.95,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -171,13 +173,12 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                   ),
 
                   //NOTA
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const SizedBox(
+                  SizedBox(height: size.height * 0.01),
+                  SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Align(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                      child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*BH: Biomasa hojarasca(T/ha) \n'
@@ -189,18 +190,17 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                   ),
 
                   //PSM
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Peso seco de la materia (PSM): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: size.width * 0.15),
                     child: TextFormField(
                       controller: _controllerWeightPSM,
                       validator: _validateWeight,
@@ -217,18 +217,17 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                   ),
 
                   //PFM
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Peso fresco de la muestra (PFM): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: size.width * 0.15),
                     child: TextFormField(
                       controller: _controllerWeightPFM,
                       validator: _validateWeight,
@@ -245,11 +244,11 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                   ),
 
                   //Calcular
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

@@ -81,6 +81,8 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -96,15 +98,15 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/pino/biomass/biomass.jpg',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
 
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -117,7 +119,7 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando la biomasa herbácea con Pino',
                     textAlign: TextAlign.center,
@@ -128,11 +130,11 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 320,
+                      width: size.width * 0.95,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -149,11 +151,12 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                   ),
 
                   //NOTA
-                  const SizedBox(height: 5),
-                  const SizedBox(
+                  SizedBox(height: size.height * 0.01),
+                  SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Align(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                      child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*BH: Biomasa herbácea(T/ha) \n'
@@ -166,12 +169,12 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                   ),
 
                   //Formula con variable completa
-                  const SizedBox(height: 10),
+                  SizedBox(height: size.height * 0.03),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'Reemplazando valores:\n'
+                        'Reemplazando valores:\n \n'
                         'BH(T/ha): (${stateBiomassP!.dryMatterPino!.toStringAsFixed(2)} / ${stateBiomassP!.greenPino!.toStringAsFixed(2)} * ${stateBiomassP!.greenPino!.toStringAsFixed(2)} )\n '
                         ' * 0.01  ',
                         style: const TextStyle(
@@ -179,16 +182,15 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 20),
                     ],
                   ),
 
                   //Calcular
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

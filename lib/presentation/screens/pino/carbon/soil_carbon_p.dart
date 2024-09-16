@@ -124,6 +124,8 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -140,15 +142,15 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/pino/carbon/carbon_p.png',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
 
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -161,21 +163,21 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando carbono en el suelo',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -191,10 +193,10 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                   ),
 
                   //NOTA
-
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50),
-                    child: Align(
+                  SizedBox(height: size.height * 0.01),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                    child: const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '*Ws: Peso del suelo (T/ha) ',
@@ -204,18 +206,16 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                   ),
 
                   //Área
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Área (a): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                     child: TextFormField(
                       validator: _validateWeight,
                       controller: _controllerWeightA,
@@ -231,18 +231,16 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                   ),
 
                   //Profundidad
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Profundidad (p): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                     child: TextFormField(
                       validator: _validateWeight,
                       controller: _controllerWeightP,
@@ -258,27 +256,29 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                   ),
 
                   //Densidad aparente del suelo
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Densidad aparente del suelo (da): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                     child: DropdownButtonFormField(
                       value: _selectedSoilType,
                       items: const [
                         DropdownMenuItem(
                             value: 'arcilloso-franco',
-                            child: Text('Arcillo-Franco (1.1 g/cm³)')),
+                            child: Text(
+                              'Arcillo-Franco (1.1 g/cm³)',
+                              style: TextStyle(fontSize: 14),
+                            )),
                         DropdownMenuItem(
                             value: 'franco-arenoso',
-                            child: Text('Franco - Arenoso (1.32 g/cm³)')),
+                            child: Text('Franco - Arenoso (1.32 g/cm³)',
+                                style: TextStyle(fontSize: 14))),
                       ],
                       onChanged: (value) {
                         setState(() {
@@ -298,11 +298,11 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                   ),
 
                   //Calcular
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

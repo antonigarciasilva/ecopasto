@@ -77,6 +77,8 @@ class _GreenMatterPState extends State<GreenMatterP> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Form(
@@ -91,16 +93,16 @@ class _GreenMatterPState extends State<GreenMatterP> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/aliso/greenmatter/green_alder.jpg',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        'assets/img/pino/pinos.jpg',
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
 
                     //Position of the buttom
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                         onPressed: () => openDialog(context),
                         style: ElevatedButton.styleFrom(
@@ -115,7 +117,7 @@ class _GreenMatterPState extends State<GreenMatterP> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando la materia verde con Pino',
                     style: TextStyle(
@@ -125,19 +127,19 @@ class _GreenMatterPState extends State<GreenMatterP> {
                   ),
 
                   //Peso de la materia verde
-
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text('Peso de materia verde por m²:',
                       style: TextStyle(
                         fontSize: 15,
                       )),
-                  const SizedBox(height: 5),
+                  SizedBox(height: size.height * 0.01),
 
                   //Ingresa el peso de materia verde
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: size.width * 0.15),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _controllerWeightP,
@@ -154,7 +156,7 @@ class _GreenMatterPState extends State<GreenMatterP> {
                   ),
 
                   //Fecha actual
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -166,11 +168,11 @@ class _GreenMatterPState extends State<GreenMatterP> {
                   ),
 
                   //Guardar
-                  const SizedBox(height: 15.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

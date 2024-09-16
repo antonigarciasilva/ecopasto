@@ -559,7 +559,7 @@ class ResultCarbonBiomassO extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(4),
                           child: Text(
-                            sumaTotalP.toStringAsFixed(2),
+                            sumaTotalO.toStringAsFixed(2),
                             style: const TextStyle(
                                 fontSize: 10, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
