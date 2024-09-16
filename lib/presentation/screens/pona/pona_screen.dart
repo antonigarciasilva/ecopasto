@@ -37,7 +37,7 @@ class _PonaScreenState extends State<PonaScreen> {
               title: const Text(
                 '¿Qué es la Pona?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: RichText(
                   textAlign: TextAlign.justify,
@@ -48,11 +48,12 @@ class _PonaScreenState extends State<PonaScreen> {
                             text: 'Calycophyllum Spruceanum',
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold)),
                         TextSpan(
-                          text:
-                              ' en sistemas silvopastoriles es una especie arbórea nativa de la Amazonía utilizada por su rápido crecimiento y capacidad para mejorar la calidad del suelo. Proporciona sombra y protección contra el viento, y también puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
-                        )
+                            text:
+                                ' en sistemas silvopastoriles es una especie arbórea nativa de la Amazonía utilizada por su rápido crecimiento y capacidad para mejorar la calidad del suelo. Proporciona sombra y protección contra el viento, y también puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
+                            style: TextStyle(fontSize: 14))
                       ])),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -109,6 +110,8 @@ class _PonaScreenState extends State<PonaScreen> {
   @override
   Widget build(BuildContext context) {
     final statePona = Provider.of<StateBiomassO>(context);
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -145,16 +148,16 @@ class _PonaScreenState extends State<PonaScreen> {
                   //Logo de la app
                   Image.asset(
                     'assets/img/only_logo.png',
-                    height: 150,
+                    height: size.height * 0.2,
                   ),
 
                   //Materia verde
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: Stack(children: [
                       SizedBox(
-                        width: 240,
+                        width: size.width * 0.8,
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -192,12 +195,12 @@ class _PonaScreenState extends State<PonaScreen> {
                   ),
 
                   //Materia seca
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: Stack(children: [
                       SizedBox(
-                        width: 240,
+                        width: size.width * 0.8,
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -240,11 +243,11 @@ class _PonaScreenState extends State<PonaScreen> {
                   ),
 
                   //Biomasa
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -271,11 +274,11 @@ class _PonaScreenState extends State<PonaScreen> {
                   ),
 
                   //Carbono en la biomasa
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -296,7 +299,6 @@ class _PonaScreenState extends State<PonaScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40.0),
                 ],
               ),
             ),
@@ -304,8 +306,8 @@ class _PonaScreenState extends State<PonaScreen> {
 
           //Botón informativo
           Positioned(
-            top: 20,
-            right: 10,
+            top: size.height * 0.03,
+            right: size.width * 0.01,
             child: FilledButton.tonal(
               onPressed: () => openDialog(context),
               style: ElevatedButton.styleFrom(

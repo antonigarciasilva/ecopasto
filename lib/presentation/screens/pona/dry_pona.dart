@@ -58,11 +58,12 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                   backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cáculo',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   content: Text(
                     'El peso de la materia seca es: $formattedResult % MS ',
                     textAlign: TextAlign.justify,
+                    style: const TextStyle(fontSize: 14),
                   ),
                   actions: [
                     TextButton(
@@ -90,11 +91,12 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
               title: const Text(
                 '¿Cómo sacar el peso de la muestra seca (PMS)?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'Se emplea una sub muestra de la materia verde de 500g dependiendo de la cantidad de pastura, luego, se coloca en una estufa a 60 °C, hasta obtener un peso constante y con la ayuda de una balanza de 1 Kg se obtiene el PSM',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -110,6 +112,8 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Form(
@@ -125,15 +129,15 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/pona/drymatter/dry_o.png',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
 
                     //Position of the buttom
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                         onPressed: () => openDialog(context),
                         style: ElevatedButton.styleFrom(
@@ -148,7 +152,7 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando la materia seca con Pona',
                     style: TextStyle(
@@ -158,11 +162,11 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -179,11 +183,13 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                   ),
 
                   //NOTA
-
-                  const SizedBox(
+                  SizedBox(height: size.height * 0.01),
+                  SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      child: Align(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.12,
+                      ),
+                      child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*MS: Materia seca \n'
@@ -195,19 +201,19 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                   ),
 
                   //Peso de la materia seca
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Peso de la materia seca (PMS): ',
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.15,
+                    ),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _controllerWeightDry,
@@ -224,11 +230,11 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
                   ),
 
                   //Guardar
-                  const SizedBox(height: 35.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

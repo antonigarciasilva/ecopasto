@@ -40,7 +40,8 @@ class _BiomassPonaState extends State<BiomassPona> {
               title: Text(
                 'La biomasa total es: $formattedBiomassO T/ha',
                 textAlign: TextAlign.justify,
-                style: const TextStyle(fontSize: 18),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               actions: [
                 TextButton(
@@ -66,10 +67,12 @@ class _BiomassPonaState extends State<BiomassPona> {
               title: const Text(
                 '¿Qué es la biomasa?',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'En los sistemas silvopastoriles, la biomasa se refiere a la materia orgánica generada por la combinación de árboles, arbustos, pastos y ganado, optimizando el uso del suelo mediante la integración de la producción forestal y ganadera. Estos sistemas mejoran la fertilidad del suelo, facilitan un ciclo cerrado de nutrientes, capturan carbono, diversifican los ingresos y mejoran el microclima.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -126,6 +129,8 @@ class _BiomassPonaState extends State<BiomassPona> {
   @override
   Widget build(BuildContext context) {
     final stateBiomassO = Provider.of<StateBiomassO>(context);
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -150,11 +155,11 @@ class _BiomassPonaState extends State<BiomassPona> {
                   //Logo de la app
                   Image.asset(
                     'assets/img/only_logo.png',
-                    height: 120,
+                    height: size.height * 0.2,
                   ),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando la biomasa con Pona',
                     style: TextStyle(
@@ -164,11 +169,11 @@ class _BiomassPonaState extends State<BiomassPona> {
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 320,
+                      width: size.width * 0.95,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -186,13 +191,13 @@ class _BiomassPonaState extends State<BiomassPona> {
                   //Color plomo 255, 191, 192, 191
 
                   //NOTA
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const SizedBox(
+                  SizedBox(height: size.height * 0.01),
+                  SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Align(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.1,
+                      ),
+                      child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*BVT: Biomasa vegetal total (Tm/ha)',
@@ -203,12 +208,12 @@ class _BiomassPonaState extends State<BiomassPona> {
                   ),
 
                   //Biomasa seca
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: Stack(children: [
                       SizedBox(
-                        width: 240,
+                        width: size.width * 0.8,
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -246,11 +251,11 @@ class _BiomassPonaState extends State<BiomassPona> {
                   ),
 
                   //Biomasa herbácea
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -277,12 +282,12 @@ class _BiomassPonaState extends State<BiomassPona> {
                   ),
 
                   //Biomasa hojarasca
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: Stack(children: [
                       SizedBox(
-                        width: 240,
+                        width: size.width * 0.8,
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -321,11 +326,11 @@ class _BiomassPonaState extends State<BiomassPona> {
                   ),
 
                   //Guardar
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -367,7 +372,6 @@ class _BiomassPonaState extends State<BiomassPona> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 80.0),
                 ],
               ),
             ),
@@ -375,8 +379,8 @@ class _BiomassPonaState extends State<BiomassPona> {
 
           //Botón informativo
           Positioned(
-            top: 20,
-            right: 10,
+            top: size.height * 0.03,
+            right: size.width * 0.01,
             child: FilledButton.tonal(
               onPressed: () => openDialog(context),
               style: ElevatedButton.styleFrom(

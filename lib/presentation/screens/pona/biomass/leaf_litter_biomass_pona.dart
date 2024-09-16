@@ -49,9 +49,13 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
           barrierDismissible: false,
           builder: (context) => AlertDialog(
                 backgroundColor: Colors.white,
-                title: const Text('Resultado del cálculo'),
+                title: const Text(
+                  'Resultado del cálculo',
+                  style: TextStyle(fontSize: 18),
+                ),
                 content: Text(
                   'La biomasa herbácea es: $formattedResult T/ha',
+                  style: const TextStyle(fontSize: 16),
                   textAlign: TextAlign.justify,
                 ),
                 actions: [
@@ -86,6 +90,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
               content: const Text(
                 'La biomasa de hojarasca incluye las hojas caídas, ramas pequeñas, flores, frutos y otros restos vegetales que se acumulan en el suelo del bosque o de cualquier área con vegetación arbórea. Esta hojarasca es una fuente crucial de nutrientes para el suelo, ya que se descompone y enriquece el suelo con materia orgánica, mejorando su estructura y fertilidad.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -101,6 +106,8 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -117,15 +124,15 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/pona/biomass/biomass_o.png',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
 
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -138,7 +145,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando la biomasa hojarasca con Pona',
                     style: TextStyle(
@@ -149,11 +156,11 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 320,
+                      width: size.width * 0.95,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -170,13 +177,13 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                   ),
 
                   //NOTA
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const SizedBox(
+                  SizedBox(height: size.height * 0.01),
+                  SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Align(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.12,
+                      ),
+                      child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*BH: Biomasa hojarasca(T/ha) \n'
@@ -189,18 +196,18 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                   ),
 
                   //PSM
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Peso seco de la materia (PSM): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.15,
+                    ),
                     child: TextFormField(
                       controller: _controllerWeightPSM,
                       validator: _validateWeight,
@@ -217,18 +224,18 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                   ),
 
                   //PFM
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Peso fresco de la muestra (PFM): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.15,
+                    ),
                     child: TextFormField(
                       controller: _controllerWeightPFM,
                       validator: _validateWeight,
@@ -245,11 +252,11 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona> {
                   ),
 
                   //Calcular
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
