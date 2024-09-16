@@ -151,6 +151,8 @@ class LoginPageState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //Creamos una variable para hacer responsive la pg
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -164,9 +166,11 @@ class LoginPageState extends State<LoginScreen> {
               children: <Widget>[
                 Image.asset(
                   'assets/img/amas_color.png',
-                  height: 200,
+                  height: size.height * 0.21,
                 ),
-                const SizedBox(height: 20.0),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
 
                 //Usuario
                 MouseRegion(
@@ -184,8 +188,8 @@ class LoginPageState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20.0,
+                SizedBox(
+                  height: size.height * 0.03,
                 ),
 
                 //Contraseña
@@ -216,7 +220,9 @@ class LoginPageState extends State<LoginScreen> {
                 ),
 
                 //Iniciar sesion
-                const SizedBox(height: 35.0),
+                SizedBox(
+                  height: size.height * 0.05,
+                ),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: ElevatedButton(
@@ -233,7 +239,9 @@ class LoginPageState extends State<LoginScreen> {
                 ),
 
                 //Registrate
-                const SizedBox(height: 1.0),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: TextButton(
@@ -249,8 +257,8 @@ class LoginPageState extends State<LoginScreen> {
                               color: Color.fromARGB(255, 82, 12, 7)))),
                 ),
                 if (errorMessage != null) ...[
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: size.height * 0.03,
                   ),
                   Text(
                     errorMessage!,

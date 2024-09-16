@@ -152,7 +152,8 @@ class _AlisoScreenState extends State<AlisoScreen> {
                       children: <Widget>[
                         //Logo de la app
                         Image.asset(
-                          'assets/img/only_logo.png',
+                          'assets/img/logo_untrm_u.png',
+                          color: Colors.black.withOpacity(0.3),
                           height: screenHeight * 0.2,
                         ),
 

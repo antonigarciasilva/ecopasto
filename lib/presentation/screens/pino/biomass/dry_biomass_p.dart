@@ -50,7 +50,6 @@ class _DryBiomassPState extends State<DryBiomassP> {
                   backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cáculo',
-                    style: TextStyle(fontSize: 16),
                   ),
                   content: Text(
                     'La biomasa seca es: $formattedResult T/ha',

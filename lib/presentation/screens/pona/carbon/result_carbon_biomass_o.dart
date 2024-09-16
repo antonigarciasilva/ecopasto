@@ -64,9 +64,9 @@ class ResultCarbonBiomassO extends StatelessWidget {
         'Biomasa vegetal',
         resultHerbaceousBiomassST,
       ),
-      BiomassData('Pona', 'Retención de carbono', resultCarbonBiomassST),
-      BiomassData('Pona', 'Dióxido de carbono', resultConversionCarbonST),
-      BiomassData('Pona', 'Total', sumaTotalST),
+      BiomassData('Ssa', 'Retención de carbono', resultCarbonBiomassST),
+      BiomassData('Ssa', 'Dióxido de carbono', resultConversionCarbonST),
+      BiomassData('Ssa', 'Total', sumaTotalST),
     ];
   }
 
@@ -749,11 +749,11 @@ class ResultCarbonBiomassO extends StatelessWidget {
                         ),
                         ColumnSeries<BiomassData, String>(
                           dataSource: chartData
-                              .where((data) => data.treeType == 'SSA')
+                              .where((data) => data.treeType == 'Ssa')
                               .toList(),
                           xValueMapper: (BiomassData data, _) => data.variable,
                           yValueMapper: (BiomassData data, _) => data.value,
-                          name: 'SSA',
+                          name: 'Ssa',
                           color: Colors.purple[900],
 
                           //Números dentro del gráfico

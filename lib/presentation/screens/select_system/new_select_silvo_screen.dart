@@ -13,6 +13,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Variable para hacer resposivo
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -36,11 +38,11 @@ class NewSelectSilvoScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               children: <Widget>[
                 //top
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: size.height * 0.03,
                 ),
                 SizedBox(
-                  height: 340,
+                  height: size.height * 0.5,
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
@@ -60,8 +62,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(children: [
                               Image.asset(
                                 'assets/img/pino/pino.jpg',
-                                height: 340,
-                                width: 240,
+                                height: size.height * 0.5,
+                                width: size.width * 0.8,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -112,8 +114,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(children: [
                               Image.asset(
                                 'assets/img/cipres/cipres.jpg',
-                                height: 340,
-                                width: 240,
+                                height: size.height * 0.5,
+                                width: size.width * 0.8,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -163,8 +165,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(children: [
                               Image.asset(
                                 'assets/img/aliso/aliso.jpg',
-                                height: 340,
-                                width: 240,
+                                height: size.height * 0.5,
+                                width: size.width * 0.8,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -214,8 +216,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(children: [
                               Image.asset(
                                 'assets/img/pona/pona.jpg',
-                                height: 340,
-                                width: 240,
+                                height: size.height * 0.5,
+                                width: size.width * 0.8,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -266,8 +268,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                               children: [
                                 Image.asset(
                                   'assets/img/sinarbol/sin_pasto.jpg',
-                                  height: 340,
-                                  width: 240,
+                                  height: size.height * 0.5,
+                                  width: size.width * 0.8,
                                   fit: BoxFit.cover,
                                 ),
                                 Positioned(
@@ -296,8 +298,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: size.height * 0.03,
                 ),
                 //todo Concepto
                 const ExpansionTile(
