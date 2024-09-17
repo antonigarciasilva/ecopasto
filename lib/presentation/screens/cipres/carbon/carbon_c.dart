@@ -33,11 +33,12 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
                 title: const Text(
                   '¿Qué es el carbono?',
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 content: const Text(
                   'El carbono en los sistemas silvopastoriles se almacena en la biomasa de árboles y pastos, en el suelo y en los residuos animales, desempeñando un papel crucial en la captura de CO₂ y la mitigación del cambio climático. Estos sistemas integrados mejoran la fertilidad del suelo, aumentan su capacidad de retención de agua y nutrientes, y promueven la resiliencia ecológica. ',
                   textAlign: TextAlign.justify,
+                  style: TextStyle(fontSize: 14),
                 ),
                 actions: [
                   FilledButton(
@@ -74,10 +75,12 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
               title: const Text(
                 'Cálculos imcompletos',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: Text(
                 message,
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 16),
               ),
               actions: [
                 TextButton(
@@ -91,6 +94,8 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     final stateBiomass = Provider.of<StateBiomassC>(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -115,12 +120,13 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
                 children: <Widget>[
                   //Logo de la app
                   Image.asset(
-                    'assets/img/only_logo.png',
-                    height: 150,
+                    'assets/img/untrm_white_png.png',
+                    color: Colors.white.withOpacity(0.7),
+                    height: size.height * 0.2,
                   ),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando carbono en la biomasa con Ciprés',
                     style: TextStyle(
@@ -131,7 +137,7 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
                   ),
 
                   //Carbono en biomasa
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
@@ -162,7 +168,7 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
                   ),
 
                   //Carbono en el suelo
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
@@ -188,7 +194,7 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
                   ),
 
                   //Conversión de carbono a dióxido de carbono
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
@@ -220,15 +226,17 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
                   ),
 
                   //NOTA
-
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 60),
-                    child: Align(
+                  SizedBox(height: size.height * 0.01),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.18,
+                    ),
+                    child: const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '*C: Carbono \n'
                         '*CO₂: Dióxido de carbono \n',
-                        style: TextStyle(fontSize: 10),
+                        style: TextStyle(fontSize: 10, color: Colors.white),
                       ),
                     ),
                   ),
@@ -239,8 +247,8 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
 
           //Botón informativo
           Positioned(
-            top: 20,
-            right: 10,
+            top: size.height * 0.05,
+            right: size.width * 0.01,
             child: FilledButton.tonal(
               onPressed: () => openDialog(context),
               style: ElevatedButton.styleFrom(

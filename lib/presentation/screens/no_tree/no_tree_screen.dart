@@ -27,11 +27,12 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
               title: const Text(
                 '¿Qué es un pastizal?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'Un pastizal es una extensión de tierra cubierta predominantemente por pastos y otras plantas herbáceas, utilizada principalmente para el pastoreo de ganado.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18),
               ),
               actions: [
                 FilledButton(
@@ -65,11 +66,12 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
               title: const Text(
                 'Cálculos imcompletos',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: Text(
                 message,
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 14),
               ),
               actions: [
                 TextButton(
@@ -83,6 +85,8 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     final stateS = Provider.of<StateST>(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -101,8 +105,6 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final screenHeight = constraints.maxHeight;
-            final screenWidth = constraints.maxWidth;
             return Stack(
               children: [
                 //Imagen de fondo
@@ -119,27 +121,27 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.0,
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           //Logo de la app
                           Image.asset(
-                            'assets/img/only_logo.png',
-                            height: screenHeight * 0.2,
+                            'assets/img/untrm_white_png.png',
+                            color: Colors.white.withOpacity(0.7),
+                            height: size.height * 0.2,
                           ),
 
-                          SizedBox(
-                            height: screenHeight * 0.04,
-                          ),
+                          SizedBox(height: size.height * 0.03),
                           //Materia verde
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: Stack(children: [
                               SizedBox(
-                                width: screenWidth *
-                                    0.6, //Ajuste de ancho relativo
+                                width: size.width * 0.8,
+                                //Ajuste de ancho relativo
                                 child: ElevatedButton(
                                   style: ButtonStyle(
                                     backgroundColor:
@@ -180,12 +182,12 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                           ),
 
                           //Materia seca
-                          const SizedBox(height: 20.0),
+                          SizedBox(height: size.height * 0.03),
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: Stack(children: [
                               SizedBox(
-                                width: screenWidth * 0.6,
+                                width: size.width * 0.8,
                                 child: ElevatedButton(
                                   style: ButtonStyle(
                                     backgroundColor:
@@ -231,11 +233,11 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                           ),
 
                           //Biomasa
-                          const SizedBox(height: 20.0),
+                          SizedBox(height: size.height * 0.03),
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: SizedBox(
-                              width: screenWidth * 0.6,
+                              width: size.width * 0.8,
                               child: ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all<
@@ -273,8 +275,8 @@ class _NoTreeScreenState extends State<NoTreeScreen> {
                 //Botón informativo
 
                 Positioned(
-                  top: screenHeight * 0.02,
-                  right: screenWidth * 0.05,
+                  top: size.height * 0.05,
+                  right: size.width * 0.01,
                   child: FilledButton.tonal(
                     onPressed: () => openDialog(context),
                     style: ElevatedButton.styleFrom(

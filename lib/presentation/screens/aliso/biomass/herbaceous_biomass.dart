@@ -33,11 +33,12 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
               backgroundColor: Colors.white,
               title: const Text(
                 'Resultado del cálculo',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: Text(
                 'La biomasa herbácea es: ${stateS!.resultBiomassHerbaceous.toStringAsFixed(2)} T/ha',
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 16),
               ),
               actions: [
                 TextButton(
@@ -65,11 +66,12 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
               title: const Text(
                 '¿Qué es la biomasa herbácea?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'La biomasa herbácea se refiere a la materia orgánica de las plantas herbáceas, que son plantas no leñosas como pastos, flores silvestres y otras plantas de bajo crecimiento. Estas plantas suelen ser de ciclo de vida corto y juegan un papel importante en los ecosistemas, proporcionando alimento para herbívoros, contribuyendo a la estabilidad del suelo y participando en los ciclos de nutrientes.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -87,6 +89,8 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -102,14 +106,14 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/aliso/biomass/biomas_alder.jpg',
-                        fit: BoxFit.fitWidth,
-                        height: 209,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 20,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -122,7 +126,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando la biomasa herbácea con Aliso',
                     textAlign: TextAlign.center,
@@ -133,11 +137,11 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 320,
+                      width: size.width * 0.95,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -153,13 +157,13 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                     ),
                   ),
                   //NOTA
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const SizedBox(
+                  SizedBox(height: size.height * 0.01),
+                  SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Align(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.1,
+                      ),
+                      child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*BH: Biomasa herbácea(T/ha) \n'
@@ -171,7 +175,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                   ),
 
                   //Formula con variable completa
-                  const SizedBox(height: 10),
+                  SizedBox(height: size.height * 0.01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -189,11 +193,11 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
                   ),
 
                   //Calcular
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

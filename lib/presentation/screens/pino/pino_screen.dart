@@ -148,8 +148,8 @@ class _PinoScreenState extends State<PinoScreen> {
                     // Logo de la app
                     SizedBox(height: size.height * 0.03),
                     Image.asset(
-                      'assets/img/logo_untrm_u.png',
-                      color: Colors.white.withOpacity(0.8),
+                      'assets/img/untrm_white_png.png',
+                      color: Colors.white.withOpacity(0.7),
                       height: size.height * 0.2,
                     ),
 

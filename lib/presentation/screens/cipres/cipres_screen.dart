@@ -40,16 +40,21 @@ class _CipresScreenState extends State<CipresScreen> {
               content: RichText(
                   textAlign: TextAlign.justify,
                   text: const TextSpan(
-                      style: TextStyle(fontSize: 16, color: Colors.black),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
                       children: [
                         TextSpan(
                             text: 'Cupressus ',
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold)),
                         TextSpan(
                           text:
                               ' en sistemas silvopastoriles es una especie de árbol conífero que se utiliza por su rápido crecimiento y su capacidad para proporcionar sombra y protección contra el viento. También puede ayudar a reducir la erosión del suelo y mejorar la biodiversidad en la zona.',
+                          style: TextStyle(fontSize: 14),
                         )
                       ])),
               actions: [
@@ -105,6 +110,8 @@ class _CipresScreenState extends State<CipresScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     final stateCipres = Provider.of<StateBiomassC>(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -139,17 +146,18 @@ class _CipresScreenState extends State<CipresScreen> {
               children: <Widget>[
                 //Logo de la app
                 Image.asset(
-                  'assets/img/only_logo.png',
-                  height: 100,
+                  'assets/img/untrm_white_png.png',
+                  color: Colors.white.withOpacity(0.7),
+                  height: size.height * 0.2,
                 ),
 
                 //Materia verde
-                const SizedBox(height: 50.0),
+                SizedBox(height: size.height * 0.03),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: Stack(children: [
                     SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -187,12 +195,12 @@ class _CipresScreenState extends State<CipresScreen> {
                 ),
 
                 //Materia seca
-                const SizedBox(height: 20.0),
+                SizedBox(height: size.height * 0.03),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: Stack(children: [
                     SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -234,11 +242,11 @@ class _CipresScreenState extends State<CipresScreen> {
                 ),
 
                 //Biomasa
-                const SizedBox(height: 20.0),
+                SizedBox(height: size.height * 0.03),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 260,
+                    width: size.width * 0.8,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -265,11 +273,11 @@ class _CipresScreenState extends State<CipresScreen> {
                 ),
 
                 //Carbono en la biomasa
-                const SizedBox(height: 20.0),
+                SizedBox(height: size.height * 0.03),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 260,
+                    width: size.width * 0.8,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -290,7 +298,7 @@ class _CipresScreenState extends State<CipresScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 40.0),
+                SizedBox(height: size.height * 0.03),
               ],
             ),
           ),
@@ -298,8 +306,8 @@ class _CipresScreenState extends State<CipresScreen> {
 
         //Botón informativo
         Positioned(
-          top: 20,
-          right: 10,
+          top: size.height * 0.05,
+          right: size.width * 0.01,
           child: FilledButton.tonal(
             onPressed: () => openDialog(context),
             style: ElevatedButton.styleFrom(

@@ -54,11 +54,12 @@ class _GreenMatterCState extends State<GreenMatterC> {
               title: const Text(
                 '¿Cómo sacar la materia verde?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'Se procede al corte y pesado del material vegetativo del SSP, en un área de 1 m2, con 3 repeticiones, con el apoyo de un cuadrante de madera o fierro y una hoz se va a realizar el corte a una altura de 05 cm del suelo, para luego pesar las muestras en una balanza de 5kg, expresando el resultado en kg de materia verde/m2 (kg mv.m2). ',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -74,6 +75,8 @@ class _GreenMatterCState extends State<GreenMatterC> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Form(
@@ -89,15 +92,15 @@ class _GreenMatterCState extends State<GreenMatterC> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/cipres/greenmatter/green_c.jpg',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
 
                     //Position of the buttom
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                         onPressed: () => openDialog(context),
                         style: ElevatedButton.styleFrom(
@@ -112,7 +115,7 @@ class _GreenMatterCState extends State<GreenMatterC> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando la materia verde con Ciprés',
                     style: TextStyle(
@@ -122,17 +125,19 @@ class _GreenMatterCState extends State<GreenMatterC> {
                   ),
 
                   //Peso de la materia verde
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text('Peso de materia verde por m²:',
                       style: TextStyle(
                         fontSize: 15,
                       )),
-                  const SizedBox(height: 5),
+                  SizedBox(height: size.height * 0.01),
 
                   //Ingresa el peso de materia verde
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.15,
+                    ),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _controllerWeightC,
@@ -149,7 +154,7 @@ class _GreenMatterCState extends State<GreenMatterC> {
                   ),
 
                   //Fecha actual
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -161,11 +166,11 @@ class _GreenMatterCState extends State<GreenMatterC> {
                   ),
 
                   //Guardar
-                  const SizedBox(height: 15.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

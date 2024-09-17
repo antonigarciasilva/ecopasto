@@ -147,7 +147,8 @@ class _PonaScreenState extends State<PonaScreen> {
                 children: <Widget>[
                   //Logo de la app
                   Image.asset(
-                    'assets/img/only_logo.png',
+                    'assets/img/untrm_white_png.png',
+                    color: Colors.white.withOpacity(0.7),
                     height: size.height * 0.2,
                   ),
 

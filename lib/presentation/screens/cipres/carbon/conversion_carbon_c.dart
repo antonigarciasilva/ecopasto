@@ -29,11 +29,12 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                 backgroundColor: Colors.white,
                 title: const Text(
                   'Resultado del cálculo',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 content: Text(
                   'la cantidad de CO₂ es: ${stateBiomassC!.resultConversionCarbonC.toStringAsFixed(2)} T/ha',
                   textAlign: TextAlign.justify,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 actions: [
                   TextButton(
@@ -59,11 +60,12 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
               title: const Text(
                 '¿Qué es la conversión del carbono a CO2?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'La conversión del carbono en dióxido de carbono (CO₂) es un proceso natural y humano en el que el carbono se oxida para formar CO₂. Esto ocurre en la respiración celular, la descomposición y la quema de combustibles fósiles. El aumento de CO₂ en la atmósfera es una causa principal del cambio climático. Para reducir estas emisiones, se emplean estrategias como la reforestación y el uso de energías renovables.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -79,6 +81,8 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -94,14 +98,14 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/cipres/carbon/carbon_c.png',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -114,7 +118,7 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Conversión de carbono orgánico a dióxido de carbono',
                     style: TextStyle(
@@ -125,11 +129,11 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -145,10 +149,12 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                   ),
 
                   //NOTA
-                  const SizedBox(height: 5),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50),
-                    child: Align(
+                  SizedBox(height: size.height * 0.01),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.18,
+                    ),
+                    child: const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '*CO₂: Dioxido carbono \n'
@@ -159,7 +165,7 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                   ),
 
                   //Formula reemplazando valores
-                  const SizedBox(height: 10),
+                  SizedBox(height: size.height * 0.03),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -171,16 +177,15 @@ class _ConversionCarbonCState extends State<ConversionCarbonC> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 20),
                     ],
                   ),
 
                   //Calcular
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

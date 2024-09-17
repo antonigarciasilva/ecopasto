@@ -51,11 +51,12 @@ class _AlisoScreenState extends State<AlisoScreen> {
               title: const Text(
                 'Cálculos imcompletos',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: Text(
                 message,
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 16),
               ),
               actions: [
                 TextButton(
@@ -78,7 +79,7 @@ class _AlisoScreenState extends State<AlisoScreen> {
               title: const Text(
                 '¿Qué es el Aliso?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: RichText(
                 textAlign: TextAlign.justify,
@@ -91,9 +92,9 @@ class _AlisoScreenState extends State<AlisoScreen> {
                               fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.bold)),
                       TextSpan(
-                        text:
-                            ' en sistemas silvopastoriles es una especie arbórea utilizada por sus beneficios ambientales y productivos. Proporciona sombra, mejora la calidad del suelo y puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
-                      )
+                          text:
+                              ' en sistemas silvopastoriles es una especie arbórea utilizada por sus beneficios ambientales y productivos. Proporciona sombra, mejora la calidad del suelo y puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
+                          style: TextStyle(fontSize: 14))
                     ]),
               ),
               actions: [
@@ -110,6 +111,10 @@ class _AlisoScreenState extends State<AlisoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
+
+    //Provider
     final stateAliso = Provider.of<StateBiomass>(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -129,9 +134,6 @@ class _AlisoScreenState extends State<AlisoScreen> {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final screenHeight = constraints.maxHeight;
-            final screenWidth = constraints.maxWidth;
-
             return Stack(
               children: [
                 //Imagen de fondo
@@ -152,21 +154,19 @@ class _AlisoScreenState extends State<AlisoScreen> {
                       children: <Widget>[
                         //Logo de la app
                         Image.asset(
-                          'assets/img/logo_untrm_u.png',
-                          color: Colors.black.withOpacity(0.3),
-                          height: screenHeight * 0.2,
+                          'assets/img/untrm_white_png.png',
+                          color: Colors.white.withOpacity(0.7),
+                          height: size.height * 0.2,
                         ),
 
-                        SizedBox(
-                          height: screenHeight * 0.02,
-                        ),
+                        SizedBox(height: size.height * 0.03),
 
                         //Materia verde
                         MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: Stack(children: [
                             SizedBox(
-                              width: screenWidth * 0.6,
+                              width: size.width * 0.8,
                               child: ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor:
@@ -207,14 +207,12 @@ class _AlisoScreenState extends State<AlisoScreen> {
                         ),
 
                         //Materia seca
-                        SizedBox(
-                          height: screenHeight * 0.02,
-                        ),
+                        SizedBox(height: size.height * 0.03),
                         MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: Stack(children: [
                             SizedBox(
-                              width: screenWidth * 0.6,
+                              width: size.width * 0.8,
                               child: ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor:
@@ -260,13 +258,11 @@ class _AlisoScreenState extends State<AlisoScreen> {
                         ),
 
                         //Biomasa
-                        SizedBox(
-                          height: screenHeight * 0.02,
-                        ),
+                        SizedBox(height: size.height * 0.03),
                         MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: SizedBox(
-                            width: screenWidth * 0.6,
+                            width: size.width * 0.8,
                             child: ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor: WidgetStateProperty.all<Color>(
@@ -296,13 +292,11 @@ class _AlisoScreenState extends State<AlisoScreen> {
                         ),
 
                         //Carbono en la biomasa
-                        SizedBox(
-                          height: screenHeight * 0.02,
-                        ),
+                        SizedBox(height: size.height * 0.03),
                         MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: SizedBox(
-                            width: screenWidth * 0.6,
+                            width: size.width * 0.8,
                             child: ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor: WidgetStateProperty.all<Color>(
@@ -333,8 +327,8 @@ class _AlisoScreenState extends State<AlisoScreen> {
                 //Botón informativo
 
                 Positioned(
-                  top: screenHeight * 0.02,
-                  right: screenWidth * 0.05,
+                  top: size.height * 0.05,
+                  right: size.width * 0.01,
                   child: FilledButton.tonal(
                     onPressed: () => openDialog(context),
                     style: ElevatedButton.styleFrom(

@@ -44,11 +44,13 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                 backgroundColor: Colors.white,
                 title: const Text(
                   'Resultado del cálculo',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 content: Text(
-                    'la cantidad de CO₂ es: ${stateBiomass!.resultConversionCarbon.toStringAsFixed(2)} T/ha',
-                    textAlign: TextAlign.justify),
+                  'la cantidad de CO₂ es: ${stateBiomass!.resultConversionCarbon.toStringAsFixed(2)} T/ha',
+                  textAlign: TextAlign.justify,
+                  style: const TextStyle(fontSize: 16),
+                ),
                 actions: [
                   TextButton(
                       onPressed: () {
@@ -73,11 +75,12 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
               title: const Text(
                 '¿Qué es la conversión del carbono a CO₂?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'La conversión del carbono en dióxido de carbono (CO₂) es un proceso natural y humano en el que el carbono se oxida para formar CO₂. Esto ocurre en la respiración celular, la descomposición y la quema de combustibles fósiles. El aumento de CO₂ en la atmósfera es una causa principal del cambio climático. Para reducir estas emisiones, se emplean estrategias como la reforestación y el uso de energías renovables.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -93,6 +96,8 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     final stateBiomass = Provider.of<StateBiomass>(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -109,14 +114,14 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/aliso/biomass/biomas_alder.jpg',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -129,22 +134,22 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Conversión de carbono orgánico a dióxido de carbono',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -160,10 +165,12 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                   ),
 
                   //NOTA
-                  const SizedBox(height: 5),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50),
-                    child: Align(
+                  SizedBox(height: size.height * 0.01),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.18,
+                    ),
+                    child: const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '*CO₂: Dioxido carbono \n'
@@ -174,7 +181,7 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                   ),
 
                   //Formula con variable completa
-                  const SizedBox(height: 10),
+                  SizedBox(height: size.height * 0.01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -186,16 +193,15 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 20),
                     ],
                   ),
 
                   //Calcular
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

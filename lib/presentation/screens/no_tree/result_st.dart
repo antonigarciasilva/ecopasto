@@ -178,6 +178,8 @@ class ResultSt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     String level = getCarbonLevelC(resultHerbaceousBiomassST);
     Color levelColor;
     final List<BiomassData> chartData = getchartDate();
@@ -200,23 +202,19 @@ class ResultSt extends StatelessWidget {
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 60,
-                  ),
+                  SizedBox(height: size.height * 0.03),
 
                   SizedBox(
                       child: Image.asset(
                     getImagePath(level),
-                    height: 200,
+                    fit: BoxFit.fitHeight,
+                    height: size.height * 0.45,
                   )),
-                  const SizedBox(
-                    height: 20,
-                  ),
-
+                  SizedBox(height: size.height * 0.03),
                   Table(
                     border: TableBorder.all(),
                     columnWidths: const <int, TableColumnWidth>{
@@ -231,7 +229,7 @@ class ResultSt extends StatelessWidget {
                       //Títulos de la cabecera
                       TableRow(children: [
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: const Text(
                             'Variables',
                             style: TextStyle(
@@ -242,7 +240,7 @@ class ResultSt extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: const Text(
                             'Aliso',
                             style: TextStyle(
@@ -253,7 +251,7 @@ class ResultSt extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: const Text(
                             'Ciprés',
                             style: TextStyle(
@@ -264,7 +262,7 @@ class ResultSt extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: const Text(
                             'Pino',
                             style: TextStyle(
@@ -275,7 +273,7 @@ class ResultSt extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: const Text(
                             'Pona',
                             style: TextStyle(
@@ -286,7 +284,7 @@ class ResultSt extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: const Text(
                             'SSA',
                             style: TextStyle(
@@ -301,7 +299,7 @@ class ResultSt extends StatelessWidget {
 
                       TableRow(children: [
                         Container(
-                          padding: const EdgeInsets.all(8),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: const Text(
                             'Retención de  carbono total',
                             style: TextStyle(
@@ -313,7 +311,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Aliso
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultCarbonBiomass.toStringAsFixed(2),
                             style: const TextStyle(
@@ -324,7 +322,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Ciprés
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultCarbonBiomassC.toStringAsFixed(2),
                             style: const TextStyle(
@@ -335,7 +333,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Pino
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultCarbonBiomassP.toStringAsFixed(2),
                             style: const TextStyle(
@@ -346,7 +344,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Pona
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultCarbonBiomassO.toStringAsFixed(2),
                             style: const TextStyle(
@@ -357,7 +355,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //SSA
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultCarbonBiomassST.toStringAsFixed(2),
                             style: const TextStyle(
@@ -371,7 +369,7 @@ class ResultSt extends StatelessWidget {
 
                       TableRow(children: [
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: const Text(
                             'Biomasa vegetal total',
                             style: TextStyle(
@@ -383,7 +381,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Aliso
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             totalBiomass.toStringAsFixed(2),
                             style: const TextStyle(
@@ -394,7 +392,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Ciprés
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             totalBiomassC.toStringAsFixed(2),
                             style: const TextStyle(
@@ -405,7 +403,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Pino
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             totalBiomassP.toStringAsFixed(2),
                             style: const TextStyle(
@@ -416,7 +414,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Pona
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             totalBiomassO.toStringAsFixed(2),
                             style: const TextStyle(
@@ -427,7 +425,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //SSA
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultHerbaceousBiomassST.toStringAsFixed(2),
                             style: const TextStyle(
@@ -442,7 +440,7 @@ class ResultSt extends StatelessWidget {
 
                       TableRow(children: [
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: const Text(
                             'Dióxido de carbomo',
                             style: TextStyle(
@@ -454,7 +452,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Aliso
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultConversionCarbon.toStringAsFixed(2),
                             style: const TextStyle(
@@ -465,7 +463,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Ciprés
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultConversionCarbonC.toStringAsFixed(2),
                             style: const TextStyle(
@@ -476,7 +474,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Pino
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultConversionCarbonP.toStringAsFixed(2),
                             style: const TextStyle(
@@ -487,7 +485,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Pona
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultConversionCarbonO.toStringAsFixed(2),
                             style: const TextStyle(
@@ -498,7 +496,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //SSA
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             resultConversionCarbonST.toStringAsFixed(2),
                             style: const TextStyle(
@@ -511,7 +509,7 @@ class ResultSt extends StatelessWidget {
                       //Fila de la suma total
                       TableRow(children: [
                         Container(
-                          padding: const EdgeInsets.all(8),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: const Text(
                             'Total',
                             style: TextStyle(
@@ -523,7 +521,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Aliso
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             sumaTotal.toStringAsFixed(2),
                             style: const TextStyle(
@@ -533,7 +531,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Ciprés
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             sumaTotalC.toStringAsFixed(2),
                             style: const TextStyle(
@@ -543,7 +541,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Pino
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             sumaTotalP.toStringAsFixed(2),
                             style: const TextStyle(
@@ -553,9 +551,9 @@ class ResultSt extends StatelessWidget {
                         ),
                         //Pona
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
-                            sumaTotalP.toStringAsFixed(2),
+                            sumaTotalO.toStringAsFixed(2),
                             style: const TextStyle(
                                 fontSize: 10, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
@@ -563,7 +561,7 @@ class ResultSt extends StatelessWidget {
                         ),
                         //SSA
                         Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: EdgeInsets.all(size.width * 0.01),
                           child: Text(
                             sumaTotalST.toStringAsFixed(2),
                             style: const TextStyle(
@@ -575,16 +573,12 @@ class ResultSt extends StatelessWidget {
                     ],
                   ),
 
-                  const SizedBox(
-                    height: 20,
-                  ),
-
+                  SizedBox(height: size.height * 0.03),
                   //Implementamos el gráfico
 
                   SizedBox(
-                    height: 380,
-                    width: 280,
-
+                    height: size.height * 0.6,
+                    width: size.width * 0.95,
                     //Inicializamos el gráfico cartesiano
                     child: SfCartesianChart(
                       title: const ChartTitle(
@@ -774,44 +768,42 @@ class ResultSt extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: size.height * 0.03),
                   Text(
                     'El carbono total en la biomasa es de: ${resultCarbonBiomassST.toStringAsFixed(2)} T/ha',
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 18),
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: size.height * 0.03),
                   Text(
                     'Nivel de carbono: $level',
-                    style: TextStyle(fontSize: 21, color: levelColor),
+                    style: TextStyle(
+                        fontSize: 21,
+                        color: levelColor,
+                        fontWeight: FontWeight.bold),
                     textAlign: TextAlign.justify,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: size.height * 0.03),
                   Text(
                     getRecommendationsC(level),
-                    style: const TextStyle(fontSize: 16),
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
                     textAlign: TextAlign.justify,
                   ),
 
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: size.height * 0.03),
                   Text(
                     getNextMeasuremetTimeC(level),
                     style: const TextStyle(
-                        fontSize: 15, fontStyle: FontStyle.italic),
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold),
                     textAlign: TextAlign.justify,
                   ),
 
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: size.height * 0.03),
 
                   //Botón de regreso
                   ElevatedButton(

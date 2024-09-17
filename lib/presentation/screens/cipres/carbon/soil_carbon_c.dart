@@ -50,11 +50,12 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cálculo',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   content: Text(
                     'El peso del suelo (Ws) es: ${result.toStringAsFixed(2)} T/ha',
                     textAlign: TextAlign.justify,
+                    style: const TextStyle(fontSize: 16),
                   ),
                   actions: [
                     TextButton(
@@ -99,11 +100,12 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
               title: const Text(
                 '¿Qué es el carbono en el suelo?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'El carbono en el suelo es la cantidad de carbono en la materia orgánica del suelo. Incluye restos de plantas y animales, y microorganismos. Este carbono entra al suelo por la descomposición de materiales orgánicos. El suelo actúa como un sumidero de carbono a largo plazo, mejorando la fertilidad y estructura del suelo.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -119,6 +121,8 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -135,15 +139,15 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/cipres/carbon/carbon_c.png',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
 
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -156,7 +160,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando carbono en el suelo',
                     style: TextStyle(
@@ -166,7 +170,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   ),
 
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
@@ -186,7 +190,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   ),
 
                   //NOTA
-                  const SizedBox(height: 5),
+                  SizedBox(height: size.height * 0.01),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 50),
                     child: Align(
@@ -199,18 +203,18 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   ),
 
                   //Área
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Área (a): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.12,
+                    ),
                     child: TextFormField(
                       validator: _validateWeight,
                       controller: _controllerWeightA,
@@ -226,18 +230,18 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   ),
 
                   //Profundidad
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Profundidad (p): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.12,
+                    ),
                     child: TextFormField(
                       validator: _validateWeight,
                       controller: _controllerWeightP,
@@ -253,27 +257,33 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   ),
 
                   //Densidad aparente del suelo
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Densidad aparente del suelo (da): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.12,
+                    ),
                     child: DropdownButtonFormField(
                       value: _selectedSoilType,
                       items: const [
                         DropdownMenuItem(
                             value: 'arcilloso-franco',
-                            child: Text('Arcilloso-Franco 1.1 g/cm³')),
+                            child: Text(
+                              'Arcilloso-Franco 1.1 g/cm³',
+                              style: TextStyle(fontSize: 14),
+                            )),
                         DropdownMenuItem(
                             value: 'franco-arenoso',
-                            child: Text('Franco-Arenoso 1.32 g/cm³')),
+                            child: Text(
+                              'Franco-Arenoso 1.32 g/cm³',
+                              style: TextStyle(fontSize: 14),
+                            )),
                       ],
                       onChanged: (value) {
                         setState(() {
@@ -293,11 +303,11 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                   ),
 
                   //Guardar
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

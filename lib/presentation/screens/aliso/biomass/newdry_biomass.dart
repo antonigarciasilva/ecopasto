@@ -48,11 +48,12 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                   backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cálculo',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   content: Text(
                     'La biomasa seca es: $formattedResult T/ha',
                     textAlign: TextAlign.justify,
+                    style: const TextStyle(fontSize: 16),
                   ),
                   actions: [
                     TextButton(
@@ -81,11 +82,12 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
               title: const Text(
                 '¿Qué es la biomasa seca?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'La biomasa seca es la materia orgánica total de un árbol, medida en peso seco. Se calcula usando el diámetro a la altura del pecho (DAP) y fórmulas alométricas específicas para cada especie.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 16),
               ),
               actions: [
                 FilledButton(
@@ -99,6 +101,8 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -114,15 +118,15 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                     child: Image.asset(
                       'assets/img/aliso/biomass/al_dry_biomass.jpg',
                       fit: BoxFit.fitWidth,
-                      height: 329,
+                      height: size.height * 0.55,
                       color: Colors.black.withOpacity(0.3),
                       colorBlendMode: BlendMode.darken,
                     ),
                   ),
                   //Posición del botón
                   Positioned(
-                    right: 0,
-                    top: 30,
+                    top: size.height * 0.05,
+                    right: size.width * 0.01,
                     child: FilledButton.tonal(
                         onPressed: () => openDialog(context),
                         style: ElevatedButton.styleFrom(
@@ -135,21 +139,21 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                 ]),
 
                 //Título
-                const SizedBox(height: 25.0),
+                SizedBox(height: size.height * 0.03),
                 const Text(
                   'Calculando la biomasa seca',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
 
                 //Formula
-                const SizedBox(height: 25.0),
+                SizedBox(height: size.height * 0.03),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: SizedBox(
-                    width: 250,
+                    width: size.width * 0.8,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -165,16 +169,16 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                 ),
 
                 //Formulario del DAP
-                const SizedBox(height: 25.0),
+                SizedBox(height: size.height * 0.03),
                 const Text(
                   'Diámetro a la altura del pecho (DAP): ',
                   style: TextStyle(fontSize: 15),
                 ),
-                const SizedBox(
-                  width: 8,
-                ),
+                SizedBox(height: size.height * 0.01),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.15,
+                  ),
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -192,7 +196,7 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                         ),
 
                         //Calcular
-                        const SizedBox(height: 20),
+                        SizedBox(height: size.height * 0.03),
                         ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -204,7 +208,7 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
                             style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: size.height * 0.03),
                         if (dryBiomass != null)
                           Visibility(
                             visible: false,

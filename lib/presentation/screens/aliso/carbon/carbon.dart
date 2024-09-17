@@ -31,12 +31,13 @@ class _CarbonScreenState extends State<CarbonScreen> {
               backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es el carbono?',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.justify,
               ),
               content: const Text(
                 'El carbono en los sistemas silvopastoriles se almacena en la biomasa de árboles y pastos, en el suelo y en los residuos animales, desempeñando un papel crucial en la captura de CO₂ y la mitigación del cambio climático. Estos sistemas integrados mejoran la fertilidad del suelo, aumentan su capacidad de retención de agua y nutrientes, y promueven la resiliencia ecológica. ',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -76,10 +77,12 @@ class _CarbonScreenState extends State<CarbonScreen> {
               title: const Text(
                 'Cálculos imcompletos',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: Text(
                 message,
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 16),
               ),
               actions: [
                 TextButton(
@@ -93,14 +96,13 @@ class _CarbonScreenState extends State<CarbonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     final stateBiomass = Provider.of<StateBiomass>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: LayoutBuilder(builder: (context, constraints) {
-          final screenHeight = constraints.maxHeight;
-          final screenWidth = constraints.maxWidth;
-
           return Stack(
             children: [
               //Imagen de fondo
@@ -119,14 +121,13 @@ class _CarbonScreenState extends State<CarbonScreen> {
                     children: <Widget>[
                       //Logo de la app
                       Image.asset(
-                        'assets/img/only_logo.png',
-                        height: screenHeight * 0.2,
+                        'assets/img/untrm_white_png.png',
+                        color: Colors.white.withOpacity(0.7),
+                        height: size.height * 0.2,
                       ),
 
                       //Título
-                      SizedBox(
-                        height: screenHeight * 0.02,
-                      ),
+                      SizedBox(height: size.height * 0.03),
                       const Text(
                         'Calculando carbono en la biomasa con Aliso',
                         style: TextStyle(
@@ -138,13 +139,11 @@ class _CarbonScreenState extends State<CarbonScreen> {
                       ),
 
                       //Carbono en biomasa
-                      SizedBox(
-                        height: screenHeight * 0.02,
-                      ),
+                      SizedBox(height: size.height * 0.03),
                       MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: SizedBox(
-                          width: screenWidth * 0.6,
+                          width: size.width * 0.8,
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all<Color>(
@@ -173,13 +172,11 @@ class _CarbonScreenState extends State<CarbonScreen> {
                       ),
 
                       //Carbono en el suelo
-                      SizedBox(
-                        height: screenHeight * 0.02,
-                      ),
+                      SizedBox(height: size.height * 0.03),
                       MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: SizedBox(
-                          width: screenWidth * 0.6,
+                          width: size.width * 0.8,
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all<Color>(
@@ -203,13 +200,11 @@ class _CarbonScreenState extends State<CarbonScreen> {
                       ),
 
                       //Conversión de carbono a dióxido de carbono
-                      SizedBox(
-                        height: screenHeight * 0.02,
-                      ),
+                      SizedBox(height: size.height * 0.03),
                       MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: SizedBox(
-                          width: screenWidth * 0.6,
+                          width: size.width * 0.8,
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all<Color>(
@@ -238,10 +233,12 @@ class _CarbonScreenState extends State<CarbonScreen> {
                       ),
 
                       //NOTA
-
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 60),
-                        child: Align(
+                      SizedBox(height: size.height * 0.01),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.15,
+                        ),
+                        child: const Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             '*C: Carbono \n'
@@ -249,10 +246,6 @@ class _CarbonScreenState extends State<CarbonScreen> {
                             style: TextStyle(fontSize: 12, color: Colors.white),
                           ),
                         ),
-                      ),
-
-                      SizedBox(
-                        height: screenHeight * 0.02,
                       ),
                     ],
                   ),
@@ -262,8 +255,8 @@ class _CarbonScreenState extends State<CarbonScreen> {
               //Botón informativo
 
               Positioned(
-                top: screenHeight * 0.02,
-                right: screenWidth * 0.05,
+                top: size.height * 0.05,
+                right: size.width * 0.01,
                 child: FilledButton.tonal(
                   onPressed: () => openDialog(context),
                   style: ElevatedButton.styleFrom(

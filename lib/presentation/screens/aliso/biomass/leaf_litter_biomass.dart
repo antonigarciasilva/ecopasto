@@ -55,11 +55,12 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                 backgroundColor: Colors.white,
                 title: const Text(
                   'Resultado del cálculo',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 content: Text(
                   'La biomasa herbácea es: $formattedResult T/ha',
                   textAlign: TextAlign.justify,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 actions: [
                   TextButton(
@@ -87,11 +88,12 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
               title: const Text(
                 '¿Qué es la biomasa hojarasca?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'La biomasa de hojarasca incluye las hojas caídas, ramas pequeñas, flores, frutos y otros restos vegetales que se acumulan en el suelo del bosque o de cualquier área con vegetación arbórea. Esta hojarasca es una fuente crucial de nutrientes para el suelo, ya que se descompone y enriquece el suelo con materia orgánica, mejorando su estructura y fertilidad.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -107,6 +109,8 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -123,14 +127,14 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/aliso/biomass/al_biomass_leaf.jpg',
-                        fit: BoxFit.fitWidth,
-                        height: 209,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 20,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -143,21 +147,21 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando la biomasa hojarasca con Aliso',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   //Formula
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 320,
+                      width: size.width * 0.95,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -174,13 +178,13 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                   ),
 
                   //NOTA
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const SizedBox(
+                  SizedBox(height: size.height * 0.01),
+                  SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Align(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.1,
+                      ),
+                      child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*BH: Biomasa hojarasca(T/ha) \n'
@@ -193,15 +197,13 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                   ),
 
                   //PSM
-                  const SizedBox(height: 20),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Peso seco de la materia (PSM): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -221,18 +223,18 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                   ),
 
                   //PFM
-                  const SizedBox(height: 25),
+                  SizedBox(height: size.height * 0.03),
 
                   const Text(
                     'Peso fresco de la muestra (PFM): ',
                     style: TextStyle(fontSize: 15),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(height: size.height * 0.01),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.15,
+                    ),
                     child: TextFormField(
                       controller: _controllerWeightPFM,
                       validator: _validateWeight,
@@ -249,11 +251,11 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
                   ),
 
                   //Guardar
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

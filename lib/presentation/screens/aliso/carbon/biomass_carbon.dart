@@ -97,12 +97,13 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
               backgroundColor: Colors.white,
               title: const Text(
                 '¿Qué es el carbono en la biomasa?',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.justify,
               ),
               content: const Text(
                 'es la cantidad de carbono en componentes vivos de un ecosistema. Incluye árboles, arbustos, pastos y raíces. Las plantas capturan CO2 de la atmósfera y lo almacenan en sus tejidos. Actúa como un sumidero de carbono, ayudando a mitigar el cambio climático.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -118,6 +119,8 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //responsive
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -133,15 +136,15 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/img/aliso/biomass/biomas_alder.jpg',
-                        fit: BoxFit.fitWidth,
-                        height: 259,
+                        fit: BoxFit.fitHeight,
+                        height: size.height * 0.55,
                       ),
                     ),
 
                     //Possition of the botton
                     Positioned(
-                      right: 5,
-                      top: 50,
+                      top: size.height * 0.05,
+                      right: size.width * 0.01,
                       child: FilledButton.tonal(
                           onPressed: () => openDialog(context),
                           style: ElevatedButton.styleFrom(
@@ -154,22 +157,22 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                   ]),
 
                   //Título
-                  const SizedBox(height: 10.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Calculando carbono en la biomasa con Aliso',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
 
                   //Formula
-                  const SizedBox(height: 15.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 300,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -185,11 +188,13 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                   ),
 
                   //NOTA
-                  const SizedBox(height: 5),
-                  const SizedBox(
+                  SizedBox(height: size.height * 0.01),
+                  SizedBox(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Align(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.15,
+                      ),
+                      child: const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*CBV: Carbono en biomasa vegetal(T/ha) \n'
@@ -201,7 +206,7 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                   ),
 
                   //Formula con variable completa
-                  const SizedBox(height: 10),
+                  SizedBox(height: size.height * 0.01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -219,11 +224,11 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
 
                   //Presentamos el mensaje de error
                   if (errorMessage != null) ...[
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: size.height * 0.01),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.15,
+                      ),
                       child: Text(
                         errorMessage!,
                         style: const TextStyle(fontSize: 15, color: Colors.red),
@@ -233,11 +238,11 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
                   ],
 
                   //Calcular
-                  const SizedBox(height: 20.0),
+                  SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: 240,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
