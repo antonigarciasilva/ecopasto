@@ -35,15 +35,15 @@ class _CipresScreenState extends State<CipresScreen> {
               title: const Text(
                 '¿Qué es el Ciprés?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: RichText(
                   textAlign: TextAlign.justify,
                   text: const TextSpan(
                       style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
                       children: [
                         TextSpan(
                             text: 'Cupressus ',

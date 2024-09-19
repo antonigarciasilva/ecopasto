@@ -77,7 +77,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pop(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const GreenMatterScreen()));
@@ -105,8 +105,8 @@ class MyGreenMatterScreen extends State<GreenMatterScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/aliso/greenmatter/green_alder.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/aliso/aliso.jpg',
+                        fit: BoxFit.fitWidth,
                         height: size.height * 0.55,
                       ),
                     ),

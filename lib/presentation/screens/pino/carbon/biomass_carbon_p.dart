@@ -97,11 +97,12 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
               title: const Text(
                 '¿Qué es el carbono en la biomasa?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'Es la cantidad de carbono en componentes vivos de un ecosistema. Incluye árboles, arbustos, pastos y raíces. Las plantas capturan CO2 de la atmósfera y lo almacenan en sus tejidos. Actúa como un sumidero de carbono, ayudando a mitigar el cambio climático.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -136,8 +137,8 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pino/carbon/carbon_p.png',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/pino/carbon/bio_carbon_p.jpg',
+                        fit: BoxFit.fitWidth,
                         height: size.height * 0.55,
                       ),
                     ),

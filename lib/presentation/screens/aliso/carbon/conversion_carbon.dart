@@ -113,7 +113,7 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/aliso/biomass/biomas_alder.jpg',
+                        'assets/img/aliso/carbon/conversion_a.jpg',
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),

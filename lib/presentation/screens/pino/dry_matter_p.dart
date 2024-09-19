@@ -57,11 +57,12 @@ class _DryMatterPState extends State<DryMatterP> {
                   backgroundColor: Colors.white,
                   title: const Text(
                     'Resultado del cáculo',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   content: Text(
                     'El peso de la materia seca es: $formattedResult % MS',
                     textAlign: TextAlign.justify,
+                    style: const TextStyle(fontSize: 16),
                   ),
                   actions: [
                     TextButton(
@@ -89,11 +90,12 @@ class _DryMatterPState extends State<DryMatterP> {
               title: const Text(
                 '¿Cómo sacar el peso de la muestra seca (PSM)',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'Se emplea una sub muestra de la materia verde de 500g dependiendo de la cantidad de pastura, luego, se coloca en una estufa a 60 °C, hasta obtener un peso constante y con la ayuda de una balanza de 1 Kg se obtiene el PSM',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 FilledButton(
@@ -123,8 +125,8 @@ class _DryMatterPState extends State<DryMatterP> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pino/drymatter/dry_matter.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/pino/drymatter/dry_matter_p.jpg',
+                        fit: BoxFit.fitWidth,
                         height: size.height * 0.6,
                       ),
                     ),

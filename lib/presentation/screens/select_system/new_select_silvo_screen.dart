@@ -164,7 +164,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
                               Image.asset(
-                                'assets/img/aliso/aliso.jpg',
+                                'assets/img/aliso/biomass/arbol_aliso.jpg',
                                 height: size.height * 0.5,
                                 width: size.width * 0.8,
                                 fit: BoxFit.cover,

@@ -118,8 +118,8 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/cipres/biomass/biomass_c.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/cipres/biomass/dry_biomass_c.jpg',
+                        fit: BoxFit.fitWidth,
                         height: size.height * 0.55,
                       ),
                     ),
@@ -145,7 +145,7 @@ class _DryBiomassCNewState extends State<DryBiomassCNew> {
                 const Text(
                   'Calculando la biomasa seca',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                     fontWeight: FontWeight.w900,
                   ),
                 ),

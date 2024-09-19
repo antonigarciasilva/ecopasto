@@ -30,11 +30,12 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
               backgroundColor: Colors.white,
               title: const Text(
                 'Resultado del cálculo',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: Text(
                 'La biomasa herbácea es: ${stateBiomassP!.resultHerbaceousBiomassP.toStringAsFixed(2)} T/ha',
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 16),
               ),
               actions: [
                 TextButton(
@@ -61,11 +62,12 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
               title: const Text(
                 '¿Qué es la biomasa herbácea?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'La biomasa herbácea se refiere a la materia orgánica de las plantas herbáceas, que son plantas no leñosas como pastos, flores silvestres y otras plantas de bajo crecimiento. Estas plantas suelen ser de ciclo de vida corto y juegan un papel importante en los ecosistemas, proporcionando alimento para herbívoros, contribuyendo a la estabilidad del suelo y participando en los ciclos de nutrientes.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -97,7 +99,7 @@ class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pino/biomass/biomass.jpg',
+                        'assets/img/pino/biomass/herbaceous_p.jpg',
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),

@@ -37,12 +37,12 @@ class _PinoScreenState extends State<PinoScreen> {
               title: const Text(
                 '¿Qué es el Pino?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: RichText(
                   textAlign: TextAlign.justify,
                   text: const TextSpan(
-                      style: TextStyle(fontSize: 16, color: Colors.black),
+                      style: TextStyle(fontSize: 14, color: Colors.black),
                       children: [
                         TextSpan(
                             text: 'Pinus sylvestris',
@@ -89,11 +89,12 @@ class _PinoScreenState extends State<PinoScreen> {
               title: const Text(
                 'Calculos imcompletos',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: Text(
                 message,
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 16),
               ),
               actions: [
                 TextButton(

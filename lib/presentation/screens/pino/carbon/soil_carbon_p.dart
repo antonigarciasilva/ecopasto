@@ -49,11 +49,12 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
           backgroundColor: Colors.white,
           title: const Text(
             'Resultado del cálculo',
-            style: TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           content: Text(
             'El peso del suelo (Ws) es: ${result.toStringAsFixed(2)} T/ha',
             textAlign: TextAlign.justify,
+            style: const TextStyle(fontSize: 16),
           ),
           actions: [
             TextButton(
@@ -84,11 +85,12 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
               title: const Text(
                 '¿Qué es el carbono en el suelo?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'El carbono en el suelo es la cantidad de carbono en la materia orgánica del suelo. Incluye restos de plantas y animales, y microorganismos. Este carbono entra al suelo por la descomposición de materiales orgánicos. El suelo actúa como un sumidero de carbono a largo plazo, mejorando la fertilidad y estructura del suelo.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -141,8 +143,8 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pino/carbon/carbon_p.png',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/pino/carbon/suelo_p.jpg',
+                        fit: BoxFit.fitWidth,
                         height: size.height * 0.55,
                       ),
                     ),

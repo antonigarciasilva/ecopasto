@@ -6,6 +6,7 @@ import 'package:version/presentation/screens/pona/carbon/biomass_carbon_pona.dar
 import 'package:version/presentation/screens/pona/carbon/conversion_carbon_pona.dart';
 
 import 'package:version/presentation/screens/pona/carbon/soil_carbon_pona_n.dart';
+import 'package:version/presentation/screens/widgets/side_menu.dart';
 
 class CarbonPonaScreen extends StatefulWidget {
   const CarbonPonaScreen({super.key});
@@ -100,6 +101,21 @@ class _CarbonPonaScreenState extends State<CarbonPonaScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Calculando carbono \n'
+          'con Pona ',
+          style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.normal,
+              color: Colors.black),
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+      ),
+      drawer: const SideMenu(),
       body: SafeArea(
           child: Stack(
         children: [
@@ -124,17 +140,6 @@ class _CarbonPonaScreenState extends State<CarbonPonaScreen> {
                     'assets/img/untrm_white_png.png',
                     color: Colors.white.withOpacity(0.7),
                     height: size.height * 0.2,
-                  ),
-
-                  //Título
-                  SizedBox(height: size.height * 0.03),
-                  const Text(
-                    'Calculando carbono en la biomasa con Pona',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                    textAlign: TextAlign.center,
                   ),
 
                   //Carbono en biomasa

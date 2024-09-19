@@ -37,7 +37,8 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
               title: Text(
                 'La biomasa total es: $formattedBiomassP T/ha',
                 textAlign: TextAlign.justify,
-                style: const TextStyle(fontSize: 18),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               actions: [
                 TextButton(
@@ -63,11 +64,12 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
               title: const Text(
                 '¿Qué es la biomasa?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'En los sistemas silvopastoriles, la biomasa se refiere a la materia orgánica generada por la combinación de árboles, arbustos, pastos y ganado, optimizando el uso del suelo mediante la integración de la producción forestal y ganadera. Estos sistemas mejoran la fertilidad del suelo, facilitan un ciclo cerrado de nutrientes, capturan carbono, diversifican los ingresos y mejoran el microclima.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -105,10 +107,14 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen> {
         context: context,
         builder: (context) => AlertDialog(
               backgroundColor: Colors.white,
-              title: const Text('Cálculo incompletos'),
+              title: const Text(
+                'Cálculo incompletos',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
               content: Text(
                 message,
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 16),
               ),
               actions: [
                 TextButton(

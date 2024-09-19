@@ -96,7 +96,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/cipres/biomass/biomass_c.jpg',
+                        'assets/img/cipres/biomass/herbaceous_c.jpg',
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),
@@ -122,7 +122,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC> {
                   const Text(
                     'Calculando la biomasa herbácea con Ciprés',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,

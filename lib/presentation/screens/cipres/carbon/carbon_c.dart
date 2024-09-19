@@ -4,6 +4,7 @@ import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart
 import 'package:version/presentation/screens/cipres/carbon/biomass_carbon_c.dart';
 import 'package:version/presentation/screens/cipres/carbon/conversion_carbon_c.dart';
 import 'package:version/presentation/screens/cipres/carbon/soil_carbon_c.dart';
+import 'package:version/presentation/screens/widgets/side_menu.dart';
 
 class CarbonScreenC extends StatefulWidget {
   const CarbonScreenC({super.key});
@@ -99,6 +100,21 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
     final stateBiomass = Provider.of<StateBiomassC>(context);
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Calculando carbono \n'
+          'con Ciprés ',
+          style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.normal,
+              color: Colors.black),
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+      ),
+      drawer: const SideMenu(),
       body: SafeArea(
           child: Stack(
         children: [
@@ -123,17 +139,6 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
                     'assets/img/untrm_white_png.png',
                     color: Colors.white.withOpacity(0.7),
                     height: size.height * 0.2,
-                  ),
-
-                  //Título
-                  SizedBox(height: size.height * 0.03),
-                  const Text(
-                    'Calculando carbono en la biomasa con Ciprés',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                    textAlign: TextAlign.center,
                   ),
 
                   //Carbono en biomasa

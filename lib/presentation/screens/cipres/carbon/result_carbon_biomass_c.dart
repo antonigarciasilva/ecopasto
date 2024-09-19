@@ -123,7 +123,7 @@ class ResultCarbonBiomassC extends StatelessWidget {
   String getCarbonLevelC(double resultCarbonBiomassC) {
     if (resultCarbonBiomassC < 50) {
       return 'Bajo';
-    } else if (resultCarbonBiomassC < 200) {
+    } else if (resultCarbonBiomassC < 100) {
       return 'Medio';
     } else {
       return 'Excelente';
@@ -614,7 +614,7 @@ class ResultCarbonBiomassC extends StatelessWidget {
                                 fontWeight: FontWeight.bold, fontSize: 12)),
                         interval: 20,
                         minimum: 0,
-                        maximum: 300,
+                        maximum: 250,
                         majorGridLines: MajorGridLines(width: 1),
                       ),
 

@@ -50,11 +50,12 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                 backgroundColor: Colors.white,
                 title: const Text(
                   'Resultado del cálculo',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 content: Text(
                   'La biomasa herbácea es: $formattedResult T/ha',
                   textAlign: TextAlign.justify,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 actions: [
                   TextButton(
@@ -83,11 +84,12 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
               title: const Text(
                 '¿Qué es la biomasa hojarasca?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'La biomasa de hojarasca incluye las hojas caídas, ramas pequeñas, flores, frutos y otros restos vegetales que se acumulan en el suelo del bosque o de cualquier área con vegetación arbórea. Esta hojarasca es una fuente crucial de nutrientes para el suelo, ya que se descompone y enriquece el suelo con materia orgánica, mejorando su estructura y fertilidad.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -120,8 +122,8 @@ class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pino/biomass/biomass.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/pino/biomass/leaf_litter_p.jpg',
+                        fit: BoxFit.fitWidth,
                         height: size.height * 0.55,
                       ),
                     ),

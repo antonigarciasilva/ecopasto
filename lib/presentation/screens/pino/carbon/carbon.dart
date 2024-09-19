@@ -5,6 +5,7 @@ import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 import 'package:version/presentation/screens/pino/carbon/biomass_carbon_p.dart';
 import 'package:version/presentation/screens/pino/carbon/conversion_carbon_p.dart';
 import 'package:version/presentation/screens/pino/carbon/soil_carbon_p.dart';
+import 'package:version/presentation/screens/widgets/side_menu.dart';
 
 class CarbonPinoScreen extends StatefulWidget {
   const CarbonPinoScreen({super.key});
@@ -33,11 +34,12 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
               title: const Text(
                 '¿Qué es el carbono?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'El carbono en los sistemas silvopastoriles se almacena en la biomasa de árboles y pastos, en el suelo y en los residuos animales, desempeñando un papel crucial en la captura de CO₂ y la mitigación del cambio climático. Estos sistemas integrados mejoran la fertilidad del suelo, aumentan su capacidad de retención de agua y nutrientes, y promueven la resiliencia ecológica. ',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -80,10 +82,12 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
               title: const Text(
                 'Cálculos imcompletos',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: Text(
                 message,
                 textAlign: TextAlign.justify,
+                style: const TextStyle(fontSize: 16),
               ),
               actions: [
                 TextButton(
@@ -103,6 +107,21 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
     final stateBiomassP = Provider.of<StateBiomassP>(context);
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Calculando carbono \n'
+          'con Pino ',
+          style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.normal,
+              color: Colors.black),
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+      ),
+      drawer: const SideMenu(),
       body: SafeArea(
           child: Stack(
         children: [
@@ -126,17 +145,6 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
                     'assets/img/untrm_white_png.png',
                     color: Colors.white.withOpacity(0.7),
                     height: size.height * 0.2,
-                  ),
-
-                  //Título
-                  SizedBox(height: size.height * 0.03),
-                  const Text(
-                    'Calculando carbono en la biomasa con Pino',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                    textAlign: TextAlign.center,
                   ),
 
                   //Carbono en biomasa
@@ -251,25 +259,19 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen> {
 
           //Botón informativo
           Positioned(
-              top: size.height * 0.05,
-              right: size.width * 0.01,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Positioned(
-                    child: FilledButton.tonal(
-                      onPressed: () => openDialog(context),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                      ),
-                      child: const Icon(
-                        Icons.info_outline,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              )),
+            top: size.height * 0.05,
+            right: size.width * 0.01,
+            child: FilledButton.tonal(
+              onPressed: () => openDialog(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+              ),
+              child: const Icon(
+                Icons.info_outline,
+                color: Colors.white,
+              ),
+            ),
+          ),
         ],
       )),
     );

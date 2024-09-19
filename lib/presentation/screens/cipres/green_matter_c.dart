@@ -91,8 +91,8 @@ class _GreenMatterCState extends State<GreenMatterC> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/cipres/greenmatter/green_c.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/cipres/greenmatter/green_matter_c.jpg',
+                        fit: BoxFit.fitWidth,
                         height: size.height * 0.55,
                       ),
                     ),

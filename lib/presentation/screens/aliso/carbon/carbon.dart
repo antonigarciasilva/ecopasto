@@ -4,6 +4,7 @@ import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/aliso/carbon/biomass_carbon.dart';
 import 'package:version/presentation/screens/aliso/carbon/conversion_carbon.dart';
 import 'package:version/presentation/screens/aliso/carbon/soil_carbon.dart';
+import 'package:version/presentation/screens/widgets/side_menu.dart';
 
 class CarbonScreen extends StatefulWidget {
   const CarbonScreen({super.key});
@@ -101,6 +102,21 @@ class _CarbonScreenState extends State<CarbonScreen> {
     final stateBiomass = Provider.of<StateBiomass>(context);
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Calculando carbono \n'
+          'con Aliso ',
+          style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.normal,
+              color: Colors.black),
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+      ),
+      drawer: const SideMenu(),
       body: SafeArea(
         child: LayoutBuilder(builder: (context, constraints) {
           return Stack(
@@ -124,18 +140,6 @@ class _CarbonScreenState extends State<CarbonScreen> {
                         'assets/img/untrm_white_png.png',
                         color: Colors.white.withOpacity(0.7),
                         height: size.height * 0.2,
-                      ),
-
-                      //Título
-                      SizedBox(height: size.height * 0.03),
-                      const Text(
-                        'Calculando carbono en la biomasa con Aliso',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
                       ),
 
                       //Carbono en biomasa

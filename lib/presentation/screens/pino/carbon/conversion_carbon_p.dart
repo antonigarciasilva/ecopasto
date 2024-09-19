@@ -62,11 +62,12 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
               title: const Text(
                 '¿Qué es la conversión del carbono a CO₂?',
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
                 'La conversión del carbono en dióxido de carbono (CO₂) es un proceso natural y humano en el que el carbono se oxida para formar CO₂. Esto ocurre en la respiración celular, la descomposición y la quema de combustibles fósiles. El aumento de CO₂ en la atmósfera es una causa principal del cambio climático. Para reducir estas emisiones, se emplean estrategias como la reforestación y el uso de energías renovables.',
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
               ),
               actions: [
                 //con el goRouter podemos acceder al context.pop
@@ -102,29 +103,29 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pino/carbon/carbon_p.png',
+                        'assets/img/pino/carbon/conversion_p.jpg',
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),
                     ),
-
                     //Possition of the botton
                     Positioned(
                       top: size.height * 0.05,
                       right: size.width * 0.01,
                       child: FilledButton.tonal(
-                          onPressed: () => openDialog(context),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent),
-                          child: const Icon(
-                            Icons.info_outline,
-                            color: Colors.white,
-                          )),
-                    )
+                        onPressed: () => openDialog(context),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent),
+                        child: const Icon(
+                          Icons.info_outline,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ]),
 
                   //Título
-                  const SizedBox(height: 25.0),
+                  SizedBox(height: size.height * 0.03),
                   const Text(
                     'Conversión de carbono orgánico a dióxido de carbono',
                     style: TextStyle(

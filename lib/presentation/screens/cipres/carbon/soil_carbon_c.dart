@@ -138,8 +138,8 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/cipres/carbon/carbon_c.png',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/cipres/biomass/dry_biomass_c.jpg',
+                        fit: BoxFit.fitWidth,
                         height: size.height * 0.55,
                       ),
                     ),
