@@ -70,6 +70,39 @@ class ResultCarbonBiomassC extends StatelessWidget {
     ];
   }
 
+  //Funcion de boton informativo
+  void openDialogInfo(BuildContext context) {
+    showDialog(
+        context: context,
+        //solo para salir con los botones y no cuadno le das click en cualquier lado
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
+              title: const Text(
+                '¿Qué es la retención de carbono?',
+                textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              content: const Text(
+                'La retención de carbono es cuando las plantas y el suelo capturan y almacenan dióxido de carbono (CO₂) del aire. En los sistemas silvopastoriles, que combinan árboles, pastos y ganado, se retiene más carbono que en sistemas sin árboles. Esto mejora la salud del suelo y ayuda a combatir el cambio climático al reducir la cantidad de CO₂ en la atmósfera, beneficiando tanto a la agricultura y al medio ambiente. \n'
+                'Vásquez Pérez, H. V. (2023). ',
+                textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14),
+              ),
+              actions: [
+                //con el goRouter podemos acceder al context.pop
+
+                FilledButton(
+                    onPressed: () {
+                      Navigator.pop(
+                        context,
+                      );
+                    },
+                    child: const Text('Aceptar'))
+              ],
+            ));
+  }
+
   //Variables de Aliso
   final double resultCarbonBiomass;
   final double totalBiomass;
@@ -776,6 +809,17 @@ class ResultCarbonBiomassC extends StatelessWidget {
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: size.height * 0.03),
+
+                  //Boton conocer más
+                  ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              WidgetStateProperty.all<Color>(Colors.white)),
+                      onPressed: () => openDialogInfo(context),
+                      child: const Text('Conocer más',
+                          style: TextStyle(fontSize: 14, color: Colors.blue))),
+                  SizedBox(height: size.height * 0.03),
+
                   Text(
                     'Nivel de carbono: $level',
                     style: TextStyle(
@@ -787,7 +831,8 @@ class ResultCarbonBiomassC extends StatelessWidget {
                   SizedBox(height: size.height * 0.03),
                   Text(
                     getRecommendationsC(level),
-                    style: const TextStyle(fontSize: 16),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.justify,
                   ),
 
@@ -795,9 +840,9 @@ class ResultCarbonBiomassC extends StatelessWidget {
                   Text(
                     getNextMeasuremetTimeC(level),
                     style: const TextStyle(
-                        fontSize: 15,
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.bold),
+                      fontSize: 16,
+                      fontStyle: FontStyle.italic,
+                    ),
                     textAlign: TextAlign.justify,
                   ),
 
@@ -815,7 +860,7 @@ class ResultCarbonBiomassC extends StatelessWidget {
                                 builder: (context) =>
                                     const NewSelectSilvoScreen()));
                       },
-                      child: const Text('Aceptar',
+                      child: const Text('Regresar',
                           style: TextStyle(fontSize: 18, color: Colors.white)))
                 ],
               ),

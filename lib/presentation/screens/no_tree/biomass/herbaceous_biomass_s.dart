@@ -136,7 +136,7 @@ class _HerbaceousBiomassSTState extends State<HerbaceousBiomassST> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/sinarbol/biomass/biomass_s.png',
+                        'assets/img/sinarbol/biomass/biomass_s.jpg',
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),

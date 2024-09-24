@@ -256,6 +256,25 @@ class LoginPageState extends State<LoginScreen> {
                               fontSize: 15,
                               color: Color.fromARGB(255, 82, 12, 7)))),
                 ),
+
+                //Seguir como invitado
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const TutorialScreen()));
+                      },
+                      child: const Text('Continuar como invitado',
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromARGB(255, 5, 67, 7)))),
+                ),
                 if (errorMessage != null) ...[
                   SizedBox(
                     height: size.height * 0.03,

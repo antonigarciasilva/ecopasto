@@ -51,7 +51,7 @@ class SplashScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/img/logo_untrm_u.png',
+                      'assets/img/untrm_white_png.png',
                       height: size.height * 0.18,
                     ),
                     SizedBox(

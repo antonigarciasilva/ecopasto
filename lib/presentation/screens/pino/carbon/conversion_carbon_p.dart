@@ -74,11 +74,7 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino> {
 
                 FilledButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const ConversionCarbonPino()));
+                      Navigator.pop(context);
                     },
                     child: const Text('Aceptar'))
               ],

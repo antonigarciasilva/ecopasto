@@ -177,6 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     //final stateRegister = Provider.of<StateRegister>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text('Registrar'),
       ),
       backgroundColor: Colors.white,
