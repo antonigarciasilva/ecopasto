@@ -95,7 +95,8 @@ class _DryMatterSState extends State<DryMatterS> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
-                'Se emplea una sub muestra de la materia verde de 500g dependiendo de la cantidad de pastura, luego, se coloca en una estufa a 60 °C, hasta obtener un peso constante y con la ayuda de una balanza de 1 Kg se obtiene el PSM',
+                'Se emplea una sub muestra de la materia verde de 500g dependiendo de la cantidad de pastura, luego, se coloca en una estufa a 60 °C, hasta obtener un peso constante y con la ayuda de una balanza de 1 Kg se obtiene el PSM\n'
+                '(Vásquez, 2023)',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 14),
               ),

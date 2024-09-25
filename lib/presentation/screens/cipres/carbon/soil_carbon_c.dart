@@ -103,7 +103,8 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
-                'El carbono en el suelo es la cantidad de carbono en la materia orgánica del suelo. Incluye restos de plantas y animales, y microorganismos. Este carbono entra al suelo por la descomposición de materiales orgánicos. El suelo actúa como un sumidero de carbono a largo plazo, mejorando la fertilidad y estructura del suelo.',
+                'Es el carbono orgánico almacenado, proveniente de la descomposición de plantas y microorganismos. Es clave para mejorar la calidad del suelo y mitigar el cambio climático al reducir el CO₂ en la atmósfera \n'
+                '(Vásquez, 2023)',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 14),
               ),

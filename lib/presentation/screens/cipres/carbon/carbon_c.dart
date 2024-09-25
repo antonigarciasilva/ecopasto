@@ -37,7 +37,8 @@ class _CarbonScreenCState extends State<CarbonScreenC> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 content: const Text(
-                  'El carbono en los sistemas silvopastoriles se almacena en la biomasa de árboles y pastos, en el suelo y en los residuos animales, desempeñando un papel crucial en la captura de CO₂ y la mitigación del cambio climático. Estos sistemas integrados mejoran la fertilidad del suelo, aumentan su capacidad de retención de agua y nutrientes, y promueven la resiliencia ecológica. ',
+                  'El carbono en los sistemas silvopastoriles se almacena en la biomasa de árboles y pastos, en el suelo y en los residuos animales, desempeñando un papel crucial en la captura de CO₂ y la mitigación del cambio climático. Estos sistemas integrados mejoran la fertilidad del suelo, aumentan su capacidad de retención de agua y nutrientes, y promueven la resiliencia ecológica. \n'
+                  '(Vásquez, 2023)',
                   textAlign: TextAlign.justify,
                   style: TextStyle(fontSize: 14),
                 ),

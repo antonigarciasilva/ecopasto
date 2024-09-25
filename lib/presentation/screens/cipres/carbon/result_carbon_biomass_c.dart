@@ -85,7 +85,7 @@ class ResultCarbonBiomassC extends StatelessWidget {
               ),
               content: const Text(
                 'La retención de carbono es cuando las plantas y el suelo capturan y almacenan dióxido de carbono (CO₂) del aire. En los sistemas silvopastoriles, que combinan árboles, pastos y ganado, se retiene más carbono que en sistemas sin árboles. Esto mejora la salud del suelo y ayuda a combatir el cambio climático al reducir la cantidad de CO₂ en la atmósfera, beneficiando tanto a la agricultura y al medio ambiente. \n'
-                'Vásquez Pérez, H. V. (2023). ',
+                '(Vásquez, 2023).',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 14),
               ),
@@ -803,7 +803,7 @@ class ResultCarbonBiomassC extends StatelessWidget {
 
                   SizedBox(height: size.height * 0.03),
                   Text(
-                    'El carbono total en la biomasa es de: ${resultCarbonBiomassC.toStringAsFixed(2)} T/ha',
+                    'La retención de carbono en total es de: ${resultCarbonBiomassC.toStringAsFixed(2)} T/ha',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.bold),

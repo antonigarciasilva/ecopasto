@@ -93,7 +93,8 @@ class _AlisoScreenState extends State<AlisoScreen> {
                               fontWeight: FontWeight.bold)),
                       TextSpan(
                           text:
-                              ' en sistemas silvopastoriles es una especie arbórea utilizada por sus beneficios ambientales y productivos. Proporciona sombra, mejora la calidad del suelo y puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
+                              ' árbol usado en sistemas silvopastoriles que ayuda a capturar carbono y mejorar la fertilidad del suelo al fijar nitrógeno. Aunque es menos eficiente en la retención de carbono comparado con otras especies, sigue siendo útil en la sostenibilidad. \n'
+                              '(Vásquez, 2023)',
                           style: TextStyle(fontSize: 14))
                     ]),
               ),

@@ -46,14 +46,15 @@ class _CipresScreenState extends State<CipresScreen> {
                       ),
                       children: [
                         TextSpan(
-                            text: 'Cupressus ',
+                            text: 'Cupressus macrocarpa ',
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold)),
                         TextSpan(
                           text:
-                              ' en sistemas silvopastoriles es una especie de árbol conífero que se utiliza por su rápido crecimiento y su capacidad para proporcionar sombra y protección contra el viento. También puede ayudar a reducir la erosión del suelo y mejorar la biodiversidad en la zona.',
+                              ' se integra en cercos vivos dentro de las parcelas ganaderas, contribuyendo a la retención de carbono tanto en la biomasa como en el suelo. Los sistemas que incluyen Cupressus macrocarpa mostraron una alta eficiencia en la captura de carbono, lo que hace que estos sistemas sean valiosos para mejorar la calidad del suelo y mitigar el cambio climático​ \n'
+                              '(Vásquez, 2023)',
                           style: TextStyle(fontSize: 14),
                         )
                       ])),

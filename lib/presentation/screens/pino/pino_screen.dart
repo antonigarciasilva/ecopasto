@@ -45,13 +45,14 @@ class _PinoScreenState extends State<PinoScreen> {
                       style: TextStyle(fontSize: 14, color: Colors.black),
                       children: [
                         TextSpan(
-                            text: 'Pinus sylvestris',
+                            text: 'Pinus patula',
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.bold)),
                         TextSpan(
                             text:
-                                ' en sistemas silvopastoriles es una especie de árbol conífero ampliamente utilizada por su madera, resina y otros productos forestales. En sistemas silvopastoriles, el pino proporciona sombra, protección contra el viento y mejora la calidad del suelo. Además, puede ser utilizado como fuente de alimento y forraje para animales en sistemas agroforestales.')
+                                'mejorar la captura de carbono y la calidad del suelo. Estos árboles crecen en franjas dentro de las parcelas y ayudan a aumentar la retención de carbono tanto en su biomasa como en el suelo. \n'
+                                '(Vásquez, 2023)')
                       ])),
               actions: [
                 //con el goRouter podemos acceder al context.pop

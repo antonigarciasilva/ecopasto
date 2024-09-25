@@ -85,7 +85,7 @@ class ResultCarbonBiomassP extends StatelessWidget {
               ),
               content: const Text(
                 'La retención de carbono es cuando las plantas y el suelo capturan y almacenan dióxido de carbono (CO₂) del aire. En los sistemas silvopastoriles, que combinan árboles, pastos y ganado, se retiene más carbono que en sistemas sin árboles. Esto mejora la salud del suelo y ayuda a combatir el cambio climático al reducir la cantidad de CO₂ en la atmósfera, beneficiando tanto a la agricultura y al medio ambiente. \n'
-                'Vásquez Pérez, H. V. (2023). ',
+                '(Vásquez, 2023).',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 14),
               ),

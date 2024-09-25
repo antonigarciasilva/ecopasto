@@ -45,14 +45,15 @@ class _PonaScreenState extends State<PonaScreen> {
                       style: TextStyle(fontSize: 16, color: Colors.black),
                       children: [
                         TextSpan(
-                            text: 'Calycophyllum Spruceanum',
+                            text: 'Ceroxilum quindiuense',
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold)),
                         TextSpan(
                             text:
-                                ' en sistemas silvopastoriles es una especie arbórea nativa de la Amazonía utilizada por su rápido crecimiento y capacidad para mejorar la calidad del suelo. Proporciona sombra y protección contra el viento, y también puede utilizarse como fuente de alimento y forraje para animales en sistemas agroforestales.',
+                                ' su presencia contribuye a la captura de carbono y mejora del suelo, ofreciendo sombra y protección para el ganado y ayudando en la retención de humedad del suelo. \n'
+                                '(Vásquez, 2023)',
                             style: TextStyle(fontSize: 14))
                       ])),
               actions: [
