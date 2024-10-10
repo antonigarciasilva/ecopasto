@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
+import 'package:version/presentation/screens/ubicacion/ubicacion.dart';
 
 //Clase para representar los datos para el gráfico
 class BiomassData {
@@ -16,6 +18,8 @@ class BiomassData {
 }
 
 class ResultCarbonBiomassP extends StatelessWidget {
+  //llamamos al statebiomass
+  final StateBiomass _stateBiomass = StateBiomass();
   //Preparamos las listas para el gráfico
   List<BiomassData> getchartDate() {
     return [
@@ -128,7 +132,7 @@ class ResultCarbonBiomassP extends StatelessWidget {
   final double resultHerbaceousBiomassST;
   final double resultConversionCarbonST;
   final double sumaTotalST;
-  const ResultCarbonBiomassP(
+  ResultCarbonBiomassP(
       {super.key,
       required this.resultCarbonBiomassP,
       required this.resultCarbonBiomass,
@@ -828,6 +832,9 @@ class ResultCarbonBiomassP extends StatelessWidget {
                         fontSize: 16, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.justify,
                   ),
+                  //boton de google maps
+                  SizedBox(height: size.height * 0.03),
+                  LocationPage(stateBiomass: _stateBiomass),
 
                   SizedBox(height: size.height * 0.03),
                   Text(

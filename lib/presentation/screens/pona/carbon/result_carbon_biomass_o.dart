@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
+import 'package:version/presentation/screens/ubicacion/ubicacion.dart';
 
 //Clase para representar los datos para el gráfico
 class BiomassData {
@@ -16,6 +18,8 @@ class BiomassData {
 }
 
 class ResultCarbonBiomassO extends StatelessWidget {
+  //llamamos al statebiomass
+  final StateBiomass _stateBiomass = StateBiomass();
   //Preparamos las listas para el gráfico
   List<BiomassData> getchartDate() {
     return [
@@ -85,7 +89,7 @@ class ResultCarbonBiomassO extends StatelessWidget {
               ),
               content: const Text(
                 'La retención de carbono es cuando las plantas y el suelo capturan y almacenan dióxido de carbono (CO₂) del aire. En los sistemas silvopastoriles, que combinan árboles, pastos y ganado, se retiene más carbono que en sistemas sin árboles. Esto mejora la salud del suelo y ayuda a combatir el cambio climático al reducir la cantidad de CO₂ en la atmósfera, beneficiando tanto a la agricultura y al medio ambiente. \n'
-                '(Vásquez, 2023). ',
+                '(Vásquez, 2023).',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 14),
               ),
@@ -131,7 +135,7 @@ class ResultCarbonBiomassO extends StatelessWidget {
   final double sumaTotalST;
 
   //constructor
-  const ResultCarbonBiomassO({
+  ResultCarbonBiomassO({
     super.key,
     required this.resultCarbonBiomassO,
     required this.resultCarbonBiomass,
@@ -842,6 +846,9 @@ class ResultCarbonBiomassO extends StatelessWidget {
                         fontSize: 16, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.justify,
                   ),
+                  //boton de google maps
+                  SizedBox(height: size.height * 0.03),
+                  LocationPage(stateBiomass: _stateBiomass),
 
                   SizedBox(height: size.height * 0.03),
                   Text(

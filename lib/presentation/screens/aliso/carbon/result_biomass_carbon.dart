@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:syncfusion_flutter_charts/charts.dart';
-
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/select_system/new_select_silvo_screen.dart';
+
+import 'package:version/presentation/screens/ubicacion/ubicacion.dart';
 
 //Clase para representar los datos para el gráfico
 class BiomassData {
@@ -18,6 +20,8 @@ class BiomassData {
 }
 
 class ResultCarbonBiomass extends StatelessWidget {
+  //llamamos al statebiomass
+  final StateBiomass _stateBiomass = StateBiomass();
   //Preparamos las listas para el gráfico
   List<BiomassData> getchartDate() {
     return [
@@ -131,7 +135,7 @@ class ResultCarbonBiomass extends StatelessWidget {
   final double resultConversionCarbonST;
   final double sumaTotalST;
 
-  const ResultCarbonBiomass({
+  ResultCarbonBiomass({
     super.key,
     required this.resultCarbonBiomass,
     required this.totalBiomass,
@@ -835,9 +839,9 @@ class ResultCarbonBiomass extends StatelessWidget {
                               fontSize: 18, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.justify,
                         ),
-                        SizedBox(height: size.height * 0.03),
 
-                        //Boton de aceptar
+                        SizedBox(height: size.height * 0.03),
+                        //Boton de conocer más
                         ElevatedButton(
                             style: ButtonStyle(
                                 backgroundColor: WidgetStateProperty.all<Color>(
@@ -847,6 +851,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 14, color: Colors.blue))),
                         SizedBox(height: size.height * 0.03),
+                        //Nivel de carbono
                         Text(
                           'Nivel de carbono: $level',
                           style: TextStyle(
@@ -855,6 +860,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                           textAlign: TextAlign.justify,
                         ),
+                        //Recomendaciones
                         SizedBox(height: size.height * 0.03),
                         Text(
                           getRecommendations(level),
@@ -862,7 +868,11 @@ class ResultCarbonBiomass extends StatelessWidget {
                               fontSize: 16, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.justify,
                         ),
+                        //boton de google maps
+                        SizedBox(height: size.height * 0.03),
+                        LocationPage(stateBiomass: _stateBiomass),
 
+                        //Proximo en medir
                         SizedBox(height: size.height * 0.03),
                         Text(
                           getNextMeasuremetTime(level),
