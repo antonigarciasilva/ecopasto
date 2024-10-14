@@ -15,7 +15,8 @@ class BiomassCarbonScreen extends StatefulWidget {
   State<BiomassCarbonScreen> createState() => _BiomassCarbonScreenState();
 }
 
-class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
+class _BiomassCarbonScreenState extends State<BiomassCarbonScreen>
+    with WidgetsBindingObserver {
   StateBiomass? stateBiomass;
   StateBiomassC? stateBiomassC;
   StateBiomassP? stateBiomassP;
@@ -23,6 +24,25 @@ class _BiomassCarbonScreenState extends State<BiomassCarbonScreen> {
   StateST? stateST;
 
   String? errorMessage;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   //Para usar el provider
   @override

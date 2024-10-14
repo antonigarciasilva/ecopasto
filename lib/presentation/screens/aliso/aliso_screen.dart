@@ -18,13 +18,34 @@ class AlisoScreen extends StatefulWidget {
   State<AlisoScreen> createState() => _AlisoScreenState();
 }
 
-class _AlisoScreenState extends State<AlisoScreen> {
+class _AlisoScreenState extends State<AlisoScreen> with WidgetsBindingObserver {
   //Llamado de provider
   StateBiomass? stateBiomass;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     stateBiomass = Provider.of<StateBiomass>(context);
+  }
+
+  //Para que la app no se cierre después de cambiar de app
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   //Dialogo para mostrar al usuario que le falta llenar algunos botones

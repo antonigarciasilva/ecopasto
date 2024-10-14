@@ -11,12 +11,32 @@ class LeafLitterBiomassScreen extends StatefulWidget {
       _LeafLitterBiomassScreenState();
 }
 
-class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen> {
+class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
+    with WidgetsBindingObserver {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightPSM = TextEditingController();
   final TextEditingController _controllerWeightPFM = TextEditingController();
 
   double? resultbha;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   //Validación de peso
   String? _validateWeight(String? value) {

@@ -12,9 +12,29 @@ class HerbaceousBiomassScreen extends StatefulWidget {
       _HerbaceousBiomassScreenState();
 }
 
-class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen> {
+class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen>
+    with WidgetsBindingObserver {
   StateBiomass? stateS;
   String? errorMessage;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   //Para usar el provider
   @override

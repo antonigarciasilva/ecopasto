@@ -10,9 +10,29 @@ class ConversionCarbonScreen extends StatefulWidget {
   State<ConversionCarbonScreen> createState() => _ConversionCarbonScreenState();
 }
 
-class _ConversionCarbonScreenState extends State<ConversionCarbonScreen> {
+class _ConversionCarbonScreenState extends State<ConversionCarbonScreen>
+    with WidgetsBindingObserver {
   StateBiomass? stateBiomass;
   String? errorMessage;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   @override
   void didChangeDependencies() {

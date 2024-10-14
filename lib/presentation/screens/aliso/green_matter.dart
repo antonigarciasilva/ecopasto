@@ -12,7 +12,27 @@ class GreenMatterScreen extends StatefulWidget {
   MyGreenMatterScreen createState() => MyGreenMatterScreen();
 }
 
-class MyGreenMatterScreen extends State<GreenMatterScreen> {
+class MyGreenMatterScreen extends State<GreenMatterScreen>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //Tengo que tener necesariamente estas dos cosas para hacer mi validadciones
   //GlobalKey<FormaState> variable = inicializo con GlobalKey<FromState(); la variable se va a usar en el form y evaluamos el estado de nuestro formulario
   //Como key: varibale

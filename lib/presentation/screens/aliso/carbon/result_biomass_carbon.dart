@@ -19,9 +19,84 @@ class BiomassData {
   );
 }
 
-class ResultCarbonBiomass extends StatelessWidget {
+class ResultCarbonBiomass extends StatefulWidget {
+  final double resultCarbonBiomass;
+  final double totalBiomass;
+  final double resultConversionCarbon;
+  final double sumaTotal;
+//Variables de ciprés
+  final double resultCarbonBiomassC;
+  final double totalBiomassC;
+  final double resultConversionCarbonC;
+  final double sumaTotalC;
+//Variables de Pona
+  final double resultCarbonBiomassO;
+  final double totalBiomassO;
+  final double resultConversionCarbonO;
+  final double sumaTotalO;
+//Variables de Pino
+  final double resultCarbonBiomassP;
+  final double totalBiomassP;
+  final double resultConversionCarbonP;
+  final double sumaTotalP;
+//Variables de SSA
+  final double resultCarbonBiomassST;
+  final double resultHerbaceousBiomassST;
+  final double resultConversionCarbonST;
+  final double sumaTotalST;
+
+  const ResultCarbonBiomass({
+    super.key,
+    required this.resultCarbonBiomass,
+    required this.totalBiomass,
+    required this.resultConversionCarbon,
+    required this.resultCarbonBiomassC,
+    required this.totalBiomassC,
+    required this.resultConversionCarbonC,
+    required this.resultCarbonBiomassO,
+    required this.totalBiomassO,
+    required this.resultConversionCarbonO,
+    required this.resultCarbonBiomassST,
+    required this.resultHerbaceousBiomassST,
+    required this.resultConversionCarbonST,
+    required this.resultCarbonBiomassP,
+    required this.totalBiomassP,
+    required this.resultConversionCarbonP,
+    required this.sumaTotal,
+    required this.sumaTotalC,
+    required this.sumaTotalO,
+    required this.sumaTotalP,
+    required this.sumaTotalST,
+  });
+
+  @override
+  State<ResultCarbonBiomass> createState() => _ResultCarbonBiomassState();
+}
+
+class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
+    with WidgetsBindingObserver {
   //llamamos al statebiomass
   final StateBiomass _stateBiomass = StateBiomass();
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //Preparamos las listas para el gráfico
   List<BiomassData> getchartDate() {
     return [
@@ -29,50 +104,52 @@ class ResultCarbonBiomass extends StatelessWidget {
       BiomassData(
         'Aliso',
         'Biomasa vegetal',
-        totalBiomass,
+        widget.totalBiomass,
       ),
-      BiomassData('Aliso', 'Retención de carbono', resultCarbonBiomass),
-      BiomassData('Aliso', 'Dióxido de carbono', resultConversionCarbon),
-      BiomassData('Aliso', 'Total', sumaTotal),
+      BiomassData('Aliso', 'Retención de carbono', widget.resultCarbonBiomass),
+      BiomassData('Aliso', 'Dióxido de carbono', widget.resultConversionCarbon),
+      BiomassData('Aliso', 'Total', widget.sumaTotal),
 
       //Ciprés
       BiomassData(
         'Cipres',
         'Biomasa vegetal',
-        totalBiomassC,
+        widget.totalBiomassC,
       ),
-      BiomassData('Cipres', 'Retención de carbono', resultCarbonBiomassC),
-      BiomassData('Cipres', 'Dióxido de carbono', resultConversionCarbonC),
-      BiomassData('Cipres', 'Total', sumaTotalC),
+      BiomassData(
+          'Cipres', 'Retención de carbono', widget.resultCarbonBiomassC),
+      BiomassData(
+          'Cipres', 'Dióxido de carbono', widget.resultConversionCarbonC),
+      BiomassData('Cipres', 'Total', widget.sumaTotalC),
 
       //Pino
       BiomassData(
         'Pino',
         'Biomasa vegetal',
-        totalBiomassP,
+        widget.totalBiomassP,
       ),
-      BiomassData('Pino', 'Retención de carbono', resultCarbonBiomassP),
-      BiomassData('Pino', 'Dióxido de carbono', resultConversionCarbonP),
-      BiomassData('Pino', 'Total', sumaTotalP),
+      BiomassData('Pino', 'Retención de carbono', widget.resultCarbonBiomassP),
+      BiomassData('Pino', 'Dióxido de carbono', widget.resultConversionCarbonP),
+      BiomassData('Pino', 'Total', widget.sumaTotalP),
       //Pona
       BiomassData(
         'Pona',
         'Biomasa vegetal',
-        totalBiomassO,
+        widget.totalBiomassO,
       ),
-      BiomassData('Pona', 'Retención de carbono', resultCarbonBiomassO),
-      BiomassData('Pona', 'Dióxido de carbono', resultConversionCarbonO),
-      BiomassData('Pona', 'Total', sumaTotalO),
+      BiomassData('Pona', 'Retención de carbono', widget.resultCarbonBiomassO),
+      BiomassData('Pona', 'Dióxido de carbono', widget.resultConversionCarbonO),
+      BiomassData('Pona', 'Total', widget.sumaTotalO),
 
       //SSA
       BiomassData(
         'Ssa',
         'Biomasa vegetal',
-        resultHerbaceousBiomassST,
+        widget.resultHerbaceousBiomassST,
       ),
-      BiomassData('Ssa', 'Retención de carbono', resultCarbonBiomassST),
-      BiomassData('Ssa', 'Dióxido de carbono', resultConversionCarbonST),
-      BiomassData('Ssa', 'Total', sumaTotalST),
+      BiomassData('Ssa', 'Retención de carbono', widget.resultCarbonBiomassST),
+      BiomassData('Ssa', 'Dióxido de carbono', widget.resultConversionCarbonST),
+      BiomassData('Ssa', 'Total', widget.sumaTotalST),
     ];
   }
 
@@ -108,56 +185,6 @@ class ResultCarbonBiomass extends StatelessWidget {
               ],
             ));
   }
-
-  //Variables de Aliso
-  final double resultCarbonBiomass;
-  final double totalBiomass;
-  final double resultConversionCarbon;
-  final double sumaTotal;
-//Variables de ciprés
-  final double resultCarbonBiomassC;
-  final double totalBiomassC;
-  final double resultConversionCarbonC;
-  final double sumaTotalC;
-//Variables de Pona
-  final double resultCarbonBiomassO;
-  final double totalBiomassO;
-  final double resultConversionCarbonO;
-  final double sumaTotalO;
-//Variables de Pino
-  final double resultCarbonBiomassP;
-  final double totalBiomassP;
-  final double resultConversionCarbonP;
-  final double sumaTotalP;
-//Variables de SSA
-  final double resultCarbonBiomassST;
-  final double resultHerbaceousBiomassST;
-  final double resultConversionCarbonST;
-  final double sumaTotalST;
-
-  ResultCarbonBiomass({
-    super.key,
-    required this.resultCarbonBiomass,
-    required this.totalBiomass,
-    required this.resultConversionCarbon,
-    required this.resultCarbonBiomassC,
-    required this.totalBiomassC,
-    required this.resultConversionCarbonC,
-    required this.resultCarbonBiomassO,
-    required this.totalBiomassO,
-    required this.resultConversionCarbonO,
-    required this.resultCarbonBiomassST,
-    required this.resultHerbaceousBiomassST,
-    required this.resultConversionCarbonST,
-    required this.resultCarbonBiomassP,
-    required this.totalBiomassP,
-    required this.resultConversionCarbonP,
-    required this.sumaTotal,
-    required this.sumaTotalC,
-    required this.sumaTotalO,
-    required this.sumaTotalP,
-    required this.sumaTotalST,
-  });
 
   //Vamos a definir los rangos
   String getCarbonLevel(double resultCarbonBiomass) {
@@ -220,7 +247,7 @@ class ResultCarbonBiomass extends StatelessWidget {
   Widget build(BuildContext context) {
     //responsive
     final size = MediaQuery.of(context).size;
-    String level = getCarbonLevel(resultCarbonBiomass);
+    String level = getCarbonLevel(widget.resultCarbonBiomass);
     Color levelColor;
     final List<BiomassData> chartData = getchartDate();
 
@@ -353,7 +380,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultCarbonBiomass.toStringAsFixed(2),
+                                  widget.resultCarbonBiomass.toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -364,7 +391,8 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultCarbonBiomassC.toStringAsFixed(2),
+                                  widget.resultCarbonBiomassC
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -375,7 +403,8 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultCarbonBiomassP.toStringAsFixed(2),
+                                  widget.resultCarbonBiomassP
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -386,7 +415,8 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultCarbonBiomassO.toStringAsFixed(2),
+                                  widget.resultCarbonBiomassO
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -397,7 +427,8 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultCarbonBiomassST.toStringAsFixed(2),
+                                  widget.resultCarbonBiomassST
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -423,7 +454,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  totalBiomass.toStringAsFixed(2),
+                                  widget.totalBiomass.toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -434,7 +465,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  totalBiomassC.toStringAsFixed(2),
+                                  widget.totalBiomassC.toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -445,7 +476,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  totalBiomassP.toStringAsFixed(2),
+                                  widget.totalBiomassP.toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -456,7 +487,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  totalBiomassO.toStringAsFixed(2),
+                                  widget.totalBiomassO.toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -467,7 +498,8 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultHerbaceousBiomassST.toStringAsFixed(2),
+                                  widget.resultHerbaceousBiomassST
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -494,7 +526,8 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultConversionCarbon.toStringAsFixed(2),
+                                  widget.resultConversionCarbon
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -505,7 +538,8 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultConversionCarbonC.toStringAsFixed(2),
+                                  widget.resultConversionCarbonC
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -516,7 +550,8 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultConversionCarbonP.toStringAsFixed(2),
+                                  widget.resultConversionCarbonP
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -527,7 +562,8 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultConversionCarbonO.toStringAsFixed(2),
+                                  widget.resultConversionCarbonO
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -538,7 +574,8 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  resultConversionCarbonST.toStringAsFixed(2),
+                                  widget.resultConversionCarbonST
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 10,
                                   ),
@@ -563,7 +600,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  sumaTotal.toStringAsFixed(2),
+                                  widget.sumaTotal.toStringAsFixed(2),
                                   style: const TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold),
@@ -574,7 +611,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  sumaTotalC.toStringAsFixed(2),
+                                  widget.sumaTotalC.toStringAsFixed(2),
                                   style: const TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold),
@@ -585,7 +622,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  sumaTotalP.toStringAsFixed(2),
+                                  widget.sumaTotalP.toStringAsFixed(2),
                                   style: const TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold),
@@ -596,7 +633,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  sumaTotalO.toStringAsFixed(2),
+                                  widget.sumaTotalO.toStringAsFixed(2),
                                   style: const TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold),
@@ -607,7 +644,7 @@ class ResultCarbonBiomass extends StatelessWidget {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.01),
                                 child: Text(
-                                  sumaTotalST.toStringAsFixed(2),
+                                  widget.sumaTotalST.toStringAsFixed(2),
                                   style: const TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold),
@@ -834,7 +871,7 @@ class ResultCarbonBiomass extends StatelessWidget {
 
                         SizedBox(height: size.height * 0.03),
                         Text(
-                          'La retención de carbono en total es de: ${resultCarbonBiomass.toStringAsFixed(2)} T/ha',
+                          'La retención de carbono en total es de: ${widget.resultCarbonBiomass.toStringAsFixed(2)} T/ha',
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.justify,

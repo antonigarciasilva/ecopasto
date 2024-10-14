@@ -11,10 +11,30 @@ class NewDryBiomassScreen extends StatefulWidget {
   State<NewDryBiomassScreen> createState() => _NewDryBiomassScreenState();
 }
 
-class _NewDryBiomassScreenState extends State<NewDryBiomassScreen> {
+class _NewDryBiomassScreenState extends State<NewDryBiomassScreen>
+    with WidgetsBindingObserver {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDap = TextEditingController();
   double? dryBiomass;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   //Validación del DAP
   String? _validateDap(String? value) {

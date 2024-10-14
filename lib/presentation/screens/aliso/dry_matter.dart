@@ -10,7 +10,26 @@ class DryMatterScreen extends StatefulWidget {
   MyGreenMatterScreen createState() => MyGreenMatterScreen();
 }
 
-class MyGreenMatterScreen extends State<DryMatterScreen> {
+class MyGreenMatterScreen extends State<DryMatterScreen>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
 //Creamos una variable para crear el provider
   StateBiomass? stateBiomass;
 

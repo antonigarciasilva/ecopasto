@@ -8,13 +8,33 @@ class SoilCarbonScreen extends StatefulWidget {
   State<SoilCarbonScreen> createState() => _SoilCarbonScreenState();
 }
 
-class _SoilCarbonScreenState extends State<SoilCarbonScreen> {
+class _SoilCarbonScreenState extends State<SoilCarbonScreen>
+    with WidgetsBindingObserver {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerWeightA = TextEditingController();
   final TextEditingController _controllerWeightP = TextEditingController();
 
   String? _selectedSoilType;
   double? _soilDensity;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   //Validación de los pesos
   String? _validateWeight(String? value) {
