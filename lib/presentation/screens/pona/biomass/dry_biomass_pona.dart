@@ -11,10 +11,39 @@ class DryBiomassPona extends StatefulWidget {
   State<DryBiomassPona> createState() => _DryBiomassPonaState();
 }
 
-class _DryBiomassPonaState extends State<DryBiomassPona> {
+class _DryBiomassPonaState extends State<DryBiomassPona>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    //Inicializamos el controller
+    final stateBiomassO = Provider.of<StateBiomassO>(context, listen: false);
+    _controllerDapP = TextEditingController(
+      text: stateBiomassO.dapO?.toString() ?? '',
+    );
+
+    _controllerDapF = TextEditingController(
+      text: stateBiomassO.afO?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerDapP = TextEditingController();
-  final TextEditingController _controllerDapF = TextEditingController();
+  late TextEditingController _controllerDapP = TextEditingController();
+  late TextEditingController _controllerDapF = TextEditingController();
 
   double? resultdbo;
 

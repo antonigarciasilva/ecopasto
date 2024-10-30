@@ -11,11 +11,36 @@ class GreenMatterPona extends StatefulWidget {
   State<GreenMatterPona> createState() => _GreenMatterPonaState();
 }
 
-class _GreenMatterPonaState extends State<GreenMatterPona> {
+class _GreenMatterPonaState extends State<GreenMatterPona>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    //controllador para la materia verde
+    final stateBiomassO = Provider.of<StateBiomassO>(context, listen: false);
+    _controllerWeightO = TextEditingController(
+      text: stateBiomassO.greenPona?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   String? selectedValue;
   //Vamos a validar nuestro formulario
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightP = TextEditingController();
+  late TextEditingController _controllerWeightO = TextEditingController();
   double? greenPona;
 
   //Validar form de peso
@@ -34,7 +59,7 @@ class _GreenMatterPonaState extends State<GreenMatterPona> {
 //Validación del boton
 
   void _submitForm() {
-    final greenMatterO = double.parse(_controllerWeightP.text);
+    final greenMatterO = double.parse(_controllerWeightO.text);
     final greenPona = greenMatterO;
 
     Provider.of<StateBiomassO>(context, listen: false).setGreenPona(greenPona);
@@ -141,7 +166,7 @@ class _GreenMatterPonaState extends State<GreenMatterPona> {
                     padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
-                      controller: _controllerWeightP,
+                      controller: _controllerWeightO,
                       validator: _validateWeightP,
                       decoration: InputDecoration(
                         //prefixIcon: const Icon(Icons.person_4),

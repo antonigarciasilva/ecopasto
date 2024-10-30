@@ -11,10 +11,35 @@ class DryPonaScreen extends StatefulWidget {
   State<DryPonaScreen> createState() => _DryPonaScreenState();
 }
 
-class _DryPonaScreenState extends State<DryPonaScreen> {
+class _DryPonaScreenState extends State<DryPonaScreen>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    //Inicializamos el controller
+    final stateBiomassO = Provider.of<StateBiomassO>(context, listen: false);
+    _controllerWeightDry = TextEditingController(
+      text: stateBiomassO.pmsO?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //Vamos a validar nuestro formulario
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightDry = TextEditingController();
+  late TextEditingController _controllerWeightDry = TextEditingController();
   //Creamos la variable para el provider
   StateBiomassO? stateBiomassO;
   //Invocamos el provider
@@ -50,6 +75,8 @@ class _DryPonaScreenState extends State<DryPonaScreen> {
 
       Provider.of<StateBiomassO>(context, listen: false)
           .setDryMatterPona(dryMatterPona);
+
+      Provider.of<StateBiomassO>(context, listen: false).setPmsO(pms);
 
       showDialog(
           context: context,

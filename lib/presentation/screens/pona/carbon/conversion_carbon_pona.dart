@@ -10,7 +10,27 @@ class ConversionCarbonPona extends StatefulWidget {
   State<ConversionCarbonPona> createState() => _ConversionCarbonPonaState();
 }
 
-class _ConversionCarbonPonaState extends State<ConversionCarbonPona> {
+class _ConversionCarbonPonaState extends State<ConversionCarbonPona>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   StateBiomassO? stateBiomassO;
 
   @override

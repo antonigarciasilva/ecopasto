@@ -11,11 +11,35 @@ class DryMatterS extends StatefulWidget {
   State<DryMatterS> createState() => _DryMatterSState();
 }
 
-class _DryMatterSState extends State<DryMatterS> {
+class _DryMatterSState extends State<DryMatterS> with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    //Inicializamos el controller
+    final stateST = Provider.of<StateST>(context, listen: false);
+    _controllerDryWeight = TextEditingController(
+      text: stateST.pms?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //Para hacer las validaciones tenemos que tner nuestro:
   // Globalkey para ver el estado del formulario  y los controladores para poder acceder a la i del texto
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerDryWeight = TextEditingController();
+  late TextEditingController _controllerDryWeight = TextEditingController();
   //Creamos variable para provider
   StateST? stateST;
   //invocamos al porvider

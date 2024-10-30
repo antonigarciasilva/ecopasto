@@ -11,6 +11,7 @@ class StateBiomassO with ChangeNotifier {
 
   double? greenPona;
   double? dryMatterPona;
+  double? pmsO;
 
   double? latitude;
   double? longitude;
@@ -21,10 +22,28 @@ class StateBiomassO with ChangeNotifier {
   double? psmO;
   double? pfmO;
 
+  //Datos suelos
+  double? areaO;
+  double? depthO;
+  String? selectedSoilTypeO;
+  double? soilDensity;
+  double? totalSoilCarbonO;
+
+  bool get isAreaO => areaO != null;
+  bool get isDepthO => depthO != null;
+  bool get isSelectedSoilTypeO => selectedSoilTypeO != null;
+  bool get isSoilDensity => soilDensity != null;
+  bool get isTotalSoilCarbonO => totalSoilCarbonO != null;
+
+  bool get areDateCarbonO =>
+      isAreaO && isDepthO && isSelectedSoilTypeO && isSoilDensity;
+
   bool get isDapO => dapO != null;
   bool get isAfO => afO != null;
   bool get isPsmO => psmO != null;
   bool get isPfmO => pfmO != null;
+
+  bool get isPms => pmsO != null;
 
   bool get isGreenPonaCalculated => greenPona != null;
   bool get isDryMatterPonaCalculated => dryMatterPona != null;
@@ -90,7 +109,34 @@ class StateBiomassO with ChangeNotifier {
     notifyListeners();
   }
 
+  //Setters para suelos
+  void setAreaO(double value) {
+    areaO = value;
+    notifyListeners();
+  }
+
+  void setDepthO(double value) {
+    depthO = value;
+    notifyListeners();
+  }
+
+  void setSelectedSoilTypeO(double value, String soilType) {
+    selectedSoilTypeO = soilType;
+    soilDensity = value;
+    notifyListeners();
+  }
+
+  void setTotalSoilCarbonO(double value) {
+    totalSoilCarbonO = value;
+    notifyListeners();
+  }
+
   //Para la respuesta de biomasa total y carbono
+  void setPmsO(double value) {
+    pmsO = value;
+    notifyListeners();
+  }
+
   void setDapO(double value) {
     dapO = value;
     notifyListeners();
@@ -184,7 +230,14 @@ class StateBiomassO with ChangeNotifier {
       'dap': dapO,
       'alturaFuste': afO,
       'pesoSecoHojarasca': psmO,
-      'pesoFrescoHojarasca': pfmO
+      'pesoFrescoHojarasca': pfmO,
+
+      //suelos
+      'area': areaO,
+      'profundidad': depthO,
+      'tipodesuelo': selectedSoilTypeO,
+      'densidadesuelo': soilDensity,
+      'totalSoilCarbon': totalSoilCarbonO,
     };
     try {
       await FirebaseFirestore.instance

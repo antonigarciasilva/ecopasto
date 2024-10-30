@@ -15,7 +15,27 @@ class CarbonPonaScreen extends StatefulWidget {
   State<CarbonPonaScreen> createState() => _CarbonPonaScreenState();
 }
 
-class _CarbonPonaScreenState extends State<CarbonPonaScreen> {
+class _CarbonPonaScreenState extends State<CarbonPonaScreen>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //Vamos a llamar al provider
   StateBiomassO? stateBiomassO;
 
@@ -174,26 +194,45 @@ class _CarbonPonaScreenState extends State<CarbonPonaScreen> {
                   SizedBox(height: size.height * 0.03),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
-                    child: SizedBox(
-                      width: size.width * 0.8,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: size.width * 0.8,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(
+                                  stateBiomassO!.areDateCarbonO
+                                      ? Colors.grey
+                                      : const Color.fromARGB(255, 51, 79, 31)),
+                            ),
+                            onPressed: stateBiomassO!.areDateCarbonO
+                                ? null
+                                : () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SoilCarbonPonaNew()),
+                                    );
+                                  },
+                            child: const Text(
+                              'Carbono en el suelo',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          ),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const SoilCarbonPonaNew()),
-                          );
-                        },
-                        child: const Text(
-                          'Carbono en el suelo',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
-                      ),
+                        if (stateBiomassO!.areDateCarbonO)
+                          IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SoilCarbonPonaNew()));
+                              },
+                              icon: const Icon(Icons.edit))
+                      ],
                     ),
                   ),
 

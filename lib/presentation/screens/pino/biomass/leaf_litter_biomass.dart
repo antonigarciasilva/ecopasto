@@ -10,10 +10,40 @@ class LeafLitterBiomassP extends StatefulWidget {
   State<LeafLitterBiomassP> createState() => _LeafLitterBiomassPState();
 }
 
-class _LeafLitterBiomassPState extends State<LeafLitterBiomassP> {
+class _LeafLitterBiomassPState extends State<LeafLitterBiomassP>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+
+    //Para persistencia de los datos
+    final stateBiomassP = Provider.of<StateBiomassP>(context, listen: false);
+    _controllerWeightPSM = TextEditingController(
+      text: stateBiomassP.psmP?.toString() ?? '',
+    );
+
+    _controllerWeightPFM = TextEditingController(
+      text: stateBiomassP.pfmP?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightPSM = TextEditingController();
-  final TextEditingController _controllerWeightPFM = TextEditingController();
+  late TextEditingController _controllerWeightPSM = TextEditingController();
+  late TextEditingController _controllerWeightPFM = TextEditingController();
 
   //Validación de peso
   String? _validateWeight(String? value) {

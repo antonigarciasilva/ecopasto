@@ -12,6 +12,8 @@ class StateBiomassP with ChangeNotifier {
   double? greenPino;
   double? dryMatterPino;
 
+  double? pmsP;
+
   double? latitude;
   double? longitude;
 
@@ -19,6 +21,23 @@ class StateBiomassP with ChangeNotifier {
 
   double? psmP;
   double? pfmP;
+
+//Datos suelos
+  double? areaP;
+  double? depthP;
+  String? selectedSoilTypeP;
+  double? soilDensityP;
+  double? totalSoilCarbonP;
+
+  bool get isPmsP => pmsP != null;
+  bool get isAreaP => areaP != null;
+  bool get isDepthP => depthP != null;
+  bool get isSelectedSoilTypeP => selectedSoilTypeP != null;
+  bool get isSoilDensityP => soilDensityP != null;
+  bool get isTotalSoilCarbonP => totalSoilCarbonP != null;
+
+  bool get areDateCarbonP =>
+      isAreaP && isDepthP && isSelectedSoilTypeP && isSoilDensityP;
 
   bool get isDapP => dapP != null;
   bool get isPsmP => psmP != null;
@@ -88,9 +107,36 @@ class StateBiomassP with ChangeNotifier {
     notifyListeners();
   }
 
+  //Setters para suelos
+  void setAreaP(double value) {
+    areaP = value;
+    notifyListeners();
+  }
+
+  void setDepthP(double value) {
+    depthP = value;
+    notifyListeners();
+  }
+
+  void setSelectedSoilTypeP(double value, String soilType) {
+    selectedSoilTypeP = soilType;
+    soilDensityP = value;
+    notifyListeners();
+  }
+
+  void setTotalSoilCarbonP(double value) {
+    totalSoilCarbonP = value;
+    notifyListeners();
+  }
+
   //Para la respuesta de biomasa total y carbono
   void setDapP(double value) {
     dapP = value;
+    notifyListeners();
+  }
+
+  void setPmsP(double value) {
+    pmsP = value;
     notifyListeners();
   }
 
@@ -176,7 +222,13 @@ class StateBiomassP with ChangeNotifier {
       'longitud': longitude,
       'dap': dapP,
       'pesoSecoHojarasca': psmP,
-      'pesoFrescoHojarasca': pfmP
+      'pesoFrescoHojarasca': pfmP,
+      //suelos
+      'area': areaP,
+      'profundidad': depthP,
+      'tipodesuelo': selectedSoilTypeP,
+      'densidadesuelo': soilDensityP,
+      'totalSoilCarbon': totalSoilCarbonP,
     };
     try {
       await FirebaseFirestore.instance

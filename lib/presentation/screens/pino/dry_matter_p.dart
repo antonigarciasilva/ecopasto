@@ -11,10 +11,34 @@ class DryMatterP extends StatefulWidget {
   State<DryMatterP> createState() => _DryMatterPState();
 }
 
-class _DryMatterPState extends State<DryMatterP> {
+class _DryMatterPState extends State<DryMatterP> with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    //Inicializamos el controller
+    final stateBiomassP = Provider.of<StateBiomassP>(context, listen: false);
+    _controllerWeightDry = TextEditingController(
+      text: stateBiomassP.pmsP?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //Vamos a validar nuestro formulario
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightDry = TextEditingController();
+  late TextEditingController _controllerWeightDry = TextEditingController();
   //Creamos la variable
   StateBiomassP? stateBiomassP;
   //invocamos al provider
@@ -42,9 +66,11 @@ class _DryMatterPState extends State<DryMatterP> {
 
   void _calculateDryMatterResult() {
     if (_formKey.currentState!.validate()) {
-      final double pms = double.parse(_controllerWeightDry.text);
+      final double pmsP = double.parse(_controllerWeightDry.text);
 
-      final double dryMatterPino = pms / (stateBiomassP!.greenPino ?? 0) * 100;
+      Provider.of<StateBiomassP>(context, listen: false).setPmsP(pmsP);
+
+      final double dryMatterPino = pmsP / (stateBiomassP!.greenPino ?? 0) * 100;
       final String formattedResult = dryMatterPino.toStringAsFixed(2);
 
       Provider.of<StateBiomassP>(context, listen: false)

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
 import 'package:version/presentation/screens/pino/carbon/carbon.dart';
 
 class SoilCarbonPino extends StatefulWidget {
@@ -8,13 +10,44 @@ class SoilCarbonPino extends StatefulWidget {
   State<SoilCarbonPino> createState() => _SoilCarbonPinoState();
 }
 
-class _SoilCarbonPinoState extends State<SoilCarbonPino> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightA = TextEditingController();
-  final TextEditingController _controllerWeightP = TextEditingController();
+class _SoilCarbonPinoState extends State<SoilCarbonPino>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
 
-  String? _selectedSoilType;
-  double? _soilDensity;
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+
+    final stateBiomassP = Provider.of<StateBiomassP>(context, listen: false);
+    controllerWeightAreaP = TextEditingController(
+      text: stateBiomassP.areaP?.toString() ?? '',
+    );
+    controllerWeightDepthP = TextEditingController(
+      text: stateBiomassP.depthP?.toString() ?? '',
+    );
+
+    soilDensityP = stateBiomassP.soilDensityP;
+    selectedSoilTypeP = stateBiomassP.selectedSoilTypeP;
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  final _formKey = GlobalKey<FormState>();
+  late TextEditingController controllerWeightAreaP = TextEditingController();
+  late TextEditingController controllerWeightDepthP = TextEditingController();
+
+  String? selectedSoilTypeP;
+  double? soilDensityP;
 
   //Validación de los pesos
   String? _validateWeight(String? value) {
@@ -32,15 +65,21 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
   // Calcular el carbono en el suelo
   void _calculateAndShowResult() {
     if (_formKey.currentState!.validate()) {
-      if (_soilDensity == null) {
+      if (soilDensityP == null) {
         _showValidationDialog(
             'Por favor, ingresa la densidad aparente del suelo para continuar.');
         return;
       }
-      final double area = double.parse(_controllerWeightA.text);
-      final double depth = double.parse(_controllerWeightP.text);
+      final double areaP = double.parse(controllerWeightAreaP.text);
+      final double depthP = double.parse(controllerWeightDepthP.text);
 
-      final double result = area * depth * _soilDensity!;
+      Provider.of<StateBiomassP>(context, listen: false).setAreaP(areaP);
+
+      Provider.of<StateBiomassP>(context, listen: false).setDepthP(depthP);
+
+      final double resultSoilP = areaP * depthP * soilDensityP!;
+      Provider.of<StateBiomassP>(context, listen: false)
+          .setTotalSoilCarbonP(resultSoilP);
 
       showDialog(
         context: context,
@@ -52,7 +91,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           content: Text(
-            'El peso del suelo (Ws) es: ${result.toStringAsFixed(2)} T/ha',
+            'El peso del suelo (Ws) es: ${resultSoilP.toStringAsFixed(2)} T/ha',
             textAlign: TextAlign.justify,
             style: const TextStyle(fontSize: 16),
           ),
@@ -221,7 +260,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                     padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                     child: TextFormField(
                       validator: _validateWeight,
-                      controller: _controllerWeightA,
+                      controller: controllerWeightAreaP,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -246,7 +285,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                     padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                     child: TextFormField(
                       validator: _validateWeight,
-                      controller: _controllerWeightP,
+                      controller: controllerWeightDepthP,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -270,7 +309,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                     child: DropdownButtonFormField(
-                      value: _selectedSoilType,
+                      value: selectedSoilTypeP,
                       items: const [
                         DropdownMenuItem(
                             value: 'arcilloso-franco',
@@ -283,11 +322,13 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino> {
                             child: Text('Franco - Arenoso (1.32 g/cm³)',
                                 style: TextStyle(fontSize: 14))),
                       ],
-                      onChanged: (value) {
+                      onChanged: (String? value) {
                         setState(() {
-                          _selectedSoilType = value;
-                          _soilDensity =
+                          selectedSoilTypeP = value;
+                          soilDensityP =
                               value == 'arcilloso-franco' ? 1.1 : 1.32;
+                          Provider.of<StateBiomassP>(context, listen: false)
+                              .setSelectedSoilTypeP(soilDensityP!, value!);
                         });
                       },
                       decoration: InputDecoration(

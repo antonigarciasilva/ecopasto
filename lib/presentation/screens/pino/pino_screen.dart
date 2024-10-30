@@ -16,7 +16,26 @@ class PinoScreen extends StatefulWidget {
   State<PinoScreen> createState() => _PinoScreenState();
 }
 
-class _PinoScreenState extends State<PinoScreen> {
+class _PinoScreenState extends State<PinoScreen> with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //Llamamos al provider
   StateBiomassP? statePino;
 

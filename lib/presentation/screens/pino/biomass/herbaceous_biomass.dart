@@ -11,7 +11,27 @@ class HerbaceousBiomassP extends StatefulWidget {
   State<HerbaceousBiomassP> createState() => _HerbaceousBiomassPState();
 }
 
-class _HerbaceousBiomassPState extends State<HerbaceousBiomassP> {
+class _HerbaceousBiomassPState extends State<HerbaceousBiomassP>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   StateBiomassP? stateBiomassP;
 
   @override

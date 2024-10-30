@@ -12,7 +12,31 @@ class GreenMatterScreenS extends StatefulWidget {
   MyGreenMatterScreen createState() => MyGreenMatterScreen();
 }
 
-class MyGreenMatterScreen extends State<GreenMatterScreenS> {
+class MyGreenMatterScreen extends State<GreenMatterScreenS>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    //controllador para la materia verde
+    final stateST = Provider.of<StateST>(context, listen: false);
+    _controllerWeightS = TextEditingController(
+      text: stateST.greenS?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
   //Tengo que tener necesariamente estas dos cosas para hacer mi validadciones
   //GlobalKey<FormaState> variable = inicializo con GlobalKey<FromState(); la variable se va a usar en el form y evaluamos el estado de nuestro formulario
   //Como key: varibale
@@ -20,7 +44,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreenS> {
   //Con los controladores vamos a poder acceder a la información de cada texto
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightS = TextEditingController();
+  late TextEditingController _controllerWeightS = TextEditingController();
   double? greenS;
 
   //Validar el peso de la materia verde

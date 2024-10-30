@@ -10,9 +10,33 @@ class DryBiomassP extends StatefulWidget {
   State<DryBiomassP> createState() => _DryBiomassPState();
 }
 
-class _DryBiomassPState extends State<DryBiomassP> {
+class _DryBiomassPState extends State<DryBiomassP> with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    //Inicializamos el controller
+    final stateBiomassP = Provider.of<StateBiomassP>(context, listen: false);
+    _controllerDapP = TextEditingController(
+      text: stateBiomassP.dapP?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerDapP = TextEditingController();
+  late TextEditingController _controllerDapP = TextEditingController();
 //'?' así como esta acepta valores nulos
   double? resultdbp;
 

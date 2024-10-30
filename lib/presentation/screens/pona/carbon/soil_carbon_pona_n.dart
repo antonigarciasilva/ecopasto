@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/pona/biomass/state_biomass_o.dart';
 import 'package:version/presentation/screens/pona/carbon/carbon_pona.dart';
 
 class SoilCarbonPonaNew extends StatefulWidget {
@@ -8,13 +10,44 @@ class SoilCarbonPonaNew extends StatefulWidget {
   State<SoilCarbonPonaNew> createState() => _SoilCarbonPonaNewState();
 }
 
-class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightA = TextEditingController();
-  final TextEditingController _controllerWeightP = TextEditingController();
+class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
 
-  String? _selectedSoilType;
-  double? _soilDensity;
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+
+    final stateBiomassO = Provider.of<StateBiomassO>(context, listen: false);
+    _controllerWeightAreaO = TextEditingController(
+      text: stateBiomassO.areaO?.toString() ?? '',
+    );
+    _controllerWeightDepthO = TextEditingController(
+      text: stateBiomassO.depthO?.toString() ?? '',
+    );
+
+    soilDensityO = stateBiomassO.soilDensity;
+    selectedSoilTypeO = stateBiomassO.selectedSoilTypeO;
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  final _formKey = GlobalKey<FormState>();
+  late TextEditingController _controllerWeightAreaO = TextEditingController();
+  late TextEditingController _controllerWeightDepthO = TextEditingController();
+
+  String? selectedSoilTypeO;
+  double? soilDensityO;
 
   // Validación de los pesos
   String? _validateWeight(String? value) {
@@ -32,15 +65,21 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
   // Calcular el carbono en el suelo
   void _calculateAndShowResult() {
     if (_formKey.currentState!.validate()) {
-      if (_soilDensity == null) {
+      if (soilDensityO == null) {
         _showValidationDialog(
             'Por favor, ingresa la densidad aparente del suelo para continuar.');
         return;
       }
-      final double area = double.parse(_controllerWeightA.text);
-      final double depth = double.parse(_controllerWeightP.text);
+      final double areaO = double.parse(_controllerWeightAreaO.text);
+      final double depthO = double.parse(_controllerWeightDepthO.text);
 
-      final double result = area * depth * _soilDensity!;
+      Provider.of<StateBiomassO>(context, listen: false).setAreaO(areaO);
+      Provider.of<StateBiomassO>(context, listen: false).setDepthO(depthO);
+
+      final double result = areaO * depthO * soilDensityO!;
+
+      Provider.of<StateBiomassO>(context, listen: false)
+          .setTotalSoilCarbonO(result);
 
       showDialog(
         context: context,
@@ -218,7 +257,7 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
                     ),
                     child: TextFormField(
                       validator: _validateWeight,
-                      controller: _controllerWeightA,
+                      controller: _controllerWeightAreaO,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -243,7 +282,7 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
                     ),
                     child: TextFormField(
                       validator: _validateWeight,
-                      controller: _controllerWeightP,
+                      controller: _controllerWeightDepthO,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -267,7 +306,7 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
                       horizontal: size.width * 0.1,
                     ),
                     child: DropdownButtonFormField<String>(
-                      value: _selectedSoilType,
+                      value: selectedSoilTypeO,
                       items: const [
                         DropdownMenuItem(
                             value: 'arcilloso-franco',
@@ -282,11 +321,13 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew> {
                               style: TextStyle(fontSize: 14),
                             )),
                       ],
-                      onChanged: (value) {
+                      onChanged: (String? value) {
                         setState(() {
-                          _selectedSoilType = value;
-                          _soilDensity =
+                          selectedSoilTypeO = value;
+                          soilDensityO =
                               value == 'arcilloso-franco' ? 1.1 : 1.32;
+                          Provider.of<StateBiomassO>(context, listen: false)
+                              .setSelectedSoilTypeO(soilDensityO!, value!);
                         });
                       },
                       decoration: InputDecoration(

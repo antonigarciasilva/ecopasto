@@ -16,7 +16,26 @@ class PonaScreen extends StatefulWidget {
   State<PonaScreen> createState() => _PonaScreenState();
 }
 
-class _PonaScreenState extends State<PonaScreen> {
+class _PonaScreenState extends State<PonaScreen> with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //Llamamos al provider
   StateBiomassO? statePona;
 

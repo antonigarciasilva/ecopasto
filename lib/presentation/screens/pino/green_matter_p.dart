@@ -12,10 +12,35 @@ class GreenMatterP extends StatefulWidget {
   State<GreenMatterP> createState() => _GreenMatterPState();
 }
 
-class _GreenMatterPState extends State<GreenMatterP> {
+class _GreenMatterPState extends State<GreenMatterP>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    //controllador para la materia verde
+    final stateBiomassP = Provider.of<StateBiomassP>(context, listen: false);
+    _controllerWeightP = TextEditingController(
+      text: stateBiomassP.greenPino?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //Vamos a validar nuestro formulario
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightP = TextEditingController();
+  late TextEditingController _controllerWeightP = TextEditingController();
   double? greenPino;
 
   //Validar form de peso

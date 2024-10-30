@@ -18,7 +18,26 @@ class BiomassPona extends StatefulWidget {
   State<BiomassPona> createState() => _BiomassPonaState();
 }
 
-class _BiomassPonaState extends State<BiomassPona> {
+class _BiomassPonaState extends State<BiomassPona> with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   StateBiomassO? stateBiomassO;
 
   @override

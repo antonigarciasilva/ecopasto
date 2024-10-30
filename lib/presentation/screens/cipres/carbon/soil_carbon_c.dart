@@ -39,7 +39,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
     );
 
     soilDensityC = stateBiomassC.soilDensity;
-    selectedSoilTypeC = selectedSoilTypeC;
+    selectedSoilTypeC = stateBiomassC.selectedSoilTypeC;
   }
 
   @override
@@ -59,6 +59,16 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
       return 'Solo acepta valores numéricos';
     }
     return null;
+  }
+
+  //Función para escoger el tipo de terreno
+  void _onSoilTypeChanged(String? value) {
+    setState(() {
+      selectedSoilTypeC = value;
+      soilDensityC = value == 'arcilloso-franco' ? 1.1 : 1.32;
+      Provider.of<StateBiomassC>(context, listen: false)
+          .setSelectedSoilTypeC(soilDensityC!, value!);
+    });
   }
 
   //Calculamos el carbono en el suelo
@@ -320,15 +330,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
                               style: TextStyle(fontSize: 14),
                             )),
                       ],
-                      onChanged: (String? value) {
-                        setState(() {
-                          selectedSoilTypeC = value;
-                          soilDensityC =
-                              value == 'arcilloso-franco' ? 1.1 : 1.32;
-                          Provider.of<StateBiomassC>(context, listen: false)
-                              .setSelectedSoilTypeC(soilDensityC!, value!);
-                        });
-                      },
+                      onChanged: _onSoilTypeChanged,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),

@@ -16,7 +16,27 @@ class NoTreeScreen extends StatefulWidget {
   State<NoTreeScreen> createState() => _NoTreeScreenState();
 }
 
-class _NoTreeScreenState extends State<NoTreeScreen> {
+class _NoTreeScreenState extends State<NoTreeScreen>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //Dialogo informativo sobre el pastizal
   void openDialog(BuildContext context) {
     showDialog(

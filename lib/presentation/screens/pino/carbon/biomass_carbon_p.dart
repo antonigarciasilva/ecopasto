@@ -15,7 +15,27 @@ class BiomassCarbonPino extends StatefulWidget {
   State<BiomassCarbonPino> createState() => _BiomassCarbonPinoState();
 }
 
-class _BiomassCarbonPinoState extends State<BiomassCarbonPino> {
+class _BiomassCarbonPinoState extends State<BiomassCarbonPino>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   StateBiomass? stateBiomass;
   StateBiomassC? stateBiomassC;
   StateBiomassP? stateBiomassP;
