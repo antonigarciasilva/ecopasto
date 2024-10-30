@@ -10,8 +10,28 @@ class ConversionCarbonC extends StatefulWidget {
   State<ConversionCarbonC> createState() => _ConversionCarbonCState();
 }
 
-class _ConversionCarbonCState extends State<ConversionCarbonC> {
+class _ConversionCarbonCState extends State<ConversionCarbonC>
+    with WidgetsBindingObserver {
   StateBiomassC? stateBiomassC;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   @override
   void didChangeDependencies() {

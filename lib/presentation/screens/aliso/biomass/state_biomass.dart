@@ -5,24 +5,48 @@ import 'package:geolocator/geolocator.dart';
 
 class StateBiomass with ChangeNotifier {
 //Para hacer las validaciones de los botones
+//Datos basicos
   double? greenAliso;
   double? dryMatterAliso;
+  double? _pms;
+  double? get pms => _pms;
 
+//Datos de biomasa
   double? dryBiomass;
   double? herbaceousBiomass;
   double? leafLitterBiomass;
-
-  double? latitude;
-  double? longitude;
 
   double? dap;
 
   double? psm;
   double? pfm;
 
+//Datos de ubicación
+  double? latitude;
+  double? longitude;
+
+//Datos de suelos
+  double? areaa;
+  double? deptha;
+  double? _soilDensity;
+  String? _selectedSoilType;
+  double? resultSoilCarbon;
+
+  double? get soilDensity => _soilDensity;
+  String? get selectedSoilType => _selectedSoilType;
+
   bool get isDapa => dap != null;
+  bool get isPms => pms != null;
   bool get isPsm => psm != null;
   bool get isPfm => pfm != null;
+
+  //datos de suelo
+  bool get isArea => areaa != null;
+  bool get isDepth => deptha != null;
+  bool get isDensity => _soilDensity != null;
+  bool get isSoilType => _selectedSoilType != null;
+  bool get isResultSoilCarbon => resultSoilCarbon != null;
+  bool get isTotalDensity => isArea && isDensity && isDepth && isSoilType;
 
   bool get isGreenSCalculated => greenAliso != null;
   bool get isDryMatterSCalculated => dryMatterAliso != null;
@@ -89,10 +113,37 @@ class StateBiomass with ChangeNotifier {
     notifyListeners();
   }
 
+  //Sets de suelos
+  void setArea(double value) {
+    areaa = value;
+    notifyListeners();
+  }
+
+  void setDepth(double value) {
+    deptha = value;
+    notifyListeners();
+  }
+
+  void setSoilDensity(double value, String soilType) {
+    _soilDensity = value;
+    _selectedSoilType = soilType;
+    notifyListeners();
+  }
+
+  void setResultSoilCarbon(double value) {
+    resultSoilCarbon = value;
+    notifyListeners();
+  }
+
   //Para la respuesta de biomasa total y carbono
 
   void setDap(double value) {
     dap = value;
+    notifyListeners();
+  }
+
+  void setPms(double value) {
+    _pms = value;
     notifyListeners();
   }
 
@@ -176,8 +227,16 @@ class StateBiomass with ChangeNotifier {
       'latitude': latitude,
       'longitude': longitude,
       'dap': dap,
+      'pesoSecoMateria': pms,
       'pesoSecoHojarasca': psm,
       'pesoFrescoHojarasca': pfm,
+
+      //datos de suelos
+      'areaHec': areaa,
+      'profundidad': deptha,
+      'tipoDensidad': _selectedSoilType,
+      'densidad': _soilDensity,
+      'carbonoSuelo': resultSoilCarbon,
     };
     try {
       await FirebaseFirestore.instance

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/cipres/biomass/state_biomass_c.dart';
 import 'package:version/presentation/screens/cipres/carbon/carbon_c.dart';
 
 class SoilCarbonC extends StatefulWidget {
@@ -8,13 +10,43 @@ class SoilCarbonC extends StatefulWidget {
   State<SoilCarbonC> createState() => _SoilCarbonCState();
 }
 
-class _SoilCarbonCState extends State<SoilCarbonC> {
+class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightA = TextEditingController();
-  final TextEditingController _controllerWeightP = TextEditingController();
+  late TextEditingController controllerWeightAreaC = TextEditingController();
+  late TextEditingController controllerWeightDepthC = TextEditingController();
 
-  String? _selectedSoilType;
-  double? _soilDensity;
+  String? selectedSoilTypeC;
+  double? soilDensityC;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+
+    final stateBiomassC = Provider.of<StateBiomassC>(context, listen: false);
+    controllerWeightAreaC = TextEditingController(
+      text: stateBiomassC.areaC?.toString() ?? '',
+    );
+    controllerWeightDepthC = TextEditingController(
+      text: stateBiomassC.depthC?.toString() ?? '',
+    );
+
+    soilDensityC = stateBiomassC.soilDensity;
+    selectedSoilTypeC = selectedSoilTypeC;
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   //Validación de los pesos
   String? _validateWeight(String? value) {
@@ -33,15 +65,16 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
 
   void _calculateAndShowResult() {
     if (_formKey.currentState!.validate()) {
-      if (_soilDensity == null) {
-        _showValidationDialog(
-            'Por favor, ingresa la densidad aparente del suelo para continuar.');
-        return;
-      }
-      final double area = double.parse(_controllerWeightA.text);
-      final double depth = double.parse(_controllerWeightP.text);
+      final double areaC = double.parse(controllerWeightAreaC.text);
+      final double depthC = double.parse(controllerWeightDepthC.text);
 
-      final double result = area * depth * _soilDensity!;
+      Provider.of<StateBiomassC>(context, listen: false).setAreaC(areaC);
+
+      Provider.of<StateBiomassC>(context, listen: false).setDepthC(depthC);
+
+      final double resultSoilC = areaC * depthC * soilDensityC!;
+      Provider.of<StateBiomassC>(context, listen: false)
+          .setTotalSoilCarbonC(resultSoilC);
 
       showDialog(
           context: context,
@@ -53,7 +86,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   content: Text(
-                    'El peso del suelo (Ws) es: ${result.toStringAsFixed(2)} T/ha',
+                    'El peso del suelo (Ws) es: ${resultSoilC.toStringAsFixed(2)} T/ha',
                     textAlign: TextAlign.justify,
                     style: const TextStyle(fontSize: 16),
                   ),
@@ -71,7 +104,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
     }
   }
 
-  void _showValidationDialog(String message) {
+  /*void _showValidationDialog(String message) {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -87,7 +120,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                     child: const Text('Aceptar'))
               ],
             ));
-  }
+  } */
 
   //Dialogo informativo sobre el carbono
   void openDialog(BuildContext context) {
@@ -124,6 +157,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
   Widget build(BuildContext context) {
     //responsive
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -218,7 +252,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                     ),
                     child: TextFormField(
                       validator: _validateWeight,
-                      controller: _controllerWeightA,
+                      controller: controllerWeightAreaC,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -245,7 +279,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                     ),
                     child: TextFormField(
                       validator: _validateWeight,
-                      controller: _controllerWeightP,
+                      controller: controllerWeightDepthC,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -271,7 +305,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                       horizontal: size.width * 0.12,
                     ),
                     child: DropdownButtonFormField(
-                      value: _selectedSoilType,
+                      value: selectedSoilTypeC,
                       items: const [
                         DropdownMenuItem(
                             value: 'arcilloso-franco',
@@ -286,11 +320,13 @@ class _SoilCarbonCState extends State<SoilCarbonC> {
                               style: TextStyle(fontSize: 14),
                             )),
                       ],
-                      onChanged: (value) {
+                      onChanged: (String? value) {
                         setState(() {
-                          _selectedSoilType = value;
-                          _soilDensity =
+                          selectedSoilTypeC = value;
+                          soilDensityC =
                               value == 'arcilloso-franco' ? 1.1 : 1.32;
+                          Provider.of<StateBiomassC>(context, listen: false)
+                              .setSelectedSoilTypeC(soilDensityC!, value!);
                         });
                       },
                       decoration: InputDecoration(

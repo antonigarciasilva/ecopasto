@@ -16,8 +16,28 @@ class BiomassScreenC extends StatefulWidget {
   State<BiomassScreenC> createState() => _BiomassScreenCState();
 }
 
-class _BiomassScreenCState extends State<BiomassScreenC> {
+class _BiomassScreenCState extends State<BiomassScreenC>
+    with WidgetsBindingObserver {
   StateBiomassC? stateBiomassC;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   @override
   void didChangeDependencies() {

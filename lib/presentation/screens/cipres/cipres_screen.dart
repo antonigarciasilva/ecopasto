@@ -16,7 +16,27 @@ class CipresScreen extends StatefulWidget {
   State<CipresScreen> createState() => _CipresScreenState();
 }
 
-class _CipresScreenState extends State<CipresScreen> {
+class _CipresScreenState extends State<CipresScreen>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //llamamos al provider
   StateBiomassC? stateCipres;
   @override

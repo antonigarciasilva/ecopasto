@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
 import 'package:version/presentation/screens/aliso/carbon/carbon.dart';
 
 class SoilCarbonScreen extends StatefulWidget {
@@ -11,8 +13,8 @@ class SoilCarbonScreen extends StatefulWidget {
 class _SoilCarbonScreenState extends State<SoilCarbonScreen>
     with WidgetsBindingObserver {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightA = TextEditingController();
-  final TextEditingController _controllerWeightP = TextEditingController();
+  late TextEditingController controllerArea = TextEditingController();
+  late TextEditingController controllerDepth = TextEditingController();
 
   String? _selectedSoilType;
   double? _soilDensity;
@@ -28,12 +30,36 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
+
+    final stateBiomass = Provider.of<StateBiomass>(context, listen: false);
+    controllerArea = TextEditingController(
+      text: stateBiomass.areaa?.toString() ?? '',
+    );
+
+    controllerDepth = TextEditingController(
+      text: stateBiomass.deptha?.toString() ?? '',
+    );
+
+    //Inicializamos la densidad del suelo y el tipo de suelo desde stateBiomass
+    _soilDensity = stateBiomass.soilDensity;
+    _selectedSoilType = stateBiomass.selectedSoilType;
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+
     super.dispose();
+  }
+
+  //Guardamos el soilType y la densidad de StateBiomass
+  void _onSoilTypeChanged(String? value) {
+    setState(() {
+      _selectedSoilType = value;
+      _soilDensity = value == 'arcilloso-franco' ? 1.1 : 1.32;
+      Provider.of<StateBiomass>(context, listen: false)
+          .setSoilDensity(_soilDensity!, value!);
+    });
   }
 
   //Validación de los pesos
@@ -51,46 +77,46 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
 
   // Calcular el carbono en el suelo
   void _calculateAndShowResult() {
-    if (_formKey.currentState!.validate()) {
-      if (_soilDensity == null) {
-        _showValidationDialog(
-            'Por favor, ingresa la densidad aparente del suelo para continuar.');
-        return;
-      }
-      final double area = double.parse(_controllerWeightA.text);
-      final double depth = double.parse(_controllerWeightP.text);
+    final double areaa = double.parse(controllerArea.text);
+    final double deptha = double.parse(controllerDepth.text);
 
-      final double result = area * depth * _soilDensity!;
+    //Persistimos los datos en el formulario
+    Provider.of<StateBiomass>(context, listen: false).setArea(areaa);
 
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => AlertDialog(
-          backgroundColor: Colors.white,
-          title: const Text(
-            'Resultado del cálculo',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          content: Text(
-            'El peso del suelo (Ws) es: ${result.toStringAsFixed(2)} T/ha',
-            textAlign: TextAlign.justify,
-            style: const TextStyle(fontSize: 16),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CarbonScreen()),
-                );
-              },
-              child: const Text('Aceptar'),
-            ),
-          ],
+    Provider.of<StateBiomass>(context, listen: false).setDepth(deptha);
+
+    final double resultSoilCarbon = areaa * deptha * _soilDensity!;
+    Provider.of<StateBiomass>(context, listen: false)
+        .setResultSoilCarbon(resultSoilCarbon);
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Resultado del cálculo',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-      );
-    }
+        content: Text(
+          'El peso del suelo (Ws) es: ${resultSoilCarbon.toStringAsFixed(2)} T/ha',
+          textAlign: TextAlign.justify,
+          style: const TextStyle(fontSize: 16),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CarbonScreen()),
+              );
+            },
+            child: const Text('Aceptar'),
+          ),
+        ],
+      ),
+    );
   }
 
   //Dialogo informativo sobre el carbono
@@ -124,7 +150,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
             ));
   }
 
-  //Mostrar el dialogo de advertencia de llenar tipo de suelo
+  /*Mostrar el dialogo de advertencia de llenar tipo de suelo
   void _showValidationDialog(String message) {
     showDialog(
         context: context,
@@ -141,12 +167,13 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                     child: const Text('Aceptar'))
               ],
             ));
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {
     //responsive
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -242,7 +269,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                     ),
                     child: TextFormField(
                       validator: _validateWeight,
-                      controller: _controllerWeightA,
+                      controller: controllerArea,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -269,7 +296,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                     ),
                     child: TextFormField(
                       validator: _validateWeight,
-                      controller: _controllerWeightP,
+                      controller: controllerDepth,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -309,19 +336,13 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                               style: TextStyle(fontSize: 14),
                             )),
                       ],
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedSoilType = value;
-                          _soilDensity =
-                              value == 'arcilloso-franco' ? 1.1 : 1.32;
-                        });
-                      },
+                      onChanged: _onSoilTypeChanged,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Seleccione el tipo de suelo',
+                        labelText: 'Ingrese la (da) en g/cm³',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       dropdownColor: Colors.white,
@@ -356,13 +377,3 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
     );
   }
 }
-
-/* 
-Calculo interno 
-CO (Tm/ha) = Ws * %CO
-CO = Carbono orgánico (Tm/ha)
-Ws= peso del suelo calculado (Tm/ha)
-CO = Carbono calculado en laboratorio (%)
-
-Para optener el carbono en el suelo
-*/

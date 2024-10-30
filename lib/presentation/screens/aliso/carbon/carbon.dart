@@ -201,27 +201,47 @@ class _CarbonScreenState extends State<CarbonScreen>
                       SizedBox(height: size.height * 0.03),
                       MouseRegion(
                         cursor: SystemMouseCursors.click,
-                        child: SizedBox(
-                          width: size.width * 0.8,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: WidgetStateProperty.all<Color>(
-                                  const Color.fromARGB(255, 51, 79, 31)),
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: size.width * 0.8,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      WidgetStateProperty.all<Color>(
+                                          stateBiomass.isTotalDensity
+                                              ? Colors.grey
+                                              : const Color.fromARGB(
+                                                  255, 51, 79, 31)),
+                                ),
+                                onPressed: stateBiomass.isTotalDensity
+                                    ? null
+                                    : () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const SoilCarbonScreen()),
+                                        );
+                                      },
+                                child: const Text(
+                                  'Carbono en el suelo',
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.white),
+                                ),
+                              ),
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const SoilCarbonScreen()),
-                              );
-                            },
-                            child: const Text(
-                              'Carbono en el suelo',
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
-                            ),
-                          ),
+                            if (stateBiomass.isTotalDensity)
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const SoilCarbonScreen()));
+                                  },
+                                  icon: const Icon(Icons.edit))
+                          ],
                         ),
                       ),
 

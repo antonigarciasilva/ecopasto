@@ -11,9 +11,34 @@ class DryMatterC extends StatefulWidget {
   State<DryMatterC> createState() => _DryMatterCState();
 }
 
-class _DryMatterCState extends State<DryMatterC> {
+class _DryMatterCState extends State<DryMatterC> with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+
+    //Inicializamos el controlador con el valor actual de la materia seca
+    final stateBiomassC = Provider.of<StateBiomassC>(context, listen: false);
+    _controllerPMSC = TextEditingController(
+      text: stateBiomassC.pmsC?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightDry = TextEditingController();
+  late final TextEditingController _controllerPMSC;
   //Creamos el provider
   StateBiomassC? stateBiomassC;
   //Para usar el provider
@@ -41,10 +66,12 @@ class _DryMatterCState extends State<DryMatterC> {
 
   void _calculateDryMatterResult() {
     if (_formKey.currentState!.validate()) {
-      final double pms = double.parse(_controllerWeightDry.text);
+      final double pmsC = double.parse(_controllerPMSC.text);
+
+      Provider.of<StateBiomassC>(context, listen: false).setPmsC(pmsC);
 
       final double dryMatterCipres =
-          pms / (stateBiomassC!.greenCipres ?? 0) * 100;
+          pmsC / (stateBiomassC!.greenCipres ?? 0) * 100;
       final String formattedResult = dryMatterCipres.toStringAsFixed(2);
 
       Provider.of<StateBiomassC>(context, listen: false)
@@ -211,7 +238,7 @@ class _DryMatterCState extends State<DryMatterC> {
                     ),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
-                      controller: _controllerWeightDry,
+                      controller: _controllerPMSC,
                       validator: _validateWeightC,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(

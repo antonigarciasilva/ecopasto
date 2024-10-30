@@ -14,7 +14,7 @@ class NewDryBiomassScreen extends StatefulWidget {
 class _NewDryBiomassScreenState extends State<NewDryBiomassScreen>
     with WidgetsBindingObserver {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerDap = TextEditingController();
+  late TextEditingController _controllerDap = TextEditingController();
   double? dryBiomass;
 
   @override
@@ -28,6 +28,11 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen>
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
+    //Inicializamos el controller
+    final stateBiomass = Provider.of<StateBiomass>(context, listen: false);
+    _controllerDap = TextEditingController(
+      text: stateBiomass.dap?.toString() ?? '',
+    );
   }
 
   @override
@@ -53,6 +58,9 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen>
   void _calculateDryBiomass() {
     if (_formKey.currentState!.validate()) {
       double dap = double.parse(_controllerDap.text);
+
+      //Persistir la variable
+      Provider.of<StateBiomass>(context, listen: false).setDap(dap);
 
       dryBiomass = -22.695 + 1.5085 * (dap);
       final String formattedResult = dryBiomass!.toStringAsFixed(2);

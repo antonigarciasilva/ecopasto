@@ -15,7 +15,8 @@ class BiomassCarbonC extends StatefulWidget {
   State<BiomassCarbonC> createState() => _BiomassCarbonCState();
 }
 
-class _BiomassCarbonCState extends State<BiomassCarbonC> {
+class _BiomassCarbonCState extends State<BiomassCarbonC>
+    with WidgetsBindingObserver {
   StateBiomass? stateBiomass;
   StateBiomassC? stateBiomassC;
   StateBiomassP? stateBiomassP;
@@ -30,6 +31,25 @@ class _BiomassCarbonCState extends State<BiomassCarbonC> {
     stateBiomassP = Provider.of<StateBiomassP>(context);
     stateBiomassO = Provider.of<StateBiomassO>(context);
     stateST = Provider.of<StateST>(context);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   void _seeResultCarbonBiomassC() {

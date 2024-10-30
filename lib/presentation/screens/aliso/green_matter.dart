@@ -25,6 +25,11 @@ class MyGreenMatterScreen extends State<GreenMatterScreen>
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
+    //controllador para la materia verde
+    final stateBiomass = Provider.of<StateBiomass>(context, listen: false);
+    _controllerWeightAliso = TextEditingController(
+      text: stateBiomass.greenAliso?.toString() ?? '',
+    );
   }
 
   @override
@@ -40,7 +45,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen>
   //Con los controladores vamos a poder acceder a la información de cada texto
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightAliso = TextEditingController();
+  late TextEditingController _controllerWeightAliso = TextEditingController();
   double? greenAliso;
 
   //Validar el peso de la materia verde
@@ -63,6 +68,9 @@ class MyGreenMatterScreen extends State<GreenMatterScreen>
     //Luego ponemos un "." y accedemos al metodo validate que da valores booleanos
     if (_formKey.currentState!.validate()) {
       final double greenMatterA = double.parse(_controllerWeightAliso.text);
+
+      //Actualizamos el pms en stateBiomass para que persista
+      // Provider.of<StateBiomass>(context, listen: false).setGreenS(greenAliso);
 
       final double greenAliso = greenMatterA;
 

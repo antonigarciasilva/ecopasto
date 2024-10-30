@@ -8,6 +8,7 @@ class StateBiomassC with ChangeNotifier {
 
   double? greenCipres;
   double? dryMatterCipres;
+  double? pmsC;
 
   double? dryBiomassC;
   double? herbaceousBiomassC;
@@ -21,12 +22,29 @@ class StateBiomassC with ChangeNotifier {
   double? psmC;
   double? pfmC;
 
+//Datos suelos
+  double? areaC;
+  double? depthC;
+  String? selectedSoilTypeC;
+  double? soilDensity;
+  double? totalSoilCarbonC;
+
+  bool get isAreaC => areaC != null;
+  bool get isDepthC => depthC != null;
+  bool get isSelectedSoilTypeC => selectedSoilTypeC != null;
+  bool get isSoilDensity => soilDensity != null;
+  bool get isTotalSoilCarbonC => totalSoilCarbonC != null;
+
+  bool get areDateCarbonC =>
+      isAreaC && isDepthC && isSelectedSoilTypeC && isSoilDensity;
+
   bool get isDapC => dapC != null;
   bool get isPsmC => psmC != null;
   bool get isPfmC => pfmC != null;
 
   bool get isGreenCipresCalculated => greenCipres != null;
   bool get isDryMatterCipresCalculated => dryMatterCipres != null;
+  bool get isPmsC => pmsC != null;
 
   bool get isDryBiomassCalculatedC => dryBiomassC != null;
   bool get isherbaceousCalculatedC => herbaceousBiomassC != null;
@@ -91,6 +109,28 @@ class StateBiomassC with ChangeNotifier {
     notifyListeners();
   }
 
+  //Setters para suelos
+  void setAreaC(double value) {
+    areaC = value;
+    notifyListeners();
+  }
+
+  void setDepthC(double value) {
+    depthC = value;
+    notifyListeners();
+  }
+
+  void setSelectedSoilTypeC(double value, String soilType) {
+    selectedSoilTypeC = soilType;
+    soilDensity = value;
+    notifyListeners();
+  }
+
+  void setTotalSoilCarbonC(double value) {
+    totalSoilCarbonC = value;
+    notifyListeners();
+  }
+
   //Para la respuesta de biomasa total y carbono
   void setDapC(double value) {
     dapC = value;
@@ -104,6 +144,11 @@ class StateBiomassC with ChangeNotifier {
 
   void setPfmC(double value) {
     pfmC = value;
+    notifyListeners();
+  }
+
+  void setPmsC(double value) {
+    pmsC = value;
     notifyListeners();
   }
 
@@ -179,7 +224,13 @@ class StateBiomassC with ChangeNotifier {
       'longitud': longitude,
       'dap': dapC,
       'pesoSecoHojarasca': psmC,
-      'pesoFrescoHojarasca': pfmC
+      'pesoFrescoHojarasca': pfmC,
+      //suelos
+      'area': areaC,
+      'profundidad': depthC,
+      'tipodesuelo': selectedSoilTypeC,
+      'densidadesuelo': soilDensity,
+      'totalSoilCarbon': totalSoilCarbonC,
     };
     try {
       await FirebaseFirestore.instance

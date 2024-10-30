@@ -10,10 +10,35 @@ class DryBiomassCNew extends StatefulWidget {
   State<DryBiomassCNew> createState() => _DryBiomassCNewState();
 }
 
-class _DryBiomassCNewState extends State<DryBiomassCNew> {
+class _DryBiomassCNewState extends State<DryBiomassCNew>
+    with WidgetsBindingObserver {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerDapP = TextEditingController();
+  late TextEditingController _controllerDapP = TextEditingController();
   double? dryBiomassC;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    //Inicializamos el controller
+    final stateBiomassC = Provider.of<StateBiomassC>(context, listen: false);
+    _controllerDapP = TextEditingController(
+      text: stateBiomassC.dapC?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   // Validación del DAP
   String? _validateDap(String? value) {

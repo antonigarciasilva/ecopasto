@@ -11,11 +11,36 @@ class GreenMatterC extends StatefulWidget {
   State<GreenMatterC> createState() => _GreenMatterCState();
 }
 
-class _GreenMatterCState extends State<GreenMatterC> {
+class _GreenMatterCState extends State<GreenMatterC>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    //controllador para la materia verde
+    final stateBiomassC = Provider.of<StateBiomassC>(context, listen: false);
+    _controllerWeightC = TextEditingController(
+      text: stateBiomassC.greenCipres?.toString() ?? '',
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //variable que puede ser null o de tipo String
   String? selectedValue;
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightC = TextEditingController();
+  late final TextEditingController _controllerWeightC;
   double? greenCipres;
 
   //Validar el peso

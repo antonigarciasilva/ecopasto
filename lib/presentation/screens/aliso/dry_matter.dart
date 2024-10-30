@@ -14,6 +14,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
     with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    // ignore: avoid_print
     print(state);
     super.didChangeAppLifecycleState(state);
   }
@@ -22,6 +23,12 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
+
+    //Inicializamos el controlador con el valor actual de la materia seca
+    final stateBiomass = Provider.of<StateBiomass>(context, listen: false);
+    _controllerPMS = TextEditingController(
+      text: stateBiomass.pms?.toString() ?? '',
+    );
   }
 
   @override
@@ -43,7 +50,8 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
   //Para hacer las validaciones tenemos que tener nuestro:
   // Globalkey para ver el estado del formulario  y los controladores para poder acceder a la i del texto
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerDryWeight = TextEditingController();
+
+  late final TextEditingController _controllerPMS;
 
   double? dryMatterAliso;
 
@@ -65,7 +73,10 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
 
   void _calculateDryMatterResult() {
     if (_formKey.currentState!.validate()) {
-      final double pms = double.parse(_controllerDryWeight.text);
+      final double pms = double.parse(_controllerPMS.text);
+
+      //Actualizamos el pms en stateBiomas para que persista
+      Provider.of<StateBiomass>(context, listen: false).setPms(pms);
 
       final double dryMatterAliso = pms / (stateBiomass!.greenAliso ?? 0) * 100;
 
@@ -235,7 +246,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
                     ),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
-                      controller: _controllerDryWeight,
+                      controller: _controllerPMS,
                       validator: _validateWeight,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(

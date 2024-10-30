@@ -14,8 +14,8 @@ class LeafLitterBiomassScreen extends StatefulWidget {
 class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
     with WidgetsBindingObserver {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerWeightPSM = TextEditingController();
-  final TextEditingController _controllerWeightPFM = TextEditingController();
+  late TextEditingController _controllerWeightPSM = TextEditingController();
+  late TextEditingController _controllerWeightPFM = TextEditingController();
 
   double? resultbha;
 
@@ -30,6 +30,16 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
+
+    //Para persistencia de los datos
+    final stateBiomass = Provider.of<StateBiomass>(context, listen: false);
+    _controllerWeightPSM = TextEditingController(
+      text: stateBiomass.psm?.toString() ?? '',
+    );
+
+    _controllerWeightPFM = TextEditingController(
+      text: stateBiomass.pfm?.toString() ?? '',
+    );
   }
 
   @override
@@ -57,6 +67,10 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
     if (_formKey.currentState!.validate()) {
       final double psm = double.parse(_controllerWeightPSM.text);
       final double pfm = double.parse(_controllerWeightPFM.text);
+
+      //Persistencia
+      Provider.of<StateBiomass>(context, listen: false).setPsm(psm);
+      Provider.of<StateBiomass>(context, listen: false).setPfm(pfm);
 
       final double leafLitterBiomass = ((psm / pfm) * pfm) * 0.04;
       final String formattedResult = leafLitterBiomass.toStringAsFixed(2);
