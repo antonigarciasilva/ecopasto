@@ -47,9 +47,9 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen>
       return 'Por favor, ingresa el DAP';
     }
     // Validación de regex solo números
-    final dapRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!dapRegExp.hasMatch(value)) {
-      return 'Solo se aceptan valores numéricos';
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
+    if (!weightRegExp.hasMatch(value)) {
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }
@@ -196,17 +196,28 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen>
                   ),
                 ),
 
+                //NOTA
+                SizedBox(height: size.height * 0.01),
+                SizedBox(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.18,
+                    ),
+                    child: const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '*DAP: Diámetro a la altura del pecho \n',
+                        style: TextStyle(fontSize: 10),
+                      ),
+                    ),
+                  ),
+                ),
+
                 //Formulario del DAP
                 SizedBox(height: size.height * 0.03),
-                const Text(
-                  'Diámetro a la altura del pecho (DAP): ',
-                  style: TextStyle(fontSize: 15),
-                ),
-                SizedBox(height: size.height * 0.01),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.15,
-                  ),
+
+                SizedBox(
+                  width: size.width * 0.8,
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -215,7 +226,7 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen>
                           controller: _controllerDap,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            labelText: 'Ingrese el DAP (cm)',
+                            labelText: 'Ingrese el DAP en cm',
                             labelStyle: const TextStyle(fontSize: 14),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25)),
@@ -225,15 +236,19 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen>
 
                         //Calcular
                         SizedBox(height: size.height * 0.03),
-                        ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all<Color>(
-                                const Color.fromARGB(255, 51, 79, 31)),
-                          ),
-                          onPressed: _calculateDryBiomass,
-                          child: const Text(
-                            'Calcular',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                        SizedBox(
+                          width: size.width * 0.8,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(
+                                  const Color.fromARGB(255, 255, 193, 7)),
+                            ),
+                            onPressed: _calculateDryBiomass,
+                            child: const Text(
+                              'Calcular',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
                           ),
                         ),
                         SizedBox(height: size.height * 0.03),

@@ -56,9 +56,9 @@ class _DryBiomassPonaState extends State<DryBiomassPona>
     //Validación del AF
 
     //Validación de regex only numbers
-    final dapRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!dapRegExp.hasMatch(value)) {
-      return 'Solo se aceptan valores numéricos';
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
+    if (!weightRegExp.hasMatch(value)) {
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }

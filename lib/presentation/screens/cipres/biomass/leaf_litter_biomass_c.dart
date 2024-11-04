@@ -51,9 +51,9 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC>
       return 'Por favor, ingrese el peso';
     }
     //Validación de peso
-    final weightRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
     if (!weightRegExp.hasMatch(value)) {
-      return 'Solo se acepta valores númericos';
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }

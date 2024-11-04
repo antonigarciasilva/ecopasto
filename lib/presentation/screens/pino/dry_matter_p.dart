@@ -56,9 +56,9 @@ class _DryMatterPState extends State<DryMatterP> with WidgetsBindingObserver {
       return 'Por favor, ingrese el peso';
     }
 
-    final wieghtRegExpP = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!wieghtRegExpP.hasMatch(value)) {
-      return 'Solo se acepta valores numéricos';
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
+    if (!weightRegExp.hasMatch(value)) {
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }

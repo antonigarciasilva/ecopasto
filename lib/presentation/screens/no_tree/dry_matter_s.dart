@@ -58,9 +58,9 @@ class _DryMatterSState extends State<DryMatterS> with WidgetsBindingObserver {
     }
 
     //Validación de regex
-    final dryWeight = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!dryWeight.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
+    if (!weightRegExp.hasMatch(value)) {
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }

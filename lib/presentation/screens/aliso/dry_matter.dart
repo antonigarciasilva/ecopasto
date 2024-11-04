@@ -62,9 +62,9 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
     }
 
     //Validación de regex
-    final dryWeight = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!dryWeight.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
+    if (!weightRegExp.hasMatch(value)) {
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }
@@ -224,7 +224,9 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*MS: materia seca \n'
-                          '*m²: metro cuadrado',
+                          '*PMS: Peso de la materia seca \n'
+                          '*PMH: Peso de la materia húmeda \n'
+                          '*m²: metro cuadrado ',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),
@@ -234,16 +236,8 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
                   //Peso de la materia seca
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Peso de la materia seca (PMS): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.15,
-                    ),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _controllerPMS,
@@ -251,7 +245,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingresa el peso en Kg',
+                        labelText: 'Ingresa el PMS en Kg',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
                       textAlign: TextAlign.center,
@@ -267,7 +261,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 255, 193, 7)),
                         ),
                         onPressed: _calculateDryMatterResult,
                         child: const Text(

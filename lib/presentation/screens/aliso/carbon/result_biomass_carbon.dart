@@ -284,13 +284,13 @@ class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
                         SizedBox(height: size.height * 0.03),
                         Table(
                           border: TableBorder.all(),
-                          columnWidths: const <int, TableColumnWidth>{
-                            0: FixedColumnWidth(75),
-                            1: FixedColumnWidth(42),
-                            2: FixedColumnWidth(42),
-                            3: FixedColumnWidth(42),
-                            4: FixedColumnWidth(42),
-                            5: FixedColumnWidth(42),
+                          columnWidths: <int, TableColumnWidth>{
+                            0: FixedColumnWidth(size.width * 0.3),
+                            1: FixedColumnWidth(size.width * 0.14),
+                            2: FixedColumnWidth(size.width * 0.14),
+                            3: FixedColumnWidth(size.width * 0.14),
+                            4: FixedColumnWidth(size.width * 0.14),
+                            5: FixedColumnWidth(size.width * 0.14),
                           },
                           children: [
                             //Títulos de la cabecera
@@ -879,14 +879,18 @@ class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
 
                         SizedBox(height: size.height * 0.03),
                         //Boton de conocer más
-                        ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all<Color>(
-                                    Colors.white)),
-                            onPressed: () => openDialogInfo(context),
-                            child: const Text('Conocer más',
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.blue))),
+                        SizedBox(
+                          width: size.width * 0.6,
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor: WidgetStateProperty.all<
+                                          Color>(
+                                      const Color.fromARGB(220, 66, 165, 245))),
+                              onPressed: () => openDialogInfo(context),
+                              child: const Text('Conocer más',
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.white))),
+                        ),
                         SizedBox(height: size.height * 0.03),
                         //Nivel de carbono
                         Text(
@@ -922,20 +926,24 @@ class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
                         SizedBox(height: size.height * 0.03),
 
                         //Boton de aceptar
-                        ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all<Color>(
-                                    Colors.green)),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const NewSelectSilvoScreen()));
-                            },
-                            child: const Text('Regresar',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white)))
+                        SizedBox(
+                          width: size.width * 0.6,
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor: WidgetStateProperty.all<
+                                          Color>(
+                                      const Color.fromARGB(255, 34, 139, 34))),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const NewSelectSilvoScreen()));
+                              },
+                              child: const Text('Regresar',
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.white))),
+                        )
                       ])),
             ),
           ),

@@ -75,7 +75,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                   color: Colors.white.withOpacity(0.7),
                                   child: const Text.rich(
                                     TextSpan(
-                                        text: 'Pino ',
+                                        text: 'Pino',
                                         style: TextStyle(
                                             fontStyle: FontStyle.normal,
                                             color: Colors.black,
@@ -127,7 +127,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                   color: Colors.white.withOpacity(0.7),
                                   child: const Text.rich(
                                     TextSpan(
-                                        text: 'Ciprés ',
+                                        text: 'Ciprés',
                                         style: TextStyle(
                                             fontStyle: FontStyle.normal,
                                             color: Colors.black,
@@ -178,7 +178,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                   color: Colors.white.withOpacity(0.7),
                                   child: const Text.rich(
                                     TextSpan(
-                                        text: 'Aliso ',
+                                        text: 'Aliso',
                                         style: TextStyle(
                                             fontStyle: FontStyle.normal,
                                             color: Colors.black,
@@ -229,7 +229,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                   color: Colors.white.withOpacity(0.7),
                                   child: const Text.rich(
                                     TextSpan(
-                                        text: 'Pona ',
+                                        text: 'Pona',
                                         style: TextStyle(
                                             fontStyle: FontStyle.normal,
                                             color: Colors.black,
@@ -237,7 +237,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                             fontWeight: FontWeight.bold),
                                         children: <TextSpan>[
                                           TextSpan(
-                                              text: '(Ceroxilum quindiuense )',
+                                              text: '(Ceroxilum quindiuense)',
                                               style: TextStyle(
                                                 fontStyle: FontStyle.italic,
                                               ))
@@ -280,7 +280,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                       padding: const EdgeInsets.all(6),
                                       color: Colors.white.withOpacity(0.7),
                                       child: const Text(
-                                        'Sin Arboles',
+                                        'Sin Árboles',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -320,7 +320,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                   //subtitle: Text('Un sistema silvopastoril es...'),
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                      padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
                       child: Text(
                         'Un sistema silvopastoril es una forma de uso de la tierra en la cual se integran árboles, pastos y animales en una misma unidad de producción.',
                         textAlign: TextAlign.justify,
@@ -342,7 +342,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                   //subtitle: Text('Un sistema silvopastoril es...'),
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                      padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
                       child: Text(
                         'Utilizar de manera eficiente la tierra, maximizando la producción de alimentos, fibras y madera, al tiempo que se conservan los recursos naturales y se protege el medio ambiente.',
                         textAlign: TextAlign.justify,
@@ -364,7 +364,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                   //subtitle: Text('Un sistema silvopastoril es...'),
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                      padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
                       child: Text(
                         '- Mejora la productividad del suelo.\n'
                         '- Aumenta la biodiversidad.\n'
@@ -390,7 +390,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                   //subtitle: Text('Un sistema silvopastoril es...'),
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                      padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
                       child: Text(
                         'Los sistemas silvopastoriles son fundamentales para la producción agropecuaria sostenible, ya que permiten obtener múltiples beneficios económicos, sociales y ambientales al mismo tiempo.',
                         textAlign: TextAlign.justify,

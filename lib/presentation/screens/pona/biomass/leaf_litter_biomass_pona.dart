@@ -52,9 +52,9 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona>
       return 'Por favor, ingrese el peso';
     }
     //Validación con regex
-    final weightRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
     if (!weightRegExp.hasMatch(value)) {
-      return 'Solo SE acepta valores numéricos';
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }

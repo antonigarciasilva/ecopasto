@@ -115,6 +115,7 @@ class LoginPageState extends State<LoginScreen> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
+            backgroundColor: Colors.white,
             title: const Text(
               'Restablecer contraseña',
               textAlign: TextAlign.center,

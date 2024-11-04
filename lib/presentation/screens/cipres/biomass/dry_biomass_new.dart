@@ -46,9 +46,9 @@ class _DryBiomassCNewState extends State<DryBiomassCNew>
       return 'Por favor, ingresa el DAP';
     }
     // Validación de regex solo números
-    final dapRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!dapRegExp.hasMatch(value)) {
-      return 'Solo se aceptan valores numéricos';
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
+    if (!weightRegExp.hasMatch(value)) {
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }

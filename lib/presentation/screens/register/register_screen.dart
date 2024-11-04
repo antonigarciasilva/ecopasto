@@ -175,10 +175,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     //final stateRegister = Provider.of<StateRegister>(context);
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('Registrar'),
+        title: const Text('Registro'),
       ),
       backgroundColor: Colors.white,
       body: Center(
@@ -190,18 +191,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                //Titulo
-                const Text(
-                  'REGISTRO',
-                  style: TextStyle(
-                      fontSize: 18, color: Color.fromARGB(255, 82, 12, 7)),
-                  textAlign: TextAlign.center,
-                ),
-
-                const SizedBox(
-                  height: 40,
-                ),
-
                 //Nombre
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
@@ -217,7 +206,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         )),
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
 
                 //Last name
                 MouseRegion(
@@ -234,7 +225,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         )),
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
 
                 //Phone number
                 MouseRegion(
@@ -251,22 +244,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         )),
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
 
-                //Gender
-                const Text(
-                  'Selccione su genero:',
-                  style: TextStyle(fontSize: 15),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
                   child: DropdownButtonFormField<String>(
                     validator: _validateGender,
                     value: selectValueG,
-                    hint: const Text('Elija su genero'),
+                    hint: const Text('Elija su género'),
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        prefixIcon: const Icon(
+                          Icons.person_outlined,
+                        )),
+                    dropdownColor: Colors.white,
                     onChanged: (String? value) {
                       setState(() {
                         selectValueG = value;
@@ -278,17 +275,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       'Prefiero no decirlo'
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value,
-                              style: const TextStyle(
-                                fontSize: 15,
-                              )));
+                        value: value,
+                        child: Text(
+                          value,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                      );
                     }).toList(),
                   ),
                 ),
 
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: size.height * 0.03,
                 ),
 
                 //Gmail
@@ -307,10 +308,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20.0,
+                SizedBox(
+                  height: size.height * 0.03,
                 ),
-
                 //Password
                 TextFormField(
                   controller: _passwordControllerR,
@@ -324,8 +324,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: size.height * 0.06,
                 ),
 
                 //Botón de resgistrarse
@@ -363,7 +363,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }
                       },
                       child: const Text(
-                        'Guardar',
+                        'Registrarme',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
@@ -371,8 +371,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 //Mostrar mensaje de error si existe
                 if (errorMessage != null) ...[
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: size.height * 0.03,
                   ),
                   Text(
                     errorMessage!,

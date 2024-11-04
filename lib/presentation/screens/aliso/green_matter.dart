@@ -54,9 +54,9 @@ class MyGreenMatterScreen extends State<GreenMatterScreen>
       return 'Por favor, ingresa el peso';
     }
     //Validación con regex
-    final weightRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
     if (!weightRegExp.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }
@@ -170,23 +170,15 @@ class MyGreenMatterScreen extends State<GreenMatterScreen>
                   //Peso de la materia verde
                   SizedBox(height: size.height * 0.03),
 
-                  const Text('Peso de materia verde por m²:',
-                      style: TextStyle(
-                        fontSize: 15,
-                      )),
-                  SizedBox(height: size.height * 0.01),
-
                   //Ingresa el peso de materia verde
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.15,
-                    ),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _controllerWeightAliso,
                       validator: _validateWeight,
                       decoration: InputDecoration(
-                        labelText: 'Ingresa el peso en Kg/m²',
+                        labelText: 'Peso de materia verde en Kg/m²',
                         labelStyle: const TextStyle(fontSize: 14),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
@@ -216,7 +208,7 @@ class MyGreenMatterScreen extends State<GreenMatterScreen>
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 255, 193, 7)),
                         ),
                         onPressed: _submitForm,
                         child: const Text(

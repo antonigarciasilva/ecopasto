@@ -54,9 +54,9 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
       return 'Por favor, ingrese un valor';
     }
     //Validación con regex
-    final soilRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!soilRegExp.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
+    if (!weightRegExp.hasMatch(value)) {
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }

@@ -54,9 +54,9 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
       return 'Por favor, ingrese el peso';
     }
     //Validación con regex
-    final weightRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
     if (!weightRegExp.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }
@@ -195,7 +195,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: size.width * 0.95,
+                      width: size.width * 0.8,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -222,6 +222,8 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*BH: Biomasa hojarasca(T/ha) \n'
+                          '*PSM: Peso seco de la materia por m² \n'
+                          '*PFM: Peso fresco de la muestram² \n'
                           '*PFT: Peso fresco total por m² \n'
                           '*0.04: Factor de conversión para biomasa hojarasca \n',
                           style: TextStyle(fontSize: 10),
@@ -233,14 +235,8 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                   //PSM
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Peso seco de la materia (PSM): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       controller: _controllerWeightPSM,
                       validator: _validateWeight,
@@ -249,7 +245,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        labelText: 'Ingresa el peso en gr',
+                        labelText: 'Ingresa el PSM en gr',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
@@ -259,16 +255,8 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                   //PFM
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Peso fresco de la muestra (PFM): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.15,
-                    ),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       controller: _controllerWeightPFM,
                       validator: _validateWeight,
@@ -277,7 +265,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        labelText: 'Ingresa el peso en gr',
+                        labelText: 'Ingresa el PFM en gr',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
@@ -293,7 +281,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 255, 193, 7)),
                         ),
                         onPressed: _calculateLeafLitterBiomassResult,
                         child: const Text(

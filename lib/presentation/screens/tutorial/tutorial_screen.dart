@@ -137,7 +137,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
             Positioned(
               left: 0,
               right: 0,
-              bottom: size.height * 0.05,
+              bottom: size.height * 0.07,
               //Con la librería animated_do, para mejora vista al buttum, va a salir por la deracha después de un segundo
               child: FadeInRight(
                 //from:15 se moverá 15 unidades y de 1 seg en mostrarse
@@ -168,7 +168,6 @@ class _TutorialScreenState extends State<TutorialScreen> {
             )
           else
             const SizedBox(),
-
           //Barra de progreso
           Positioned(
               left: 0,

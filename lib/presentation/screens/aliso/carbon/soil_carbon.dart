@@ -68,9 +68,9 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
       return 'Por favor, ingresa un valor';
     }
     //Validación con regex
-    final soilRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!soilRegExp.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
+    if (!weightRegExp.hasMatch(value)) {
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }
@@ -150,25 +150,6 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
             ));
   }
 
-  /*Mostrar el dialogo de advertencia de llenar tipo de suelo
-  void _showValidationDialog(String message) {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => AlertDialog(
-              backgroundColor: Colors.white,
-              title: const Text('Validación'),
-              content: Text(message),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Aceptar'))
-              ],
-            ));
-  } */
-
   @override
   Widget build(BuildContext context) {
     //responsive
@@ -232,7 +213,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                         ),
                         onPressed: () {},
                         child: const Text(
-                          'Ws (T/ha) = a * p * da',
+                          'Ws (T/ha) = a * p * da ',
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -248,7 +229,10 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                     child: const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*Ws: Peso del suelo (T/ha) ',
+                        '*Ws: Peso del suelo (T/ha) \n '
+                        '*a = Área\n'
+                        '*p = Profundidad \n'
+                        '*da = Densidad aparente ',
                         style: TextStyle(fontSize: 10),
                       ),
                     ),
@@ -257,16 +241,8 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                   //Área
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Área (a): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.1,
-                    ),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       validator: _validateWeight,
                       controller: controllerArea,
@@ -284,16 +260,8 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                   //Profundidad
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Profundidad (p): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.1,
-                    ),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       validator: _validateWeight,
                       controller: controllerDepth,
@@ -311,15 +279,8 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                   //Densidad aparente del suelo
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Densidad aparente del suelo (da): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.1,
-                    ),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: DropdownButtonFormField<String>(
                       value: _selectedSoilType,
                       items: const [
@@ -358,7 +319,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 255, 193, 7)),
                         ),
                         onPressed: _calculateAndShowResult,
                         child: const Text(

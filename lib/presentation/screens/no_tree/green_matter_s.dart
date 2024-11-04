@@ -53,9 +53,9 @@ class MyGreenMatterScreen extends State<GreenMatterScreenS>
       return 'Por favor, ingresa el peso';
     }
     //Validación con regex
-    final weightRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
     if (!weightRegExp.hasMatch(value)) {
-      return 'Solo acepta valores numéricos';
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }

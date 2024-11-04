@@ -47,9 +47,9 @@ class _DryBiomassPState extends State<DryBiomassP> with WidgetsBindingObserver {
     }
     //Validación de regex only numbers
     //'!' así como está es como un negador booleano
-    final dapRegExp = RegExp(r'^[0-9]+(\.[0-9]+)?$');
-    if (!dapRegExp.hasMatch(value)) {
-      return 'Solo se aceptan valores numéricos';
+    final weightRegExp = RegExp(r'^\d{1,5}(\.\d{1,2})?$');
+    if (!weightRegExp.hasMatch(value)) {
+      return 'Valores numéricos hasta 7 cifras, dos decimales.';
     }
     return null;
   }
