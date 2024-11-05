@@ -285,13 +285,13 @@ class _ResultCarbonBiomassOState extends State<ResultCarbonBiomassO>
                   SizedBox(height: size.height * 0.03),
                   Table(
                     border: TableBorder.all(),
-                    columnWidths: const <int, TableColumnWidth>{
-                      0: FixedColumnWidth(73),
-                      1: FixedColumnWidth(42),
-                      2: FixedColumnWidth(42),
-                      3: FixedColumnWidth(42),
-                      4: FixedColumnWidth(42),
-                      5: FixedColumnWidth(42),
+                    columnWidths: <int, TableColumnWidth>{
+                      0: FixedColumnWidth(size.width * 0.25),
+                      1: FixedColumnWidth(size.width * 0.13),
+                      2: FixedColumnWidth(size.width * 0.13),
+                      3: FixedColumnWidth(size.width * 0.13),
+                      4: FixedColumnWidth(size.width * 0.13),
+                      5: FixedColumnWidth(size.width * 0.13),
                     },
                     children: [
                       //Títulos de la cabecera
@@ -846,16 +846,18 @@ class _ResultCarbonBiomassOState extends State<ResultCarbonBiomassO>
                   ),
                   SizedBox(height: size.height * 0.03),
 
-                  //Botón aceptar
-                  ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                              WidgetStateProperty.all<Color>(Colors.white)),
-                      onPressed: () => openDialogInfo(context),
-                      child: const Text(
-                        'Conocer más',
-                        style: TextStyle(fontSize: 14, color: Colors.blue),
-                      )),
+                  //Boton de conocer más
+                  SizedBox(
+                    width: size.width * 0.4,
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                const Color.fromARGB(220, 66, 165, 245))),
+                        onPressed: () => openDialogInfo(context),
+                        child: const Text('Conocer más',
+                            style:
+                                TextStyle(fontSize: 14, color: Colors.white))),
+                  ),
                   SizedBox(height: size.height * 0.03),
                   Text(
                     'Nivel de carbono: $level',
@@ -891,8 +893,8 @@ class _ResultCarbonBiomassOState extends State<ResultCarbonBiomassO>
                   //Botón para aceptar
                   ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor:
-                              WidgetStateProperty.all<Color>(Colors.green)),
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                              const Color.fromARGB(255, 34, 139, 34))),
                       onPressed: () {
                         Navigator.push(
                             context,

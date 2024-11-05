@@ -114,24 +114,6 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
     }
   }
 
-  /*void _showValidationDialog(String message) {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => AlertDialog(
-              backgroundColor: Colors.white,
-              title: const Text('Validación'),
-              content: Text(message),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Aceptar'))
-              ],
-            ));
-  } */
-
   //Dialogo informativo sobre el carbono
   void openDialog(BuildContext context) {
     showDialog(
@@ -241,7 +223,10 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*Ws: Peso del suelo (T/ha) ',
+                        '*Ws: Peso del suelo (T/ha) \n '
+                        '*a = Área\n'
+                        '*p = Profundidad \n'
+                        '*da = Densidad aparente ',
                         style: TextStyle(fontSize: 10),
                       ),
                     ),
@@ -250,16 +235,8 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
                   //Área
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Área (a): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.12,
-                    ),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       validator: _validateWeight,
                       controller: controllerWeightAreaC,
@@ -267,7 +244,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el (a) en hectáreas',
+                        labelText: 'Ingrese el a en hectáreas',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
@@ -277,16 +254,8 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
                   //Profundidad
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Profundidad (p): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.12,
-                    ),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       validator: _validateWeight,
                       controller: controllerWeightDepthC,
@@ -294,7 +263,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingresa la (p) en metros',
+                        labelText: 'Ingresa la p en metros',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
@@ -304,16 +273,8 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
                   //Densidad aparente del suelo
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Densidad aparente del suelo (da): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.12,
-                    ),
+                  SizedBox(
+                    width: size.width * 0.12,
                     child: DropdownButtonFormField(
                       value: selectedSoilTypeC,
                       items: const [
@@ -350,7 +311,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 255, 193, 7)),
                         ),
                         onPressed: _calculateAndShowResult,
                         child: const Text(

@@ -194,20 +194,30 @@ class _DryBiomassPState extends State<DryBiomassP> with WidgetsBindingObserver {
                     ),
                   ),
                 ),
+                //NOTA
+                SizedBox(height: size.height * 0.01),
+                SizedBox(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.18,
+                    ),
+                    child: const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '*DAP: Diámetro a la altura del pecho \n',
+                        style: TextStyle(fontSize: 10),
+                      ),
+                    ),
+                  ),
+                ),
 
                 //DAP
                 SizedBox(height: size.height * 0.03),
 
-                const Text(
-                  'Diámetro a la altura del pecho (DAP): ',
-                  style: TextStyle(fontSize: 15),
-                ),
-                SizedBox(height: size.height * 0.01),
                 Form(
                   key: _formKey,
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: size.width * 0.15),
+                  child: SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       controller: _controllerDapP,
                       validator: _validateDap,
@@ -215,7 +225,7 @@ class _DryBiomassPState extends State<DryBiomassP> with WidgetsBindingObserver {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el (DAP) en CM',
+                        labelText: 'Ingrese el DAP en cm',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
@@ -232,7 +242,7 @@ class _DryBiomassPState extends State<DryBiomassP> with WidgetsBindingObserver {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color.fromARGB(255, 51, 79, 31)),
+                            const Color.fromARGB(255, 255, 193, 7)),
                       ),
                       onPressed: _calculateDryBiomassResult,
                       child: const Text(

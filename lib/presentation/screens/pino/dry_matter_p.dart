@@ -222,7 +222,9 @@ class _DryMatterPState extends State<DryMatterP> with WidgetsBindingObserver {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '*MS: materia seca \n'
-                          '*m²: metro cuadrado',
+                          '*PMS: Peso de la materia seca \n'
+                          '*PMH: Peso de la materia húmeda \n'
+                          '*m²: metro cuadrado ',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),
@@ -235,18 +237,8 @@ class _DryMatterPState extends State<DryMatterP> with WidgetsBindingObserver {
                     height: size.height * 0.03,
                   ),
 
-                  const Text(
-                    'Peso de la materia seca (PMS): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  //Formula
                   SizedBox(
-                    height: size.height * 0.01,
-                  ),
-
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: size.width * 0.15),
+                    width: size.width * 0.8,
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _controllerWeightDry,
@@ -254,7 +246,7 @@ class _DryMatterPState extends State<DryMatterP> with WidgetsBindingObserver {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingresa el peso en Kg',
+                        labelText: 'Ingresa el PMS en Kg',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
                       textAlign: TextAlign.center,
@@ -273,7 +265,7 @@ class _DryMatterPState extends State<DryMatterP> with WidgetsBindingObserver {
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 255, 193, 7)),
                         ),
                         onPressed: _calculateDryMatterResult,
                         child: const Text(

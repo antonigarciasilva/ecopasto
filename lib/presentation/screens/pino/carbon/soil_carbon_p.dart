@@ -241,7 +241,10 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino>
                     child: const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '*Ws: Peso del suelo (T/ha) ',
+                        '*Ws: Peso del suelo (T/ha) \n '
+                        '*a = Área\n'
+                        '*p = Profundidad \n'
+                        '*da = Densidad aparente ',
                         style: TextStyle(fontSize: 10),
                       ),
                     ),
@@ -250,14 +253,8 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino>
                   //Área
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Área (a): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       validator: _validateWeight,
                       controller: controllerWeightAreaP,
@@ -265,7 +262,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino>
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el (a) en hectáreas',
+                        labelText: 'Ingrese el a en hectáreas',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
@@ -275,14 +272,8 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino>
                   //Profundidad
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Profundidad (p): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       validator: _validateWeight,
                       controller: controllerWeightDepthP,
@@ -290,7 +281,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino>
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingresa la (p) en metros',
+                        labelText: 'Ingresa la p en metros',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
@@ -300,14 +291,8 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino>
                   //Densidad aparente del suelo
                   SizedBox(height: size.height * 0.03),
 
-                  const Text(
-                    'Densidad aparente del suelo (da): ',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(height: size.height * 0.01),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: DropdownButtonFormField(
                       value: selectedSoilTypeP,
                       items: const [
@@ -334,7 +319,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino>
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese la (da) en g/cm³',
+                        labelText: 'Ingrese la da en g/cm³',
                         labelStyle: const TextStyle(fontSize: 15),
                       ),
                       dropdownColor: Colors.white,
@@ -350,7 +335,7 @@ class _SoilCarbonPinoState extends State<SoilCarbonPino>
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 255, 193, 7)),
                         ),
                         onPressed: _calculateAndShowResult,
                         child: const Text(

@@ -153,17 +153,9 @@ class _GreenMatterCState extends State<GreenMatterC>
                   //Peso de la materia verde
                   SizedBox(height: size.height * 0.03),
 
-                  const Text('Peso de materia verde por m²:',
-                      style: TextStyle(
-                        fontSize: 15,
-                      )),
-                  SizedBox(height: size.height * 0.01),
-
                   //Ingresa el peso de materia verde
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.15,
-                    ),
+                  SizedBox(
+                    width: size.width * 0.8,
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _controllerWeightC,
@@ -171,7 +163,7 @@ class _GreenMatterCState extends State<GreenMatterC>
                       decoration: InputDecoration(
                         //prefixIcon: const Icon(Icons.person_4),
 
-                        labelText: 'Ingresa el peso en Kg/m²',
+                        labelText: 'Peso de materia verde en Kg/m²',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
@@ -200,7 +192,7 @@ class _GreenMatterCState extends State<GreenMatterC>
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 255, 193, 7)),
                         ),
                         onPressed: _submitForm,
                         child: const Text(

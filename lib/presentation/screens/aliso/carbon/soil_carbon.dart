@@ -250,7 +250,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese el (a) en hectáreas',
+                        labelText: 'Ingrese el a en hectáreas',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
@@ -269,7 +269,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingresa la (p) en metros',
+                        labelText: 'Ingresa la p en metros',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       textAlign: TextAlign.center,
@@ -303,7 +303,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25)),
-                        labelText: 'Ingrese la (da) en g/cm³',
+                        labelText: 'Ingrese la da en g/cm³',
                         labelStyle: const TextStyle(fontSize: 14),
                       ),
                       dropdownColor: Colors.white,

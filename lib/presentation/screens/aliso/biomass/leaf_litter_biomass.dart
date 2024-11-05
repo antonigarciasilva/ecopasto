@@ -195,7 +195,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: size.width * 0.8,
+                      width: size.width * 0.85,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -223,9 +223,9 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                         child: Text(
                           '*BH: Biomasa hojarasca(T/ha) \n'
                           '*PSM: Peso seco de la materia por m² \n'
-                          '*PFM: Peso fresco de la muestram² \n'
+                          '*PFM: Peso fresco de la muestra por m² \n'
                           '*PFT: Peso fresco total por m² \n'
-                          '*0.04: Factor de conversión para biomasa hojarasca \n',
+                          '*0.04: Factor de conversión para biomasa hojarasca ',
                           style: TextStyle(fontSize: 10),
                         ),
                       ),
@@ -236,7 +236,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                   SizedBox(height: size.height * 0.03),
 
                   SizedBox(
-                    width: size.width * 0.8,
+                    width: size.width * 0.85,
                     child: TextFormField(
                       controller: _controllerWeightPSM,
                       validator: _validateWeight,
@@ -256,7 +256,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                   SizedBox(height: size.height * 0.03),
 
                   SizedBox(
-                    width: size.width * 0.8,
+                    width: size.width * 0.85,
                     child: TextFormField(
                       controller: _controllerWeightPFM,
                       validator: _validateWeight,
@@ -277,7 +277,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: size.width * 0.8,
+                      width: size.width * 0.85,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(

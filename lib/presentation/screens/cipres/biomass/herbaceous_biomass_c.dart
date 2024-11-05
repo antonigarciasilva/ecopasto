@@ -153,7 +153,7 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC>
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: size.width * 0.95,
+                      width: size.width * 0.85,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -208,11 +208,11 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC>
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: size.width * 0.8,
+                      width: size.width * 0.85,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 51, 79, 31)),
+                              const Color.fromARGB(255, 255, 193, 7)),
                         ),
                         onPressed: _calculateHerbaceousBiomassResult,
                         child: const Text(

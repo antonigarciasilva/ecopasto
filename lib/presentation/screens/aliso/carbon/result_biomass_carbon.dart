@@ -285,12 +285,12 @@ class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
                         Table(
                           border: TableBorder.all(),
                           columnWidths: <int, TableColumnWidth>{
-                            0: FixedColumnWidth(size.width * 0.3),
-                            1: FixedColumnWidth(size.width * 0.14),
-                            2: FixedColumnWidth(size.width * 0.14),
-                            3: FixedColumnWidth(size.width * 0.14),
-                            4: FixedColumnWidth(size.width * 0.14),
-                            5: FixedColumnWidth(size.width * 0.14),
+                            0: FixedColumnWidth(size.width * 0.25),
+                            1: FixedColumnWidth(size.width * 0.13),
+                            2: FixedColumnWidth(size.width * 0.13),
+                            3: FixedColumnWidth(size.width * 0.13),
+                            4: FixedColumnWidth(size.width * 0.13),
+                            5: FixedColumnWidth(size.width * 0.13),
                           },
                           children: [
                             //Títulos de la cabecera
@@ -880,7 +880,7 @@ class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
                         SizedBox(height: size.height * 0.03),
                         //Boton de conocer más
                         SizedBox(
-                          width: size.width * 0.6,
+                          width: size.width * 0.4,
                           child: ElevatedButton(
                               style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all<
@@ -927,7 +927,7 @@ class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
 
                         //Boton de aceptar
                         SizedBox(
-                          width: size.width * 0.6,
+                          width: size.width * 0.4,
                           child: ElevatedButton(
                               style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all<

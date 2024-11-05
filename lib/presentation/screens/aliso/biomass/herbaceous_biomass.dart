@@ -161,7 +161,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen>
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: size.width * 0.8,
+                      width: size.width * 0.85,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
@@ -217,7 +217,7 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen>
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: SizedBox(
-                      width: size.width * 0.8,
+                      width: size.width * 0.85,
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
