@@ -123,7 +123,7 @@ class MyGreenMatterScreen extends State<DryMatterScreen>
         builder: (context) => AlertDialog(
               backgroundColor: Colors.white,
               title: const Text(
-                '¿Cómo sacar el peso de la muestra seca (PSM)',
+                '¿Cómo sacar el peso de la muestra seca (PSM)?',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),

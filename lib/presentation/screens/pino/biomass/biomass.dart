@@ -87,7 +87,8 @@ class _BiomassPinoScreenState extends State<BiomassPinoScreen>
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
-                'En los sistemas silvopastoriles, la biomasa se refiere a la materia orgánica generada por la combinación de árboles, arbustos, pastos y ganado, optimizando el uso del suelo mediante la integración de la producción forestal y ganadera. Estos sistemas mejoran la fertilidad del suelo, facilitan un ciclo cerrado de nutrientes, capturan carbono, diversifican los ingresos y mejoran el microclima.',
+                'Se refiere a la cantidad de materia orgánica presente en los componentes de un sistema silvopastoril, como árboles, hojarasca y pastos. La biomasa es importante porque permite estimar el carbono almacenado y su potencial contribución a la mitigación del cambio climático. \n'
+                '(Vásquez, 2023)',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 14),
               ),

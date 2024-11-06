@@ -100,7 +100,8 @@ class _HerbaceousBiomassSTState extends State<HerbaceousBiomassST> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
-                'La biomasa herbácea se refiere a la materia orgánica de las plantas herbáceas, que son plantas no leñosas como pastos, flores silvestres y otras plantas de bajo crecimiento. Estas plantas suelen ser de ciclo de vida corto y juegan un papel importante en los ecosistemas, proporcionando alimento para herbívoros, contribuyendo a la estabilidad del suelo y participando en los ciclos de nutrientes.',
+                'se refiere a la cantidad de materia orgánica de plantas herbáceas en un área, y se calcula considerando factores como el peso seco y fresco de la muestra, permitiendo estimar el carbono almacenado y su impacto ambiental \n'
+                '(Vásquez, 2023)',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 14),
               ),
@@ -136,7 +137,7 @@ class _HerbaceousBiomassSTState extends State<HerbaceousBiomassST> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/sinarbol/biomass/biomass_s.jpg',
+                        'assets/img/sinarbol/biomass/herbaceous_pasto.jpg',
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),

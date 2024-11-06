@@ -322,7 +322,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
                       child: Text(
-                        'Un sistema silvopastoril es una forma de uso de la tierra en la cual se integran árboles, pastos y animales en una misma unidad de producción.',
+                        'Un sistema silvopastoril (SSP) es un modelo de manejo agropecuario que combina árboles, pastos y animales para mejorar la producción y contribuir al medio ambiente, capturando carbono y conservando la biodiversidad. \n'
+                        '(Vásquez, 2023)',
                         textAlign: TextAlign.justify,
                         style: TextStyle(fontSize: 12),
                       ),
@@ -344,7 +345,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
                       child: Text(
-                        'Utilizar de manera eficiente la tierra, maximizando la producción de alimentos, fibras y madera, al tiempo que se conservan los recursos naturales y se protege el medio ambiente.',
+                        'Mejorar la productividad ganadera y la sostenibilidad ambiental, capturando carbono, recuperando suelos degradados y protegiendo la biodiversidad. \n'
+                        '(Vásquez, 2023)',
                         textAlign: TextAlign.justify,
                         style: TextStyle(fontSize: 12),
                       ),
@@ -367,10 +369,11 @@ class NewSelectSilvoScreen extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
                       child: Text(
                         '- Mejora la productividad del suelo.\n'
-                        '- Aumenta la biodiversidad.\n'
-                        '- Ayuda a la conservación del suelo y del agua.\n'
+                        '- Aumentan la eficiencia productiva de la ganadería.\n'
+                        '- Incrementan la biodiversidad.\n'
                         '- Reduce la dependencia de insumos externos.\n'
-                        '- Contribuye a la mitigación del cambio climático.',
+                        '- Contribuye a la mitigación del cambio climático.\n'
+                        '(Vásquez, 2023)',
                         textAlign: TextAlign.justify,
                         style: TextStyle(fontSize: 12),
                       ),
@@ -392,7 +395,8 @@ class NewSelectSilvoScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
                       child: Text(
-                        'Los sistemas silvopastoriles son fundamentales para la producción agropecuaria sostenible, ya que permiten obtener múltiples beneficios económicos, sociales y ambientales al mismo tiempo.',
+                        'Los sistemas silvopastoriles son importantes porque ayudan a mitigar el cambio climático, recuperan ecosistemas degradados y mejoran la biodiversidad y la fertilidad del suelo.\n'
+                        '(Vásquez, 2023)',
                         textAlign: TextAlign.justify,
                         style: TextStyle(fontSize: 12),
                       ),

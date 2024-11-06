@@ -274,7 +274,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
                   SizedBox(height: size.height * 0.03),
 
                   SizedBox(
-                    width: size.width * 0.12,
+                    width: size.width * 0.8,
                     child: DropdownButtonFormField(
                       value: selectedSoilTypeC,
                       items: const [

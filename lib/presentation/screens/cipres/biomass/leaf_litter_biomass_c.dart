@@ -116,7 +116,8 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC>
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
-                'La biomasa de hojarasca incluye las hojas caídas, ramas pequeñas, flores, frutos y otros restos vegetales que se acumulan en el suelo del bosque o de cualquier área con vegetación arbórea. Esta hojarasca es una fuente crucial de nutrientes para el suelo, ya que se descompone y enriquece el suelo con materia orgánica, mejorando su estructura y fertilidad.',
+                'Se refiere a la cantidad de materia orgánica acumulada en la superficie del suelo proveniente de hojas, ramas pequeñas y otros restos vegetales muertos. Esta biomasa se cuantifica para estimar el carbono almacenado, lo cual es útil en el análisis de sostenibilidad y mitigación de gases de efecto invernadero.\n'
+                '(Vásquez, 2023)',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 14),
               ),

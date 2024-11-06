@@ -85,7 +85,7 @@ class _GreenMatterPState extends State<GreenMatterP>
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
-                'Se procede al corte y pesado del material vegetativo del SSP, en un área de 1 m2, con 3 repeticiones, con el apoyo de un cuadrante de madera o fierro y una hoz se va a realizar el corte a una altura de 05 cm del suelo, para luego pesar las muestras en una balanza de 5kg, expresando el resultado en kg de materia verde/m2 (kg mv.m2). \n'
+                'Se procede al corte y pesado del material vegetativo del SSP, en un área de 1 m², con 3 repeticiones, con el apoyo de un cuadrante de madera o fierro y una hoz se va a realizar el corte a una altura de 05 cm del suelo, para luego pesar las muestras en una balanza de 5kg, expresando el resultado en kg de materia verde/m² (kg mv.m²). \n'
                 '(Vásquez, 2023)',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 14),
@@ -120,7 +120,7 @@ class _GreenMatterPState extends State<GreenMatterP>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pino/pinos.jpg',
+                        'assets/img/pino/biomass/herbaceous_p.jpg',
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),

@@ -113,7 +113,8 @@ class _NewDryBiomassScreenState extends State<NewDryBiomassScreen>
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
-                'La biomasa seca es la materia orgánica total de un árbol, medida en peso seco. Se calcula usando el diámetro a la altura del pecho (DAP) y fórmulas alométricas específicas para cada especie.',
+                'Se refiere a la cantidad de materia orgánica sin contenido de agua en los componentes de un sistema silvopastoril, como árboles, pastos y hojarasca. La biomasa seca es crucial para calcular el carbono almacenado, lo cual es un indicador del potencial de mitigación de emisiones en estos sistemas \n'
+                '(Vásquez, 2023)',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 16),
               ),

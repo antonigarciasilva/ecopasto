@@ -844,7 +844,7 @@ class _ResultCarbonBiomassCState extends State<ResultCarbonBiomassC>
 
                   //Boton conocer más
                   SizedBox(
-                    width: size.width * 0.4,
+                    width: size.width * 0.5,
                     child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -889,7 +889,7 @@ class _ResultCarbonBiomassCState extends State<ResultCarbonBiomassC>
 
                   //Botón de regreso
                   SizedBox(
-                    width: size.width * 0.4,
+                    width: size.width * 0.5,
                     child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(

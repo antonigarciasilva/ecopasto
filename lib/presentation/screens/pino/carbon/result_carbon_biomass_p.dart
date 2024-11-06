@@ -835,7 +835,7 @@ class _ResultCarbonBiomassPState extends State<ResultCarbonBiomassP>
 
                   //Boton de conocer más
                   SizedBox(
-                    width: size.width * 0.4,
+                    width: size.width * 0.5,
                     child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -877,21 +877,24 @@ class _ResultCarbonBiomassPState extends State<ResultCarbonBiomassP>
                   SizedBox(height: size.height * 0.03),
 
                   //Botón aceptar
-                  ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color.fromARGB(255, 34, 139, 34))),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const NewSelectSilvoScreen()));
-                      },
-                      child: const Text(
-                        'Regresar',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ))
+                  SizedBox(
+                    width: size.width * 0.5,
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                                const Color.fromARGB(255, 34, 139, 34))),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const NewSelectSilvoScreen()));
+                        },
+                        child: const Text(
+                          'Regresar',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        )),
+                  )
                 ],
               ),
             ),

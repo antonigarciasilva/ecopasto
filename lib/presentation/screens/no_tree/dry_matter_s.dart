@@ -152,8 +152,8 @@ class _DryMatterSState extends State<DryMatterS> with WidgetsBindingObserver {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/sinarbol/drymatter/dry_s.png',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/sinarbol/drymatter/dry_pasto.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

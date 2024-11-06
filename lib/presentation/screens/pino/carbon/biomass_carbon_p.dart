@@ -120,7 +120,8 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino>
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               content: const Text(
-                'Es la cantidad de carbono en componentes vivos de un ecosistema. Incluye árboles, arbustos, pastos y raíces. Las plantas capturan CO2 de la atmósfera y lo almacenan en sus tejidos. Actúa como un sumidero de carbono, ayudando a mitigar el cambio climático.',
+                ' Se refiere a la cantidad de carbono almacenado en la materia orgánica de los sistemas silvopastoriles. Este carbono, fijado a través de la fotosíntesis en plantas y árboles, contribuye a la reducción de CO₂ atmosférico, lo que ayuda en la mitigación del cambio climático y mejora la sostenibilidad de los sistemas agropecuarios. \n'
+                '(Vásquez, 2023)',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 14),
               ),
@@ -157,8 +158,8 @@ class _BiomassCarbonPinoState extends State<BiomassCarbonPino>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pino/carbon/bio_carbon_p.jpg',
-                        fit: BoxFit.fitWidth,
+                        'assets/img/pino/biomass/biomasa_pino.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

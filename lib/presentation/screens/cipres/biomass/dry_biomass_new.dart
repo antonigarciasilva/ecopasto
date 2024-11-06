@@ -108,7 +108,8 @@ class _DryBiomassCNewState extends State<DryBiomassCNew>
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         content: const Text(
-          'La biomasa seca se refiere a la cantidad de materia orgánica que queda después de eliminar toda el agua contenida en ella. Este proceso se realiza generalmente mediante secado en un horno hasta alcanzar un peso constante. La biomasa seca es una medida importante porque proporciona una estimación precisa de la materia orgánica real, excluyendo el contenido de agua que puede variar significativamente.',
+          'Se refiere a la cantidad de materia orgánica sin contenido de agua en los componentes de un sistema silvopastoril, como árboles, pastos y hojarasca. La biomasa seca es crucial para calcular el carbono almacenado, lo cual es un indicador del potencial de mitigación de emisiones en estos sistemas \n'
+          '(Vásquez, 2023)',
           textAlign: TextAlign.justify,
           style: TextStyle(fontSize: 14),
         ),
