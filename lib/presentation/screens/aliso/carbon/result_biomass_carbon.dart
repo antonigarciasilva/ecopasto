@@ -188,9 +188,9 @@ class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
 
   //Vamos a definir los rangos
   String getCarbonLevel(double resultCarbonBiomass) {
-    if (resultCarbonBiomass < 50) {
+    if (resultCarbonBiomass < 7) {
       return 'Bajo';
-    } else if (resultCarbonBiomass < 100) {
+    } else if (resultCarbonBiomass < 50) {
       return 'Medio';
     } else {
       return 'Excelente';
@@ -880,7 +880,7 @@ class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
                         SizedBox(height: size.height * 0.03),
                         //Boton de conocer más
                         SizedBox(
-                          width: size.width * 0.5,
+                          width: size.width * 0.6,
                           child: ElevatedButton(
                               style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all<
@@ -927,7 +927,7 @@ class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
 
                         //Boton de aceptar
                         SizedBox(
-                          width: size.width * 0.5,
+                          width: size.width * 0.6,
                           child: ElevatedButton(
                               style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all<

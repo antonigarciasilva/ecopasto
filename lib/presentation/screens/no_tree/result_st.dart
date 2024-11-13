@@ -842,7 +842,7 @@ class _ResultStState extends State<ResultSt> with WidgetsBindingObserver {
 
                   //Boton de conocer más
                   SizedBox(
-                    width: size.width * 0.5,
+                    width: size.width * 0.6,
                     child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(
@@ -886,7 +886,7 @@ class _ResultStState extends State<ResultSt> with WidgetsBindingObserver {
 
                   //Botón de regreso
                   SizedBox(
-                    width: size.width * 0.5,
+                    width: size.width * 0.6,
                     child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all<Color>(

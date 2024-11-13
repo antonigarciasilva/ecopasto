@@ -21,6 +21,7 @@ final slides = <SlideInfo>[
           'AmaSCarbon: \n más sostenibilidad, \n más vida,\n más naturaleza,\n más aire limpio.',
 
       //'Una herramienta fácil y didactida para cuantificar el carbono en sistemas silvopastoriles (Pino, Pona, Ciprés y Aliso).',
+
       'assets/slides/silvipastoril.jpg'),
   SlideInfo(
       'Fácil de usar',
@@ -30,10 +31,7 @@ final slides = <SlideInfo>[
       'Ingreso de datos',
       'Llena los datos solicitados de manera sencilla, siguiendo las instrucciones en pantalla.',
       'assets/slides/datos.png'),
-  SlideInfo(
-      'Secuencialidad',
-      'Es importante llenar los datos en el orden indicado para obtener resultados precisos.',
-      'assets/slides/secuencia.png'),
+  SlideInfo('', '', 'assets/slides/secuencia.png'),
   SlideInfo(
       'Obtén tus resultados',
       'Una vez completado el ingreso de datos, obtendrás la cantidad de carbono en tu sistema silvopastoril.',

@@ -23,7 +23,7 @@ class LocationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SizedBox(
-      width: size.width * 0.5,
+      width: size.width * 0.6,
       child: ElevatedButton(
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all<Color>(
