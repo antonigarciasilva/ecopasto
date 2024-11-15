@@ -155,7 +155,7 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pona/carbon/carbon_o.png',
+                        'assets/img/pona/carbon/carbon_op1.jpg',
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),

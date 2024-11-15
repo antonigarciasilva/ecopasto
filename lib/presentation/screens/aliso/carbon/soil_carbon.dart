@@ -170,7 +170,7 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/aliso/carbon/soil_carbon_a.jpg',
+                        'assets/img/aliso/biomass/al_dry_biomass.jpg',
                         fit: BoxFit.fitWidth,
                         height: size.height * 0.55,
                       ),

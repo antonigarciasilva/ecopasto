@@ -161,7 +161,7 @@ class _LeafLitterBiomassScreenState extends State<LeafLitterBiomassScreen>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/aliso/biomass/al_biomass_leaf.jpg',
+                        'assets/img/aliso/carbon/conversion_a.jpg',
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),

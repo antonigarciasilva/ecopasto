@@ -177,7 +177,6 @@ class _AlisoScreenState extends State<AlisoScreen> with WidgetsBindingObserver {
                         //Logo de la app
                         Image.asset(
                           'assets/img/untrm_white_png.png',
-                          color: Colors.white.withOpacity(0.7),
                           height: size.height * 0.2,
                         ),
 

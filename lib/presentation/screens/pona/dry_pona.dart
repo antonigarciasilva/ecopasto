@@ -156,8 +156,8 @@ class _DryPonaScreenState extends State<DryPonaScreen>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pona/pona_v.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/pona/drymatter/dry_o.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

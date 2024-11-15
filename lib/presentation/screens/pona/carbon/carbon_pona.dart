@@ -143,7 +143,7 @@ class _CarbonPonaScreenState extends State<CarbonPonaScreen>
           //Imagen de fondo
           Positioned.fill(
               child: Image.asset(
-            'assets/img/pona/carbon/carbon_op.jpg',
+            'assets/img/pona/biomass/biomass_o.jpg',
             fit: BoxFit.cover,
             color: Colors.black.withOpacity(0.5),
             colorBlendMode: BlendMode.darken,
@@ -159,7 +159,6 @@ class _CarbonPonaScreenState extends State<CarbonPonaScreen>
                   //Logo de la app
                   Image.asset(
                     'assets/img/untrm_white_png.png',
-                    color: Colors.white.withOpacity(0.7),
                     height: size.height * 0.2,
                   ),
 

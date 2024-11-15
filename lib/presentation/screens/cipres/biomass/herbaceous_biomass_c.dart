@@ -117,8 +117,8 @@ class _HerbaceousBiomassCState extends State<HerbaceousBiomassC>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/cipres/biomass/herbaceous_c.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/cipres/biomass/cipres_b.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

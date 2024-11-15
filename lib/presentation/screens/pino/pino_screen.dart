@@ -170,7 +170,6 @@ class _PinoScreenState extends State<PinoScreen> with WidgetsBindingObserver {
                     SizedBox(height: size.height * 0.03),
                     Image.asset(
                       'assets/img/untrm_white_png.png',
-                      color: Colors.white.withOpacity(0.7),
                       height: size.height * 0.2,
                     ),
 

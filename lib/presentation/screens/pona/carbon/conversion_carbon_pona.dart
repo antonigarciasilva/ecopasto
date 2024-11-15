@@ -118,8 +118,8 @@ class _ConversionCarbonPonaState extends State<ConversionCarbonPona>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pona/carbon/carbon_o.png',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/pona/pona.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

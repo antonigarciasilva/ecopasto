@@ -158,8 +158,8 @@ class _DryBiomassPonaState extends State<DryBiomassPona>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pona/biomass/pona_b.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/pona/biomass/biomass_her.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

@@ -159,7 +159,7 @@ class _BiomassPonaState extends State<BiomassPona> with WidgetsBindingObserver {
           //imagen de fondo
           Positioned.fill(
               child: Image.asset(
-            'assets/img/pona/biomass/pona_b.jpg',
+            'assets/img/pona/pona.jpg',
             fit: BoxFit.cover,
             color: Colors.black.withOpacity(0.5),
             colorBlendMode: BlendMode.darken,
@@ -172,10 +172,8 @@ class _BiomassPonaState extends State<BiomassPona> with WidgetsBindingObserver {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  //Logo de la app
                   Image.asset(
                     'assets/img/untrm_white_png.png',
-                    color: Colors.white.withOpacity(0.7),
                     height: size.height * 0.2,
                   ),
 

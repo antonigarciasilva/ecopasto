@@ -179,8 +179,8 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pino/carbon/carbon_p.png',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/pona/carbon/conversion_o.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

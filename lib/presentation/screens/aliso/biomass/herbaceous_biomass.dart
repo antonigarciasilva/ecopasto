@@ -126,8 +126,8 @@ class _HerbaceousBiomassScreenState extends State<HerbaceousBiomassScreen>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/aliso/biomass/herbaceous_a.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/aliso/verde_aliso.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

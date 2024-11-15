@@ -118,8 +118,8 @@ class _HerbaceousBiomassPonaState extends State<HerbaceousBiomassPona>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pona/biomass/biomass_o.png',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/pona/biomass/biomass_o.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

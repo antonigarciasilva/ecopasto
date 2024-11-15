@@ -146,7 +146,7 @@ class _CarbonScreenState extends State<CarbonScreen>
               //Imagen de fondo
               Positioned.fill(
                   child: Image.asset(
-                'assets/img/aliso/carbon/hoja_seca_a.jpg',
+                'assets/img/aliso/drymatter/aliso_seco.jpg',
                 fit: BoxFit.cover,
                 color: Colors.black.withOpacity(0.5),
                 colorBlendMode: BlendMode.darken,
@@ -160,7 +160,6 @@ class _CarbonScreenState extends State<CarbonScreen>
                       //Logo de la app
                       Image.asset(
                         'assets/img/untrm_white_png.png',
-                        color: Colors.white.withOpacity(0.7),
                         height: size.height * 0.2,
                       ),
 

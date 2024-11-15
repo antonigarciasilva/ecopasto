@@ -118,9 +118,9 @@ class _GreenMatterPonaState extends State<GreenMatterPona>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/pona/pona_v.jpg',
-                        fit: BoxFit.fitHeight,
-                        height: size.height * 0.55,
+                        'assets/img/pona/greenmatter/green_o.jpg',
+                        fit: BoxFit.cover,
+                        height: size.height * 0.6,
                       ),
                     ),
 

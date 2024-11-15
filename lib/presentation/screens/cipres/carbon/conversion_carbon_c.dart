@@ -117,8 +117,8 @@ class _ConversionCarbonCState extends State<ConversionCarbonC>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/cipres/carbon/carbon_c.png',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/cipres/carbon/conversion.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

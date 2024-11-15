@@ -152,7 +152,7 @@ class _PonaScreenState extends State<PonaScreen> with WidgetsBindingObserver {
           //imagen de fondo
           Positioned.fill(
               child: Image.asset(
-            'assets/img/pona/pona_v.jpg',
+            'assets/img/pona/biomass/biomass_o.jpg',
             fit: BoxFit.cover,
             color: Colors.black.withOpacity(0.5),
             colorBlendMode: BlendMode.darken,
@@ -168,7 +168,6 @@ class _PonaScreenState extends State<PonaScreen> with WidgetsBindingObserver {
                   //Logo de la app
                   Image.asset(
                     'assets/img/untrm_white_png.png',
-                    color: Colors.white.withOpacity(0.7),
                     height: size.height * 0.2,
                   ),
 

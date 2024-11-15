@@ -154,8 +154,8 @@ class _DryMatterCState extends State<DryMatterC> with WidgetsBindingObserver {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/cipres/drymatter/dry_c.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/cipres/drymatter/dry_mater.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),

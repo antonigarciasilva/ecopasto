@@ -47,7 +47,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
-                      //Pino
+                      //Pona
                       Padding(
                         padding: const EdgeInsets.all(8),
                         child: GestureDetector(
@@ -55,13 +55,13 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const PinoScreen()));
+                                    builder: (context) => const PonaScreen()));
                           },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
                               Image.asset(
-                                'assets/img/pino/pino.jpg',
+                                'assets/img/pona/greenmatter/green_o.jpg',
                                 height: size.height * 0.5,
                                 width: size.width * 0.8,
                                 fit: BoxFit.cover,
@@ -75,7 +75,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                   color: Colors.white.withOpacity(0.7),
                                   child: const Text.rich(
                                     TextSpan(
-                                        text: 'Pino',
+                                        text: 'Pona',
                                         style: TextStyle(
                                             fontStyle: FontStyle.normal,
                                             color: Colors.black,
@@ -83,11 +83,10 @@ class NewSelectSilvoScreen extends StatelessWidget {
                                             fontWeight: FontWeight.bold),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: '(Pinus patula)',
-                                            style: TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                            ),
-                                          )
+                                              text: '(Ceroxilum quindiuense)',
+                                              style: TextStyle(
+                                                fontStyle: FontStyle.italic,
+                                              ))
                                         ]),
                                     textAlign: TextAlign.center,
                                   ),
@@ -149,6 +148,56 @@ class NewSelectSilvoScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      //Pino
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const PinoScreen()));
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
+                            child: Stack(children: [
+                              Image.asset(
+                                'assets/img/pino/pino_screen.jpg',
+                                height: size.height * 0.5,
+                                width: size.width * 0.8,
+                                fit: BoxFit.cover,
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Container(
+                                  padding: const EdgeInsets.all(6),
+                                  color: Colors.white.withOpacity(0.7),
+                                  child: const Text.rich(
+                                    TextSpan(
+                                        text: 'Pino',
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.normal,
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: '(Pinus patula)',
+                                            style: TextStyle(
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                          )
+                                        ]),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              )
+                            ]),
+                          ),
+                        ),
+                      ),
 
                       //Aliso
                       Padding(
@@ -164,7 +213,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
                               Image.asset(
-                                'assets/img/aliso/biomass/arbol_aliso.jpg',
+                                'assets/img/aliso/aliso_select.jpg',
                                 height: size.height * 0.5,
                                 width: size.width * 0.8,
                                 fit: BoxFit.cover,
@@ -201,56 +250,6 @@ class NewSelectSilvoScreen extends StatelessWidget {
                         ),
                       ),
 
-                      //Pona
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const PonaScreen()));
-                          },
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(25),
-                            child: Stack(children: [
-                              Image.asset(
-                                'assets/img/pona/pona.jpg',
-                                height: size.height * 0.5,
-                                width: size.width * 0.8,
-                                fit: BoxFit.cover,
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                child: Container(
-                                  padding: const EdgeInsets.all(6),
-                                  color: Colors.white.withOpacity(0.7),
-                                  child: const Text.rich(
-                                    TextSpan(
-                                        text: 'Pona',
-                                        style: TextStyle(
-                                            fontStyle: FontStyle.normal,
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold),
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                              text: '(Ceroxilum quindiuense)',
-                                              style: TextStyle(
-                                                fontStyle: FontStyle.italic,
-                                              ))
-                                        ]),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              )
-                            ]),
-                          ),
-                        ),
-                      ),
-
                       //Sin arboles
                       Padding(
                         padding: const EdgeInsets.all(8),
@@ -267,7 +266,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             child: Stack(
                               children: [
                                 Image.asset(
-                                  'assets/img/sinarbol/sin_pasto.jpg',
+                                  'assets/img/sinarbol/pastizal.jpg',
                                   height: size.height * 0.5,
                                   width: size.width * 0.8,
                                   fit: BoxFit.cover,

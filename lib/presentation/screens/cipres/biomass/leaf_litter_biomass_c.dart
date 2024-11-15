@@ -152,8 +152,8 @@ class _LeafLitterBiomassCState extends State<LeafLitterBiomassC>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        'assets/img/cipres/biomass/biomass_c.jpg',
-                        fit: BoxFit.fitHeight,
+                        'assets/img/cipres/biomass/hojarasca.jpg',
+                        fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),
                     ),
