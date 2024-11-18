@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:version/presentation/screens/aliso/aliso_screen.dart';
@@ -60,8 +61,17 @@ class NewSelectSilvoScreen extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
-                              Image.asset(
-                                'assets/img/pona/greenmatter/green_o.jpg',
+                              CachedNetworkImage(
+                                imageUrl:
+                                    'https://drive.google.com/uc?id=1FbYO5oi3mXNVZFvEWHaX-iZm9NdP8vNq',
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Color.fromARGB(255, 251, 252, 252)),
+                                  strokeWidth: 2.5,
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                                 height: size.height * 0.5,
                                 width: size.width * 0.8,
                                 fit: BoxFit.cover,
@@ -265,8 +275,17 @@ class NewSelectSilvoScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(
                               children: [
-                                Image.asset(
-                                  'assets/img/sinarbol/pastizal.jpg',
+                                CachedNetworkImage(
+                                  imageUrl:
+                                      'https://drive.google.com/uc?id=1ssUX5aiNNTrA9jcG0EQRZKvjXH0SK2F-',
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Color.fromARGB(255, 251, 252, 252)),
+                                    strokeWidth: 2.5,
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
                                   height: size.height * 0.5,
                                   width: size.width * 0.8,
                                   fit: BoxFit.cover,

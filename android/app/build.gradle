@@ -50,17 +50,17 @@ android {
     }
 
     signingConfigs {
-       /* debug {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
+       debug {
+            keyAlias = 'amazcarbon'
+            keyPassword = 'swim1997'
             storeFile file('amazcarbon-keystore.jks')
-            storePassword keystoreProperties['storePassword']
-        } */
+            storePassword = 'swim1997'
+        } 
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
+             keyAlias = 'amazcarbon'
+            keyPassword = 'swim1997'
             storeFile file('amazcarbon-keystore.jks')
-            storePassword keystoreProperties['storePassword']
+            storePassword = 'swim1997'
             
         }
     }
@@ -82,7 +82,7 @@ android {
             // Signing with the debug keys for now,
             // so `flutter run --release` works.
        
-            //signingConfig = signingConfigs.debug
+            signingConfig = signingConfigs.debug
             signingConfig = signingConfigs.release
         }
     }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -129,8 +130,16 @@ class _NoTreeScreenState extends State<NoTreeScreen>
               children: [
                 //Imagen de fondo
                 Positioned.fill(
-                    child: Image.asset(
-                  'assets/img/sinarbol/sin_pasto.jpg',
+                    child: CachedNetworkImage(
+                  imageUrl:
+                      'https://drive.google.com/uc?id=1ssUX5aiNNTrA9jcG0EQRZKvjXH0SK2F-',
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Color.fromARGB(255, 251, 252, 252)),
+                    strokeWidth: 2.5,
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                   fit: BoxFit.cover,
                   color: Colors.black.withOpacity(0.3),
                   colorBlendMode: BlendMode.darken,

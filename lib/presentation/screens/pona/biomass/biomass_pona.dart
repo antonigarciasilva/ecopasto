@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/pona/biomass/dry_biomass_pona.dart';
@@ -158,8 +159,15 @@ class _BiomassPonaState extends State<BiomassPona> with WidgetsBindingObserver {
         children: [
           //imagen de fondo
           Positioned.fill(
-              child: Image.asset(
-            'assets/img/pona/pona.jpg',
+              child: CachedNetworkImage(
+            imageUrl:
+                'https://drive.google.com/uc?id=1sYYSjadQ_dkv0JQWA208PwCEq3FC6-nE',
+            placeholder: (context, url) => const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                  Color.fromARGB(255, 251, 252, 252)),
+              strokeWidth: 2.5,
+            ),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
             fit: BoxFit.cover,
             color: Colors.black.withOpacity(0.5),
             colorBlendMode: BlendMode.darken,

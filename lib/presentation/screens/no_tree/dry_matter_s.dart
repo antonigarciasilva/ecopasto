@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -151,8 +152,20 @@ class _DryMatterSState extends State<DryMatterS> with WidgetsBindingObserver {
                   Stack(children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset(
-                        'assets/img/sinarbol/drymatter/dry_pasto.jpg',
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://drive.google.com/uc?id=1X_A08uEAoJgTofp-8776DMgBOEsX_bqc',
+                        placeholder: (context, url) => const SizedBox(
+                          width: 50.0, // Ancho del CircularProgressIndicator
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Color.fromARGB(255, 251, 252, 252)),
+                            strokeWidth: 2.5,
+                          ),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                         fit: BoxFit.cover,
                         height: size.height * 0.55,
                       ),

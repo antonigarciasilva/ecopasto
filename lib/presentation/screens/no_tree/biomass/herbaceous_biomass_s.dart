@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -136,8 +137,17 @@ class _HerbaceousBiomassSTState extends State<HerbaceousBiomassST> {
                   Stack(children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset(
-                        'assets/img/sinarbol/biomass/herbaceous_pasto.jpg',
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://drive.google.com/uc?id=11-s_Ntop70TgTnzJKqMZw5TJZrObDmsf',
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Color.fromARGB(255, 251, 252, 252)),
+                          strokeWidth: 2.5,
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),
