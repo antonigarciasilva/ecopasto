@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -149,8 +150,15 @@ class _CarbonPinoScreenState extends State<CarbonPinoScreen>
         children: [
           //Imagen de fondo
           Positioned.fill(
-              child: Image.asset(
-            'assets/img/pino/carbon/carbon_pino.jpg',
+              child: CachedNetworkImage(
+            imageUrl:
+                'https://drive.google.com/uc?id=1PVgYXYtzFuU2pJjiNN7Nj-U-_X0uR4G0',
+            placeholder: (context, url) => const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                  Color.fromARGB(255, 251, 252, 252)),
+              strokeWidth: 2.5,
+            ),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
             fit: BoxFit.cover,
             color: Colors.black.withOpacity(0.5),
             colorBlendMode: BlendMode.darken,
