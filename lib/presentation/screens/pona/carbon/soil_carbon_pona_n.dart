@@ -181,7 +181,7 @@ class _SoilCarbonPonaNewState extends State<SoilCarbonPonaNew>
                       width: MediaQuery.of(context).size.width,
                       child: CachedNetworkImage(
                         imageUrl:
-                            'https://drive.google.com/uc?id=1CVcJvv-8zYaOns9Kn1OgLXlM9fDpIz1Y',
+                            'https://drive.google.com/uc?id=1JHNrWabV4899krXLELrOFUEJ05rNgZ7p',
                         placeholder: (context, url) =>
                             const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(

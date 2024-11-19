@@ -160,7 +160,7 @@ class _DryBiomassPonaState extends State<DryBiomassPona>
                       width: MediaQuery.of(context).size.width,
                       child: CachedNetworkImage(
                         imageUrl:
-                            'https://drive.google.com/uc?id=1WYW8vdfrNrh07L22kvLQSPugIK9yYjs2',
+                            'https://drive.google.com/uc?id=1GaCraHxMTl4Zh598T8qbNDLdSxpmt-MD',
                         placeholder: (context, url) =>
                             const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(

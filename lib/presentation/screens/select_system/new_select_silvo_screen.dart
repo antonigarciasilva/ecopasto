@@ -121,8 +121,17 @@ class NewSelectSilvoScreen extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
-                              Image.asset(
-                                'assets/img/cipres/cipres.jpg',
+                              CachedNetworkImage(
+                                imageUrl:
+                                    'https://drive.google.com/uc?id=1ZaBnV1tVzsacVj3CnTyVHrH4FBbYXmSw',
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Color.fromARGB(255, 251, 252, 252)),
+                                  strokeWidth: 2.5,
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                                 height: size.height * 0.5,
                                 width: size.width * 0.8,
                                 fit: BoxFit.cover,
@@ -231,8 +240,17 @@ class NewSelectSilvoScreen extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(25),
                             child: Stack(children: [
-                              Image.asset(
-                                'assets/img/aliso/aliso_select.jpg',
+                              CachedNetworkImage(
+                                imageUrl:
+                                    'https://drive.google.com/uc?id=1jzIjRbdPWTypHFHXgi0kk6mV6ZBCrT-9',
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Color.fromARGB(255, 251, 252, 252)),
+                                  strokeWidth: 2.5,
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                                 height: size.height * 0.5,
                                 width: size.width * 0.8,
                                 fit: BoxFit.cover,

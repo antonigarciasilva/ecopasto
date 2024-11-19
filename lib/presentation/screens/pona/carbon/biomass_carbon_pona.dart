@@ -157,7 +157,7 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona>
                       width: MediaQuery.of(context).size.width,
                       child: CachedNetworkImage(
                         imageUrl:
-                            'https://drive.google.com/uc?id=1ec34UuPvenBToRyvUXSHgCDtW7OX-aVD',
+                            'https://drive.google.com/uc?id=1dHMU8-XP2txv8T7QQAkL-0XnQGYgjCw_',
                         placeholder: (context, url) =>
                             const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(

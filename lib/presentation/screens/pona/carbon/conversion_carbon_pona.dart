@@ -120,7 +120,7 @@ class _ConversionCarbonPonaState extends State<ConversionCarbonPona>
                       width: MediaQuery.of(context).size.width,
                       child: CachedNetworkImage(
                         imageUrl:
-                            'https://drive.google.com/uc?id=1sYYSjadQ_dkv0JQWA208PwCEq3FC6-nE',
+                            'https://drive.google.com/uc?id=1T24Bt2U8T6_EiBcwYTP0OagVh0iJf_Fv',
                         placeholder: (context, url) =>
                             const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(

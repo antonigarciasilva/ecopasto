@@ -145,7 +145,7 @@ class _CarbonPonaScreenState extends State<CarbonPonaScreen>
           Positioned.fill(
               child: CachedNetworkImage(
             imageUrl:
-                'https://drive.google.com/uc?id=1ipzPoVIlYMRnHZcF1qFg9K_e8HykeEYS',
+                'https://drive.google.com/uc?id=1T24Bt2U8T6_EiBcwYTP0OagVh0iJf_Fv',
             placeholder: (context, url) => const CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(
                   Color.fromARGB(255, 251, 252, 252)),

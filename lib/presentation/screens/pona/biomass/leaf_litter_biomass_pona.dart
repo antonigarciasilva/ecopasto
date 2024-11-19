@@ -156,7 +156,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona>
                       width: MediaQuery.of(context).size.width,
                       child: CachedNetworkImage(
                         imageUrl:
-                            'https://drive.google.com/uc?id=1YDyBfi9P9ax-JbejBArtk9vuiErv7zoA',
+                            'https://drive.google.com/uc?id=1B6UDtbypX1lMtjm2Rxohcv03Z3AuC65p',
                         placeholder: (context, url) =>
                             const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(

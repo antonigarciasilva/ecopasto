@@ -158,7 +158,7 @@ class _DryPonaScreenState extends State<DryPonaScreen>
                       width: MediaQuery.of(context).size.width,
                       child: CachedNetworkImage(
                         imageUrl:
-                            'https://drive.google.com/uc?id=10vaxUgeOzGUB9KSItNC5oB7um5CVS_rs',
+                            'https://drive.google.com/uc?id=1tlJPFayis4E8_yshGlpyAxFa7ZmCsfgx',
                         placeholder: (context, url) =>
                             const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -151,8 +152,15 @@ class _CipresScreenState extends State<CipresScreen>
           child: Stack(children: [
         //Imagen de fondo
         Positioned.fill(
-            child: Image.asset(
-          'assets/img/cipres/cipres_v.jpg',
+            child: CachedNetworkImage(
+          imageUrl:
+              'https://drive.google.com/uc?id=1Silnmn-Jzusch43wCVjv_Fu8EEW6bc1H',
+          placeholder: (context, url) => const CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(
+                Color.fromARGB(255, 251, 252, 252)),
+            strokeWidth: 2.5,
+          ),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
           fit: BoxFit.cover,
           color: Colors.black.withOpacity(0.3),
           colorBlendMode: BlendMode.darken,

@@ -120,7 +120,7 @@ class _GreenMatterPonaState extends State<GreenMatterPona>
                       width: MediaQuery.of(context).size.width,
                       child: CachedNetworkImage(
                         imageUrl:
-                            'https://drive.google.com/uc?id=1FbYO5oi3mXNVZFvEWHaX-iZm9NdP8vNq',
+                            'https://drive.google.com/uc?id=1xcHKzK6tszGYNGEwMwdCFogACoRh5UGf',
                         placeholder: (context, url) =>
                             const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(

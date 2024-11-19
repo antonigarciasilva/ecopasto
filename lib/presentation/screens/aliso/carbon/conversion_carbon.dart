@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
@@ -132,8 +133,17 @@ class _ConversionCarbonScreenState extends State<ConversionCarbonScreen>
                   Stack(children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset(
-                        'assets/img/aliso/carbon/conversion_a.jpg',
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://drive.google.com/uc?id=12jfA8mJAmezO8g5LQGQiG7OuDUMPUYcT',
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Color.fromARGB(255, 251, 252, 252)),
+                          strokeWidth: 2.5,
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                         fit: BoxFit.fitHeight,
                         height: size.height * 0.55,
                       ),

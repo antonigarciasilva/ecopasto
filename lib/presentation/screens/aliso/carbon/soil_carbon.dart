@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
@@ -169,8 +170,17 @@ class _SoilCarbonScreenState extends State<SoilCarbonScreen>
                   Stack(children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset(
-                        'assets/img/aliso/biomass/al_dry_biomass.jpg',
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://drive.google.com/uc?id=18h8kF3rQPl8q_JW2InrGfilSkoyT2bgl',
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Color.fromARGB(255, 251, 252, 252)),
+                          strokeWidth: 2.5,
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                         fit: BoxFit.fitWidth,
                         height: size.height * 0.55,
                       ),
