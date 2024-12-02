@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +67,7 @@ class StateBiomassC with ChangeNotifier {
 
   bool get isConversionCarbonC => (resultCarbonBiomassC > 0);
 
+/*
   //Método para la ubicación
   Future<void> getCurrentLocation() async {
     bool serviceEnabled;
@@ -107,6 +110,56 @@ class StateBiomassC with ChangeNotifier {
     longitude = position.longitude;
 
     notifyListeners();
+  }
+*/
+
+  Future<void> getCurrentLocation() async {
+    if (Platform.isAndroid) {
+      bool serviceEnabled;
+      LocationPermission permission;
+
+      // Verificamos si los servicios de localización están habilitados
+      serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        // Si no están habilitados, puedes mostrar un mensaje al usuario
+        return Future.error('Los servicios de ubicación están deshabilitados');
+      }
+
+      // Verifica los permisos de localización
+      permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          // Los permisos están denegados, muestra un mensaje
+          return Future.error(
+              'Los permisos de ubicación están deshabilitados.');
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        // Los permisos están denegados de forma permanente, no puedes continuar
+        return Future.error(
+            'Los permisos de ubicación están denegados permanentemente, no podemos solicitar permisos.');
+      }
+
+      // Configuraciones de ubicación
+      LocationSettings locationSettings = const LocationSettings(
+        accuracy: LocationAccuracy.high, // Alta precisión
+        distanceFilter: 100, // Notificar cada 100 metros de cambio
+      );
+
+      // Obtener la ubicación actual con las configuraciones apropiadas
+      Position position = await Geolocator.getCurrentPosition(
+        locationSettings: locationSettings,
+      );
+
+      latitude = position.latitude;
+      longitude = position.longitude;
+
+      notifyListeners();
+    } else {
+      // En iOS (o cualquier otra plataforma), puedes omitir esta funcionalidad
+    }
   }
 
   //Setters para suelos

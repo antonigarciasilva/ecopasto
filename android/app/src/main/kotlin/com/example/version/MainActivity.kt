@@ -1,4 +1,4 @@
-package com.amascarbon.beta
+package com.amascarbonbeta.ags
 
 import io.flutter.embedding.android.FlutterActivity
 

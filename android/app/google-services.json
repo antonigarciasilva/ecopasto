@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "830841362138",
     "project_id": "silvocarbon",
-    "storage_bucket": "silvocarbon.appspot.com"
+    "storage_bucket": "silvocarbon.firebasestorage.app"
   },
   "client": [
     {
@@ -26,9 +26,47 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:830841362138:android:c1fff89ac2595bfb00f7e3",
+        "mobilesdk_app_id": "1:830841362138:android:3706fcb2af9ed15e00f7e3",
         "android_client_info": {
           "package_name": "com.amascarbon.beta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwsiJ4atJ3Aq2RP3eml1o1Z7lVodTJaVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830841362138:android:9dae95e8ec0d136f00f7e3",
+        "android_client_info": {
+          "package_name": "com.amascarbonbeta.ags"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwsiJ4atJ3Aq2RP3eml1o1Z7lVodTJaVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830841362138:android:c1fff89ac2595bfb00f7e3",
+        "android_client_info": {
+          "package_name": "com.example.version"
         }
       },
       "oauth_client": [],
