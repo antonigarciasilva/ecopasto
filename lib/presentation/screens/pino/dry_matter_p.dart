@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
@@ -151,20 +150,11 @@ class _DryMatterPState extends State<DryMatterP> with WidgetsBindingObserver {
                 children: <Widget>[
                   Stack(children: [
                     SizedBox(
+                      height: size.height * 0.6,
                       width: MediaQuery.of(context).size.width,
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://drive.google.com/uc?id=1XsOxtdQJakI59DZB3o1u3gqnnMcFWsWp',
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              Color.fromARGB(255, 251, 252, 252)),
-                          strokeWidth: 2.5,
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.fitWidth,
-                        height: size.height * 0.6,
+                      child: Image.asset(
+                        'assets/img/pino/drymatter/dry_matter_p.jpeg',
+                        fit: BoxFit.cover,
                       ),
                     ),
 

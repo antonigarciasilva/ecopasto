@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
@@ -146,19 +145,13 @@ class _CarbonScreenState extends State<CarbonScreen>
             children: [
               //Imagen de fondo
               Positioned.fill(
-                  child: CachedNetworkImage(
-                imageUrl:
-                    'https://drive.google.com/uc?id=1vcf33WIXmj3jEnCxwDH9XzhYsRpqRXrU',
-                placeholder: (context, url) => const CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                      Color.fromARGB(255, 251, 252, 252)),
-                  strokeWidth: 2.5,
+                child: Image.asset(
+                  'assets/img/aliso/drymatter/aliso_seco.jpeg',
+                  fit: BoxFit.cover,
+                  color: Colors.black.withOpacity(0.5),
+                  colorBlendMode: BlendMode.darken,
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-                fit: BoxFit.cover,
-                color: Colors.black.withOpacity(0.5),
-                colorBlendMode: BlendMode.darken,
-              )),
+              ),
               Center(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),

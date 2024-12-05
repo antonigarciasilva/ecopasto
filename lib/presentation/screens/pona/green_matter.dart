@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -118,19 +117,11 @@ class _GreenMatterPonaState extends State<GreenMatterPona>
                   Stack(children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://drive.google.com/uc?id=1xcHKzK6tszGYNGEwMwdCFogACoRh5UGf',
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              Color.fromARGB(255, 251, 252, 252)),
-                          strokeWidth: 2.5,
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.cover,
+                      child: SizedBox(
                         height: size.height * 0.6,
+                        child: Image.asset(
+                            'assets/img/pona/greenmatter/green_o.jpeg',
+                            fit: BoxFit.cover),
                       ),
                     ),
 

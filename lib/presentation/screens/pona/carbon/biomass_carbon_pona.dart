@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/aliso/biomass/state_biomass.dart';
@@ -154,22 +153,9 @@ class _BiomaasCarbonPonaState extends State<BiomassCarbonPona>
                 children: <Widget>[
                   Stack(children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://drive.google.com/uc?id=1dHMU8-XP2txv8T7QQAkL-0XnQGYgjCw_',
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              Color.fromARGB(255, 251, 252, 252)),
-                          strokeWidth: 2.5,
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.fitHeight,
-                        height: size.height * 0.55,
-                      ),
-                    ),
+                        width: MediaQuery.of(context).size.width,
+                        child: Image.asset('assets/img/pona/pona.jpeg',
+                            fit: BoxFit.cover)),
 
                     //Possition of the botton
                     Positioned(

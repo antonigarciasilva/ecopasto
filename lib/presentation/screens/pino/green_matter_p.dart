@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
@@ -119,21 +118,11 @@ class _GreenMatterPState extends State<GreenMatterP>
                 children: <Widget>[
                   Stack(children: [
                     SizedBox(
+                      height: size.height * 0.6,
                       width: MediaQuery.of(context).size.width,
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://drive.google.com/uc?id=1yc19hR5X-ZQB51dZvPvKld0kARuFNBR1',
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              Color.fromARGB(255, 251, 252, 252)),
-                          strokeWidth: 2.5,
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.fitHeight,
-                        height: size.height * 0.55,
-                      ),
+                      child: Image.asset(
+                          'assets/img/pino/biomass/herbaceous_p.jpeg',
+                          fit: BoxFit.cover),
                     ),
 
                     //Position of the buttom

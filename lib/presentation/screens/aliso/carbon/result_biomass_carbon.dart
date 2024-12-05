@@ -233,7 +233,7 @@ class _ResultCarbonBiomassState extends State<ResultCarbonBiomass>
   String getImagePath(String level) {
     switch (level) {
       case 'Bajo':
-        return 'assets/result/bajo.jpg';
+        return 'assets/result/bajo.jpeg';
       case 'Medio':
         return 'assets/result/medio.jpg';
       case 'Excelente':

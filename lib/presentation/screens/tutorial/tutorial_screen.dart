@@ -22,7 +22,7 @@ final slides = <SlideInfo>[
 
       //'Una herramienta fácil y didactida para cuantificar el carbono en sistemas silvopastoriles (Pino, Pona, Ciprés y Aliso).',
 
-      'assets/slides/silvipastoril.jpg'),
+      'assets/slides/silvipastoril.jpeg'),
   SlideInfo(
       'Fácil de usar',
       'Con una interfaz intuitiva, nuestra aplicación móvil te guiará paso a paso en el proceso de cuantificación del carbono.',
@@ -35,7 +35,7 @@ final slides = <SlideInfo>[
   SlideInfo(
       'Obtén tus resultados',
       'Una vez completado el ingreso de datos, obtendrás la cantidad de carbono en tu sistema silvopastoril.',
-      'assets/slides/resultados.png'),
+      'assets/slides/resultados.jpeg'),
 ];
 
 class TutorialScreen extends StatefulWidget {

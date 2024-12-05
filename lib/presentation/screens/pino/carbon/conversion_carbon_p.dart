@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:version/presentation/screens/pino/biomass/state_biomass_p.dart';
@@ -119,19 +118,8 @@ class _ConversionCarbonPinoState extends State<ConversionCarbonPino>
                   Stack(children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://drive.google.com/uc?id=1oF6OGOWaR6BMNQEb_Id45OutU2OgVstO',
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              Color.fromARGB(255, 251, 252, 252)),
-                          strokeWidth: 2.5,
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.fitHeight,
-                        height: size.height * 0.55,
+                      child: Image.asset(
+                        'assets/img/pino/carbon/conversion_p.jpeg',
                       ),
                     ),
                     //Possition of the botton

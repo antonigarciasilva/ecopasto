@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -158,20 +157,8 @@ class _DryBiomassPonaState extends State<DryBiomassPona>
                   Stack(children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://drive.google.com/uc?id=1GaCraHxMTl4Zh598T8qbNDLdSxpmt-MD',
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              Color.fromARGB(255, 251, 252, 252)),
-                          strokeWidth: 2.5,
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.cover,
-                        height: size.height * 0.55,
-                      ),
+                      child: Image.asset('assets/img/pona/drymatter/dry_o.jpeg',
+                          fit: BoxFit.cover),
                     ),
 
                     //Possition of the botton
