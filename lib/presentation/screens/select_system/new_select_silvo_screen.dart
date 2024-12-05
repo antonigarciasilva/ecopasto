@@ -43,6 +43,7 @@ class NewSelectSilvoScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   height: size.height * 0.5,
+                  // width: size.width * 0.7,
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,

@@ -154,7 +154,7 @@ class _LeafLitterBiomassPonaState extends State<LeafLitterBiomassPona>
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                          'assets/img/pona/biomass/biomass_her.jpeg',
+                          'assets/img/pona/biomass/biomass_ho.jpeg',
                           fit: BoxFit.cover),
                     ),
 

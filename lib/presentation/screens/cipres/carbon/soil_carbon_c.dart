@@ -167,7 +167,7 @@ class _SoilCarbonCState extends State<SoilCarbonC> with WidgetsBindingObserver {
                       child: SizedBox(
                         height: size.height * 0.6,
                         child: Image.asset(
-                            'assets/img/cipres/drymatter/dry_mater.jpeg',
+                            'assets/img/cipres/greenmatter/green_mater.jpeg',
                             fit: BoxFit.cover),
                       ),
                     ),
