@@ -39,7 +39,7 @@ class SplashScreen extends StatelessWidget {
                   Colors.black.withOpacity(0.1),
                   BlendMode.darken,
                 ),
-                child: Image.asset('assets/slides/silvipastoril.jpeg',
+                child: Image.asset('assets/slides/silvipastoril1.jpg',
                     fit: BoxFit.cover)),
           ),
           Positioned(

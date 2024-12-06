@@ -31,7 +31,7 @@ final slides = <SlideInfo>[
       'Ingreso de datos',
       'Llena los datos solicitados de manera sencilla, siguiendo las instrucciones en pantalla.',
       'assets/slides/datos.png'),
-  SlideInfo('', '', 'assets/slides/secuencia.png'),
+  SlideInfo('Pasos', '', 'assets/slides/secuencia.jpg'),
   SlideInfo(
       'Obtén tus resultados',
       'Una vez completado el ingreso de datos, obtendrás la cantidad de carbono en tu sistema silvopastoril.',
